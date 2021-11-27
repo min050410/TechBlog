@@ -31,7 +31,7 @@ const LineContent = styled.span`
 const CodeBlock = ({children, className}) => {
   if(className) {
     const language = className.replace(/language-/, '')
-    return (
+    return (  
       <Highlight {...defaultProps} theme={theme} code={children} language={language}>
         {({className, style, tokens, getLineProps, getTokenProps}) => (
           <Pre className={className} style={style}>
@@ -50,6 +50,7 @@ const CodeBlock = ({children, className}) => {
       </Highlight>
     )
   }
+  return null
 }
 
 export default CodeBlock;
