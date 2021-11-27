@@ -27,7 +27,8 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-export default ({children, className}) => {
+
+const CodeBlock = ({children, className}) => {
   if(className) {
     const language = className.replace(/language-/, '')
     return (
@@ -48,5 +49,7 @@ export default ({children, className}) => {
         )}
       </Highlight>
     )
-  } 
+  }
 }
+
+export default CodeBlock;
