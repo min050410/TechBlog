@@ -28,7 +28,7 @@ const LineContent = styled.span`
 `;
 
 export default ({children, className}) => {
-  if(className) { // props 가 있다면
+  if(className) {
     const language = className.replace(/language-/, '')
     return (
       <Highlight {...defaultProps} theme={theme} code={children} language={language}>

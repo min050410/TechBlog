@@ -1,17 +1,14 @@
 //step 1 : Import react
 import * as React from "react";
 import { Link } from 'gatsby';
-// import styled from "styled-components";
+import styled from "styled-components";
 import Post from './example.mdx'
 // import Syntax from './syntax.mdx'
 import { MDXProvider } from "@mdx-js/react"
 import codeblock from "./codeblock";
-// import Highlight, {defaultProps} from 'prism-react-renderer'
-// import {compile} from '@mdx-js/mdx'
-// import rehypeHighlight from 'rehype-highlight'
 
-
-//step 2: define your component 
+//step 2: define your component
+ 
 const IndexPage = () => {
   var hi = 0;
 
