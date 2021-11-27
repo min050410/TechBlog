@@ -9,7 +9,7 @@ const Layout = (props: { pageTitle: string; children: any; }) => {
             <title>{pageTitle}</title>
             <nav>
                 <ul>
-                    <li><Link to="/">Homw</Link></li>
+                    <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
                 </ul>
             </nav>

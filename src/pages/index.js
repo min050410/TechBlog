@@ -5,7 +5,7 @@ import Post from './example.mdx'
 import Syntax from './syntax.mdx'
 import { MDXProvider } from "@mdx-js/react"
 import codeblock from "./codeblock";
-import Highlight, {defaultProps} from 'prism-react-renderer'
+// import Highlight, {defaultProps} from 'prism-react-renderer'
 // import {compile} from '@mdx-js/mdx'
 // import rehypeHighlight from 'rehype-highlight'
 
@@ -24,11 +24,10 @@ const IndexPage = () => {
       <h1>Welcome to my Gatsby site!</h1>
       <Link to="/about">About</Link>
       <p>I'm making thist by following gatsby tuto</p>
-      <MDXProvider components={components}>
-        <Syntax/>
+      <MDXProvider components={components}> 
+  
+        <Post/>
       </MDXProvider>
-      {/* <Post components={{code}}/> */}
-      
     </main>
     
   )
