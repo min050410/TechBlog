@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from "styled-components";
+import styled from 'styled-components'
 import Highlight, {defaultProps} from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/github';
 
@@ -7,7 +7,7 @@ const Pre = styled.pre`
   text-align: left;
   margin: 1em 0;
   padding: 0.5em;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   display: inline-block;  
 `;
 
@@ -28,23 +28,25 @@ const LineContent = styled.span`
 `;
 
 export default ({children, className}) => {
-  const language = className.replace(/language-/, '')
-  return (
-    <Highlight {...defaultProps} theme={theme} code={children} language={language}>
-      {({className, style, tokens, getLineProps, getTokenProps}) => (
-        <Pre className={className} style={style}>
-        {tokens.map((line, i) => (
-          <Line key={i} {...getLineProps({ line, key: i })}>
-            <LineNo>{i + 1}</LineNo>
-            <LineContent>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </LineContent>
-          </Line>
-        ))}
-      </Pre>
-      )}
-    </Highlight>
-  )
+  if(className) { // props 가 있다면
+    const language = className.replace(/language-/, '')
+    return (
+      <Highlight {...defaultProps} theme={theme} code={children} language={language}>
+        {({className, style, tokens, getLineProps, getTokenProps}) => (
+          <Pre className={className} style={style}>
+          {tokens.map((line, i) => (
+            <Line key={i} {...getLineProps({ line, key: i })}>
+              <LineNo>{i + 1}</LineNo>
+              <LineContent>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </LineContent>
+            </Line>
+          ))}
+        </Pre>
+        )}
+      </Highlight>
+    )
+  } 
 }
