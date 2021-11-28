@@ -21,7 +21,6 @@ const IndexPage = () => {
       <title>개발중입니다..</title>
       <h1>개발중입니다...</h1>
       <Link to="/about">About</Link>
-      <p>I'm making thist by following gatsby tuto</p>
       <MDXProvider components={components} >
         <Post/>
       </MDXProvider>
