@@ -1,26 +1,25 @@
-//step 1 : Import react
 import * as React from "react";
 import { Link } from 'gatsby';
-// import styled from "styled-components";
-import Post from './example.mdx'
-// import Syntax from './syntax.mdx'
+import Post from '../md/example.mdx'
 import { MDXProvider } from "@mdx-js/react"
-import CodeBlock from "./codeblock";
+import CodeBlock from "./components/codeblock";
+import './styles/index.sass';
 
-//step 2: define your component
- 
+// @font-face {
+//   font-family: "NanumSquareR";
+//   src: url("../assets/font/NanumSquareR.ttf") format("truetype");
+//   }
+//   font-family: 'NanumSquareR';
+
 const IndexPage = () => {
-  var hi = 0;
-
   const components = { //코드 스타일링
     code: CodeBlock,
   };
 
   return(
-    
     <main>  
-      <title>Home Page${hi}</title>
-      <h1>Welcome to my Gatsby site!</h1>
+      <title>개발중입니다..</title>
+      <h1>개발중입니다...</h1>
       <Link to="/about">About</Link>
       <p>I'm making thist by following gatsby tuto</p>
       <MDXProvider components={components} >

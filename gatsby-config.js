@@ -9,10 +9,16 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: "md",
+        path: "./src/md",
       },
-      __key: "pages",
+      __key: "md",
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("node-sass"),
+      },
     },
   ],
   
