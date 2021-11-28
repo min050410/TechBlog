@@ -174,10 +174,9 @@ react-native link react-native-camera
 ```java
 missingDimensionStrategy 'react-native-camera', 'general'
 ```
-그리고 안드로이드는 퍼미션을 줘야한다.
-```java
-// manifest 안에 추가
-<uses-permission android:name="android.permission.CAMERA" />
-```
-후에 `react-native run-android`
-오류가 걸린다면 `package.lock`이나 `yarn.lock`을 제거하고 실행해본다
+그리고 안드로이드는 퍼미션을 줘야한다.  
+`manifest` 안에  
+"android.permission.CAMERA" `permission`을 추가한다.  
+  
+후에 `react-native run-android`  
+오류가 걸린다면 `package.lock`이나 `yarn.lock`을 제거하고 실행해본다  
