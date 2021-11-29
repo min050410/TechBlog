@@ -14,7 +14,8 @@ const posts = [
       img: 'flask',
       tag: '#python',
       tag2: '#flask',
-      tag3: '#backend'
+      tag3: '#backend',
+      link: 'flask'
     },
     {
       id: 2,
@@ -23,7 +24,9 @@ const posts = [
       img: 'react-native',
       tag: '#mobile',
       tag2: '#hook',
-      tag3: '#java-script'
+      tag3: '#java-script',
+      link: 'rn'
+      
     },
     {
       id: 3,
@@ -32,7 +35,8 @@ const posts = [
       img: 'typescript',
       tag: '#react',
       tag2: '#type-define',
-      tag3: ''
+      tag3: '',
+      link: 'typescript'
     }
   ];
 
