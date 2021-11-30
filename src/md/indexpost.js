@@ -15,7 +15,7 @@ const posts = [
       tag: '#python',
       tag2: '#flask',
       tag3: '#backend',
-      link: 'flask'
+
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const posts = [
       tag: '#mobile',
       tag2: '#hook',
       tag3: '#java-script',
-      link: 'rn'
+      
       
     },
     {
@@ -36,7 +36,6 @@ const posts = [
       tag: '#react',
       tag2: '#type-define',
       tag3: '',
-      link: 'typescript'
     }
   ];
 
