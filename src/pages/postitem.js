@@ -6,15 +6,16 @@ import NotFoundPage from "./404"
 // import Post from '../md/example.mdx'
 
 const Postimport = ({ location }) => {
-    const {product} = location.state.fromFeed;
+    // const {product} = String(location.state.fromFeed)
+    
     // const item = require(`../md/${location.state.fromFeed}`)
-    if(product === undefined){
+    if(String(location.state.fromFeed) === ""){
         return(
             <NotFoundPage/>
         )
     }
     else{
-        const Postitem = require(`../md/${location.state.fromFeed}.mdx`).default
+        const Postitem = require(`../md/${String(location.state.fromFeed)}.mdx`).default
         const components = { //코드 스타일링
             code: CodeBlock,
         };
