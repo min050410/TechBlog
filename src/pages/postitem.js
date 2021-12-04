@@ -6,12 +6,11 @@ import NotFoundPage from "./404"
 
 
 const Postimport = ({ location }) => {
-    if(location.state.myProp===undefined){
+    if(location.state === undefined){
         return(<div>undefined</div>)
     }
     else{
-    const agentProp = location.state.myProp
-    const Postitem = require(`../md/${agentProp}.mdx`).default
+    const Postitem = require(`../md/${location.state.myProp}.mdx`).default
     const components = { //코드 스타일링
         code: CodeBlock,
     };
