@@ -8,7 +8,7 @@ const IndexPage = () => {
 
   const postlist = posts.map((post)=>
   (
-    <Link to="postitem" state={{ fromFeed: post.filename.toString() }} className="whatev">
+    <Link to="postitem" state={{ myProp: String(post.filename) }} className="whatev">
     <div className="card">
     <h3>{post.title}</h3> 
     <img src={require(`../assets/images/${post.img}.png`).default} width="200px"/>
