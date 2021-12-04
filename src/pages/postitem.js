@@ -6,7 +6,7 @@ import NotFoundPage from "./404"
 
 
 const Postimport = ({ location }) => {
-    const product = location.state.fromFeed.toString()
+    const product = location.state.fromFeed
     const Postitem = require(`../md/${product.toString()}.mdx`).default
     const components = { //코드 스타일링
         code: CodeBlock,
