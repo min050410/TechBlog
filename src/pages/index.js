@@ -1,34 +1,45 @@
 import * as React from "react";
 import { Link } from 'gatsby';
 import posts from '../md/indexpost'
+import Header from './components/header'
 import './styles/index.sass';
+import './styles/card.sass';
 
 
 const IndexPage = () => {
 
-  const postlist = posts.map((post)=>
+  const postlist = posts.map((post) =>
   (
-    <Link to="postitem/" state={{ myProp: post.filename }} className="whatev">
-    <div className="card">
-    <h3>{post.title}</h3> 
-    <img src={require(`../assets/images/${post.img}.png`).default} width="200px"/>
-    <span>{post.tag}</span>
-    <span>{post.tag2}</span>
-    <span>{post.tag3}</span>
-    </div>
+    <Link to="postitem/" state={{ myProp: post.filename }}>
+      <div className="card">
+        <img src={require(`../assets/images/${post.img}.png`).default} alt={post.img} />
+        <h3>{post.title}</h3>
+        <span>{post.tag}</span>
+        <span>{post.tag2}</span>
+        <span>{post.tag3}</span>
+      </div>
     </Link>
   ));
 
-  return(
-    <main>  
+  return (
+
+
+    <main>
+      <Header/>
       <title>개발중입니다..</title>
-      {postlist}
-      <h2>개발중입니다... 업데이트 11/30</h2>
+      <div class="container">
+        {postlist}
+        {(posts[posts.length - 1].id) % 2 === 1 ?
+          (<Link to="#">
+            <div className="card">
+            </div>
+          </Link>) : null}
+      </div>
     </main>
   )
 }
 //step3 export 
-export default IndexPage; 
+export default IndexPage;
 
 
 
