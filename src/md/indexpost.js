@@ -25,8 +25,6 @@ const posts = [
       tag: '#mobile',
       tag2: '#hook',
       tag3: '#java-script',
-      
-      
     },
     {
       id: 3,
