@@ -3,6 +3,8 @@ import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "./components/codeblock";
 import './styles/index.sass';
 import NotFoundPage from "./404"
+import "./styles/postitem.sass"
+import Header from './components/header'
 
 
 const Postimport = ({ location }) => {
@@ -15,9 +17,15 @@ const Postimport = ({ location }) => {
             code: CodeBlock,
         };
         return (
-            <MDXProvider components={components} >
-                <Postitem />
-            </MDXProvider>
+            <main>
+                <title>{location.state.myProp}</title>
+                <Header/>
+                <div class="middle">
+                    <MDXProvider components={components} >
+                        <Postitem/>
+                    </MDXProvider>
+                </div>
+            </main>
         )
     }
 }

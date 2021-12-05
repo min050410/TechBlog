@@ -22,18 +22,16 @@ const IndexPage = () => {
   ));
 
   return (
+
+
     <main>
-      <Header />
+      <Header/>
       <title>개발중입니다..</title>
       <div class="container">
         {postlist}
-        {(posts[posts.length - 1].id) % 2 === 1?
+        {(posts[posts.length - 1].id) % 2 === 1 ?
           (<Link to="#">
             <div className="card">
-              <h3></h3>
-              <span></span>
-              <span></span>
-              <span></span>
             </div>
           </Link>) : null}
       </div>

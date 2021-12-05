@@ -1,5 +1,6 @@
 @import "theme"
 
+
 @font-face 
   font-family: "NanumSquareR"
   src: url("../../assets/font/NanumSquareR.ttf") format("truetype")
@@ -43,6 +44,7 @@ p,li
   color: $gray7
 
 blockquote 
+  display: inline-block
   margin: 24px 0px
   padding: 4px 24px
   border-left: 5px solid $gray5
@@ -55,12 +57,12 @@ pre
   box-sizing: border-box
   padding: 16px
   margin: 12px 0px
-  width: 100%
   border-radius: 8px
   overflow: auto
 
 ol,
 ul 
+  
   margin: 16px 0px
   li 
     width: calc(100% - 28px)

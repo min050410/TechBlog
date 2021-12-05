@@ -31,18 +31,20 @@ const LineContent = styled.span`
 const CodeBlock = ({children, className}) => {
   if(className) {
     const language = className.replace(/language-/, '')
+    
     return (  
       <Highlight {...defaultProps} theme={theme} code={children} language={language}>
         {({className, style, tokens, getLineProps, getTokenProps}) => (
-          <Pre className={className} style={style}>
+          <Pre className={className} style={style} width="auto">
           {tokens.map((line, i) => (
             <Line key={i} {...getLineProps({ line, key: i })}>
-              <LineNo>{i + 1}</LineNo>
-              <LineContent>
+              {tokens[i+1] ? <LineNo>{i + 1}</LineNo> : null}
+              {tokens[i+1] ? <LineContent>
                 {line.map((token, key) => (
                   <span key={key} {...getTokenProps({ token, key })} />
                 ))}
-              </LineContent>
+              </LineContent> : null}
+  
             </Line>
           ))}
         </Pre>
