@@ -1,11 +1,14 @@
 # TIL
 > react-native today I learned 
+
 ### react-native 코드 보기
 - <a href="https://github.com/min050410/RN_practice/tree/master">Simple Todo App</a>
 - <a href="https://github.com/min050410/RN_practice/tree/navigation">Navigation Practice</a>
 - <a href="https://github.com/min050410/NOTIFAM">NOTIFAM</a>
 - <a href="https://github.com/min050410/App">AiforHuman</a>
+
 > #1
+
 - `components` 안에 기본적으로 나뉘는 js 파일들을 집어넣는다.  
 * `components`    
   * `TodoInsert.js ` 
@@ -14,18 +17,21 @@
 (like this)  
   
 > #2
+
 - 훅 문법은 const App = () => {  
 안에 넣는다   
 ```js
 const [todos, setTodos] = useState([]);  
 ```
 > #3 
+
 - `node_modules`가 동작하지 않을때  
 ```terminal
 $ npm install <module-name> --save  
 ```
 출처: `https://xtring-dev.tistory.com/11`
 > #4
+
 `component` 분리 방법과 하는 법  
 원래 #1 앞에 적었어야 했는데 후에 적음  
 컴포넌트 파일 내에 앱 작성 + `export default`   
@@ -35,6 +41,7 @@ import TodoInsert from './components/TodoInsert';
 ```
 
 > #5
+
 `react native`로 쉽게 `API xml` 파싱하는법  
 먼저,   
 ```terminal
@@ -74,6 +81,7 @@ parser.parseString(xml, function(err, result) {
 `react native`에서의 `console.log`는 `metro`에서 나온다 참고
 
 > #6
+
 `react native` `hook Usestate` 는 비동기이다.
 ```js
 //3으로 생각하기 쉽지만 비동기 이기 때문에 마지막 함수만 실행됨
@@ -102,6 +110,7 @@ export default App;
 import {useState, useEffect} from 'react';
 ```
 > #7
+
 - Navigating Between Screens
 
 `android studio` 의 `indent`를 `react native` 모듈로 구현 가능하다.
@@ -156,7 +165,9 @@ const ProfileScreen = ({ navigation, route }) => {
 // ProfileScreen 에서 route.params.~~를 이용해 받을 수 있다.#
 ```
 <a href="https://reactnative.dev/docs/navigation">참고한 웹사이트</a>
+
 > #8
+
 `react-native-camera` 적용 방법
 정말 많은 오류가 떴고 `server error 500` 부터 시작해서 `package.json`오류,,  
 많은 경험을 바탕으로 쉽고 빠르게 `react-native` 에 적용시키는 법을 알아보자!  
