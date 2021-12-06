@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
-    
+@import "variables" 
+
+@font-face 
+    font-family: "NanumSquareR"
+    src: url("../../assets/font/NanumSquareR.ttf") format("truetype")
+
+*
+    color: #000000
 header
     margin: 100 auto
     display: flex
@@ -17,10 +24,16 @@ header
     font-family: 'Open Sans Condensed', sans-serif;
     
 .head.box span
+    // font-family: 'NanumSquareR';
     margin-left: 10px;
     font-size: 50px;
     color: #000000;
 
 .head.content span
+    font-family: 'NanumSquareR';
     margin-left: 10px;
+
+@include mobile
+    .head
+        margin: 10px;
     

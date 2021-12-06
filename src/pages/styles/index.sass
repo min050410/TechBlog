@@ -1,5 +1,4 @@
-@import "theme"
-
+@import "variables"
 
 @font-face 
   font-family: "NanumSquareR"
@@ -62,20 +61,51 @@ pre
 
 ol,
 ul 
-  
-  margin: 16px 0px
+  margin: 1em 0px
   li 
     width: calc(100% - 28px)
-    margin: 8px 0px
+    // margin: 1em 0px
     left: 28px
     position: relative
+    line-height: 1.75rem
 
 code
   padding-top: 0.1rem
   padding-bottom: 0.1rem
   font-size: 0.8em
-  background: #fafafa
+  background: #efefef
   border-radius: 5px
 
-  
+@include mobile
+  *
+    font-size: 1rem
+  h1 
+    font-size: 1.6rem
+    margin: 2rem 0px 6px 0px
+  h2 
+    font-size: 1.4rem
+    margin: 1.7rem 0px 4px 0px
+  h3 
+    font-size: 1.2rem
+    margin: 1.4rem 0px 2px 0px
+  h4 
+    font-size: 1.0rem
+    margin: 1.1rem 0px
+  h5 
+    font-size: 0.8rem
+    margin: 0.8rem 0px 1px 0px
+  blockquote 
+    border-left: 3.5px solid $gray5
+  ol,
+  ul 
+    padding-left: 0.8em
+    li 
+      left: 0px
+  pre
+    padding: 0px
+    font-size: 1rem 
+  img:not(.ballon)
+    width: 300px;
+    
+    
 

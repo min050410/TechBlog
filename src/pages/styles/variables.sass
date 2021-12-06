@@ -1,0 +1,30 @@
+$white: #ffffff;
+$gray0: #f8f8f8;
+$gray1: #efefef;
+$gray2: #d9d9d9;
+$gray3: #ababab;
+$gray4: #848484;
+$gray5: #747474;
+$gray6: #5d5d5d;
+$gray7: #444444;
+
+// Breakpoints
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 758px;
+$breakpoint-desktop: 1024px;
+
+@mixin mobile 
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet - 1px) 
+    @content;
+  
+
+@mixin tablet 
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: $breakpoint-desktop - 1px) 
+    @content;
+  
+
+@mixin desktop 
+  @media (min-width: #{$breakpoint-desktop}) 
+    @content;
+  
+

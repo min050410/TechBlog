@@ -1,3 +1,4 @@
+@import "variables" 
 .container
     display: flex;
     flex-wrap: wrap;
@@ -26,4 +27,13 @@
     font-size: 0.8em;
     margin-right: 0.5em;
     padding: 0.2em;
-    
+
+@include mobile
+    .card
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    .card img 
+        width: 20vh
+        height: 20vh
