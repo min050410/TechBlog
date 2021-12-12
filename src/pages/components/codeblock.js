@@ -27,7 +27,6 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-
 const CodeBlock = ({children, className}) => {
   if(className) {
     const language = className.replace(/language-/, '')

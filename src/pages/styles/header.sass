@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import "variables" 
 
 @font-face 
-    font-family: "NanumSquareR"
+    // font-family: "NanumSquareR"
     src: url("../../assets/font/NanumSquareR.ttf") format("truetype")
+    font-family: 'Noto Sans', sans-serif;
+    // font-family: 'Nanum Gothic', sans-serif;
 
 *
-    color: #000000
+    color: #ffffff
 header
     margin: 100 auto
     display: flex
@@ -25,14 +28,37 @@ header
     
 .head.box span
     // font-family: 'NanumSquareR';
-    margin-left: 10px;
-    font-size: 50px;
-    color: #000000;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 52px;
+    margin-left: 15px;
+    letter-spacing: 2px;
+    // color: #ffffff;
 
 .head.content span
     font-family: 'NanumSquareR';
     margin-left: 10px;
 
+input
+    width: 362px;
+    height: 50px;
+    // left: 304px;
+    border-image: none;
+    border-style: none;
+    // top: 30px;
+    background-color: #636366;
+    border-radius: 30px;
+    // border-color: #636366 !important;
+form
+    position: relative;
+    
+form .search
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    
 @include mobile
     .head
         margin: 10px;

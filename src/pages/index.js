@@ -1,18 +1,21 @@
 import * as React from "react";
 import { Link } from 'gatsby';
+
+//components
 import posts from '../md/indexpost'
 import Header from './components/header'
+
+//styles
 import './styles/index.sass';
 import './styles/card.sass';
 
 
 const IndexPage = () => {
-
   const postlist = posts.map((post) =>
   (
     <Link to="postitem/" state={{ myProp: post.filename }}>
       <div className="card">
-        <img src={require(`../assets/images/${post.img}.png`).default} alt={post.img} />
+        <img src={require(`../assets/images/${post.img}.png`).default} alt={post.img}/>
         <h3>{post.title}</h3>
         <span>{post.tag}</span>
         <span>{post.tag2}</span>
@@ -20,10 +23,7 @@ const IndexPage = () => {
       </div>
     </Link>
   ));
-
   return (
-
-
     <main>
       <Header/>
       <title>개발중입니다..</title>
@@ -38,7 +38,7 @@ const IndexPage = () => {
     </main>
   )
 }
-//step3 export 
+
 export default IndexPage;
 
 
