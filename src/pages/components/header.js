@@ -12,8 +12,8 @@ const Header = () => {
                 </div>
             </Link>
             <div class="search_warp">
-                <img class="search" src="https://user-images.githubusercontent.com/45661217/145702560-4a375749-e726-49ff-b6e1-f1bd1279a402.png"></img>
-                <input type="text" name="search" placeholder="        검색할 내용을 입력하세요">
+                {/* <img class="search" src="https://user-images.githubusercontent.com/45661217/145702560-4a375749-e726-49ff-b6e1-f1bd1279a402.png"></img> */}
+                <input type="text" name="search" autocomplete="off" placeholder="검색할 내용을 입력하세요">
                 </input>
             </div>
             <div class="head content">
