@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import "variables" 
 
 @font-face 
-    font-family: "NanumSquareR"
+    // font-family: "NanumSquareR"
     src: url("../../assets/font/NanumSquareR.ttf") format("truetype")
+    font-family: 'Noto Sans', sans-serif;
+    // font-family: 'Nanum Gothic', sans-serif;
 
 *
-    color: #000000
+    color: #ffffff
 header
     margin: 100 auto
     display: flex
@@ -25,15 +28,47 @@ header
     
 .head.box span
     // font-family: 'NanumSquareR';
-    margin-left: 10px;
-    font-size: 50px;
-    color: #000000;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 52px;
+    margin-left: 15px;
+    letter-spacing: 2px;
+    // color: #ffffff;
 
 .head.content span
     font-family: 'NanumSquareR';
     margin-left: 10px;
 
+input
+    margin-left: 20px;
+    width: 320px;
+    height: 30px;
+    border-image: none;
+    border-style: none;
+    background-color: #636366;
+input:focus 
+    outline: none; 
+input::placeholder 
+  color: #C7C7CC;
+
+.search_warp
+    font: 400 16px "Spoqa Han Sans Neo", "sans-serif";
+    padding: 10px 16px;
+    background-color: rgb(99, 99, 102);
+    width: 350px;
+    height: 30px;
+    border-image: none;
+    border-style: none;
+    background-color: #636366;
+    border-radius: 30px;
+    border-color: #636366 !important;
+    background-image: url(https://user-images.githubusercontent.com/45661217/145702560-4a375749-e726-49ff-b6e1-f1bd1279a402.png)
+    background-repeat: no-repeat
+    background-position: 10px center
 @include mobile
     .head
         margin: 10px;
+        
     

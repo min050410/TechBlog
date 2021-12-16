@@ -1,11 +1,12 @@
 import * as React from "react";
 import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "./components/codeblock";
-import './styles/index.sass';
 import NotFoundPage from "./404"
-import "./styles/postitem.sass"
 import Header from './components/header'
 
+//styles
+import "./styles/postitem.sass"
+import './styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
