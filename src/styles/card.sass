@@ -1,29 +1,49 @@
 // 카드의 스타일입니다.
 @import "variables" 
+
+.popular
+    font-family: Noto sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 40px 0px 0px 40px;
+
 .container
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     justify-content: space-evenly;
     margin-top: 20px;
-    
+
 .card
-    flex: 1 1 30%;
-    width: 400px
+    width: 175px
 
-.card img
-    height: 30vh
-    border-radius: 30px
+.card .imgbox
+    position: relative
 
-.card img:hover
-    // cursor:pointer
-    transform:scale(1.1)
+.card .imgbox img
+    border-radius: 20px
+    position: absolute
+
+.card .imgbox img:hover
+    height: 120px;
+    filter: blur(5px);
+
+.copylink
+    height: 20px;
+    top: 5px;
+    left: 53%;
 
 
 .card span, .card h3
-    color: #000000
+    font-family: Noto sans;
+    font-style: normal;
+    font-weight: 100;
+    line-height: 30px;
 
 .card h3
-    font-size: 1.2em;
+    
+    font-size: 1em;
+    margin-top: 125px !important;
 
 .card span
     display: inline-block;
