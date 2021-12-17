@@ -1,72 +1,109 @@
+// header의 스타일입니다
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 @import "variables" 
+*    
+    color: $white
 
 @font-face 
-    // font-family: "NanumSquareR"
     src: url("../../assets/font/NanumSquareR.ttf") format("truetype")
     font-family: 'Noto Sans', sans-serif;
-    // font-family: 'Nanum Gothic', sans-serif;
 
-*
-    color: #ffffff
 header
-    margin: 100 auto
     display: flex
-    flex-wrap: wrap;
+    flex-wrap: wrap
     justify-content: center
+    justify-content: space-between;
     flex-direction: row
     align-items: center
+    margin: 20px 20px
 
-.head
-    margin: 0 150px
-    
-.head.box
+.head.box 
     display: flex
     align-items: center
-    font-family: 'Open Sans Condensed', sans-serif;
-    
-.head.box span
-    // font-family: 'NanumSquareR';
-    font-family: Noto Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 38px;
-    line-height: 52px;
-    margin-left: 15px;
-    letter-spacing: 2px;
-    // color: #ffffff;
+    .logo
+        width: 65px
+        height: 50px
+        background-size: cover;
+    span
+        margin-top: 4px;
+        font-family: Noto Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        margin-left: 0.3em;
+        letter-spacing: 2px;
 
-.head.content span
-    font-family: 'NanumSquareR';
-    margin-left: 10px;
+.head.content 
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    span
+        font-family: Noto Sans;
+        margin-left: 10px;
+    .mod
+        position: relative;
+        background-image: url(https://user-images.githubusercontent.com/45661217/146483843-3e796322-47aa-4fba-833d-7401512a805c.png);
+        width: 81px;
+        height: 41px;
+        align-items: center;
+        margin-left: 10px;
+        .circle      
+            position: absolute;  
+            background-image: url(https://user-images.githubusercontent.com/45661217/146485076-5d9e6a3a-dc25-433c-bc28-f077c483ad6d.png)
+            width: 34px;
+            height: 34px;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 0.2em;
+
+.head.index
+    display: flex;
+    align-items: center;
+    gap: 20px;
 
 input
     margin-left: 20px;
-    width: 320px;
-    height: 30px;
+    width: 250px;
+    height: 25px;
     border-image: none;
     border-style: none;
     background-color: #636366;
+
 input:focus 
-    outline: none; 
+    outline: none;
+
 input::placeholder 
   color: #C7C7CC;
 
-.search_warp
-    font: 400 16px "Spoqa Han Sans Neo", "sans-serif";
-    padding: 10px 16px;
-    background-color: rgb(99, 99, 102);
-    width: 350px;
-    height: 30px;
-    border-image: none;
-    border-style: none;
-    background-color: #636366;
-    border-radius: 30px;
-    border-color: #636366 !important;
+.search.warp
+    margin-top: 10px;
+    font: 400 16px Noto sans, "sans-serif"
+    padding: 10px 16px
+    background-color: rgb(99, 99, 102)
+    width: 300px
+    height: 25px
+    background-color: #636366
+    border-radius: 30px
+    border-color: #636366 !important
     background-image: url(https://user-images.githubusercontent.com/45661217/145702560-4a375749-e726-49ff-b6e1-f1bd1279a402.png)
     background-repeat: no-repeat
     background-position: 10px center
+
+.filter.wrap
+    margin-top: 12px;
+    display: flex
+    gap: 5px
+    align-items: flex-end;
+    .filter.img 
+        background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
+        width: 40px
+        height: 24px
+        background-size: cover;
+    .filter.text
+        font-family: Noto Sans
+
 @include mobile
     .head
         margin: 10px;
