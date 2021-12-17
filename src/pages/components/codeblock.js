@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Highlight, {defaultProps} from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/github';
+import theme from 'prism-react-renderer/themes/nightOwl';
 
 const Pre = styled.pre`
   text-align: left;
