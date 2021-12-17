@@ -27,7 +27,7 @@ const IndexPage = () => {
     <main>
       <Header/>
       <title>개발중입니다..</title>
-      <div class="container">
+      <div className="container">
         {postlist}
         {(posts[posts.length - 1].id) % 2 === 1 ?
           (<Link to="#">

@@ -21,8 +21,8 @@ const Postimport = ({ location }) => {
             <main>
                 <title>{location.state.myProp}</title>
                 <Header/>
-                <div class="middle">
-                    <div class = "left">
+                <div className="middle">
+                    <div className = "left">
                     <MDXProvider components={components} >
                         <Postitem/>
                     </MDXProvider>
