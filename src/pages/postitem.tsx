@@ -1,12 +1,12 @@
 import * as React from "react";
 import { MDXProvider } from "@mdx-js/react"
-import CodeBlock from "./components/codeblock";
+import CodeBlock from "../components/codeblock";
 import NotFoundPage from "./404"
-import Header from './components/header'
+import Header from '../components/header'
 
 //styles
-import "./styles/postitem.sass"
-import './styles/index.sass';
+import "../styles/postitem.sass"
+import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
@@ -21,8 +21,8 @@ const Postimport = ({ location }) => {
             <main>
                 <title>{location.state.myProp}</title>
                 <Header/>
-                <div class="middle">
-                    <div class = "left">
+                <div className="middle">
+                    <div className = "left">
                     <MDXProvider components={components} >
                         <Postitem/>
                     </MDXProvider>
