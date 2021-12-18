@@ -1,20 +1,131 @@
 // 포스트 안의 스타일입니다.
 @import "variables"
 
+@keyframes fadeup
+    from
+        margin-top: 200px;
+        opacity: 0; 
+    to
+        margin-top: none;
+        transform: scale(1);
+        opacity: 1;
+
+body
+    margin-left: 0;
+
 .middle
-    margin: 50px 2em;
-    border-radius: 40px;
-    border: 1px solid #000000;
-    display: flex;
-    flex-direction: column;
-    .left
-        margin-left: 10em;
+    animation: fadeup 2s ease 0s 1 normal both running; 
+    max-width: 800px;
+    width: 100%;
+    margin: 100px auto 80px;
+    a
+        color: #58A6FF;
+    a:hover
+        text-decoration: underline #58A6FF;
+
+h1,h2,h3,h4,h5 
+  font-family: Noto sans;
+
+h1 
+  font-size: 2.5rem
+  margin: 3.5rem 0px 10px 0px
+
+h2 
+  font-size: 2.25rem
+  margin: 3rem 0px 8px 0px
+
+h3 
+  font-size: 1.5rem
+  margin: 2.5rem 0px 6px 0px
+
+h4 
+  font-size: 1.2rem
+  margin: 2rem 0px
+
+h5 
+  font-size: 0.8rem
+  margin: 1.5rem 0px 2px 0px
+
+p 
+  font-family: Noto sans
+  font-size: 18px; 
+  line-height: 2rem
+  margin: 24px 0px
+
+p,li 
+  font-family: Noto sans
+  font-size: 18px;
+  color: #C9D1D9
+
+blockquote 
+  display: inline-block
+  margin: 24px 0px
+  padding: 4px 24px
+  border-left: 5px solid #30363d
+
+blockquote p 
+  margin: 4px 0px
+  color: #8b949e
+  
+pre 
+  box-sizing: border-box
+  padding: 12px 12px 12px 0px
+  margin: 0.5em 0px
+  border-radius: 8px
+  overflow: auto
+pre *
+  font-size: 16px !important;
+  line-height: 1.125rem;
+
+ol,
+ul 
+  margin: 0.5em 0px
+  li 
+    width: calc(100% - 28px)
+    // margin: 1em 0px
+    position: relative
+    line-height: 2rem
+del
+  font-family: Noto sans
+  color: #C9D1D9
+  text-decoration: line-through
+  font-size: 16px;
+code
+  padding: 0.2em 0.5em
+  margin: 5px
+  font-size: 0.8em
+  background: #353942
+  border-radius: 5px
 
 @include mobile
-    .middle
-        border: 1px solid #FFFFFF;
-        .left
-            margin-left: 0px;
+  *
+    font-size: 1rem
+  h1 
+    font-size: 1.6rem
+    margin: 2rem 0px 6px 0px
+  h2 
+    font-size: 1.4rem
+    margin: 1.7rem 0px 4px 0px
+  h3 
+    font-size: 1.2rem
+    margin: 1.4rem 0px 2px 0px
+  h4 
+    font-size: 1.0rem
+    margin: 1.1rem 0px
+  h5 
+    font-size: 0.8rem
+    margin: 0.8rem 0px 1px 0px
+  blockquote 
+    border-left: 3.5px solid $gray5
+  ol,
+  ul 
+    padding-left: 0.8em
+    li 
+      left: 0px
+  pre
+    padding: 0px
+    font-size: 1rem 
+
         
     
 

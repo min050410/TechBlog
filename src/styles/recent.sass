@@ -1,0 +1,56 @@
+//최근 포스트의 스타일입니다
+@import "variables" 
+
+.horizontal_container
+    display: flex;
+    flex-direction: column;
+
+.recent_content
+    padding-bottom: 10px;
+    margin: 20px 150px 0px 100px
+    border-bottom: 2px solid #636366
+
+.post
+    display: flex;
+    padding: 10px;
+    padding-right: 100px;
+    justify-content: space-between;
+    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    will-change: background-color;
+    border-radius: 10px;
+    .left
+        display: flex;
+
+.post:hover
+    background-color: rgb(75, 75, 77);
+
+
+#text_group
+    margin-left: 20px;
+    div
+        font-family: Noto sans;
+        font-style: normal;
+        font-size: 18px;
+        color: #C7C7CC;
+
+.post h3
+    margin: 0px;
+    font-family: Noto sans;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 30px;
+
+
+
+.post span
+    display: inline-block;
+    background-color: #636366
+    border-radius: 20px
+    font-family: Noto sans
+    font-weight: 700;
+    font-style: normal;
+    font-size: 15px;
+    height: 25px;
+    margin-left: 10px;
+    padding: 3px 10px 0px 10px;

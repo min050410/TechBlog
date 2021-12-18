@@ -28,7 +28,10 @@ const Postimport = ({ location }) => {
                     </MDXProvider>
                     </div>
                 </div>
+                
+
             </main>
+            
         )
     }
 }
