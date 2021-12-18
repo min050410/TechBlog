@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import Highlight, {defaultProps} from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/nightOwl';
+import theme from 'prism-react-renderer/themes/oceanicNext';
 
 const Pre = styled.pre`
   text-align: left;
   margin: 1em 0;
   padding: 0.5em;
-  // overflow-y: scroll;
   display: inline-block;  
 `;
 
@@ -43,7 +42,6 @@ const CodeBlock = ({children, className}) => {
                   <span key={key} {...getTokenProps({ token, key })} />
                 ))}
               </LineContent> : null}
-  
             </Line>
           ))}
         </Pre>

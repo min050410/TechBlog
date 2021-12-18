@@ -20,9 +20,7 @@ const Postimport = ({ location }) => {
         return (
             <main>
                 <title>{location.state.myProp}</title>
-                <div className="stop">
                 <Header/>
-                </div>
                 <div className="middle">
                     <div className = "left">
                     <MDXProvider components={components} >
@@ -30,6 +28,7 @@ const Postimport = ({ location }) => {
                     </MDXProvider>
                     </div>
                 </div>
+                
 
             </main>
             
