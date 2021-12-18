@@ -18,11 +18,11 @@ const Header = () => {
                 </div>
                 <div className="filter wrap">
                     <div className="filter img"></div>
-                    <div className="filter text">필터 설정</div>
+                    <div className="filter text">필터설정</div>
                 </div>
             </div>
             <div className="head content">
-                <a href="https://github.com/min050410/TIL"><span>소개</span></a>
+                <a href="https://github.com/min050410/min050410"><span>소개</span></a>
                 <a href="https://github.com/min050410"><span>깃허브</span></a>
                 <a href="#"><span>다크모드</span></a>
                 <div className="mod">

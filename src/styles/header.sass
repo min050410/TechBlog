@@ -41,8 +41,13 @@ header
     gap: 30px;
     span
         font-family: Noto Sans;
-        margin-left: 10px;
         font-size: 17px;
+        padding: 10px;
+        border-radius: 20px;
+        transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+        will-change: background-color;
+    span:hover
+        background-color: rgb(75, 75, 77);
     .mod
         position: relative;
         background-image: url(https://user-images.githubusercontent.com/45661217/146483843-3e796322-47aa-4fba-833d-7401512a805c.png);

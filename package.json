@@ -31,5 +31,8 @@
     "react-syntax-highlighter": "^15.4.5",
     "sass": "^1.43.5",
     "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.0"
   }
 }
