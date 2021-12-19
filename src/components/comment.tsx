@@ -7,7 +7,7 @@ const utterancesSettings = {
     label: 'utterances',
     theme: 'dark-blue',
     crossorigin: 'anonymous',
-    async: 'true',
+    async: 'false',
   };
   
   const PostComment = () => {
