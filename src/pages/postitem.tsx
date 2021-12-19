@@ -22,7 +22,7 @@ const Postimport = ({ location }) => {
     else {
         const params = new URLSearchParams(location.search);
         const filename = params.get("name");
-        if(location.search == null){
+        if(filename == null){
             return(<NotFoundPage/>)
         }
         const Postitem = require(`../md/${filename}.mdx`).default
