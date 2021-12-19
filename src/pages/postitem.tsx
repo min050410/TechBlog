@@ -12,9 +12,15 @@ import "../styles/postitem.sass"
 import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
-    if (location.state === undefined) {
+    if(window.location.href.indexOf("u")>-1){
         useEffect(() => {
-            navigate('/postitem');
+            navigate('/');
+        }, []);
+        return null;
+    }
+    else if (location.state === undefined) {
+        useEffect(() => {
+            navigate('/');
         }, []);
         return ( <PostComment/> );
     }
