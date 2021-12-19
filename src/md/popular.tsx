@@ -32,15 +32,15 @@ const popular = [
     },
     {
       id: 5,
-      title: 'RN camera 튜토리얼',
+      title: 'RN camera 적용법',
       filename: 'Camera',
       img: 'camera',
     },
     {
       id: 6,
-      title: 'TypeScript 개발일지',
+      title: '왜 typescript인가?',
       filename: 'Typescript',
-      img: 'react-native',
+      img: 'typescript',
     }
   ];
 
