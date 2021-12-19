@@ -14,10 +14,9 @@ import '../styles/index.sass';
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
         useEffect(() => {
-            console.log('now')
-            navigate(-3);
-        }, []);
-        return (<PostComment/>)
+            navigate('https://api.utteranc.es/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A8000%2F');
+        }, [])
+        return null;
     }
     else if(location.state == null){
         useEffect(() => {
