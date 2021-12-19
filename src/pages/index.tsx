@@ -37,7 +37,7 @@ const IndexPage = () => {
           src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"
         ></img> : null}
       </div>
-      <Link to="postitem/" state={{ myProp: post.filename }}>
+      <Link to={`postitem/?name=${post.filename}`}>
         <h3>{post.title}</h3>
       </Link>
     </div>
@@ -46,7 +46,7 @@ const IndexPage = () => {
   const recent_list = recent.map((post) =>
   (
     <div className="recent_content">
-      <Link to="postitem/" state={{ myProp: post.filename }}>
+      <Link to={`postitem/?name=${post.filename}`}>
         <div className="post">
           <div className="left">
             {/* <Link to="postitem/" state={{ myProp: post.filename }}> */}

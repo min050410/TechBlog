@@ -6,37 +6,29 @@ import PostComment from '../components/comment'
 import { useEffect } from 'react';
 import { navigate } from 'gatsby';
 import { Link } from 'gatsby';
-
+import NotFoundPage from "./404"
 
 //styles
 import "../styles/postitem.sass"
 import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
-    if (location.state === undefined) {
-        return (
-        <div className="middle">
-            <div className="left">
-                <h3>Github 로그인이 완료되었습니다</h3>
-                <Link to="/login"><h3 color="#58A6FF">home으로 이동하기</h3></Link>
-            </div>
-        </div>     
-        );
+    if(location.search === undefined){
+        return(<NotFoundPage/>)
     }
-    else if (location.state == null) {
-        useEffect(() => {
-            navigate(-3);
-        }, []);
-        return (<PostComment />)
+    else if(location.search == null ){
+        return(<NotFoundPage/>)
     }
     else {
-        const Postitem = require(`../md/${location.state.myProp}.mdx`).default
+        const params = new URLSearchParams(location.search);
+        const filename = params.get("name");
+        const Postitem = require(`../md/${filename}.mdx`).default
         const components = {
             code: CodeBlock,
         };
         return (
             <main>
-                <title>{location.state.myProp}</title>
+                <title>{filename}</title>
                 <Header />
                 <div className="middle">
                     <div className="left">
