@@ -3,6 +3,9 @@ import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "../components/codeblock";
 import NotFoundPage from "./404"
 import Header from '../components/header'
+import PostComment from '../components/comment'
+import { useEffect } from 'react';
+import { navigate } from 'gatsby';
 
 //styles
 import "../styles/postitem.sass"
@@ -12,7 +15,13 @@ const Postimport = ({ location }) => {
     if (location.state === undefined) {
         return (<NotFoundPage />)
     }
-    else {
+    else if(location.state==null){
+        useEffect(() => {
+            navigate('/');
+        }, []);
+        return( <PostComment/> );
+    }
+    else {  
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
             code: CodeBlock,
@@ -28,10 +37,8 @@ const Postimport = ({ location }) => {
                     </MDXProvider>
                     </div>
                 </div>
-                
-
-            </main>
-            
+                <PostComment/>
+            </main> 
         )
     }
 }
