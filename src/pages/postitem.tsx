@@ -13,16 +13,16 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
-        useEffect(() => {
-            navigate('/');
-        }, []);
-        return( <PostComment/> );
+        // useEffect(() => {
+        //     navigate('../');
+        // }, []);
+        return (<NotFoundPage />)
     }
     else if(location.state==null){
         useEffect(() => {
             navigate('/');
         }, []);
-        return( <PostComment/> );
+        return ( <PostComment/> );
     }
     else {  
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
