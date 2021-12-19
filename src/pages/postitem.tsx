@@ -14,7 +14,14 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
-        return (<Link to="/login">home으로 이동</Link>);
+        return (
+        <div className="middle">
+            <div className="left">
+                <h1>Github 로그인이 완료되었습니다</h1>
+                <Link to="/login"><a><h3>home으로 이동하기</h3></a></Link>
+            </div>
+        </div>     
+        );
     }
     else if (location.state == null) {
         useEffect(() => {
