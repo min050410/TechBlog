@@ -32,6 +32,7 @@ const Postimport = ({ location }) => {
             }, []);
             return ( <PostComment/> );
         }
+        else{
         // 모든 예외처리를 통과했을 때
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
@@ -51,7 +52,7 @@ const Postimport = ({ location }) => {
                 <PostComment/>
             </main> 
         )
-    }
+    }}
 }
 
 export default Postimport;
