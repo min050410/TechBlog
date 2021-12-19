@@ -15,13 +15,13 @@ const Postimport = ({ location }) => {
     if (location.state === undefined) {
         useEffect(() => {
             console.log('now')
-            navigate('/');
+            navigate(-3);
         }, []);
         return (<NotFoundPage />)
     }
     else if(location.state == null){
         useEffect(() => {
-            navigate('/');
+            navigate(-3);
         }, []);
         return( <PostComment/> )
     }
