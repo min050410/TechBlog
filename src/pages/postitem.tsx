@@ -13,7 +13,10 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
-        return (<NotFoundPage />)
+        useEffect(() => {
+            navigate('/');
+        }, []);
+        return( <PostComment/> );
     }
     else if(location.state==null){
         useEffect(() => {
