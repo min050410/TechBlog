@@ -1,12 +1,11 @@
 import * as React from "react";
 import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "../components/codeblock";
-import NotFoundPage from "./404"
 import Header from '../components/header'
 import PostComment from '../components/comment'
-import Login from "./login"
 import { useEffect } from 'react';
 import { navigate } from 'gatsby';
+import { Link } from 'gatsby';
 
 
 //styles
@@ -15,7 +14,7 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
-        return (<Login/>);
+        return (<Link to="/login">home으로 이동</Link>);
     }
     else if (location.state == null) {
         useEffect(() => {

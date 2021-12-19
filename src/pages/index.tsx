@@ -6,7 +6,6 @@ import { useState } from 'react';
 import recent from '../md/recent'
 import popular from '../md/popular'
 import Header from '../components/header'
-import PostComment from '../components/comment'
 
 //styles
 import '../styles/card.sass';
@@ -92,7 +91,6 @@ const IndexPage = () => {
           </div>
         </div>
       </body>
-      <PostComment/>
     </main>
   )
 }
