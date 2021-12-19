@@ -26,6 +26,12 @@ const Postimport = ({ location }) => {
         return ( <PostComment/> );
     }
     else {  
+        if (location.state == undefined) {
+            useEffect(() => {
+                navigate('../');
+            }, []);
+            return ( <PostComment/> );
+        }
         // 모든 예외처리를 통과했을 때
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
