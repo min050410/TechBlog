@@ -12,13 +12,7 @@ import "../styles/postitem.sass"
 import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
-    if(window.location.href.indexOf("u")>-1){
-        useEffect(() => {
-            navigate('/');
-        }, []);
-        return null;
-    }
-    else if (location.state === undefined) {
+    if (location.state === undefined) {
         useEffect(() => {
             navigate('/');
         }, []);
@@ -31,6 +25,12 @@ const Postimport = ({ location }) => {
         return ( <PostComment/> );
     }
     else {  
+        if (location.state === undefined) {
+            useEffect(() => {
+                navigate('/');
+            }, []);
+            return ( <PostComment/> );
+        }
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
             code: CodeBlock,
