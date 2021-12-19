@@ -16,7 +16,7 @@ const Postimport = ({ location }) => {
         useEffect(() => {
             navigate('/postitem');
         }, []);
-        return null
+        return ( <PostComment/> );
     }
     else if(location.state==null){
         useEffect(() => {
