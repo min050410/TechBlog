@@ -15,13 +15,13 @@ import '../styles/index.sass';
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
         useEffect(() => {
-            navigate('/');
+            navigate('../');
         }, []);
         return ( <div><PostComment/> <Link to="/">홈페이지로 돌아가기</Link></div> );
     }
     else if(location.state==null){
         useEffect(() => {
-            navigate('/');
+            navigate('../');
         }, []);
         return ( <PostComment/> );
     }
