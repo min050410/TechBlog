@@ -13,9 +13,9 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
-        // useEffect(() => {
-        //     navigate('../');
-        // }, []);
+        useEffect(() => {
+            navigate('/postitem');
+        }, []);
         return (<NotFoundPage />)
     }
     else if(location.state==null){
