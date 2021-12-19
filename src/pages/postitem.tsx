@@ -16,7 +16,7 @@ const Postimport = ({ location }) => {
         useEffect(() => {
             navigate('/postitem');
         }, []);
-        return (<NotFoundPage />)
+        return null
     }
     else if(location.state==null){
         useEffect(() => {
