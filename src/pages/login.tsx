@@ -8,7 +8,7 @@ import '../styles/index.sass';
 
 const login = () => {
         useEffect(() => {
-            navigate('https://api.utteranc.es/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A8000%2F');
+            navigate('https://api.utteranc.es/authorize?redirect_uri=https%3A%2F%2Fdevlog.kro.kr%2F');
         }, [])
         return null;
 }

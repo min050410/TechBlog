@@ -4,8 +4,10 @@ import CodeBlock from "../components/codeblock";
 import NotFoundPage from "./404"
 import Header from '../components/header'
 import PostComment from '../components/comment'
+import Login from "./login"
 import { useEffect } from 'react';
 import { navigate } from 'gatsby';
+
 
 //styles
 import "../styles/postitem.sass"
@@ -13,18 +15,15 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
-        useEffect(() => {
-            navigate('https://api.utteranc.es/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A8000%2F');
-        }, [])
-        return null;
+        return (<Login/>);
     }
-    else if(location.state == null){
+    else if (location.state == null) {
         useEffect(() => {
             navigate(-3);
         }, []);
-        return( <PostComment/> )
+        return (<PostComment />)
     }
-    else {  
+    else {
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
             code: CodeBlock,
@@ -32,16 +31,16 @@ const Postimport = ({ location }) => {
         return (
             <main>
                 <title>{location.state.myProp}</title>
-                <Header/>
+                <Header />
                 <div className="middle">
-                    <div className = "left">
-                    <MDXProvider components={components} >
-                        <Postitem/>
-                    </MDXProvider>
+                    <div className="left">
+                        <MDXProvider components={components} >
+                            <Postitem />
+                        </MDXProvider>
                     </div>
                 </div>
-                <PostComment/>
-            </main> 
+                <PostComment />
+            </main>
         )
     }
 }
