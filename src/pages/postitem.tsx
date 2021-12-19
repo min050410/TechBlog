@@ -17,8 +17,8 @@ const Postimport = ({ location }) => {
         return (
         <div className="middle">
             <div className="left">
-                <h1>Github 로그인이 완료되었습니다</h1>
-                <Link to="/login"><a><h3>home으로 이동하기</h3></a></Link>
+                <h3>Github 로그인이 완료되었습니다</h3>
+                <Link to="/login"><h3 color="#58A6FF">home으로 이동하기</h3></Link>
             </div>
         </div>     
         );
