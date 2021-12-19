@@ -17,7 +17,7 @@ const Postimport = ({ location }) => {
             console.log('now')
             navigate(-3);
         }, []);
-        return (<NotFoundPage />)
+        return (<PostComment/>)
     }
     else if(location.state == null){
         useEffect(() => {
