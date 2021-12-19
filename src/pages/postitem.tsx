@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from 'gatsby';
 import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "../components/codeblock";
 import NotFoundPage from "./404"
@@ -15,25 +14,18 @@ import '../styles/index.sass';
 const Postimport = ({ location }) => {
     if (location.state === undefined) {
         useEffect(() => {
-            navigate('../');
+            console.log('now')
+            navigate('/');
         }, []);
-        return ( <PostComment/> );
+        return (<NotFoundPage />)
     }
-    else if(location.state==null){
+    else if(location.state == null){
         useEffect(() => {
-            navigate('../');
+            navigate('/');
         }, []);
-        return ( <PostComment/> );
+        return( <PostComment/> )
     }
     else {  
-        if (location.state == undefined) {
-            useEffect(() => {
-                navigate('../');
-            }, []);
-            return ( <PostComment/> );
-        }
-        else{
-        // 모든 예외처리를 통과했을 때
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
             code: CodeBlock,
@@ -52,7 +44,7 @@ const Postimport = ({ location }) => {
                 <PostComment/>
             </main> 
         )
-    }}
+    }
 }
 
 export default Postimport;
