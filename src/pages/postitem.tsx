@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from 'gatsby';
 import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "../components/codeblock";
 import NotFoundPage from "./404"
@@ -16,7 +17,7 @@ const Postimport = ({ location }) => {
         useEffect(() => {
             navigate('/');
         }, []);
-        return ( <PostComment/> );
+        return ( <div><PostComment/> <Link to="/">홈페이지로 돌아가기</Link></div> );
     }
     else if(location.state==null){
         useEffect(() => {
@@ -25,12 +26,7 @@ const Postimport = ({ location }) => {
         return ( <PostComment/> );
     }
     else {  
-        if (location.state === undefined) {
-            useEffect(() => {
-                navigate('/');
-            }, []);
-            return ( <PostComment/> );
-        }
+        // 모든 예외처리를 통과했을 때
         const Postitem = require(`../md/${location.state.myProp}.mdx`).default
         const components = {
             code: CodeBlock,
