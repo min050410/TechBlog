@@ -16,9 +16,9 @@ import '../styles/recent.sass'
 const IndexPage = () => {
   const [isHover, setHover] = useState(false);
   const [ID, setID] = useState(-1);
-  useEffect(() => {
-    document.documentElement.lang = 'kr';
-  }, []);
+  //useEffect(() => {
+  //  document.documentElement.lang = 'kr';
+  //}, []);
   const popular_list = popular.map((post) =>
   (
     <div className="card">
