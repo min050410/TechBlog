@@ -6,6 +6,7 @@ module.exports = {
   plugins: [
     "gatsby-transformer-remark",
     "gatsby-plugin-mdx",
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-source-filesystem",
       options: {
