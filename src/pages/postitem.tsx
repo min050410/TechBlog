@@ -12,7 +12,7 @@ import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
     if(location.search === undefined){
-        return(<NotFoundPage/>)
+        return(null)
     }
     else if(location.search == null ){
         return(<NotFoundPage/>)

@@ -8,6 +8,16 @@
 const recent = [
     {
       id: 1,
+      title: '개발자를 위한 알고리즘 요약',
+      filename: 'Algorithm',
+      img: 'algorithm',
+      date: '12월 20일',
+      tag: 'Big O',
+      tag2: 'sort',
+      tag3: 'DP',
+    },
+    {
+      id: 2,
       title: 'Window 터미널 꾸미기',
       filename: 'Ohmyposh',
       img: 'ohmyposh',
@@ -17,7 +27,7 @@ const recent = [
       tag3: '',
     },
     {
-      id: 2,
+      id: 3,
       title: '자료구조 정리',
       filename: 'Structure',
       img: 'datastucture',
@@ -27,7 +37,7 @@ const recent = [
       tag3: 'graph',
     },
     {
-      id: 3,
+      id: 4,
       title: 'Flask 튜토리얼',
       filename: 'Flask',
       img: 'flask',
@@ -37,7 +47,7 @@ const recent = [
       tag3: 'backend',
     },
     {
-      id: 4,
+      id: 5,
       title: 'CORS와 해결방법',
       filename: 'Cors',
       img: 'CORS',
@@ -47,7 +57,7 @@ const recent = [
       tag3: 'backend',
     },
     {
-      id: 5,
+      id: 6,
       title: 'RN camera 적용법',
       filename: 'Camera',
       date: '11월 26일',
@@ -57,7 +67,7 @@ const recent = [
       tag3: 'camera',
     },
     {
-      id: 6,
+      id: 7,
       title: '타입스크립트를 많이 쓰는 이유',
       filename: 'Typescript',
       date: '11월 17일',

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "Youngmin",
+    siteUrl: "https://devlog.kro.kr",
+    title: "Dev log | Main",
   },
   plugins: [
     "gatsby-transformer-remark",
