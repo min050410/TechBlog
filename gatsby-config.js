@@ -1,12 +1,13 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://devlog.kro.kr",
+    siteUrl: "https://localhost:8000",
     title: "Dev log | Main",
   },
   plugins: [
-    "gatsby-transformer-remark",
-    "gatsby-plugin-mdx",
-    "gatsby-plugin-sitemap",
+    'gatsby-transformer-remark',
+    'gatsby-plugin-mdx',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-react-helmet',
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -30,5 +31,4 @@ module.exports = {
       }
     }
   ],
-  
 };

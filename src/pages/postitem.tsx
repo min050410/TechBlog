@@ -15,13 +15,13 @@ const Postimport = ({ location }) => {
         return(null)
     }
     else if(location.search == null ){
-        return(<NotFoundPage/>)
+        return(null)
     }
     else {
         const params = new URLSearchParams(location.search);
         const filename = params.get("name");
         if(filename == null){
-            return(<NotFoundPage/>)
+            return(null)
         }
         const Postitem = require(`../md/${filename}.mdx`).default
         const components = {
@@ -49,3 +49,4 @@ const Postimport = ({ location }) => {
 }
 
 export default Postimport;
+

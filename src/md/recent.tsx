@@ -8,7 +8,7 @@
 const recent = [
     {
       id: 1,
-      title: '개발자를 위한 알고리즘 요약',
+      title: 'Big-O 표기법과 수행',
       filename: 'Algorithm',
       img: 'algorithm',
       date: '12월 20일',
@@ -28,7 +28,7 @@ const recent = [
     },
     {
       id: 3,
-      title: '자료구조 정리',
+      title: '비선형구조 정리',
       filename: 'Structure',
       img: 'datastucture',
       date: '12월 17일',

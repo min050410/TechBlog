@@ -26,7 +26,7 @@ const popular = [
     },
     {
       id: 4,
-      title: '자료구조 정리',
+      title: '비선형구조 정리',
       filename: 'Structure',
       img: 'datastucture',
     },
