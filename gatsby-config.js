@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://localhost:8000",
+    siteUrl: "https://devlog.kro.kr",
     title: "Dev log | Main",
   },
   plugins: [
