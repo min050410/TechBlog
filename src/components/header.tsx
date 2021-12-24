@@ -28,6 +28,7 @@ const Header = () => {
                 <div className="mod">
                     <div className="circle"></div>
                 </div>
+                <span className="darkmode_text">다크모드</span>
             </div>
         </header>
     )

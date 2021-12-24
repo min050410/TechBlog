@@ -1,19 +1,9 @@
 // 카드의 스타일입니다.
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);    
 @import "variables" 
- 
-.fade_in 
-    animation: fadein 2s ease 0s 1 normal both running; 
-
-@keyframes fadein 
-    from
-        transform: scale(0.9);
-        opacity: 0; 
-    to
-        transform: scale(1);
-        opacity: 1;
 
 .header
-    font-family: Noto sans;
+    font-family: 'Spoqa Han Sans Neo', Noto sans;
     font-style: normal;
     font-weight: bold;
     font-size: 25px;
@@ -48,13 +38,13 @@
 
 
 .card span, .card h3
-    font-family: Noto sans;
+    font-family: 'Spoqa Han Sans Neo', Noto sans;
     font-style: normal;
-    font-weight: 100;
+    font-weight: 300;
     line-height: 30px;
 
 .card h3    
-    font-size: 1em;
+    font-size: 0.85em;
     margin-top: 125px !important;
 
 .card span
@@ -67,11 +57,19 @@
     padding: 0.2em;
 
 @include mobile
+    div .header
+        font-size: 23px;
+        margin: 10px 0px 0px 10px;
+    .container
+    
+    .card:nth-child(n+4)
+        display: none;
     .card
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    .card img 
-        width: 20vh
-        height: 20vh
+        width: 100px
+        img
+            width: 105px;
+        h3
+            margin-top: 75px !important;
+            font-size: 15px;
+            line-height: 16px;
+        

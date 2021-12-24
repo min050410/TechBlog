@@ -1,6 +1,8 @@
 // header의 스타일입니다
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 @import "variables" 
 *    
     color: $white
@@ -40,7 +42,7 @@ header
     align-items: center;
     gap: 30px;
     span
-        font-family: Noto Sans;
+        font-family: 'Spoqa Han Sans Neo', Noto Sans;
         font-size: 17px;
         padding: 10px;
         border-radius: 20px;
@@ -63,6 +65,8 @@ header
             transform: translateY(-50%);
             top: 50%;
             left: 0.2em;
+    .darkmode_text
+        display: none;
 
 .head.index
     display: flex;
@@ -99,21 +103,56 @@ input::placeholder
     background-position: 10px center
 
 .filter.wrap
-    margin-top: 12px;
     display: flex
     gap: 5px
     align-items: flex-end;
     .filter.img 
         background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
-        width: 40px
-        height: 24px
+        width: 26px
+        height: 20px
         background-size: cover;
     .filter.text
-        font-family: Noto Sans
+        margin-top: 10px
+        font-family: 'Spoqa Han Sans Neo', Noto Sans
         font-size: 17px;
 
 @include mobile
+    body
+        margin: 0px
+    header
+        margin: 0px
+        flex-direction: column;
     .head
         margin: 10px;
-        
-    
+    .head.box 
+        .logo
+            width: 45px
+            height: 35px
+        span
+            font-size: 20px;
+            margin-left: 0.3em;
+            letter-spacing: 1px;
+
+    .filter.wrap
+        display: none
+    // .search.warp 
+    //     margin-top: 0px
+    //     padding: 5px 8px;
+    //     width: 230px;
+    //     height: 25px;
+    // input
+    //     width: 200px;
+    .search.warp
+        display: none
+    input
+        display: none
+
+    .head.content 
+        margin-top: 0px
+        gap: 0px;
+        .darkmode_text
+            display: inline;
+            margin-top: 4.3px;
+        .mod
+            display: none;
+            

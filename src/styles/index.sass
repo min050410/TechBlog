@@ -12,7 +12,19 @@ body
   text-decoration-line: none;
 
 main .hide
-  visibility: hidden;
+  display: none;
+
+// animation
+.fade_in 
+    animation: fadein 2s ease 0s 1 normal both running; 
+
+@keyframes fadein 
+    from
+        transform: scale(0.9);
+        opacity: 0; 
+    to
+        transform: scale(1);
+        opacity: 1;
 
 
 
