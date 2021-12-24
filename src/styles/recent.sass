@@ -30,7 +30,7 @@
     div
         font-family: Noto sans;
         font-style: normal;
-        font-size: 18px;
+        font-size: 16px;
         color: #C7C7CC;
 
 .post h3
@@ -54,3 +54,38 @@
     height: 25px;
     margin-left: 10px;
     padding: 3px 10px 0px 10px;
+
+@include mobile
+    .recent_content
+        margin: 20px 0px 0px 0px
+
+    .post
+        flex: 1 1 40%;
+        flex-direction: column;
+        padding-right: 0px;
+        position: relative;
+        .left
+            .imgbox
+                img
+                    width: 105px;
+        .tag
+            margin-left: 115px;
+            position: absolute;
+            top: 53%;
+
+    #text_group
+        div
+            font-size: 13px;
+
+    .post h3
+        font-size: 16px;
+        line-height: 20px;
+
+    .post span
+        font-family: 'Spoqa Han Sans Neo', Noto sans
+        font-weight: 400;
+        font-size: 11px;
+        height: 17px;
+        margin-left: 5px;
+        padding: 2px 8px 0px 8px;
+
