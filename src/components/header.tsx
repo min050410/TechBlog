@@ -23,7 +23,7 @@ const Header = () => {
             </div>
             <div className="head content">
                 <a href="https://github.com/min050410/min050410"><span>소개</span></a>
-                <a href="https://github.com/min050410"><span>깃허브</span></a>
+                <a href="https://github.com/min050410/TechBlog"><span>깃허브</span></a>
                 <Link to="/login"><span>Github 로그인</span></Link>
                 <div className="mod">
                     <div className="circle"></div>
