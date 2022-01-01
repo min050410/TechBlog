@@ -1,10 +1,22 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import '../styles/header.sass';
 import { Link } from 'gatsby';
 
-const Header = () => {
+interface IMyProps {
+    path: string,
+}
+
+const Header: React.FC<IMyProps> = (props: IMyProps) => {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop)
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', updateScroll)
+    },[]);
     return (
-        <header>
+        <header className={ props.path=='/postitem'? "notfixed" : scrollPosition < 50? "original":"change"}>   
             <div className="head index">
                 <Link to="../">
                     <div className="head box">
