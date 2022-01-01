@@ -11,7 +11,38 @@
     src: url("../assets/font/NanumSquareR.ttf") format("truetype")
     font-family: 'Noto Sans', sans-serif;
 
-header
+.notfixed
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    justify-content: space-between;
+    flex-direction: row
+    align-items: center
+    margin: 20px 20px
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+.original
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: #1C1C1e
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    justify-content: space-between;
+    width: 100%;
+    transform: translateY(10px);
+    transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s;
+    flex-direction: row
+    padding: 10px 0px;
+    margin: 0px 20px
+
+.change
+    transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s;
+    transform: translateY(0px);
+    border-bottom: 1px solid #636366
     position: fixed;
     top: 0;
     z-index: 1;
@@ -22,9 +53,7 @@ header
     justify-content: space-between;
     width: 100%;
     flex-direction: row
-    align-items: center
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 10px 0px;
     margin: 0px 20px
 
 
