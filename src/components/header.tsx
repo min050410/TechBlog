@@ -1,20 +1,27 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import recent from '../md/recent'
 import '../styles/header.sass';
 import { Link } from 'gatsby';
 
-interface IMyProps {
+type MyProps = {
     path: string,
 }
 
-const Header: React.FC<IMyProps> = (props: IMyProps) => {
+const Header: React.FC<MyProps> = (props: MyProps) => {
+    const [searchText, setSearchText] = useState("");
     const [scrollPosition, setScrollPosition] = useState(0);
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop)
     }
+    const onChange = (e: any) => {
+        setSearchText(e.target.value);
+
+    };
     useEffect(()=>{
         window.addEventListener('scroll', updateScroll)
     },[]);
+
     return (
         <header className={ props.path=='/postitem'? "notfixed" : scrollPosition < 50? "original":"change"}>   
             <div className="head index">
@@ -25,8 +32,9 @@ const Header: React.FC<IMyProps> = (props: IMyProps) => {
                     </div>
                 </Link>
                 <div className="search warp">
-                    <input type="text" name="search" autoComplete="off" placeholder="검색할 내용을 입력하세요">
+                    <input type="text" name="search" autoComplete="off" placeholder="검색할 내용을 입력하세요" onChange={onChange} value={searchText}>
                     </input>
+                    <div className="searchBox"></div> 
                 </div>
                 <div className="filter wrap">
                     <div className="filter img"></div>
