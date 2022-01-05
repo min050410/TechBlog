@@ -22,7 +22,6 @@ const utterancesSettings = {
         ref.current.appendChild(utterances);
       }
     }, []);
-  
     return <div ref={ref}></div>;
   };
 

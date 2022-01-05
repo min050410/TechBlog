@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import recent from '../md/recent'
 import '../styles/header.sass';
 import { Link } from 'gatsby';
-import { navigate } from 'gatsby';
 
 type MyProps = {
     path: string,
@@ -68,7 +67,7 @@ const Header: React.FC<MyProps> = (props: MyProps) => {
                             <div className="searchBox" onBlur={onBlur}> <div className ="search_post">
                                 {props.path == '/postitem' ? 
                                     (valueText == "검색 결과가 없습니다" ? <span>{valueText}</span> :
-                                    <Link to={`../postitem/?name=${searchFilename}`}>{valueText}</Link>) :
+                                    <Link to={`?name=${searchFilename}`} state={{ from: true }}>{valueText}</Link>) :
                                     (valueText == "검색 결과가 없습니다" ? <span>{valueText}</span> :
                                     <Link to={`postitem/?name=${searchFilename}`}><span>{valueText}</span></Link>)} </div></div> 
                         : null

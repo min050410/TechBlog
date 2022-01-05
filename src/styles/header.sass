@@ -140,11 +140,11 @@ input::placeholder
     background-position: 10px center
 
 .searchBox 
-    position: fixed
+    position: absolute;
     margin-top: 15px;
     width: 300px;
     background-color: #1C1C1e
-    border: 2px solid #636366
+    border: 1.5px solid #636366
     opacity: 80%;
     border-radius: 20px;
     height: 30px;
@@ -168,6 +168,7 @@ input::placeholder
             font-style: normal;
             font-size: 15px; 
         a > span
+            background-color: none;
             display: inline-block;
             border-radius: 20px
             height: 25px;
@@ -186,8 +187,6 @@ input::placeholder
     font-weight: 300;
     font-style: normal;
     font-size: 15px; 
-
-    
 
 .filter.wrap
     display: flex

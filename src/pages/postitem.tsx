@@ -12,7 +12,7 @@ import "../styles/postitem.sass"
 import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
-
+    
     if (location.search === undefined) {
         return (null)
     }
@@ -35,10 +35,27 @@ const Postimport = ({ location }) => {
         if (filename == null) {
             return (null)
         }
+
+        //search시 reload
+        function componentDidMount() {
+            const reloadCount: string = sessionStorage.getItem('reloadCount');
+            if(Number(reloadCount) < 1) {
+              sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+              window.location.reload();
+            } else {
+              sessionStorage.removeItem('reloadCount');
+            }
+        }
+        if(location.state.from==true){
+            componentDidMount();
+        }
+
         const Postitem = require(`../md/${filename}.mdx`).default
+
         const components = {
             code: CodeBlock,
         };
+
         findTitle(filename);    
         return (
             <main>
