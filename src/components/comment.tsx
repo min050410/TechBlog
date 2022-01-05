@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const utterancesSettings = {
     src: 'https://utteranc.es/client.js',
@@ -9,11 +9,10 @@ const utterancesSettings = {
     crossorigin: 'anonymous',
     async: 'false',
 };
-  
-  const PostComment = () => {
-    const ref = useRef(null);
 
-    useEffect(() => {
+const PostComment = () => {
+  const ref = useRef(null);
+  useEffect(() => {
       if (ref.current !== null) {
         const utterances = document.createElement('script');
         Object.entries(utterancesSettings).forEach(([key, value]) => {
