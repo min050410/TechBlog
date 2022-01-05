@@ -1,10 +1,8 @@
 import * as React from "react";
-import { Link } from 'gatsby';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet'
 
 //components
-import recent from '../md/recent'
 import Header from '../components/header'
 import PostComment from '../components/comment'
 import Popular_components from '../components/popular'

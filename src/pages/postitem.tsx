@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { MDXProvider } from "@mdx-js/react"
 import CodeBlock from "../components/codeblock"
 import Header from '../components/header'
@@ -20,6 +20,7 @@ const Postimport = ({ location }) => {
         return (null)
     }
     else {
+        const [, forceUpdate] = useReducer(x => x + 1, 0);
         let pageTitle: string = null;
         const params = new URLSearchParams(location.search);
         const filename: string = params.get("name");
@@ -35,11 +36,27 @@ const Postimport = ({ location }) => {
         if (filename == null) {
             return (null)
         }
+        // search시 reload
+        function componentDidMount() {
+            const reloadCount: string = sessionStorage.getItem('reloadCount');
+            if(Number(reloadCount) < 1) {
+              sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+              //강제로 rerendering
+              forceUpdate()
+            } else {
+              sessionStorage.removeItem('reloadCount');
+            }
+        }
+        componentDidMount()
+
         const Postitem = require(`../md/${filename}.mdx`).default
+
         const components = {
             code: CodeBlock,
         };
+
         findTitle(filename);    
+    
         return (
             <main>
                 <Helmet>
@@ -55,10 +72,11 @@ const Postimport = ({ location }) => {
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment />
+                <PostComment key={location.state.key}/>
             </main>
         )
     }
+
 }
 
 export default Postimport;
