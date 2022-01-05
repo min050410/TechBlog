@@ -8,11 +8,11 @@ const utterancesSettings = {
     theme: 'dark-blue',
     crossorigin: 'anonymous',
     async: 'false',
-  };
+};
   
   const PostComment = () => {
     const ref = useRef(null);
-  
+
     useEffect(() => {
       if (ref.current !== null) {
         const utterances = document.createElement('script');

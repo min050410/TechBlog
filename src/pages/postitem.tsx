@@ -12,7 +12,7 @@ import "../styles/postitem.sass"
 import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
-    
+
     if (location.search === undefined) {
         return (null)
     }
@@ -35,8 +35,9 @@ const Postimport = ({ location }) => {
         if (filename == null) {
             return (null)
         }
+        
 
-        //search시 reload
+        // search시 reload
         function componentDidMount() {
             const reloadCount: string = sessionStorage.getItem('reloadCount');
             if(Number(reloadCount) < 1) {
@@ -46,9 +47,7 @@ const Postimport = ({ location }) => {
               sessionStorage.removeItem('reloadCount');
             }
         }
-        if(location.state.from==true){
-            componentDidMount();
-        }
+
 
         const Postitem = require(`../md/${filename}.mdx`).default
 
@@ -57,6 +56,7 @@ const Postimport = ({ location }) => {
         };
 
         findTitle(filename);    
+    
         return (
             <main>
                 <Helmet>
@@ -76,6 +76,7 @@ const Postimport = ({ location }) => {
             </main>
         )
     }
+
 }
 
 export default Postimport;
