@@ -72,7 +72,7 @@ const Postimport = ({ location }) => {
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment/>
+                <PostComment key={location.state.key}/>
             </main>
         )
     }
