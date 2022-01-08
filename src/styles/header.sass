@@ -163,7 +163,7 @@ input::placeholder
             height: 25px;
             margin-left: 10px;
             padding: 3px 10px 0px 10px;
-            font-family: Noto sans
+            font-family: 'Spoqa Han Sans Neo'
             font-weight: 300;
             font-style: normal;
             font-size: 15px; 
@@ -172,7 +172,7 @@ input::placeholder
             display: inline-block;
             border-radius: 20px
             height: 25px;
-            font-family: Noto sans
+            font-family: 'Spoqa Han Sans Neo'
             font-weight: 300;
             font-style: normal;
             font-size: 15px; 
@@ -183,24 +183,65 @@ input::placeholder
     height: 25px;
     margin-left: 10px;
     padding: 3px 10px 0px 10px;
-    font-family: Noto sans
+    font-family: 'Spoqa Han Sans Neo'
     font-weight: 300;
     font-style: normal;
     font-size: 15px; 
 
 .filter.wrap
     display: flex
-    gap: 5px
+    gap: 10px
     align-items: flex-end;
     .filter.img 
         background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
         width: 26px
         height: 20px
         background-size: cover;
+        transition: transform 0.5s ease 0s;
+    .filter.img.click
+        transform: rotate(90deg)
     .filter.text
         margin-top: 10px
         font-family: 'Spoqa Han Sans Neo', Noto Sans
         font-size: 17px;
+    .filterBox
+        position: absolute;
+        top: 70px;
+        width: 300px;
+        background-color: #1C1C1e
+        border: 1.5px solid #636366
+        opacity: 90%;
+        border-radius: 20px;
+        height: 150px;
+        z-index: 2;
+        display: flex;
+        .left
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        .right
+            display: flex;
+            width: 50%;
+            border-left: 1.5px solid #636366;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        .left > div
+            margin-top: 0.5em;
+            display: block;
+            width: 100%;
+            font-family: 'Spoqa Han Sans Neo'
+            font-style: normal;
+            font-size: 13px; 
+            margin-left: 10%;
+        a > span, a > span 
+            height: 1.5em;
+            padding: 0.1em 0.5em
+            margin: 5px
+            font-size: 0.65em
+            background: #636366
+            border-radius: 30px
+
 
 @include mobile
     body
