@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react"
 import { Link } from 'gatsby';
 
 //components
@@ -9,7 +10,24 @@ import '../styles/recent.sass'
 
 const Recent_components = () => {
 
-  const recent_list = recent.map((post) =>
+  const params = new URLSearchParams(location.search);
+
+  const [filter_key, setFilter_key] = useState("");
+
+  const so = () => {
+    //useEffect용 비동기를 위한 함수
+  }
+
+  if (location.search) {
+    so()
+  }
+
+  useEffect(() => {
+    setFilter_key(params.get("f"))
+  }, [so])
+
+  //filter함수를 통한 필터링
+  const recent_list = recent.filter(word => word.filter == filter_key || filter_key == null).map((post) =>
   (
     <div className="recent_content">
       <Link to={`postitem/?name=${post.filename}`}>
@@ -41,11 +59,14 @@ const Recent_components = () => {
 
   return (
     <section>
-          <div className="header">최근 블로그</div>
-          <div className="horizontal_container">
-            {recent_list}
-          </div>
-          </section>
+      <div className="header_wrap">
+      <div className="header">최근 블로그</div>
+      {filter_key ? <span className="filter">✨{filter_key} 필터 적용됨</span> : null}
+      </div>
+      <div className="horizontal_container">
+        {recent_list}
+      </div>
+    </section>
   )
 }
 

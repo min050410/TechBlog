@@ -12,11 +12,20 @@ const Header: React.FC<MyProps> = (props: MyProps) => {
     const [searchText, setSearchText] = useState("");
     const [valueText, setValueText] = useState("");
     const [searchFilename, setSearchFilename] = useState("");
-    const [focus, setFocus] = useState(0);
+    const [searchFocus, setsearchFocus] = useState(0);
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [filterFocus, setfilterFocus] = useState(0);
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop)
     }
+    //filter_tag
+    const [seletedTag, setSeletedTag] = useState('')
+    const [notSeletedTags, setNotSeletedTags] = useState(['js', 'python', 'c', 'react'])
+
+    let notSeletedTags_map = notSeletedTags.map((not) => (
+        <Link to={`/?f=${not}`}><span onClick={() => tagClick(not)}>{not}</span></Link>
+    ))
+
     // 검색
     const findTitle = (text: string) => {
         for (let i = 0; i < recent.length; i++) {
@@ -26,24 +35,48 @@ const Header: React.FC<MyProps> = (props: MyProps) => {
                 setValueText(recent[i]['title'])
                 setSearchFilename(recent[i]['filename'])
             }
-            if(valueText == ""){
+            if (valueText == "") {
                 setValueText('검색 결과가 없습니다')
             }
         }
     }
+
     const onChange = (e: any) => {
         setSearchText(e.target.value);
         findTitle(e.target.value);
     };
+
     const onFocus = () => {
-        setFocus(1);
+        setsearchFocus(1);
     }
+
     const onBlur = () => {
-        setFocus(0);
+        setsearchFocus(0);
+    }
+
+    //filter
+    const filterClick = (isFocus: number) => {
+        setfilterFocus(isFocus => isFocus ? 0 : 1);
+    }
+
+    const tagClick = (value: string) => {
+        let Taglist = ['js', 'python', 'c', 'react']
+        var index = Taglist.indexOf(value);
+        if (index !== -1) {
+            Taglist.splice(index, 1);
+        }
+        setNotSeletedTags([...Taglist])
+        setSeletedTag(value);
+    }
+
+    const backup = () => {
+        setSeletedTag('')
+        setNotSeletedTags(['js', 'python', 'c', 'react'])
     }
     useEffect(() => {
         window.addEventListener('scroll', updateScroll)
     }, []);
+    
     return (
         <header className={props.path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
@@ -61,22 +94,34 @@ const Header: React.FC<MyProps> = (props: MyProps) => {
                         onChange={onChange}
                         value={searchText}>
                     </input>
-                    {focus ? 
-                        searchText == '' ? 
-                            null : 
-                            <div className="searchBox" onBlur={onBlur}> <div className ="search_post">
-                                {props.path == '/postitem' ? 
+                    {searchFocus ?
+                        searchText == '' ?
+                            null :
+                            <div className="searchBox" onBlur={onBlur}> <div className="search_post">
+                                {props.path == '/postitem' ?
                                     (valueText == "검색 결과가 없습니다" ? <span>{valueText}</span> :
-                                    <Link to={`../postitem/?name=${searchFilename}`} state={{ key: Math.random() }}>{valueText}</Link>) :
+                                        <Link to={`../postitem/?name=${searchFilename}`} state={{ key: Math.random() }}>{valueText}</Link>) :
                                     (valueText == "검색 결과가 없습니다" ? <span>{valueText}</span> :
-                                    <Link to={`postitem/?name=${searchFilename}`}><span>{valueText}</span></Link>)} </div></div> 
+                                        <Link to={`postitem/?name=${searchFilename}`} ><span>{valueText}</span></Link>)} </div></div>
                         : null
                     }
-                    
                 </div>
                 <div className="filter wrap">
-                    <div className="filter img"></div>
-                    <div className="filter text">필터설정</div>
+                    <div className="filter wrap" onClick={() => filterClick(filterFocus)}>
+                        {filterFocus ? <div className="filter img click"></div> : <div className="filter img"></div>}
+                        <div className="filter text">필터설정</div>
+                    </div>
+                    {filterFocus ?
+                        <div className="filterBox">
+                            <div className="left">
+                                <div>적용됨</div>
+                                {seletedTag ? <Link to={`/`}><span onClick={() => backup()}>{seletedTag}</span></Link>
+                                : null}
+                            </div>
+                            <div className="right">
+                                {notSeletedTags_map}
+                            </div>
+                        </div> : null}
                 </div>
             </div>
             <div className="head content">
