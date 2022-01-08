@@ -9,7 +9,6 @@ import Popular_components from '../components/popular'
 import Recent_components from '../components/recent'
 
 const IndexPage = ({location}) => {
-  
   useEffect(() => {
     document.documentElement.lang = 'kr';
   }, []);
@@ -25,7 +24,7 @@ const IndexPage = ({location}) => {
         <Header path={location.pathname}/>
         <div className="fade_in">
           <Popular_components/>
-          <Recent_components/>
+          <Recent_components location={location}/>
         </div>
       </body>
       <div className="hide">

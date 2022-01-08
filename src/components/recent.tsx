@@ -8,8 +8,12 @@ import recent from '../md/recent'
 //styles
 import '../styles/recent.sass'
 
-const Recent_components = () => {
-  if (location === undefined) {
+type MyProps = {
+  location: any;
+}
+
+const Recent_components: React.FC<MyProps> = ({location})  => {
+  if (location.search === undefined) {
     return null;
   }
   else if (location.search == null) {
