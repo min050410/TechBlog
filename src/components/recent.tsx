@@ -9,7 +9,7 @@ import recent from '../md/recent'
 import '../styles/recent.sass'
 
 const Recent_components = () => {
-  if (location.search === undefined) {
+  if (location === undefined) {
     return null;
   }
   else if (location.search == null) {
