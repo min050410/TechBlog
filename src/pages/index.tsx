@@ -27,9 +27,6 @@ const IndexPage = ({location}) => {
           <Recent_components location={location}/>
         </div>
       </body>
-      <div className="hide">
-        <PostComment />
-      </div>
     </main>
   )
 }

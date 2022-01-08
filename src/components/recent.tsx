@@ -9,7 +9,7 @@ import recent from '../md/recent'
 import '../styles/recent.sass'
 
 type MyProps = {
-  location: any;
+  location: any
 }
 
 const Recent_components: React.FC<MyProps> = ({location})  => {
