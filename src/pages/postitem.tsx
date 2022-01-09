@@ -1,11 +1,16 @@
 import * as React from "react";
-import { useState, useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import { MDXProvider } from "@mdx-js/react"
+import { Helmet } from 'react-helmet'
+
+//components
 import CodeBlock from "../components/codeblock"
 import Header from '../components/header'
 import PostComment from '../components/comment'
+import SEO from '../components/SEO'
+
+//data
 import recent from '../md/recent'
-import { Helmet } from 'react-helmet'
 
 //styles
 import "../styles/postitem.sass"
@@ -20,10 +25,15 @@ const Postimport = ({ location }) => {
         return (null)
     }
     else {
-        const [, forceUpdate] = useReducer(x => x + 1, 0);
-        let pageTitle: string = null;
         const params = new URLSearchParams(location.search);
         const filename: string = params.get("name");
+
+        if (filename == null) {
+            return (null)
+        }
+
+        const [, forceUpdate] = useReducer(x => x + 1, 0);
+        let pageTitle: string = null;
 
         //filename으로 title을 찾아주는 함수
         const findTitle = (filename: string) => {
@@ -33,15 +43,15 @@ const Postimport = ({ location }) => {
                 }
             }
         }
-        if (filename == null) {
-            return (null)
-        }
-        // search시 reload
+        findTitle(filename);    
+
+        // search시 rerendering
         function componentDidMount() {
             const reloadCount: string = sessionStorage.getItem('reloadCount');
+            //최초 1번만
             if(Number(reloadCount) < 1) {
               sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-              //강제로 rerendering
+              //rerendering
               forceUpdate()
             } else {
               sessionStorage.removeItem('reloadCount');
@@ -49,16 +59,16 @@ const Postimport = ({ location }) => {
         }
         componentDidMount()
 
+        //postitem dynamic import
         const Postitem = require(`../md/${filename}.mdx`).default
 
         const components = {
             code: CodeBlock,
-        };
-
-        findTitle(filename);    
+        };    
     
         return (
             <main>
+                <SEO title={pageTitle}/>
                 <Helmet>
                     <title>{pageTitle}</title>
                     <meta name="google-site-verification" content="Vfqlx3gjgzF7VwfWKG3BDziWEL76_QpnF4LvF0bgj8I" />

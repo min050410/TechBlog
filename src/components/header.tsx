@@ -1,82 +1,98 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import recent from '../md/recent'
-import '../styles/header.sass';
 import { Link } from 'gatsby';
 
-type MyProps = {
+//search, filter 기능을 위한 data
+import recent from '../md/recent'
+
+//style
+import '../styles/header.sass';
+
+//props type 지정
+type Props = {
     path: string,
 }
 
-const Header: React.FC<MyProps> = (props: MyProps) => {
-    const [searchText, setSearchText] = useState("");
-    const [valueText, setValueText] = useState("");
-    const [searchFilename, setSearchFilename] = useState("");
+const Header: React.FC<Props> = (props: Props) => {
+    const [scrollPosition, setScrollPosition] = useState(0); 
+
+    //Focus Event
     const [searchFocus, setsearchFocus] = useState(0);
-    const [scrollPosition, setScrollPosition] = useState(0);
     const [filterFocus, setfilterFocus] = useState(0);
-    const updateScroll = () => {
-        setScrollPosition(window.scrollY || document.documentElement.scrollTop)
-    }
+
+    //search
+    const [changeText, setChangeText] = useState(""); //바뀌는 Text값
+    const [found, setFound] = useState({title: "", filename: ""}); //recent의 값 중 유사성이 가장 높은 값
+
     //filter_tag
     const [seletedTag, setSeletedTag] = useState('')
     const [notSeletedTags, setNotSeletedTags] = useState(['js', 'python', 'c', 'react'])
 
-    let notSeletedTags_map = notSeletedTags.map((not) => (
-        <Link to={`/?f=${not}`}><span onClick={() => tagClick(not)}>{not}</span></Link>
-    ))
-
-    // 검색
-    const findTitle = (text: string) => {
-        for (let i = 0; i < recent.length; i++) {
-            // 검색 정확도 향상
-            if (recent[i]['title'].toLowerCase().indexOf(text) > -1 || recent[i]['filename'].toLowerCase().indexOf(text) > -1
-                || recent[i]['title'].indexOf(text) > -1 || recent[i]['filename'].indexOf(text) > -1) {
-                setValueText(recent[i]['title'])
-                setSearchFilename(recent[i]['filename'])
-            }
-            if (valueText == "") {
-                setValueText('검색 결과가 없습니다')
-            }
-        }
-    }
-
-    const onChange = (e: any) => {
-        setSearchText(e.target.value);
-        findTitle(e.target.value);
-    };
-
-    const onFocus = () => {
-        setsearchFocus(1);
-    }
-
-    const onBlur = () => {
-        setsearchFocus(0);
-    }
-
-    //filter
-    const filterClick = (isFocus: number) => {
-        setfilterFocus(isFocus => isFocus ? 0 : 1);
-    }
-
-    const tagClick = (value: string) => {
-        let Taglist = ['js', 'python', 'c', 'react']
-        var index = Taglist.indexOf(value);
-        if (index !== -1) {
-            Taglist.splice(index, 1);
-        }
-        setNotSeletedTags([...Taglist])
-        setSeletedTag(value);
-    }
-
-    const backup = () => {
-        setSeletedTag('')
-        setNotSeletedTags(['js', 'python', 'c', 'react'])
+    //Scroll Event
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop)
     }
     useEffect(() => {
         window.addEventListener('scroll', updateScroll)
     }, []);
     
+    // search function
+    const findTitle = (text: string) => {
+        for (let i = 0; i < recent.length; i++) {
+            // Lowercase로 검색 정확도 향상
+            if (recent[i]['title'].toLowerCase().indexOf(text) > -1 || recent[i]['filename'].toLowerCase().indexOf(text) > -1
+                || recent[i]['title'].indexOf(text) > -1 || recent[i]['filename'].indexOf(text) > -1) {
+                setFound({title:recent[i]['title'], filename:recent[i]['filename']});
+            }
+            if (found.title == "") {
+                setFound({title:'검색 결과가 없습니다', filename:""})
+            }
+        }
+    }
+
+    //Search Text 상태 관리 
+    const onChange = (e: any) => {
+        setChangeText(e.target.value);
+        findTitle(e.target.value);
+    };
+
+    //Search Box Focus Event
+    const onSearchBoxFocus = () => {
+        setsearchFocus(1);
+    }
+
+    //Search Box Blur Event
+    const onSearchBoxBlur = () => {
+        setsearchFocus(0);
+    }
+
+    //filter Focus Toggle
+    const filterClick = (isFocus: number) => {
+        setfilterFocus(isFocus => isFocus ? 0 : 1);
+    }
+
+    //notSeletedTags Tag Click Event
+    const tagClick = (tag: string) => {
+        let Taglist: string[] = ['js', 'python', 'c', 'react']
+        var index: number = Taglist.indexOf(tag);
+        if (index !== -1) {
+            Taglist.splice(index, 1);
+        }
+        setNotSeletedTags([...Taglist])
+        setSeletedTag(tag);
+    }
+
+    //notSeletedTags map
+    const notSeletedTags_map = notSeletedTags.map((tag) => (
+        <Link to={`/?f=${tag}`}><span onClick={() => tagClick(tag)}>{tag}</span></Link>
+    ))
+
+    //filter tags backup
+    const backup = () => {
+        setSeletedTag('')
+        setNotSeletedTags(['js', 'python', 'c', 'react'])
+    }
+
     return (
         <header className={props.path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
@@ -86,23 +102,23 @@ const Header: React.FC<MyProps> = (props: MyProps) => {
                         <span>dev-log</span>
                     </div>
                 </Link>
-                <div className="search warp" onClick={onFocus}>
+                <div className="search warp" onClick={onSearchBoxFocus}>
                     <input type="text"
                         name="search"
                         autoComplete="off"
                         placeholder="검색할 내용을 입력하세요"
                         onChange={onChange}
-                        value={searchText}>
+                        value={changeText}>
                     </input>
                     {searchFocus ?
-                        searchText == '' ?
+                        changeText == '' ?
                             null :
-                            <div className="searchBox" onBlur={onBlur}> <div className="search_post">
+                            <div className="searchBox" onBlur={onSearchBoxBlur}> <div className="search_post">
                                 {props.path == '/postitem' ?
-                                    (valueText == "검색 결과가 없습니다" ? <span>{valueText}</span> :
-                                        <Link to={`../postitem/?name=${searchFilename}`} state={{ key: Math.random() }}>{valueText}</Link>) :
-                                    (valueText == "검색 결과가 없습니다" ? <span>{valueText}</span> :
-                                        <Link to={`postitem/?name=${searchFilename}`} ><span>{valueText}</span></Link>)} </div></div>
+                                    (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
+                                        <Link to={`../postitem/?name=${found.filename}`} state={{ key: Math.random() }}>{found.title}</Link>) :
+                                    (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
+                                        <Link to={`postitem/?name=${found.filename}`} ><span>{found.title}</span></Link>)} </div></div>
                         : null
                     }
                 </div>
@@ -131,7 +147,6 @@ const Header: React.FC<MyProps> = (props: MyProps) => {
                 <div className="mod">
                     <div className="circle"></div>
                 </div>
-                <span className="darkmode_text">다크모드</span>
             </div>
         </header>
     )

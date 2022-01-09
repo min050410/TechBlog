@@ -1,10 +1,10 @@
-// 배열에 모든 mdx 저장
-// id : post index
-// title : title of post
-// filename : ref post mdx
-// img : img filename
-// tag : post tag(max 3)
-
+// 배열에 모든 mdx 정보 저장
+// id : blog index
+// title : title of blog
+// filename : blog filename
+// img : blog img filename
+// tag : blog tag(max 3)
+// filter : filter tag
 
 const recent = [
   {

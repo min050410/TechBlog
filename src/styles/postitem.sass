@@ -25,7 +25,7 @@ body
 
 strong
     display: inline-block;
-    background-color: #636366
+    background-color: $gray4
     border-radius: 20px
     font-family: Noto sans
     font-weight: 500;
@@ -73,17 +73,17 @@ p,li
   font-family: Noto sans
   font-size: 18px;
   font-weight: 500;
-  color: #C9D1D9
+  color: $gray1
 
 blockquote 
   display: inline-block
   margin: 24px 0px
   padding: 4px 24px
-  border-left: 5px solid #30363d
+  border-left: 5px solid $gray7
 
 blockquote p 
   margin: 4px 0px
-  color: #8b949e
+  color: $gray3
 
 /* 스크롤바 설정*/
 pre::-webkit-scrollbar
@@ -92,13 +92,11 @@ pre::-webkit-scrollbar
 
 /* 스크롤바 막대 설정*/
 pre::-webkit-scrollbar-thumb
-    background-color: #4d535c;
-    /* 스크롤바 둥글게 설정    */
-    border-radius: 15px;    
+    background-color: $gray5
 
 /* 스크롤바 뒷 배경 설정*/
 pre::-webkit-scrollbar-track
-    background-color: #1C1C1e
+    background-color: $default
 
 pre 
   box-sizing: border-box
@@ -121,14 +119,14 @@ ul
     line-height: 2rem
 del
   font-family: Noto sans
-  color: #C9D1D9
+  color: $gray1
   text-decoration: line-through
   font-size: 16px;
 code
   padding: 0.2em 0.5em
   margin: 5px
   font-size: 0.8em
-  background: #353942
+  background: $gray6
   border-radius: 5px
 
 @include mobile
