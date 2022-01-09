@@ -1,9 +1,8 @@
-// 배열에 모든 mdx 저장
-// id : post index
-// title : title of post
-// filename : ref post mdx
-// img : img filename
-
+// 배열에 모든 mdx 정보 저장
+// id : blog index
+// title : title of blog
+// filename : blog filename
+// img : blog img filename
 
 const popular = [
     {

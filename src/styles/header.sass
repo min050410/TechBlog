@@ -11,50 +11,37 @@
     src: url("../assets/font/NanumSquareR.ttf") format("truetype")
     font-family: 'Noto Sans', sans-serif;
 
-.notfixed
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    justify-content: space-between;
-    flex-direction: row
-    align-items: center
-    margin: 20px 20px
-    position: absolute;
-    top: 0;
-    width: 100%;
-
-.original
-    position: fixed;
+@mixin header
     top: 0;
     z-index: 1;
-    background-color: #1C1C1e
+    background-color: $default
     display: flex
     flex-wrap: wrap
     justify-content: center
     justify-content: space-between;
+
+.notfixed
+    @include header
+    margin: 20px 20px
+    width: calc(100% - 40px);
+    position: absolute;
+
+.original
+    @include header
+    position: fixed;
     width: 100%;
     transform: translateY(10px);
     transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s;
-    flex-direction: row
-    padding: 10px 0px;
-    margin: 0px 20px
+    padding: 10px 20px;
 
 .change
+    @include header
+    position: fixed;
     transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s;
     transform: translateY(0px);
-    border-bottom: 1px solid #636366
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    background-color: #1C1C1e
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-    justify-content: space-between;
+    border-bottom: 1px solid $gray4
     width: 100%;
-    flex-direction: row
-    padding: 10px 0px;
-    margin: 0px 20px
+    padding: 10px 20px;
 
 .head.box 
     display: flex
@@ -66,7 +53,6 @@
     span
         margin-top: 4px;
         font-family: Noto Sans;
-        font-style: normal;
         font-weight: bold;
         font-size: 25px;
         margin-left: 0.3em;
@@ -102,9 +88,7 @@
             transform: translateY(-50%);
             top: 50%;
             left: 0.2em;
-    .darkmode_text
-        display: none;
-
+    
 .head.index
     display: flex;
     align-items: center;
@@ -116,35 +100,44 @@ input
     height: 25px;
     border-image: none;
     border-style: none;
-    background-color: #636366;
+    background-color: $gray4
 
 input:focus 
     outline: none;
 
 input::placeholder 
-  color: #C7C7CC;
+  color: $gray2;
   font-size: 17px;
 
 .search.warp
     margin-top: 10px;
     font: 400 16px Noto sans, "sans-serif"
     padding: 10px 16px
-    background-color: rgb(99, 99, 102)
+    background-color: $gray4
     width: 300px
     height: 25px
-    background-color: #636366
+    background-color: $gray4
     border-radius: 30px
-    border-color: #636366 !important
+    border-color: $gray4 !important
     background-image: url(https://user-images.githubusercontent.com/45661217/145702560-4a375749-e726-49ff-b6e1-f1bd1279a402.png)
     background-repeat: no-repeat
     background-position: 10px center
+
+@mixin roundFont
+    display: inline-block;
+    border-radius: 20px
+    height: 25px;
+    font-family: 'Spoqa Han Sans Neo'
+    font-weight: 300;
+    font-style: normal;
+    font-size: 15px; 
 
 .searchBox 
     position: absolute;
     margin-top: 15px;
     width: 300px;
-    background-color: #1C1C1e
-    border: 1.5px solid #636366
+    background-color: $default
+    border: 1.5px solid $gray4
     opacity: 80%;
     border-radius: 20px;
     height: 28px;
@@ -158,36 +151,19 @@ input::placeholder
         transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
         will-change: background-color;
         a
-            display: inline-block;
-            border-radius: 20px
-            height: 25px;
+            @include roundFont    
             margin-left: 10px;
-            padding: 3px 10px 0px 10px;
-            font-family: 'Spoqa Han Sans Neo'
-            font-weight: 300;
-            font-style: normal;
-            font-size: 15px; 
+            padding: 3px 10px 0px 10px;    
+           
         a > span
-            background-color: none;
-            display: inline-block;
-            border-radius: 20px
-            height: 25px;
-            font-family: 'Spoqa Han Sans Neo'
-            font-weight: 300;
-            font-style: normal;
-            font-size: 15px; 
+            @include roundFont
 
 .search_post > span
-    display: inline-block;
-    border-radius: 20px
-    height: 25px;
+    @include roundFont
     margin-left: 10px;
     padding: 3px 10px 0px 10px;
     font-family: 'Spoqa Han Sans Neo'
-    font-weight: 300;
-    font-style: normal;
-    font-size: 15px; 
-
+    
 .filter.wrap
     display: flex
     gap: 10px
@@ -209,7 +185,7 @@ input::placeholder
         top: 70px;
         width: 300px;
         background-color: #1C1C1e
-        border: 1.5px solid #636366
+        border: 1.5px solid $gray4
         opacity: 90%;
         border-radius: 20px;
         height: 150px;
@@ -223,7 +199,7 @@ input::placeholder
         .right
             display: flex;
             width: 50%;
-            border-left: 1.5px solid #636366;
+            border-left: 1.5px solid $gray4;
             flex-wrap: wrap;
             align-content: flex-start;
         .left > div
@@ -239,9 +215,8 @@ input::placeholder
             padding: 0.1em 0.5em
             margin: 5px
             font-size: 0.65em
-            background: #636366
+            background: $gray4
             border-radius: 30px
-
 
 @include mobile
     body
@@ -262,13 +237,7 @@ input::placeholder
 
     .filter.wrap
         display: none
-    // .search.warp 
-    //     margin-top: 0px
-    //     padding: 5px 8px;
-    //     width: 230px;
-    //     height: 25px;
-    // input
-    //     width: 200px;
+
     .search.warp
         display: none
     input

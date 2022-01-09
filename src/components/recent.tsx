@@ -8,11 +8,11 @@ import recent from '../md/recent'
 //styles
 import '../styles/recent.sass'
 
-type MyProps = {
+type Props = {
   location: any
 }
 
-const Recent_components: React.FC<MyProps> = ({location})  => {
+const Recent_components: React.FC<Props> = ({ location })  => {
   if (location.search === undefined) {
     return null;
   }
@@ -20,18 +20,20 @@ const Recent_components: React.FC<MyProps> = ({location})  => {
     return null;
   }
   else {
-    const [filter_key, setFilter_key] = useState("");
+    const [filterKey, setFilterKey] = useState("");
+    const params = new URLSearchParams(location.search);
+    
     const so = () => {
       //useEffect용 비동기를 위한 함수
     }
     so();
-    const params = new URLSearchParams(location.search);
+    
     useEffect(() => {
-      setFilter_key(params.get("f"))
+      setFilterKey(params.get("f"))
     }, [so])
 
-    //filter함수를 통한 필터링
-    const recent_list = recent.filter(word => word.filter == filter_key || filter_key == null).map((post) =>
+    //filter 함수를 통한 filtering 후 map
+    const recent_list = recent.filter(word => word.filter == filterKey || filterKey == null).map((post) =>
     (
       <div className="recent_content">
         <Link to={`postitem/?name=${post.filename}`}>
@@ -65,7 +67,7 @@ const Recent_components: React.FC<MyProps> = ({location})  => {
       <section>
         <div className="header_wrap">
           <div className="header">최근 블로그</div>
-          {filter_key ? <span className="filter">✨{filter_key} 필터 적용됨</span> : null}
+          {filterKey ? <span className="filter">✨{filterKey} 필터 적용됨</span> : null}
         </div>
         <div className="horizontal_container">
           {recent_list}
