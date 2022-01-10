@@ -141,7 +141,7 @@ const Header: React.FC<Props> = (props: Props) => {
                 </div>
             </div>
             <div className="head content">
-                <a href="https://pond-cheshire-bae.notion.site/young-min-3ceea45d28bd4eddb465e8ecfa0539f2"><span>소개</span></a>
+                <Link to="/intro"><span>소개</span></Link>
                 <a href="https://github.com/min050410/TechBlog"><span>깃허브</span></a>
                 <Link to="/login"><span>Github 로그인</span></Link>
                 <div className="mod">

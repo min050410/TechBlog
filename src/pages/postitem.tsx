@@ -17,7 +17,6 @@ import "../styles/postitem.sass"
 import '../styles/index.sass';
 
 const Postimport = ({ location }) => {
-
     if (location.search === undefined) {
         return (null)
     }
@@ -65,6 +64,15 @@ const Postimport = ({ location }) => {
         const components = {
             code: CodeBlock,
         };    
+
+        let key: number;
+        if(location.state==null){
+            key = Math.random();
+        }
+        else{
+            key = location.state.key
+        }
+        
     
         return (
             <main>
@@ -82,7 +90,7 @@ const Postimport = ({ location }) => {
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment key={location.state.key}/>
+                <PostComment key={key}/>
             </main>
         )
     }
