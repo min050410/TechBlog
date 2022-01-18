@@ -211,7 +211,6 @@ const Intro = ({ location }) => {
                 </footer>
             </div>
         </main>
-
     )
 }
 
