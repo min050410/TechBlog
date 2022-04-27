@@ -7,7 +7,7 @@ import Header from '../components/header'
 //style
 import "../styles/intro.sass"
 
-const Intro = ({ location }) => {
+const Intro = ({}) => {
     return (
         <main>
             <SEO title="Dev log | 소개" />
@@ -146,7 +146,7 @@ const Intro = ({ location }) => {
                         </div>
                     </div>
                 </div>
-                {/* <h4 className="under" id="side">🎁 Side Project(+Product Release)</h4>
+                <h4 className="under" id="side">🎁 Side Project ( + Product Release )</h4>
                 <div className="side">
                     <div className="card">
 
@@ -160,7 +160,7 @@ const Intro = ({ location }) => {
                     <div className="card">
 
                     </div>
-                </div> */}
+                </div> 
                 <h4 className="under" id="prize">🏆 Prize + Award</h4>
                 <div className="prize">
                     <div className="card">
@@ -207,7 +207,6 @@ const Intro = ({ location }) => {
                         </a>
                         <div className="date">last Update. 220110</div>
                     </div>
-
                 </footer>
             </div>
         </main>

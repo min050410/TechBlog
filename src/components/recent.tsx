@@ -23,14 +23,14 @@ const Recent_components: React.FC<Props> = ({ location })  => {
     const [filterKey, setFilterKey] = useState("");
     const params = new URLSearchParams(location.search);
     
-    const so = () => {
+    const next = () => {
       //useEffect용 비동기를 위한 함수
     }
-    so();
+    next();
     
     useEffect(() => {
       setFilterKey(params.get("f"))
-    }, [so])
+    }, [next])
 
     //filter 함수를 통한 filtering 후 map
     const recent_list = recent.filter(word => word.filter == filterKey || filterKey == null).map((post) =>
