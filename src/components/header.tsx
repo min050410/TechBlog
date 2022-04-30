@@ -8,12 +8,12 @@ import recent from '../md/recent'
 //style
 import '../styles/header.sass';
 
-//props type 지정
+//props type 지정 (제네릭)
 type Props = {
     path: string,
 }
 
-const Header: React.FC<Props> = (props: Props) => {
+const Header: React.FC<Props> = ({path}) => {
     const [scrollPosition, setScrollPosition] = useState(0); 
 
     //Focus Event
@@ -94,7 +94,7 @@ const Header: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <header className={props.path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
+        <header className={path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
                 <Link to="../">
                     <div className="head box">
@@ -114,7 +114,7 @@ const Header: React.FC<Props> = (props: Props) => {
                         changeText == '' ?
                             null :
                             <div className="searchBox" onBlur={onSearchBoxBlur}> <div className="search_post">
-                                {props.path == '/postitem' ?
+                                {path == '/postitem' ?
                                     (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
                                         <Link to={`../postitem/?name=${found.filename}`} state={{ key: Math.random() }}>{found.title}</Link>) :
                                     (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :

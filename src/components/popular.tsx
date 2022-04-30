@@ -8,7 +8,7 @@ import popular from '../md/popular'
 //styles
 import '../styles/card.sass';
 
-const Popular_components = () => {
+const Popular_components: React.FC = () => {
   const [isHover, setHover] = useState(false);
   const [ID, setID] = useState(-1);
 

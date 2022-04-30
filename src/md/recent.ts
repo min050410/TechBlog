@@ -6,7 +6,17 @@
 // tag : blog tag(max 3)
 // filter : filter tag
 
-const recent = [
+const recent: {
+  id: number,
+  title: string,
+  filename: string,
+  img: string,
+  date: string,
+  tag: string,
+  tag2: string,
+  tag3: string,
+  filter: string,
+}[] = [
   {
     id: 1,
     title: 'Big-O 표기법과 수행',

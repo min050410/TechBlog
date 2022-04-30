@@ -16,7 +16,7 @@ import recent from '../md/recent'
 import "../styles/postitem.sass"
 import '../styles/index.sass';
 
-const Postimport = ({ location }) => {
+const Postimport = () => {
     if (location.search === undefined) {
         return (null)
     }
@@ -25,14 +25,14 @@ const Postimport = ({ location }) => {
     }
     else {
         const params = new URLSearchParams(location.search);
-        const filename: string = params.get("name");
+        const filename: string | null = params.get("name");
 
         if (filename == null) {
             return (null)
         }
 
         const [, forceUpdate] = useReducer(x => x + 1, 0);
-        let pageTitle: string = null;
+        let pageTitle: string | null = null;
 
         //filename으로 title을 찾아주는 함수
         const findTitle = (filename: string) => {
@@ -46,7 +46,7 @@ const Postimport = ({ location }) => {
 
         // search시 rerendering
         function componentDidMount() {
-            const reloadCount: string = sessionStorage.getItem('reloadCount');
+            const reloadCount: string | null = sessionStorage.getItem('reloadCount');
             //최초 1번만
             if(Number(reloadCount) < 1) {
               sessionStorage.setItem('reloadCount', String(reloadCount + 1));

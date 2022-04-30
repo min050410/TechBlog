@@ -7,7 +7,7 @@ import Header from '../components/header'
 //style
 import "../styles/intro.sass"
 
-const Intro = ({}) => {
+const Intro: React.FC = () => {
     return (
         <main>
             <SEO title="Dev log | 소개" />

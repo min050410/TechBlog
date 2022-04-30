@@ -7,29 +7,28 @@ import recent from '../md/recent'
 
 //styles
 import '../styles/recent.sass'
+import { URLSearchParams } from "url";
 
-type Props = {
-  location: any
-}
 
-const Recent_components: React.FC<Props> = ({ location })  => {
-  if (location.search === undefined) {
-    return null;
-  }
-  else if (location.search == null) {
+
+const Recent_components: React.FC = () => {
+  if (location.search === undefined || location.search == null) {
     return null;
   }
   else {
-    const [filterKey, setFilterKey] = useState("");
-    const params = new URLSearchParams(location.search);
+    const [filterKey, setFilterKey] = useState<string | null>('');
+    let queryString: string = location.search
+    const params: URLSearchParams = new URLSearchParams(queryString);
     
     const next = () => {
       //useEffect용 비동기를 위한 함수
     }
     next();
-    
+
+  
+
     useEffect(() => {
-      setFilterKey(params.get("f"))
+      setFilterKey(params.get("f"));
     }, [next])
 
     //filter 함수를 통한 filtering 후 map

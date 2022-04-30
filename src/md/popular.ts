@@ -4,7 +4,12 @@
 // filename : blog filename
 // img : blog img filename
 
-const popular = [
+const popular: {
+  id: number,
+  title: string,
+  filename: string,
+  img: string
+}[] = [
     {
       id: 1,
       title: 'Flask 튜토리얼',
