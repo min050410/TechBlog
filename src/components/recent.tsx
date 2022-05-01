@@ -11,7 +11,7 @@ import { URLSearchParams } from "url";
 
 
 
-const Recent_components: React.FC = () => {
+const Recent_components: React.FC = ({ location }) => {
   if (location.search === undefined || location.search == null) {
     return null;
   }

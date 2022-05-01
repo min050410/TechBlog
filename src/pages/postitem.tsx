@@ -16,7 +16,7 @@ import recent from '../md/recent'
 import "../styles/postitem.sass"
 import '../styles/index.sass';
 
-const Postimport = () => {
+const Postimport = ({ location }) => {
     if (location.search === undefined) {
         return (null)
     }
