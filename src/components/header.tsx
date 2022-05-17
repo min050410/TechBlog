@@ -104,6 +104,7 @@ const Header: React.FC<Props> = ({path}) => {
                 </Link>
                 <div className="search warp" onClick={onSearchBoxFocus}>
                     <input type="text"
+                        className="search-input"
                         name="search"
                         autoComplete="off"
                         placeholder="검색할 내용을 입력하세요"

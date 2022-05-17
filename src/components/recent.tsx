@@ -7,8 +7,6 @@ import recent from '../md/recent'
 
 //styles
 import '../styles/recent.sass'
-import { URLSearchParams } from "url";
-
 
 
 const Recent_components: React.FC = ({ location }) => {
@@ -18,14 +16,12 @@ const Recent_components: React.FC = ({ location }) => {
   else {
     const [filterKey, setFilterKey] = useState<string | null>('');
     let queryString: string = location.search
-    const params: URLSearchParams = new URLSearchParams(queryString);
+    const params = new URLSearchParams(queryString);
     
     const next = () => {
       //useEffect용 비동기를 위한 함수
     }
     next();
-
-  
 
     useEffect(() => {
       setFilterKey(params.get("f"));

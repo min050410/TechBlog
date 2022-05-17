@@ -2,98 +2,98 @@
 @import "variables" 
 
 .horizontal_container
-    display: flex;
-    flex-direction: column;
+    display: flex
+    flex-direction: column
 
 .recent_content
-    padding-bottom: 10px;
+    padding-bottom: 10px
     margin: 10px 150px 0px 130px
     border-bottom: 2px solid $gray4
 
 .post
-    display: flex;
-    padding: 10px;
-    padding-right: 100px;
-    justify-content: space-between;
-    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-    will-change: background-color;
-    border-radius: 10px;
+    display: flex
+    padding: 10px
+    padding-right: 100px
+    justify-content: space-between
+    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+    will-change: background-color
+    border-radius: 10px
     .left
-        display: flex;
+        display: flex
 
 .post:hover
-    background-color: rgb(75, 75, 77);
+    background-color: rgb(75, 75, 77)
 
 
 #text_group
-    margin-left: 20px;
+    margin-left: 20px
     div
-        font-family: Noto sans;
-        font-style: normal;
-        font-size: 16px;
-        color: $gray2;
+        font-family: Noto sans
+        font-style: normal
+        font-size: 16px
+        color: $gray2
 
 .post h3
-    margin: 0px;
-    font-family: Noto sans;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 20px;
-    line-height: 30px;
+    margin: 0px
+    font-family: Noto sans
+    font-weight: 500
+    font-style: normal
+    font-size: 20px
+    line-height: 30px
 
 
 .post span
-    display: inline-block;
+    display: inline-block
     background-color: $gray4
     border-radius: 20px
     font-family: Noto sans
-    font-weight: 300;
-    font-style: normal;
-    font-size: 15px;
-    height: 25px;
-    margin-left: 10px;
-    padding: 3px 10px 0px 10px;
+    font-weight: 300
+    font-style: normal
+    font-size: 15px
+    height: 25px
+    margin-left: 10px
+    padding: 3px 10px 0px 10px
 
 .header_wrap
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
+    display: flex
+    gap: 10px
+    align-items: flex-end
 
 .filter
-    font: 300 17px "Spoqa Han Sans Neo", "sans-serif";
+    font: 300 17px "Spoqa Han Sans Neo", "sans-serif"
 
 @include mobile
     .recent_content
         margin: 20px 0px 0px 0px
 
     .post
-        flex: 1 1 40%;
-        flex-direction: column;
-        padding-right: 0px;
-        position: relative;
+        flex: 1 1 40%
+        flex-direction: column
+        padding-right: 0px
+        position: relative
         .left
             .imgbox
                 img
-                    width: 105px;
+                    width: 105px
         .tag
-            margin-left: 115px;
-            position: absolute;
-            top: 53%;
+            margin-left: 115px
+            position: absolute
+            top: 53%
 
     #text_group
         div
-            font-size: 13px;
+            font-size: 13px
 
     .post h3
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 16px
+        line-height: 20px
 
     .post span
         font-family: 'Spoqa Han Sans Neo', Noto sans
-        font-weight: 400;
-        font-size: 11px;
-        height: 17px;
-        margin-left: 5px;
-        padding: 2px 8px 0px 8px;
+        font-weight: 400
+        font-size: 11px
+        height: 17px
+        margin-left: 5px
+        padding: 2px 8px 0px 8px
         
 

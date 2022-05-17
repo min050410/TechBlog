@@ -1,7 +1,7 @@
 // header의 스타일입니다
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap')
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css)
 
 @import "variables" 
 *    
@@ -9,113 +9,117 @@
 
 @font-face 
     src: url("../assets/font/NanumSquareR.ttf") format("truetype")
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif
 
 @mixin header
-    top: 0;
-    z-index: 1;
+    top: 0
+    z-index: 1
     background-color: $default
     display: flex
     flex-wrap: wrap
     justify-content: center
-    justify-content: space-between;
+    justify-content: space-between
 
 .notfixed
     @include header
     margin: 20px 20px
-    width: calc(100% - 40px);
-    position: absolute;
+    width: calc(100% - 40px)
+    position: absolute
 
 .original
     @include header
-    position: fixed;
-    width: 100%;
-    transform: translateY(10px);
-    transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s;
-    padding: 10px 20px;
+    position: fixed
+    width: 100%
+    transform: translateY(10px)
+    transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s
+    padding: 10px 20px
 
 .change
     @include header
-    position: fixed;
-    transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s;
-    transform: translateY(0px);
+    position: fixed
+    transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s
+    transform: translateY(0px)
     border-bottom: 1px solid $gray4
-    width: 100%;
-    padding: 10px 20px;
+    width: 100%
+    padding: 10px 20px
 
 .head.box 
     display: flex
     align-items: center
     .logo
-        width: 65px
-        height: 50px
-        background-size: cover;
+        margin-bottom: 4px
+        width: 45px
+        height: 35px
+        background-size: cover
     span
-        margin-top: 4px;
-        font-family: Noto Sans;
-        font-weight: bold;
-        font-size: 25px;
-        margin-left: 0.3em;
-        letter-spacing: 2px;
+        font-family: Noto Sans
+        font-weight: bold
+        font-size: 23px
+        margin-left: 0.3em
+        letter-spacing: 2px
 
 .head.content 
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-right: 60px;
+    display: flex
+    align-items: center
+    gap: 30px
+    margin-right: 60px
     span
-        font-family: 'Spoqa Han Sans Neo', Noto Sans;
-        font-size: 17px;
-        padding: 10px;
-        border-radius: 20px;
-        transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-        will-change: background-color;
+        font-family: 'Spoqa Han Sans Neo', Noto Sans
+        font-size: 16px
+        padding: 7px 10px
+        margin: 5px
+        border-radius: 20px
+        transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+        will-change: background-color
     span:hover
-        background-color: rgb(75, 75, 77);
+        background-color: rgb(75, 75, 77)
+    // 하드코딩 나중에 수정
     .mod
-        position: relative;
-        background-image: url(https://user-images.githubusercontent.com/45661217/146483843-3e796322-47aa-4fba-833d-7401512a805c.png);
-        width: 81px;
-        height: 41px;
-        align-items: center;
+        position: relative
+        background-image: url(https://user-images.githubusercontent.com/45661217/146483843-3e796322-47aa-4fba-833d-7401512a805c.png)
+        width: 81px
+        height: 41px
         margin-left: 10px;
         .circle      
-            position: absolute;  
+            position: absolute  
             background-image: url(https://user-images.githubusercontent.com/45661217/146485076-5d9e6a3a-dc25-433c-bc28-f077c483ad6d.png)
-            width: 34px;
-            height: 34px;
-            transform: translateY(-50%);
-            top: 50%;
-            left: 0.2em;
+            width: 34px
+            height: 34px
+            transform: translateY(-50%)
+            top: 50%
+            left: 0.2em
     
 .head.index
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    display: flex
+    align-items: center
+    gap: 20px
 
-input
-    margin-left: 20px;
-    width: 250px;
-    height: 25px;
-    border-image: none;
-    border-style: none;
+.search-input
+    position: absolute
+    font-size: 15px
+    top: 50%
+    transform: translate(0%, -50%)
+    left: 40px;
+    width: 250px
+    height: 20px
+    border-image: none
+    border-style: none
     background-color: $gray4
 
-input:focus 
-    outline: none;
+.search-input:focus 
+    outline: none
 
-input::placeholder 
-  color: $gray2;
-  font-size: 17px;
+.search-input::placeholder 
+    color: $gray2
+    font-size: 15px
+    transform: translate(0%, 10%)
 
 .search.warp
-    margin-top: 10px;
+    position: relative
     font: 400 16px Noto sans, "sans-serif"
     padding: 10px 16px
-    background-color: $gray4
-    width: 300px
-    height: 25px
+    width: 270px
+    height: 15px
     background-color: $gray4
     border-radius: 30px
     border-color: $gray4 !important
@@ -124,94 +128,93 @@ input::placeholder
     background-position: 10px center
 
 @mixin roundFont
-    display: inline-block;
+    display: inline-block
     border-radius: 20px
-    height: 25px;
+    height: 25px
     font-family: 'Spoqa Han Sans Neo'
-    font-weight: 300;
-    font-style: normal;
-    font-size: 15px; 
+    font-weight: 300
+    font-style: normal
+    font-size: 15px 
 
 .searchBox 
-    position: absolute;
-    margin-top: 15px;
-    width: 300px;
+    position: absolute
+    top: 33px
+    width: 285px
     background-color: $default
     border: 1.5px solid $gray4
-    opacity: 80%;
-    border-radius: 20px;
-    height: 28px;
-    z-index: 2;
+    opacity: 80%
+    border-radius: 20px
+    height: 28px
+    z-index: 2
     .search_post:hover
-        background-color: rgb(75, 75, 77);
+        background-color: rgb(75, 75, 77)
     .search_post
         border-radius: 20px
-        display: flex;
-        justify-content: space-between;
-        transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-        will-change: background-color;
+        display: flex
+        justify-content: space-between
+        transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+        will-change: background-color
         a
             @include roundFont    
-            margin-left: 10px;
-            padding: 3px 10px 0px 10px;    
+            margin-left: 10px
+            padding: 3px 10px 0px 10px    
            
         a > span
             @include roundFont
 
 .search_post > span
     @include roundFont
-    margin-left: 10px;
-    padding: 3px 10px 0px 10px;
+    margin-left: 10px
+    padding: 3px 10px 0px 10px
     font-family: 'Spoqa Han Sans Neo'
     
 .filter.wrap
     display: flex
     gap: 10px
-    align-items: flex-end;
+    align-items: center
     .filter.img 
         background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
-        width: 26px
-        height: 20px
-        background-size: cover;
-        transition: transform 0.5s ease 0s;
+        width: 20px
+        height: 15px
+        background-size: cover
+        transition: transform 0.5s ease 0s
     .filter.img.click
         transform: rotate(90deg)
     .filter.text
-        margin-top: 10px
         font-family: 'Spoqa Han Sans Neo', Noto Sans
-        font-size: 17px;
+        font-size: 16px
     .filterBox
-        position: absolute;
-        top: 70px;
-        width: 300px;
+        position: absolute
+        top: 50px
+        width: 300px
         background-color: #1C1C1e
         border: 1.5px solid $gray4
-        opacity: 90%;
-        border-radius: 20px;
-        height: 150px;
-        z-index: 2;
-        display: flex;
+        opacity: 90%
+        border-radius: 20px
+        height: 150px
+        z-index: 2
+        display: flex
         .left
-            width: 50%;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
+            width: 50%
+            display: flex
+            flex-wrap: wrap
+            align-content: flex-start
         .right
-            display: flex;
-            width: 50%;
-            border-left: 1.5px solid $gray4;
-            flex-wrap: wrap;
-            align-content: flex-start;
+            display: flex
+            width: 50%
+            border-left: 1.5px solid $gray4
+            flex-wrap: wrap
+            align-content: flex-start
         .left > div
-            margin-top: 0.5em;
-            display: block;
-            width: 100%;
+            margin-top: 0.5em
+            display: block
+            width: 100%
             font-family: 'Spoqa Han Sans Neo'
-            font-style: normal;
-            font-size: 13px; 
-            margin-left: 10%;
+            font-style: normal
+            font-size: 13px 
+            margin-left: 10%
         a > span, a > span 
-            height: 1.5em;
+            height: 1.5em
             padding: 0.1em 0.5em
             margin: 5px
             font-size: 0.65em
@@ -223,17 +226,17 @@ input::placeholder
         margin: 0px
     header
         margin: 0px
-        flex-direction: column;
+        flex-direction: column
     .head
-        margin: 10px;
+        margin: 10px
     .head.box 
         .logo
             width: 45px
             height: 35px
         span
-            font-size: 20px;
-            margin-left: 0.3em;
-            letter-spacing: 1px;
+            font-size: 20px
+            margin-left: 0.3em
+            letter-spacing: 1px
 
     .filter.wrap
         display: none
@@ -245,10 +248,10 @@ input::placeholder
 
     .head.content 
         margin-top: 0px
-        gap: 0px;
+        gap: 0px
         .darkmode_text
-            display: inline;
-            margin-top: 4.3px;
+            display: inline
+            margin-top: 4.3px
         .mod
-            display: none;
+            display: none
             
