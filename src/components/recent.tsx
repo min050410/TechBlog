@@ -17,7 +17,7 @@ const Recent_components: React.FC = ({ location }) => {
     const [filterKey, setFilterKey] = useState<string | null>('');
     let queryString: string = location.search
     const params = new URLSearchParams(queryString);
-    
+
     const next = () => {
       //useEffect용 비동기를 위한 함수
     }
@@ -32,26 +32,28 @@ const Recent_components: React.FC = ({ location }) => {
     (
       <div className="recent_content">
         <Link to={`postitem/?name=${post.filename}`}>
-          <div className="post">
-            <div className="left">
-              {/* <Link to="postitem/" state={{ myProp: post.filename }}> */}
-              <div className="imgbox">
-                <img
-                  src={require(`../assets/images/${post.img}.png`).default}
-                  alt={post.img}
-                />
+          <div className="margin_post">
+            <div className="post">
+              <div className="left">
+                {/* <Link to="postitem/" state={{ myProp: post.filename }}> */}
+                <div className="imgbox">
+                  <img
+                    src={require(`../assets/images/${post.img}.png`).default}
+                    alt={post.img}
+                  />
+                </div>
+                <div id="text_group">
+                  <h3>{post.title}</h3>
+                  <div>{post.date}</div>
+                </div>
+                {/* star */}
+                {/* <img className="copylink" src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"></img> */}
               </div>
-              <div id="text_group">
-                <h3>{post.title}</h3>
-                <div>{post.date}</div>
+              <div className="tag">
+                {(post.tag) ? <span>{post.tag}</span> : null}
+                {(post.tag2) ? <span>{post.tag2}</span> : null}
+                {(post.tag3) ? <span>{post.tag3}</span> : null}
               </div>
-              {/* star */}
-              {/* <img className="copylink" src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"></img> */}
-            </div>
-            <div className="tag">
-              {(post.tag) ? <span>{post.tag}</span> : null}
-              {(post.tag2) ? <span>{post.tag2}</span> : null}
-              {(post.tag3) ? <span>{post.tag3}</span> : null}
             </div>
           </div>
         </Link>
