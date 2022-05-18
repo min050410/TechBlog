@@ -67,7 +67,7 @@ const Header: React.FC<Props> = ({path}) => {
     }
 
     //filter Focus Toggle
-    const filterClick = (isFocus: number) => {
+    const filterClick = () => {
         setfilterFocus(isFocus => isFocus ? 0 : 1);
     }
 
@@ -124,7 +124,7 @@ const Header: React.FC<Props> = ({path}) => {
                     }
                 </div>
                 <div className="filter wrap">
-                    <div className="filter wrap" onClick={() => filterClick(filterFocus)}>
+                    <div className="filter wrap" onClick={() => filterClick()}>
                         {filterFocus ? <div className="filter img click"></div> : <div className="filter img"></div>}
                         <div className="filter text">필터설정</div>
                     </div>
@@ -132,8 +132,7 @@ const Header: React.FC<Props> = ({path}) => {
                         <div className="filterBox">
                             <div className="left">
                                 <div>적용됨</div>
-                                {seletedTag ? <Link to={`/`}><span onClick={() => backup()}>{seletedTag}</span></Link>
-                                : null}
+                                {seletedTag && <Link to={`/`}><span onClick={() => backup()}>{seletedTag}</span></Link>}
                             </div>
                             <div className="right">
                                 {notSeletedTags_map}

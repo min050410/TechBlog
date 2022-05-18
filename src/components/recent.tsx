@@ -18,17 +18,12 @@ const Recent_components: React.FC = ({ location }) => {
     let queryString: string = location.search
     const params = new URLSearchParams(queryString);
 
-    const next = () => {
-      //useEffect용 비동기를 위한 함수
-    }
-    next();
-
     useEffect(() => {
       setFilterKey(params.get("f"));
-    }, [next])
+    }, [params])
 
     //filter 함수를 통한 filtering 후 map
-    const recent_list = recent.filter(word => word.filter == filterKey || filterKey == null).map((post) =>
+    const recent_list = recent.filter(word => word.filter == filterKey || filterKey === null).map((post) =>
     (
       <div className="recent_content">
         <Link to={`postitem/?name=${post.filename}`}>
@@ -50,21 +45,20 @@ const Recent_components: React.FC = ({ location }) => {
                 {/* <img className="copylink" src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"></img> */}
               </div>
               <div className="tag">
-                {(post.tag) ? <span>{post.tag}</span> : null}
-                {(post.tag2) ? <span>{post.tag2}</span> : null}
-                {(post.tag3) ? <span>{post.tag3}</span> : null}
+                {(post.tag) && <span>{post.tag}</span>}
+                {(post.tag2) && <span>{post.tag2}</span>}
+                {(post.tag3) && <span>{post.tag3}</span>}
               </div>
             </div>
           </div>
         </Link>
       </div>
     ));
-
     return (
       <section>
         <div className="header_wrap">
           <div className="header">최근 블로그</div>
-          {filterKey ? <span className="filter">✨{filterKey} 필터 적용됨</span> : null}
+          {filterKey && <span className="filter-key">{filterKey}</span>}
         </div>
         <div className="horizontal_container">
           {recent_list}
