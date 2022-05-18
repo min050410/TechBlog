@@ -1,33 +1,33 @@
 // 변수 관리
-$default: #1C1C1e;
-$white: #ffffff;
-$gray1: #C9D1D9;
-$gray2: #C7C7CC;
-$gray3: #8b949e;
-$gray4: #636366;
-$gray5: #4d535c;
-$gray6: #353942;
-$gray7: #30363d;
-$a: #58A6FF;
+$default: #1C1C1e
+$white: #ffffff
+$gray1: #C9D1D9
+$gray2: #C7C7CC
+$gray3: #8b949e
+$gray4: #636366
+$gray5: #4d535c
+$gray6: #353942
+$gray7: #30363d
+$a: #58A6FF
 
 // Breakpoints
-$breakpoint-mobile: 335px;
-$breakpoint-tablet: 758px;
-$breakpoint-desktop: 1024px;
+$breakpoint-mobile: 335px
+$breakpoint-tablet: 758px
+$breakpoint-desktop: 1024px
 
 
 @mixin mobile 
   @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet - 1px) 
-    @content;
+    @content
   
 
 @mixin tablet 
   @media (min-width: #{$breakpoint-tablet}) and (max-width: $breakpoint-desktop - 1px) 
-    @content;
+    @content
   
 
 @mixin desktop 
   @media (min-width: #{$breakpoint-desktop}) 
-    @content;
+    @content
   
 

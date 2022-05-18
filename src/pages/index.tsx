@@ -9,7 +9,7 @@ import PostComment from '../components/comment'
 import Popular_components from '../components/popular'
 import Recent_components from '../components/recent'
 
-const IndexPage = ({location}) => {
+const IndexPage:React.FC = ({ location }) => {
   
   //<html lang="kr">
   useEffect(() => {
@@ -23,6 +23,7 @@ const IndexPage = ({location}) => {
         <Header path={location.pathname}/>
         <div className="fade_in">
           <Popular_components/>
+          {/* todo ::recent components location prop설정하기 */}
           <Recent_components location={location}/>
         </div>
       </body>

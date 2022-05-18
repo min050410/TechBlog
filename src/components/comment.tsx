@@ -10,8 +10,9 @@ const utterancesSettings = {
     async: 'false',
 };
 
+
 const PostComment = () => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   //script에 Settings의 key와 value값 넣기
   useEffect(() => {
       if (ref.current !== null) {

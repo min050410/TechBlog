@@ -8,7 +8,7 @@ import popular from '../md/popular'
 //styles
 import '../styles/card.sass';
 
-const Popular_components = () => {
+const Popular_components: React.FC = () => {
   const [isHover, setHover] = useState(false);
   const [ID, setID] = useState(-1);
 
@@ -16,6 +16,7 @@ const Popular_components = () => {
   (
     <div className="card">
       <div className="imgbox">
+      <Link to={`postitem/?name=${post.filename}`} >
         <img
           src={require(`../assets/images/${post.img}.png`).default}
           alt={post.img}
@@ -28,14 +29,13 @@ const Popular_components = () => {
             setID(-1)
           }}
         />
-        {(isHover && ID == post.id) ? <img
+        {/* {(isHover && ID == post.id) ? <img
           className="star"
           src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"
-        ></img> : null}
-      </div>
-      <Link to={`postitem/?name=${post.filename}`} >
-        <h3>{post.title}</h3>
+        ></img> : null} */}
       </Link>
+      </div>
+        <h3>{post.title}</h3>
     </div>
   ));
 

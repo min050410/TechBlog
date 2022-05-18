@@ -8,12 +8,12 @@ import recent from '../md/recent'
 //style
 import '../styles/header.sass';
 
-//props type 지정
+//props type 지정 (제네릭)
 type Props = {
     path: string,
 }
 
-const Header: React.FC<Props> = (props: Props) => {
+const Header: React.FC<Props> = ({path}) => {
     const [scrollPosition, setScrollPosition] = useState(0); 
 
     //Focus Event
@@ -67,7 +67,7 @@ const Header: React.FC<Props> = (props: Props) => {
     }
 
     //filter Focus Toggle
-    const filterClick = (isFocus: number) => {
+    const filterClick = () => {
         setfilterFocus(isFocus => isFocus ? 0 : 1);
     }
 
@@ -94,7 +94,7 @@ const Header: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <header className={props.path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
+        <header className={path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
                 <Link to="../">
                     <div className="head box">
@@ -104,6 +104,7 @@ const Header: React.FC<Props> = (props: Props) => {
                 </Link>
                 <div className="search warp" onClick={onSearchBoxFocus}>
                     <input type="text"
+                        className="search-input"
                         name="search"
                         autoComplete="off"
                         placeholder="검색할 내용을 입력하세요"
@@ -114,7 +115,7 @@ const Header: React.FC<Props> = (props: Props) => {
                         changeText == '' ?
                             null :
                             <div className="searchBox" onBlur={onSearchBoxBlur}> <div className="search_post">
-                                {props.path == '/postitem' ?
+                                {path == '/postitem' ?
                                     (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
                                         <Link to={`../postitem/?name=${found.filename}`} state={{ key: Math.random() }}>{found.title}</Link>) :
                                     (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
@@ -123,7 +124,7 @@ const Header: React.FC<Props> = (props: Props) => {
                     }
                 </div>
                 <div className="filter wrap">
-                    <div className="filter wrap" onClick={() => filterClick(filterFocus)}>
+                    <div className="filter wrap" onClick={() => filterClick()}>
                         {filterFocus ? <div className="filter img click"></div> : <div className="filter img"></div>}
                         <div className="filter text">필터설정</div>
                     </div>
@@ -131,8 +132,7 @@ const Header: React.FC<Props> = (props: Props) => {
                         <div className="filterBox">
                             <div className="left">
                                 <div>적용됨</div>
-                                {seletedTag ? <Link to={`/`}><span onClick={() => backup()}>{seletedTag}</span></Link>
-                                : null}
+                                {seletedTag && <Link to={`/`}><span onClick={() => backup()}>{seletedTag}</span></Link>}
                             </div>
                             <div className="right">
                                 {notSeletedTags_map}
