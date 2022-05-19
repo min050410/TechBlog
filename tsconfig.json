@@ -10,8 +10,13 @@
       "strict": true,
       "isolatedModules": true,
       "esModuleInterop": true,
-      "allowJs": false
+      "allowJs": true,
+      "outDir": "c:/gatsby/youngmin/src/utils/codeblock.js",
     },
     "include": ["./src/**/*"],
-    "exclude": ["node_modules", "public", ".cache", "js"],
+    "exclude": ["node_modules",
+               "public",
+               ".cache",
+               "js",
+               "c:/gatsby/youngmin/src/utils/*"],
 }

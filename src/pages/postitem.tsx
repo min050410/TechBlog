@@ -4,19 +4,28 @@ import { MDXProvider } from "@mdx-js/react"
 import { Helmet } from 'react-helmet'
 
 //components
-import CodeBlock from "../components/codeblock"
+import CodeBlock from "../utils/codeblock"
 import Header from '../components/header'
 import PostComment from '../components/comment'
 import SEO from '../components/SEO'
 
 //data
-import recent from '../md/recent'
+import recent from '../docs/recent'
 
 //styles
 import "../styles/postitem.sass"
 import '../styles/index.sass';
 
-const Postimport = ({ location }) => {
+type Props = {
+    location: {
+        search: string | null,
+        pathname: string, state: {
+            key: number
+        }
+    }
+}
+
+const Postimport: React.FC<Props> = ({ location }) => {
     if (location.search === undefined) {
         return (null)
     }
@@ -32,7 +41,7 @@ const Postimport = ({ location }) => {
         }
 
         const [, forceUpdate] = useReducer(x => x + 1, 0);
-        let pageTitle: string | null = null;
+        let pageTitle: string = '';
 
         //filename으로 title을 찾아주는 함수
         const findTitle = (filename: string) => {
@@ -42,41 +51,48 @@ const Postimport = ({ location }) => {
                 }
             }
         }
-        findTitle(filename);    
+        findTitle(filename);
 
         // search시 rerendering
         function componentDidMount() {
             const reloadCount: string | null = sessionStorage.getItem('reloadCount');
             //최초 1번만
-            if(Number(reloadCount) < 1) {
-              sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-              //rerendering
-              forceUpdate()
-            } else {
-              sessionStorage.removeItem('reloadCount');
+            try {
+                if (reloadCount === null) {
+                    throw new Error('reloadCount is null!')
+                }
+                if (Number(reloadCount) < 1) {
+                    sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+                    //rerendering
+                    forceUpdate()
+                } else {
+                    sessionStorage.removeItem('reloadCount');
+                }
+            } catch (e) {
+                console.error(e);
             }
         }
         componentDidMount()
 
         //postitem dynamic import
-        const Postitem = require(`../md/${filename}.mdx`).default
+        const Postitem = require(`../docs/${filename}.mdx`).default
 
         const components = {
             code: CodeBlock,
-        };    
+        };
 
         let key: number;
-        if(location.state==null){
+        if (location.state == null) {
             key = Math.random();
         }
-        else{
+        else {
             key = location.state.key
         }
-        
-    
+
+
         return (
             <main>
-                <SEO title={pageTitle}/>
+                <SEO title={pageTitle} />
                 <Helmet>
                     <title>{pageTitle}</title>
                     <meta name="google-site-verification" content="Vfqlx3gjgzF7VwfWKG3BDziWEL76_QpnF4LvF0bgj8I" />
@@ -90,7 +106,7 @@ const Postimport = ({ location }) => {
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment key={key}/>
+                <PostComment key={key} />
             </main>
         )
     }
