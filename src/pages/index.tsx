@@ -9,7 +9,7 @@ import PostComment from '../components/comment'
 import Popular_components from '../components/popular'
 import Recent_components from '../components/recent'
 
-const IndexPage:React.FC = ({ location }) => {
+const IndexPage: React.FC<{ location: {search: string | null, pathname: string }}> = ({ location }) => {
   
   //<html lang="kr">
   useEffect(() => {

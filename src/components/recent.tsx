@@ -3,13 +3,12 @@ import { useState, useEffect } from "react"
 import { Link } from 'gatsby';
 
 //components
-import recent from '../md/recent'
+import recent from '../docs/recent'
 
 //styles
 import '../styles/recent.sass'
 
-
-const Recent_components: React.FC = ({ location }) => {
+const Recent_components: React.FC<{ location: { search: string | null } }> = ({ location }) => {
   if (location.search === undefined || location.search == null) {
     return null;
   }
@@ -41,6 +40,7 @@ const Recent_components: React.FC = ({ location }) => {
                   <h3>{post.title}</h3>
                   <div>{post.date}</div>
                 </div>
+                {/* todo::backend */}
                 {/* star */}
                 {/* <img className="copylink" src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"></img> */}
               </div>

@@ -11,10 +11,10 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "md",
-        path: "./src/md",
+        name: "docs",
+        path: "./src/docs",
       },
-      __key: "md",
+      __key: "docs",
     },
     {
       resolve: `gatsby-plugin-sass`,

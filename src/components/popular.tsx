@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { useState } from 'react';
 
 //components
-import popular from '../md/popular'
+import popular from '../docs/popular'
 
 //styles
 import '../styles/card.sass';
