@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Link } from 'gatsby';
 
 //components
-import recent from '../docs/recent'
+import recent from '../docs/data/recent'
 
 //styles
 import '../styles/recent.sass'
@@ -22,7 +22,7 @@ const Recent_components: React.FC<{ location: { search: string | null } }> = ({ 
     }, [params])
 
     //filter 함수를 통한 filtering 후 map
-    const recent_list = recent.filter(word => word.filter == filterKey || filterKey === null).map((post) =>
+    const recent_list = recent.filter(word => word.filter == filterKey || filterKey === null).reverse().map((post) =>
     (
       <div className="recent_content">
         <Link to={`postitem/?name=${post.filename}`}>

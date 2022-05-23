@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from 'gatsby';
 
 //search, filter 기능을 위한 data
-import recent from '../docs/recent'
+import recent from '../docs/data/recent'
 
 //style
 import '../styles/header.sass';
