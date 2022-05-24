@@ -1,6 +1,15 @@
 // last post style
 @import "variables" 
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
+
+@font-face 
+ font-family: 'NanumBarunGothic'
+ font-style: normal
+ font-weight: 400
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot')
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype')
+
 .horizontal_container
     display: flex
     flex-direction: column
@@ -39,14 +48,41 @@
 
 .post h3
     margin: 0px
-    font-family: Noto sans
+    font-family: 'NanumBarunGothic'
+    letter-spacing: 0.01rem
     font-weight: 500
-    font-style: normal
-    font-size: 18px
+    font-size: 17px
     line-height: 30px
     
+.left > .imgbox
+    position: relative
+    align-self: center
+
 .imgbox > img 
     width: 160px
+    border-radius: 15px
+    height: 100px
+
+.img-text-one
+    position: absolute
+    left: 7%
+    top: 15%
+    z-index: 1
+
+.img-text-two
+    position: absolute
+    left: 7%
+    top: 40%
+    z-index: 1
+
+
+.img-text-one > p, .img-text-two > p   
+    font-family: 'Noto Sans'
+    color: white
+    font-size: 20px
+    font-weight: 700
+    text-align: left
+
 
 .post span
     display: inline-block

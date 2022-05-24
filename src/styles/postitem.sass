@@ -1,6 +1,23 @@
 // in the post
 @import "variables"
 
+@font-face 
+ font-family: 'NanumBarunGothic'
+ font-style: normal
+ font-weight: 400
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot')
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype')
+
+@font-face 
+  font-family: "HackNF"
+  font-display: fallback
+  
+  src: url("../assets/font/HackNF.ttf") format("truetype"), url("../assets/font/HackNF.woff") format("woff"), url("../assets/font/HackNF.eot?iefix") format("embedded-opentype")
+
+  font-weight: 400
+  font-style: normal
+
+  
 @keyframes fadeup
     from
         margin-top: 220px
@@ -19,37 +36,39 @@ body
     width: 100%
     margin: 170px auto 80px
     a
-        color: #58A6FF
+        color: #96f2d7
+        font-size: 16px
     a:hover
-        text-decoration: underline #58A6FF
+        text-decoration: underline #96f2d7
 
 strong
     display: inline-block
     background-color: $gray4
-    border-radius: 20px
+    border-radius: 15px
     font-family: Noto sans
-    font-weight: 500
+    font-weight: 300
     font-style: normal
-    font-size: 15px
-    height: 25px
+    font-size: 12px
+    height: 20px
     margin-left: 10px
-    padding: 0px 10px 10px 10px
+    padding: 0px 8px 4px 8px
 
 h1,h2,h3,h4,h5 
-  font-family: Noto sans
+  font-family: 'NanumBarunGothic'
 
 h1 
-  font-size: 2.5rem
-  margin: 3.5rem 0px 10px 0px
-  font-weight: bold
-
+  font-size: 2.0rem
+  margin: 3.5rem 0px 40px 0px
+  font-weight: 550
+  letter-spacing: .05rem
+  
 h2 
-  font-size: 2.25rem
+  font-size: 1.5rem
   margin: 3rem 0px 8px 0px
-  font-weight: bold
+  font-weight: 500
 
 h3 
-  font-size: 1.5rem
+  font-size: 1.2rem
   margin: 2.5rem 0px 6px 0px
   font-weight: 500
 
@@ -64,20 +83,18 @@ h5
   font-weight: 500
 
 p 
-  font-family: Noto sans
-  font-size: 18px 
-  line-height: 2rem
+  line-height: 1.5rem
   margin: 24px 0px
 
 p,li 
-  font-family: Noto sans
-  font-size: 18px
+  font-family: 'NanumBarunGothic'
+  font-size: 16px
   font-weight: 500
   color: $gray1
 
 blockquote 
   display: inline-block
-  margin: 24px 0px
+  margin: 18px 0px 0px 0px
   padding: 4px 24px
   border-left: 5px solid $gray7
 
@@ -100,14 +117,15 @@ pre::-webkit-scrollbar-track
 
 pre 
   box-sizing: border-box
-  padding: 12px 12px 12px 0px
+  // padding: 12px 12px 12px 0px
   margin: 0.5em 0px
-  border-radius: 8px
+  border-radius: 5px
   overflow: auto
-pre *
-  font-size: 16px !important
-  line-height: 1.125rem
 
+pre *
+  font-size: 14px !important
+  font-family: 'HackNF'
+  line-height: 1.125rem
 
 ol,
 ul 
@@ -116,9 +134,9 @@ ul
     width: calc(100% - 28px)
     // margin: 1em 0px
     position: relative
-    line-height: 2rem
+    line-height: 1.5rem
 del
-  font-family: Noto sans
+  font-family: 'NanumBarunGothic'
   color: $gray1
   text-decoration: line-through
   font-size: 16px
