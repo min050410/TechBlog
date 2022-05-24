@@ -32,9 +32,15 @@ const Recent_components: React.FC<{ location: { search: string | null } }> = ({ 
                 {/* <Link to="postitem/" state={{ myProp: post.filename }}> */}
                 <div className="imgbox">
                   <img
-                    src={require(`../assets/images/${post.img}.png`).default}
-                    alt={post.img}
+                    src={require(`../assets/gradients/${post.id}.png`).default}
+                    alt={post.imgLineTwo}
                   />
+                  <div className="img-text-one">
+                    <p>{post.imgLineOne}</p>
+                  </div>
+                  <div className="img-text-two">
+                    <p>{post.imgLineTwo}</p>
+                  </div>
                 </div>
                 <div id="text_group">
                   <h3>{post.title}</h3>
