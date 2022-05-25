@@ -31,7 +31,7 @@ const popular: {
     {
       id: 4,
       title: '비선형구조 정리',
-      filename: 'Structure',
+      filename: 'NonLinear',
       img: 'datastucture',
     },
     {
