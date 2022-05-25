@@ -28,7 +28,7 @@ const IndexPage: React.FC<{ location: {search: string | null, pathname: string }
         </div>
       </body>
       <div className="hide">
-      <PostComment/>
+        <PostComment/>
       </div>
     </main>
   )

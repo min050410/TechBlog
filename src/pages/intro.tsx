@@ -146,7 +146,7 @@ const Intro: React.FC<{location: {search: string | null, pathname: string }}> = 
                         </div>
                     </div>
                 </div>
-                <h4 className="under" id="side">🎁 Side Project ( + Product Release )</h4>
+                {/* <h4 className="under" id="side">🎁 Side Project ( + Product Release )</h4>
                 <div className="side">
                     <div className="card">
 
@@ -160,7 +160,7 @@ const Intro: React.FC<{location: {search: string | null, pathname: string }}> = 
                     <div className="card">
 
                     </div>
-                </div> 
+                </div>  */}
                 <h4 className="under" id="prize">🏆 Prize + Award</h4>
                 <div className="prize">
                     <div className="card">
@@ -205,7 +205,7 @@ const Intro: React.FC<{location: {search: string | null, pathname: string }}> = 
                         <a href="https://hits.seeyoufarm.com">
                             <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdevlog%2Fintro&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
                         </a>
-                        <div className="date">last Update. 220110</div>
+                        <div className="date">last Update. 220110 </div>
                     </div>
                 </footer>
             </div>

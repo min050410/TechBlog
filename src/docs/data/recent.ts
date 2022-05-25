@@ -33,7 +33,7 @@ const recent: {
     {
       id: 2,
       title: 'RN camera 적용법',
-      filename: 'camera',
+      filename: 'Camera',
       date: '2021-11-26',
       imgLineOne: 'React-Native',
       imgLineTwo: 'Camera',

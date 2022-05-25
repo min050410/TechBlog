@@ -14,6 +14,9 @@ type Props = {
 }
 
 const Header: React.FC<Props> = ({path}) => {
+
+    const filter_key = ['js', 'python', 'c', 'react', 'cpp']
+
     const [scrollPosition, setScrollPosition] = useState(0); 
 
     //Focus Event
@@ -25,12 +28,12 @@ const Header: React.FC<Props> = ({path}) => {
     const [found, setFound] = useState({title: "", filename: ""}); //recent의 값 중 유사성이 가장 높은 값
 
     //filter_tag
-    const [seletedTag, setSeletedTag] = useState('')
-    const [notSeletedTags, setNotSeletedTags] = useState(['js', 'python', 'c', 'react'])
+    const [seletedTag, setSeletedTag] = useState('');
+    const [notSeletedTags, setNotSeletedTags] = useState([...filter_key]);
 
     //Scroll Event
     const updateScroll = () => {
-        setScrollPosition(window.scrollY || document.documentElement.scrollTop)
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }
     useEffect(() => {
         window.addEventListener('scroll', updateScroll)
@@ -73,12 +76,12 @@ const Header: React.FC<Props> = ({path}) => {
 
     //notSeletedTags Tag Click Event
     const tagClick = (tag: string) => {
-        let Taglist: string[] = ['js', 'python', 'c', 'react']
+        let Taglist: string[] = [...filter_key];
         var index: number = Taglist.indexOf(tag);
         if (index !== -1) {
             Taglist.splice(index, 1);
         }
-        setNotSeletedTags([...Taglist])
+        setNotSeletedTags([...Taglist]);
         setSeletedTag(tag);
     }
 
@@ -90,7 +93,7 @@ const Header: React.FC<Props> = ({path}) => {
     //filter tags backup
     const backup = () => {
         setSeletedTag('')
-        setNotSeletedTags(['js', 'python', 'c', 'react'])
+        setNotSeletedTags([...filter_key])
     }
 
     return (
