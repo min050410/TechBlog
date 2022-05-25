@@ -116,6 +116,18 @@ const recent: {
     },
     {
       id: 9,
+      title: 'C++ 예외처리 매커니즘 - try, catch, throw',
+      filename: 'Cpp-exception',
+      date: '2022-3-2',
+      imgLineOne: 'C++',
+      imgLineTwo: 'Exception',
+      tag: 'cpp',
+      tag2: 'exception',
+      tag3: 'try, catch',
+      filter: 'cpp'
+    },
+    {
+      id: 10,
       title: '힙 정렬에 대해 알아보자',
       filename: 'Heapsort',
       date: '2022-3-21',
@@ -127,7 +139,7 @@ const recent: {
       filter: 'cpp'
     },
     {
-      id: 10,
+      id: 11,
       title: 'Type-Alias 타입 앨리어스란?',
       filename: 'Type-alias',
       date: '2022-4-30',
