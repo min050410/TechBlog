@@ -69,7 +69,7 @@ const recent: {
     {
       id: 5,
       title: '비선형구조 정리',
-      filename: 'Structure',
+      filename: 'NonLinear',
       imgLineOne: '',
       imgLineTwo: 'Non-Linear',
       date: '2021-12-17',
@@ -125,6 +125,18 @@ const recent: {
       tag2: 'algorighm',
       tag3: '',
       filter: 'cpp'
+    },
+    {
+      id: 10,
+      title: 'Type-Alias 타입 앨리어스란?',
+      filename: 'Type-alias',
+      date: '2022-4-30',
+      imgLineOne: '',
+      imgLineTwo: 'Type-alias',
+      tag: 'ts',
+      tag2: 'type',
+      tag3: 'interface',
+      filter: 'ts'
     }
   ];
 

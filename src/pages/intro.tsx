@@ -22,7 +22,7 @@ const Intro: React.FC<{location: {search: string | null, pathname: string }}> = 
                 <h2 id="hi">Hello, min050410</h2>
                 <h3 id="gray">안녕하세요. <u>김영민(YoungMin)</u>입니다.</h3>
                 <div className="intro">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgs7zmA2X55TVRum7fe9_03F2Y5hWmNjX4Q&usqp=CAU"></img>
+                    <img src="https://avatars.githubusercontent.com/min050410"></img>
                     <div className="intro_test">
                         <h3 id="gray">여러 데이터를 다뤄보고 싶은 <u>Backend 개발자</u> 입니다.</h3>
                         <h3 id="gray">단순히 <u>아는 것</u>보다,</h3>
