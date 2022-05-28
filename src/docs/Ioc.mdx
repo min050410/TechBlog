@@ -1,0 +1,43 @@
+# IoC란
+
+IoC : 제어의 역전
+
+지난주에 `TOPCIT` 자격증 시험을 봤는데 스프링의 특징 중 하나로 IoC가 나왔다.  
+어디서 들은 적이 있었지만 제대로 알지 못해 블로그에서 한번 정리해보고자 한다.
+
+IoC는 제어권이 역전 되었다는 뜻이다. 예전에는 의존관계의 제어를 개발자가 직접 해주었다.   
+그러나 제어권이 컨테이너로 넘어갔고 객체의 생성부터 생명주기의 관리까지 객체에 대한 제어권이 바뀐것을 IoC라고 한다.
+
+> 의존 관계   
+서로 다른 객체간에 레퍼런스 참조가 되어 있다는 말이다. 
+
+스프링의 `@Autowired` 어노테이션을 사용함으로써 개발자가 직접 의존관계를 설정해주는 코드가 사라지고  
+프레임워크에 BestStar, Star 오브젝트 의존관계의 제어권을 맡길 수 있게 되었다.
+
+```js
+import org.springframework.stereotype.Repository;
+@Repository
+public class BookRepository {
+}
+```
+
+```js
+import org.springframework.stereotype.Service;
+@Service
+public class BookService {
+    BookRepository bookRepository = new BookRepository();
+}
+```
+과거에는 위와 같이 개발자가 직접 제어했다.
+
+하지만 현재에는 제어권이 컨테이너로 넘어갔고 객체의 생성과 생명주기의 관리까지 할 수 있기 때문에 아래와 같은 방식으로 바뀐다.
+
+```js
+@Service
+public class BookService {
+    BookRepository bookRepository;
+    @Autowired
+    publiic BookService(BookRepository, bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+}
