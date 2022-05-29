@@ -149,6 +149,18 @@ const recent: {
       tag2: 'type',
       tag3: 'interface',
       filter: 'ts'
+    },
+    {
+      id: 12,
+      title: 'IoC: 제어의 역전',
+      filename: 'Ioc',
+      date: '2022-5-25',
+      imgLineOne: '',
+      imgLineTwo: 'IOC',
+      tag: 'spring',
+      tag2: '',
+      tag3: '',
+      filter: 'java'
     }
   ];
 
