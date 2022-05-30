@@ -115,6 +115,9 @@
     padding: 2px 8px 0px 8px
 
 @include mobile
+    .horizontal_container
+        margin-top: 0px
+
     .recent_content
         margin: 20px 0px 0px 0px
 
@@ -126,7 +129,8 @@
         .left
             .imgbox
                 img
-                    width: 105px
+                    width: 100px
+                    height: 70px
         .tag
             margin-left: 115px
             position: absolute
@@ -134,18 +138,35 @@
 
     #text_group
         div
-            font-size: 13px
+            font-size: 12px
 
     .post h3
-        font-size: 16px
+        font-size: 14px
         line-height: 20px
 
     .post span
-        font-family: 'Spoqa Han Sans Neo', Noto sans
         font-weight: 400
-        font-size: 11px
+        font-size: 10px
         height: 17px
         margin-left: 5px
-        padding: 2px 8px 0px 8px
+        padding: 3px 8px 0px 8px
+
+    .img-text-one > p
+        font-size: 12px
+
+    .img-text-two > p
+        font-size: 12px
+
+    .img-text-one
+        position: absolute
+        left: 7%
+        top: 8%
+        z-index: 1
+
+    .img-text-two
+        position: absolute
+        left: 7%
+        top: 25%
+        z-index: 1
         
 

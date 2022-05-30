@@ -116,7 +116,7 @@ const recent: {
     },
     {
       id: 9,
-      title: 'C++ 예외처리 매커니즘 - try, catch, throw',
+      title: 'C++ 예외처리 매커니즘 - try, catch',
       filename: 'Cpp-exception',
       date: '2022-3-2',
       imgLineOne: 'C++',
