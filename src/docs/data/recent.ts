@@ -161,6 +161,18 @@ const recent: {
       tag2: '',
       tag3: '',
       filter: 'java'
+    },
+    {
+      id: 13,
+      title: '클린 아키텍처에 대해 알아보자',
+      filename: 'The-clean-architecture',
+      date: '2022-5-30',
+      imgLineOne: 'Clean',
+      imgLineTwo: 'Architecture',
+      tag: 'architecture',
+      tag2: 'dependency',
+      tag3: '', 
+      filter: 'architecture'
     }
   ];
 
