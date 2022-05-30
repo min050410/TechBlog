@@ -222,29 +222,43 @@
             border-radius: 30px
 
 @include mobile
+    .original
+        padding: .5rem
+        padding-left: 1rem
+
+    .change
+        padding: .5em
+        padding-left: 1rem
+
     body
         margin: 0px
     header
         margin: 0px
         flex-direction: column
-    .head
-        margin: 10px
+
+    .head.index
+        flex-wrap: wrap
+        
     .head.box 
         .logo
-            width: 45px
-            height: 35px
+            width: 30px
+            height: 24px
         span
-            font-size: 20px
+            font-size: 14px
             margin-left: 0.3em
             letter-spacing: 1px
 
-    .filter.wrap
-        display: none
-
     .search.warp
         display: none
-    input
-        display: none
+        
+    // .search.warp
+    //     width: 200px
+    //     height: 10px
+    //     input
+    //         width: 175px
+
+    div.filter.text 
+        font-size: 12px
 
     .head.content 
         margin-top: 0px
@@ -254,4 +268,9 @@
             margin-top: 4.3px
         .mod
             display: none
+    
+    div.header 
+        font: 500 15px "Spoqa Han Sans Neo", "sans-serif"
+        margin: 0px 0px 0px 20px
+
             
