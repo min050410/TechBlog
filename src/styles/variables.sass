@@ -12,14 +12,18 @@ $a: #58A6FF
 
 // Breakpoints
 $breakpoint-mobile: 0px
-$breakpoint-tablet: 600px
-$breakpoint-desktop: 1024px
+$breakpoint-smallTablet: 600px
+$breakpoint-tablet: 800px
+$breakpoint-desktop: 1200px
 
 
 @mixin mobile 
-  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet - 1px) 
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-smallTablet - 1px) 
     @content
   
+@mixin smallTablet
+  @media (min-width: #{$breakpoint-smallTablet}) and (max-width: $breakpoint-tablet - 1px) 
+    @content
 
 @mixin tablet 
   @media (min-width: #{$breakpoint-tablet}) and (max-width: $breakpoint-desktop - 1px) 
