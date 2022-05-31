@@ -11,9 +11,7 @@
 @font-face 
   font-family: "HackNF"
   font-display: fallback
-  
   src: url("../assets/font/HackNF.ttf") format("truetype"), url("../assets/font/HackNF.woff") format("woff"), url("../assets/font/HackNF.eot?iefix") format("embedded-opentype")
-
   font-weight: 400
   font-style: normal
 
@@ -148,35 +146,57 @@ code
   border-radius: 5px
 
 @include mobile
-  *
-    font-size: 1rem
+  p, li 
+    font-size: 13px
+  p
+    line-height: 20px
+  p > img
+    width: 100%
+  .middle a 
+    font-size: 12px
   h1 
-    font-size: 1.6rem
+    font-size: 1.3rem
     margin: 2rem 0px 6px 0px
   h2 
-    font-size: 1.4rem
+    font-size: 1.0rem
     margin: 1.7rem 0px 4px 0px
   h3 
-    font-size: 1.2rem
+    font-size: .9rem
     margin: 1.4rem 0px 2px 0px
   h4 
-    font-size: 1.0rem
+    font-size: .7rem
     margin: 1.1rem 0px
   h5 
-    font-size: 0.8rem
+    font-size: .6rem
     margin: 0.8rem 0px 1px 0px
   blockquote 
+    padding-left: 10px
+    margin: 5px 10px 5px 0px
     border-left: 3.5px solid $gray5
   ol,
   ul 
     padding-left: 0.8em
     li 
       left: 0px
-  pre
-    padding: 0px
-    font-size: 1rem 
+  
   .middle
-    margin: 0px
+    align-self: center
+    width: 90%
+    margin: 10px
+
+  pre *
+    font-size: 12px !important
+    line-height: 1rem
+
+  strong
+    font-weight: 300
+    font-style: normal
+    font-size: 10px
+    height: 15px
+    margin-left: 0px
+
+  del
+    font-size: 12px
 
         
     

@@ -51,4 +51,12 @@
 
     section > .header
         display: none
+
+@include tablet
+    .card:nth-child(n+5)
+        display: none
+
+@include smallTablet
+    .card:nth-child(n+4)
+        display: none
     
