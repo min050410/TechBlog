@@ -15,7 +15,7 @@ type Props = {
 
 const Header: React.FC<Props> = ({path}) => {
 
-    const filter_key = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java']
+    const filter_key = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql']
 
     const [scrollPosition, setScrollPosition] = useState(0); 
 
