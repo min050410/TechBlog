@@ -1,9 +1,20 @@
 # FLASK 튜토리얼
+  
+> 개발 테스트용 블로그여서 내용이 완벽하지 않습니다.    
+> 현재 작성 중이니 조금만 기다려주세요. 감사합니다
 
-> 개발 테스트용 포스트입니다.  
-> flask 튜토리얼이 아니며 github에 간략하게 썼던 내용을 가져왔습니다.  
+### 시작에 앞서
+왜 node.js대신 플라스크나 디장고를 쓸까? 제일 큰 이유는 ai와 쉽게 연동할 수 있어서인 것 같다.  
+ai 모델을 아예 서비스 단에 올려버려서 요청을 보내면 predict 한 결과가 바로 뜨는 서비스 구성이 가능하다.  
+또, 파이썬 문법이니 쉽고 간결해 많이 이용되기도 한다.
 
-> <a href="https://github.com/min050410/Flask-take-notes/tree/master">View my code</a>    
+필자는 플라스크를 이용해 프로젝트 3개를 진행해보았다. 과정 속에서 많은 에러가 떴고 뜬 에러 목록을 정리해 놓은 곳이 있어  
+시작하기 전에 공유하겠다.
+<a href="https://github.com/min050410/Flask-take-notes/tree/master">링크</a>    
+
+### window 환경 구성하기
+
+jinja 사용
 
 ### 개발시에 시간이 오래 걸렸거나 헷갈렸던 것들 모임  
 > #1  
@@ -19,6 +30,7 @@ href = "{{url_for('static', filename='main.css')}}"
 ```
 > #3
 
+
 ```bash  
 export FLASK_APP=__init__  
 export FLASK_ENV=development  
@@ -31,7 +43,6 @@ flask run --host=0.0.0.0 --port=8000
 ```
 > #4  
 
-**"역시 믿고보는 stackoverflow"**  
 ```ubuntu
 flask db stamp head
 ```
@@ -56,7 +67,7 @@ def detail(post_id): #매개변수에는 <int:post_id>가 들어감
 - 보면 `detail`의 매개 변수에는 `post_id`이다.  
 `templetes` 에서 블루프린트 `detail`을 참조할 때,  
 `post_id=post.id`로 들어가야 한다 (왼쪽이 `매개변수` 오른쪽이 `db`)  
-아, 또 블루프린트를 참조할 때 __꿀팁__  
+아, 또 블루프린트를 참조할 때
 `url_for('main.detail')` main은 blueprint 이름, detail은 blueprint 함수 이름
 
 > #6  
@@ -64,13 +75,8 @@ def detail(post_id): #매개변수에는 <int:post_id>가 들어감
 - 플라스크 폼 모듈을 사용할 때  
 `Secret_key` 무조건 필요    
 `config.py` 에 정의 해야 한다.  
-~~+ 폼 모듈 너무 좋아요~~
 
 > #7 
-
-이 문제에 삽질한 횟수  
-  
-![image](https://user-images.githubusercontent.com/45661217/134806966-9ee02c84-74f4-4b6d-aed4-46daea631f67.png) 
   
 `gunicorn` 을 사용할 때 모듈 네임드 에러가 계속 발생했었다.  
 `flask run` 사용시 잘 되었지만  
@@ -81,5 +87,4 @@ gunicorn --bind 0:8080 "zelda:create_app()"
 `__init__ :create_app()` 이 아닌 그 상위 디렉토리인 zelda로 설정해 줘야  
 정상적인 참조가 가능하다.  
 또, 디렉토리가 ch01 - zelda - \_\_init\_\_ 이런 배치로 있다면  
-`flask run` 과 달리 상위 디렉토리 ch01에서 명령어를 입력해야 한다.  
-> 초보적인 실수지만 참조 오류는 뼈아프다는걸 깨달았다.. ㅠㅠ   
+`flask run` 과 달리 상위 디렉토리 ch01에서 명령어를 입력해야 한다.   
