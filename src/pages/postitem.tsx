@@ -58,15 +58,14 @@ const Postimport: React.FC<Props> = ({ location }) => {
             const reloadCount: string | null = sessionStorage.getItem('reloadCount');
             //최초 1번만
             try {
-                if (reloadCount === null) {
-                    throw new Error('reloadCount is null!')
-                }
-                if (Number(reloadCount) < 1) {
-                    sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-                    //rerendering
-                    forceUpdate()
-                } else {
-                    sessionStorage.removeItem('reloadCount');
+                if (reloadCount !== null) {
+                    if (Number(reloadCount) < 1) {
+                        sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+                        //rerendering
+                        forceUpdate()
+                    } else {
+                        sessionStorage.removeItem('reloadCount');
+                    }
                 }
             } catch (e) {
                 console.error(e);

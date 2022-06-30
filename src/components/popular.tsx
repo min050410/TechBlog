@@ -9,12 +9,12 @@ import popular from '../docs/data/popular'
 import '../styles/card.sass';
 
 const Popular_components: React.FC = () => {
-  const [isHover, setHover] = useState(false);
-  const [ID, setID] = useState(-1);
+  const [isHover, setHover] = useState<boolean>(false);
+  const [ID, setID] = useState<number>(-1);
 
-  const popular_list = popular.map((post) =>
+  const popular_list = popular.map((post, i) =>
   (
-    <div className="card">
+    <div className="card" key={i}>
       <div className="imgbox">
       <Link to={`postitem/?name=${post.filename}`} >
         <img
@@ -29,10 +29,6 @@ const Popular_components: React.FC = () => {
             setID(-1)
           }}
         />
-        {/* {(isHover && ID == post.id) ? <img
-          className="star"
-          src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"
-        ></img> : null} */}
       </Link>
       </div>
         <h3>{post.title}</h3>

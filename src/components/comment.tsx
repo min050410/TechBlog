@@ -22,8 +22,8 @@ const PostComment = () => {
         });
         ref.current.appendChild(utterances);
       }
-    }, []);
+  }, []);
     return <div ref={ref}></div>;
-  };
+};
 
 export default PostComment;

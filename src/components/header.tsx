@@ -13,23 +13,28 @@ type Props = {
     path: string,
 }
 
-const Header: React.FC<Props> = ({path}) => {
+type find = {
+    title: string,
+    filename: string
+}
 
-    const filter_key = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql']
+const Header: React.FC<Props> = ({ path }) => {
 
-    const [scrollPosition, setScrollPosition] = useState(0); 
+    const filter_key: string[] = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql']
+ 
+    const [scrollPosition, setScrollPosition] = useState<number>(0); 
 
     //Focus Event
-    const [searchFocus, setsearchFocus] = useState(0);
-    const [filterFocus, setfilterFocus] = useState(0);
+    const [searchFocus, setsearchFocus] = useState<number>(0);
+    const [filterFocus, setfilterFocus] = useState<number>(0);
 
     //search
-    const [changeText, setChangeText] = useState(""); //바뀌는 Text값
-    const [found, setFound] = useState({title: "", filename: ""}); //recent의 값 중 유사성이 가장 높은 값
+    const [changeText, setChangeText] = useState<string>(""); //바뀌는 Text값
+    const [found, setFound] = useState<find>({title: "", filename: ""}); //recent의 값 중 유사성이 가장 높은 값
 
     //filter_tag
-    const [seletedTag, setSeletedTag] = useState('');
-    const [notSeletedTags, setNotSeletedTags] = useState([...filter_key]);
+    const [seletedTag, setSeletedTag] = useState<string>('');
+    const [notSeletedTags, setNotSeletedTags] = useState<string[]>([...filter_key]);
 
     //Scroll Event
     const updateScroll = () => {
@@ -45,7 +50,7 @@ const Header: React.FC<Props> = ({path}) => {
             // Lowercase로 검색 정확도 향상
             if (recent[i]['title'].toLowerCase().indexOf(text) > -1 || recent[i]['filename'].toLowerCase().indexOf(text) > -1
                 || recent[i]['title'].indexOf(text) > -1 || recent[i]['filename'].indexOf(text) > -1) {
-                setFound({title:recent[i]['title'], filename:recent[i]['filename']});
+                setFound({ title : recent[i]['title'], filename : recent[i]['filename']});
             }
             if (found.title == "") {
                 setFound({title:'검색 결과가 없습니다', filename:""})
