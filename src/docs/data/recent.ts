@@ -176,7 +176,7 @@ const recent: {
     },
     {
       id: 14,
-      title: 'SQL 개발자 자격증 취득 후기, 공부 방법',
+      title: 'SQL 개발자 자격증 취득 후기',
       filename: 'Sql-developer',
       date: '2022-6-20',
       imgLineOne: '',
