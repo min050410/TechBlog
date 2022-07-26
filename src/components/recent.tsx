@@ -22,9 +22,9 @@ const Recent_components: React.FC<{ location: { search: string | null } }> = ({ 
     }, [params])
 
     //filter 함수를 통한 filtering 후 map
-    const recent_list = recent.filter(word => word.filter == filterKey || filterKey === null).reverse().map((post) =>
+    const recent_list = recent.filter(word => word.filter == filterKey || filterKey === null).reverse().map((post, i) =>
     (
-      <div className="recent_content">
+      <div className="recent_content" key={i}>
         <Link to={`postitem/?name=${post.filename}`}>
           <div className="margin_post">
             <div className="post">

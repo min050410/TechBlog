@@ -9,7 +9,14 @@ import PostComment from '../components/comment'
 import Popular_components from '../components/popular'
 import Recent_components from '../components/recent'
 
-const IndexPage: React.FC<{ location: {search: string | null, pathname: string }}> = ({ location }) => {
+type Props = {
+  location: {
+      search: string | null,
+      pathname: string
+  }
+}
+
+const IndexPage: React.FC<Props> = ({ location }) => {
   
   //<html lang="kr">
   useEffect(() => {
@@ -23,7 +30,6 @@ const IndexPage: React.FC<{ location: {search: string | null, pathname: string }
         <Header path={location.pathname}/>
         <div className="fade_in">
           <Popular_components/>
-          {/* todo ::recent components location prop설정하기 */}
           <Recent_components location={location}/>
         </div>
       </body>
