@@ -188,7 +188,7 @@ const recent: {
     },
     {
       id: 15,
-      title: '다익스트라 알고리즘 (실전 예제)',
+      title: '다익스트라 알고리즘 정리',
       filename: 'dijkstra',
       date: '2022-8-28',
       imgLineOne: '',
