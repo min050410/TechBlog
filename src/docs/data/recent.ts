@@ -185,6 +185,18 @@ const recent: {
       tag2: 'certification',
       tag3: '', 
       filter: 'sql'
+    },
+    {
+      id: 15,
+      title: '다익스트라 알고리즘 정리',
+      filename: 'dijkstra',
+      date: '2022-8-28',
+      imgLineOne: '',
+      imgLineTwo: 'Dijkstra',
+      tag: 'algorithm',
+      tag2: 'cpp',
+      tag3: '', 
+      filter: 'cpp'
     }
   ];
 
