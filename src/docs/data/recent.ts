@@ -189,10 +189,22 @@ const recent: {
     {
       id: 15,
       title: '다익스트라 알고리즘 정리',
-      filename: 'dijkstra',
+      filename: 'Dijkstra',
       date: '2022-8-28',
       imgLineOne: '',
       imgLineTwo: 'Dijkstra',
+      tag: 'algorithm',
+      tag2: 'cpp',
+      tag3: '', 
+      filter: 'cpp'
+    },
+    {
+      id: 16,
+      title: '플로이드 워셜 알고리즘 정리',
+      filename: 'Floyed-warshell',
+      date: '2022-8-28',
+      imgLineOne: 'Floyed',
+      imgLineTwo: 'Warshell',
       tag: 'algorithm',
       tag2: 'cpp',
       tag3: '', 
