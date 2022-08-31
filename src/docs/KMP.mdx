@@ -1,0 +1,238 @@
+# KMP(문자열 검색) 알고리즘 정리
+
+KMP 알고리즘은 대표적인 문자열 검색 알고리즘입니다.  
+웹 브라우저에서 현재 웹페이지에 포함되어 있는 특정 단어를 찾고 싶다면 `Ctrl + F`로  
+정말 손쉽게 찾을 수 있습니다.
+
+이처럼 글 안에서 단어를 빠르게 찾는 알고리즘에 KMP 알고리즘을 사용합니다.
+
+### 문자열 완전탐색 
+
+가장 간단한 문자열 참색 방법은 for문을 돌려서 원본 문자열과 우리가 찾는 문자열을 하나하나 비교하는 방법입니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187359900-1de5fee7-7162-4b9b-b6fb-e676aabe0a6c.png" width="80%"></img>
+
+이 문자열 알고리즘은 O(nm)의 시간 복잡도를 가집니다. 이 알고리즘 말고 다른 방법이 있을까요?
+
+### KMP 알고리즘
+
+KMP 알고리즘의 시간 복잡도는 O(N+M)으로 위의 무식한 방법 O(NM) 보다 매우 빠릅니다.   
+접두사와 접미사의 공통 부분을 저장하는 pi 배열을 사용했기 때문입니다. 
+
+알고리즘 설명에 앞서 pi배열의 개념을 설명해드리겠습니다.  
+pi[i]는 0~i 까지의 부분 문자열 중에서 접두사 == 접미사가 될 수 있는 가장 긴 길이입니다.  
+에를 들어 'ABAABAB'에서 pi[5]는 'ABAABA'에서 접두사와 접미사가 같은 가장 긴 길이이므로 3입니다. 
+> *ABA* *ABA* 이므로 접두사와 접미사가 같은 가장 긴 길이는 3이다. 
+
+문자열 'ABAABAB'의 pi 배열을 구해봅시다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187359620-14277885-3604-47b1-aaba-fce7d8e06eca.png" width="30%"></img>
+
+
+pi 배열을 활용해서 어떻게 문자열 찾기에 활용할 수 있을까요?
+KMP 알고리즘의 과정은 다음과 같습니다.
+
+### 1. 검색을 할 문자열의 pi 배열의 값을 구합니다.
+
+```cpp
+// 검색할 문자열 p
+vector<int> getPi(string p) {
+	int m = (int)p.size();
+	int j = 0;
+	vector<int> pi(m, 0);
+	for (int i=1; i<m; i++) {
+		while (j > 0 && p[i] != p[j]) {
+			j = pi[j-1];
+		}
+		// 형광색 부분
+		if (p[i] == p[j])
+			pi[i] = ++j;
+	}
+	return pi;
+}
+```
+
+pi 배열이 생성되는 과정을 자세히 살펴봅시다. 
+형광펜으로 표시한 부분은 `if (p[i] == p[j])` 부분입니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187354710-e592a686-5f3c-4458-bf1e-70e30e931c90.png" width="80%"></img>
+
+처음 `p[i]`와 `p[j]` 가 다르므로 `pi[1]`에는 아무것도 들어오지 않습니다.  
+따라서 초깃값인 `pi[1] = 0` 이 저장됩니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187354723-d7b1261e-5d5d-497d-a568-2c167e2eba20.png" width="80%"></img>
+
+2번 과정에서 `p[i]`와 `p[j]`가 같으므로 `pi[2] = 1`을 저장하고 j의 값은 1이 됩니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187354727-088fb7da-76f0-4164-8d76-d6381462f7d6.png" width="80%"></img>
+
+3번 과정에서도 `p[i]`와 `p[j]`가 같으므로 `pi[3] = 2`을 저장하고 j의 값은 1이 됩니다.    
+i의 값은 계속 1씩 증가하고 있습니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187354740-8fea5cd2-2085-44ef-a791-abecbe58f08c.png" width="80%"></img>
+
+4번 과정도 마찬가지로 `p[4] = 3`을 저장합니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187354749-44217348-a4be-481e-abfd-4280dcf9a903.png" width="80%"></img>
+
+5번 과정에서 `p[i]`와 `p[j]`가 다르기 때문에 `while`문을 실행하고 j값이 최소가 될 때까지 반복합니다.  
+j가 1일 때 `p[i]`와 `p[j]`가 같아져서 `while`문을 빠져나갑니다.   
+
+<img src="https://user-images.githubusercontent.com/45661217/187354756-c03ff944-74ac-40da-ac5b-9821414eb456.png" width="80%"></img>
+
+6번 과정에서 `p[i]`와 `p[j]`가 다르기 때문에 while문을 실행하고 j가 0이하가 되어서 while문을 빠져나갑니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187354771-1e2c9b6b-922c-44da-81ca-c921d3ab7a2e.png" width="80%"></img>
+
+i가 `for`문의 범위를 넘어가서 `for`문이 종료됩니다.  
+이렇게 pi 배열의 모든 인덱스에 값이 저장됩니다.
+
+### 2. 구한 pi 배열을 활용해 KMP 알고리즘을 실행합니다.
+
+```cpp
+vector<int> kmp(string s, string p) {
+	vector<int> ans;
+	auto pi = getPi(p);
+	int n = (int)s.size();
+	int m = (int)p.size();
+	int j = 0;
+	for (int i=0; i<n; i++) {
+		while (j>0 && s[i] != p[j]) {
+			j = pi[j-1];
+		}
+		if (s[i] == p[j]) {
+			if (j == m-1) {
+				ans.push_back(i-m+1);
+				j = pi[j];
+			}else {
+				j++;
+			}
+		}
+	}
+	return ans;
+}
+```
+
+<img src="https://user-images.githubusercontent.com/45661217/187608104-8cf05c40-a9c8-444b-a57c-d6e13757d9a6.png" width="100%"></img>
+
+처음으로 `s[5]`와 `p[5]`를 비교합니다. 값이 다르기 때문에 while문에 진입합니다.  
+while문의 로직은 pi 배열을 구할 때와 동일합니다. `pi[4] = 3` 값을 이용해 i는 그대로 j는 3으로 점프합니다.
+```cpp
+// s[i] != p[j] 이므로 while문 집입
+while (j>0 && s[i] != p[j]) {
+	// j는 현재 5이므로 pi[4] = 3, j가 3이 됨 
+	// s[i] == p[j] 가 같아져 while문을 빠져나옴
+	j = pi[j-1];
+}
+```
+
+<img src="https://user-images.githubusercontent.com/45661217/187608119-685aff58-49d6-4209-b5eb-9de2eb3a40e9.png" width="100%"></img>
+
+점프 후 `s[5]`와 `p[3]`이 같기 때문에 `j++`문과 for문에 있는 `i++` 문을 실행시켜 i와 j 각각 1씩 증가합니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187608127-f4aa9ad7-d72c-4cb7-ab1c-c8e633a1cd59.png" width="100%"></img>
+
+마찬가지로 `s[6]`와 `p[4]`가 같기 때문에 i와 j가 각각 1씩 증가합니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187608138-eb2e5c20-4362-41d7-9b33-c2a33c6c407b.png" width="100%"></img>
+
+`s[7]`와 `p[5]`를 비교했는데 어라? 값이 다릅니다. 프로그램은 값이 다르기 때문에 while문에 진입하게 됩니다.    
+`pi[4] = 3` 값을 이용해 i는 그대로 j는 3으로 점프합니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187608148-58730882-9c41-4326-837a-b526f23b459a.png" width="100%"></img>
+
+계속 비교해 나가며 i, j가 커지고 i=9 이고 j=5일 때 `s[9]`와 `p[5]`가 달라져 다시 while문에 진입합니다.  
+`pi[4] = 3` 값을 이용해 j는 3으로 점프합니다.
+
+<img src="https://user-images.githubusercontent.com/45661217/187608159-0220b92f-5b48-41bc-b762-e61b0f23fcac.png" width="100%"></img>
+
+다시 계속 비교해 나가며 i, j가 커집니다.  
+i = 11, j = 5 일 때 `s[i]`와 `s[j]`가 같아 if문 안에 들어가게 되고  
+j가 m-1과 같아졌기 때문에 ans vector에 문자열 p의 첫번째 인덱스를 넣습니다.   
+그리고 for문이 종료됩니다. 만약에 i가 마지막이 아니었다면 for문이 더 돌 것입니다. 
+
+```cpp
+if (s[i] == p[j]) {
+			// 이 부분 실행
+			// m은 p 문자열의 크기 -> 6
+            if (j == m-1) {
+                ans.push_back(i-m+1);
+                j = pi[j];
+			}
+...
+```
+
+다음은 전체 코드입니다. 입력과 출력은 백준 [찾기](https://www.acmicpc.net/problem/1786)와 동일합니다.
+
+```cpp
+// 찾기
+
+#include <iostream>
+#include <string>
+#include <cstdio>
+#include <vector>
+
+using namespace std;
+
+vector<int> getPi(string p) {
+	int m = (int)p.size();
+	int j = 0;
+	vector<int> pi(m, 0);
+	for (int i=1; i<m; i++) {
+		while (j > 0 && p[i] != p[j]) {
+			j = pi[j-1];
+		}
+		if (p[i] == p[j])
+			pi[i] = ++j;
+	}
+	return pi;
+}
+
+vector<int> kmp(string s, string p) {
+	vector<int> ans;
+	auto pi = getPi(p);
+	int n = (int)s.size();
+	int m = (int)p.size();
+	int j = 0;
+	for (int i=0; i<n; i++) {
+		while (j>0 && s[i] != p[j]) {
+			j = pi[j-1];
+		}
+		if (s[i] == p[j]) {
+			if (j==m-1) {
+				ans.push_back(i-m+1);
+				j = pi[j];
+			}else {
+				j++;
+			}
+		}
+	}
+	return ans;
+}
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	string s, p;
+	getline(cin, s);
+	getline(cin, p);
+	auto matched = kmp(s,p);
+	cout << (int)matched.size() << '\n';
+	for (const auto &i: matched) {
+		cout << i+1 << ' ';
+	}
+	return 0;
+}
+
+```
+
+다시 정리해보자면 KMP 알고리즘을 통해 코드를 짜면 접두사 == 접미사의 최대 길이가 저장된 pi 배열을 통해서  
+순차적으로 탐색하는 것을 한번에 건너뛰게 해줍니다.  
+KMP 알고리즘의 과정을 이해하고 있다면 문자열 처리에 관련된 다른 고급 알고리즘들을 이해하는데 큰 도움이 됩니다.
+
+무작정 소스코드만 외우기보단 KMP 알고리즘의 가장 중요한 핵심인 pi배열을 활용하는 과정을 공부하는 것이 많은 도움이 될 것 같습니다.   
+
+긴 글 읽어주셔서 감사합니다.
+
+
