@@ -209,6 +209,18 @@ const recent: {
       tag2: 'cpp',
       tag3: '', 
       filter: 'cpp'
+    },
+    {
+      id: 17,
+      title: 'KMP 알고리즘 정리',
+      filename: 'KMP',
+      date: '2022-8-28',
+      imgLineOne: '',
+      imgLineTwo: 'KMP',
+      tag: 'algorithm',
+      tag2: 'cpp',
+      tag3: '', 
+      filter: 'cpp'
     }
   ];
 
