@@ -4,19 +4,19 @@ import { MDXProvider } from "@mdx-js/react"
 import { Helmet } from 'react-helmet'
 
 //components
-import CodeBlock from "../utils/codeblock"
-import Header from '../components/header'
-import PostComment from '../components/comment'
-import SEO from '../components/SEO'
+import CodeBlock from "../components/layout/codeblock"
+import Header from '../components/common/headerComponent/header'
+import PostComment from '../components/layout/comment'
+import SEO from '../components/common/SEO'
 
 //data
-import recent from '../docs/data/recent'
+import recent from '../data/recent'
 
 //styles
 import "../styles/postitem.sass"
 import '../styles/index.sass';
 
-type Props = {
+type PostimportProps = {
     location: {
         search: string | null,
         pathname: string, state: {
@@ -25,7 +25,7 @@ type Props = {
     }
 }
 
-const Postimport: React.FC<Props> = ({ location }) => {
+const Postimport: React.FC<PostimportProps> = ({ location }) => {
     if (location.search === undefined) {
         return (null)
     }
@@ -87,7 +87,6 @@ const Postimport: React.FC<Props> = ({ location }) => {
         else {
             key = location.state.key
         }
-
 
         return (
             <main>

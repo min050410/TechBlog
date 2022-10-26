@@ -3,10 +3,10 @@ import { useState, useEffect } from "react"
 import { Link } from 'gatsby';
 
 //components
-import recent from '../docs/data/recent'
+import recent from '../../../data/recent'
 
 //styles
-import '../styles/recent.sass'
+import '../../../styles/recent.sass'
 
 const Recent_components: React.FC<{ location: { search: string | null } }> = ({ location }) => {
   if (location.search === undefined || location.search == null) {
@@ -32,7 +32,7 @@ const Recent_components: React.FC<{ location: { search: string | null } }> = ({ 
                 {/* <Link to="postitem/" state={{ myProp: post.filename }}> */}
                 <div className="imgbox">
                   <img
-                    src={require(`../assets/gradients/${post.id}.png`).default}
+                    src={require(`../../../../static/gradients/${post.id}.png`).default}
                     alt={post.imgLineTwo}
                   />
                   <div className="img-text-one">
@@ -46,9 +46,6 @@ const Recent_components: React.FC<{ location: { search: string | null } }> = ({ 
                   <h3>{post.title}</h3>
                   <div>{post.date}</div>
                 </div>
-                {/* todo::backend */}
-                {/* star */}
-                {/* <img className="copylink" src="https://user-images.githubusercontent.com/45661217/146631169-54b842c2-d174-488b-9192-02780e57b2a5.png"></img> */}
               </div>
               <div className="tag">
                 {(post.tag) && <span>{post.tag}</span>}

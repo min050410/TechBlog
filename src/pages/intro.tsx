@@ -1,13 +1,13 @@
 import * as React from "react";
 
 //components
-import SEO from "../components/SEO"
-import Header from '../components/header'
+import SEO from "../components/common/SEO"
+import Header from '../components/common/headerComponent/header'
 
 //style
 import "../styles/intro.sass"
 
-const Intro: React.FC<{location: {search: string | null, pathname: string }}> = ({ location }) => {
+const Intro: React.FC<{ location: { search: string | null, pathname: string } }> = ({ location }) => {
     return (
         <main>
             <SEO title="Dev log | 소개" />
@@ -92,29 +92,29 @@ const Intro: React.FC<{location: {search: string | null, pathname: string }}> = 
                                 <div className="count">7</div>
                             </div>
                             <div className="values">
-                            React
+                                React
                             </div>
                             <div className="values">
-                            Flask 
+                                Flask
                             </div>
                             <div className="values">
-                            gatsby.js
+                                gatsby.js
                             </div>
                             <div className="values">
-                            sqlchemy 
+                                sqlchemy
                             </div>
                             <div className="values">
-                            Node.js 
+                                Node.js
                             </div>
                             <div className="values">
-                            Express.js 
+                                Express.js
                             </div>
                             <div className="values">
-                            Android studio
+                                Android studio
                             </div>
                         </div>
                         <div className="card">
-                        <div className="card_up">
+                            <div className="card_up">
                                 <div className="tago">
                                     Certificate
                                 </div>
@@ -128,20 +128,20 @@ const Intro: React.FC<{location: {search: string | null, pathname: string }}> = 
                             </div>
                         </div>
                         <div className="card">
-                        <div className="card_up">
+                            <div className="card_up">
                                 <div className="tagg">
                                     etc
                                 </div>
                                 <div className="count">3</div>
                             </div>
                             <div className="values">
-                            Linux 
+                                Linux
                             </div>
                             <div className="values">
-                            Ajax
+                                Ajax
                             </div>
                             <div className="values">
-                            Autodesk
+                                Autodesk
                             </div>
                         </div>
                     </div>

@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from 'gatsby';
 
 //search, filter 기능을 위한 data
-import recent from '../docs/data/recent'
+import recent from '../../../data/recent'
 
 //style
-import '../styles/header.sass';
+import '../../../styles/header.sass';
 
 //props type 지정 (제네릭)
 type Props = {
@@ -21,8 +21,8 @@ type find = {
 const Header: React.FC<Props> = ({ path }) => {
 
     const filter_key: string[] = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql']
- 
-    const [scrollPosition, setScrollPosition] = useState<number>(0); 
+
+    const [scrollPosition, setScrollPosition] = useState<number>(0);
 
     //Focus Event
     const [searchFocus, setsearchFocus] = useState<number>(0);
@@ -30,7 +30,7 @@ const Header: React.FC<Props> = ({ path }) => {
 
     //search
     const [changeText, setChangeText] = useState<string>(""); //바뀌는 Text값
-    const [found, setFound] = useState<find>({title: "", filename: ""}); //recent의 값 중 유사성이 가장 높은 값
+    const [found, setFound] = useState<find>({ title: "", filename: "" }); //recent의 값 중 유사성이 가장 높은 값
 
     //filter_tag
     const [seletedTag, setSeletedTag] = useState<string>('');
@@ -43,17 +43,17 @@ const Header: React.FC<Props> = ({ path }) => {
     useEffect(() => {
         window.addEventListener('scroll', updateScroll)
     }, []);
-    
+
     // search function
     const findTitle = (text: string) => {
         for (let i = 0; i < recent.length; i++) {
             // Lowercase로 검색 정확도 향상
             if (recent[i]['title'].toLowerCase().indexOf(text) > -1 || recent[i]['filename'].toLowerCase().indexOf(text) > -1
                 || recent[i]['title'].indexOf(text) > -1 || recent[i]['filename'].indexOf(text) > -1) {
-                setFound({ title : recent[i]['title'], filename : recent[i]['filename']});
+                setFound({ title: recent[i]['title'], filename: recent[i]['filename'] });
             }
             if (found.title == "") {
-                setFound({title:'검색 결과가 없습니다', filename:""})
+                setFound({ title: '검색 결과가 없습니다', filename: "" })
             }
         }
     }
