@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Link } from 'gatsby';
 
 //components
-import recent from '../../../data/recent'
+import recent from '../../../docs/data/recent'
 
 //styles
 import '../../../styles/recent.sass'

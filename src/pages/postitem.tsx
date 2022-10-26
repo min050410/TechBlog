@@ -10,7 +10,7 @@ import PostComment from '../components/layout/comment'
 import SEO from '../components/common/SEO'
 
 //data
-import recent from '../data/recent'
+import recent from '../docs/data/recent'
 
 //styles
 import "../styles/postitem.sass"
