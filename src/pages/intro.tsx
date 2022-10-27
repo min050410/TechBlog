@@ -1,8 +1,8 @@
 import * as React from "react";
 
 //components
-import SEO from "../components/common/SEO"
-import Header from '../components/common/headerComponent/header'
+import SEOComponent from "../components/common/seoComponent/SEOComponet"
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
 
 //style
 import "../styles/intro.sass"
@@ -10,8 +10,8 @@ import "../styles/intro.sass"
 const Intro: React.FC<{ location: { search: string | null, pathname: string } }> = ({ location }) => {
     return (
         <main>
-            <SEO title="Dev log | 소개" />
-            <Header path={location.pathname} />
+            <SEOComponent title="Dev log | 소개" />
+            <HeaderComponent path={location.pathname} />
             <div className="moveto">
                 <div><a href="#hi">📑 intro</a></div>
                 <div><a href="#skill">🏹 Skill + Tool</a></div>

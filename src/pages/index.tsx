@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet'
 
 //components
-import SEO from "../components/common/SEO"
-import Header from '../components/common/headerComponent/header'
+import SEOComponent from "../components/common/seoComponent/SEOComponet"
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
 import PostComment from '../components/layout/comment'
-import Popular_components from '../components/layout/popularComponent/popular'
-import Recent_components from '../components/layout/recentComponent/recent'
+import PopularComponent from '../components/layout/popularComponent/PopularComponent'
+import RecentComponent from '../components/layout/recentComponent/RecentComponent'
 
 type Props = {
   location: {
@@ -24,12 +24,12 @@ const IndexPage: React.FC<Props> = ({ location }) => {
 
   return (
     <main>
-      <SEO title="Dev Log | Main" />
+      <SEOComponent title="Dev Log | Main" />
       <body>
-        <Header path={location.pathname} />
+        <HeaderComponent path={location.pathname} />
         <div className="fade_in">
-          <Popular_components />
-          <Recent_components location={location} />
+          <PopularComponent />
+          <RecentComponent location={location} />
         </div>
       </body>
       <div className="hide">

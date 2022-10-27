@@ -1,26 +1,24 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Link } from 'gatsby';
+import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
+import recentPostsData from '../../layout/recentComponent/recentPostsData';
 
-//search, filter 기능을 위한 data
-import recent from '../../../docs/data/recent'
-
-//style
+// style
 import '../../../styles/header.sass';
 
-//props type 지정 (제네릭)
-type Props = {
+type HeaderComponentProps = {
     path: string,
 }
 
-type find = {
+type highestSimilarityValuesType = {
     title: string,
     filename: string
 }
 
-const Header: React.FC<Props> = ({ path }) => {
+const HeaderComponent: React.FC<HeaderComponentProps> = ({ path }) => {
 
-    const filter_key: string[] = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql']
+    const filter_key: string[] = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql'];
 
     const [scrollPosition, setScrollPosition] = useState<number>(0);
 
@@ -29,8 +27,8 @@ const Header: React.FC<Props> = ({ path }) => {
     const [filterFocus, setfilterFocus] = useState<number>(0);
 
     //search
-    const [changeText, setChangeText] = useState<string>(""); //바뀌는 Text값
-    const [found, setFound] = useState<find>({ title: "", filename: "" }); //recent의 값 중 유사성이 가장 높은 값
+    const [changeText, setChangeText] = useState<string>("");
+    const [highestSimilarityValues, setHighestSimilarityValues] = useState<highestSimilarityValuesType>({ title: "", filename: "" });
 
     //filter_tag
     const [seletedTag, setSeletedTag] = useState<string>('');
@@ -40,20 +38,21 @@ const Header: React.FC<Props> = ({ path }) => {
     const updateScroll = () => {
         setScrollPosition(window.scrollY || document.documentElement.scrollTop);
     }
+
     useEffect(() => {
-        window.addEventListener('scroll', updateScroll)
+        window.addEventListener('scroll', updateScroll);
     }, []);
 
     // search function
-    const findTitle = (text: string) => {
-        for (let i = 0; i < recent.length; i++) {
-            // Lowercase로 검색 정확도 향상
-            if (recent[i]['title'].toLowerCase().indexOf(text) > -1 || recent[i]['filename'].toLowerCase().indexOf(text) > -1
-                || recent[i]['title'].indexOf(text) > -1 || recent[i]['filename'].indexOf(text) > -1) {
-                setFound({ title: recent[i]['title'], filename: recent[i]['filename'] });
+    const findTitle = (searchText: string) => {
+        for (let i = 0; i < recentPostsData.length; i++) {
+            // Lowercase로 변환해 검색 정확도 향상
+            if (recentPostsData[i]['title'].toLowerCase().indexOf(searchText) > -1 || recentPostsData[i]['filename'].toLowerCase().indexOf(searchText) > -1
+                || recentPostsData[i]['title'].indexOf(searchText) > -1 || recentPostsData[i]['filename'].indexOf(searchText) > -1) {
+                setHighestSimilarityValues({ title: recentPostsData[i]['title'], filename: recentPostsData[i]['filename'] });
             }
-            if (found.title == "") {
-                setFound({ title: '검색 결과가 없습니다', filename: "" })
+            if (highestSimilarityValues.title == "") {
+                setHighestSimilarityValues({ title: '검색 결과가 없습니다', filename: "" })
             }
         }
     }
@@ -81,24 +80,26 @@ const Header: React.FC<Props> = ({ path }) => {
 
     //notSeletedTags Tag Click Event
     const tagClick = (tag: string) => {
-        let Taglist: string[] = [...filter_key];
-        var index: number = Taglist.indexOf(tag);
+        let taglist: string[] = [...filter_key];
+        var index: number = taglist.indexOf(tag);
         if (index !== -1) {
-            Taglist.splice(index, 1);
+            taglist.splice(index, 1);
         }
-        setNotSeletedTags([...Taglist]);
+        setNotSeletedTags([...taglist]);
         setSeletedTag(tag);
     }
 
     //notSeletedTags map
-    const notSeletedTags_map = notSeletedTags.map((tag) => (
-        <Link to={`/?f=${tag}`}><span onClick={() => tagClick(tag)}>{tag}</span></Link>
+    const notSeletedTagsMap = notSeletedTags.map((tag: string) => (
+        <Link to={`/?f=${tag}`}>
+            <span onClick={() => tagClick(tag)}>{tag}</span>
+        </Link>
     ))
 
     //filter tags backup
-    const backup = () => {
-        setSeletedTag('')
-        setNotSeletedTags([...filter_key])
+    const reset = () => {
+        setSeletedTag('');
+        setNotSeletedTags([...filter_key]);
     }
 
     return (
@@ -106,8 +107,8 @@ const Header: React.FC<Props> = ({ path }) => {
             <div className="head index">
                 <Link to="../">
                     <div className="head box">
-                        <img className="logo" src="https://user-images.githubusercontent.com/45661217/145702017-641a444f-1f06-473d-b7e1-f3ae27012186.png" alt="logo"></img>
-                        <span>dev-log</span>
+                        <img className="logo" src={LOGO_IMG_URL} alt="logo"></img>
+                        <span>{LOGO_TEXT}</span>
                     </div>
                 </Link>
                 <div className="search warp" onClick={onSearchBoxFocus}>
@@ -120,19 +121,21 @@ const Header: React.FC<Props> = ({ path }) => {
                         value={changeText}>
                     </input>
                     {searchFocus ?
-                        changeText == '' ?
+                        changeText === "" ?
                             null :
                             <div className="searchBox" onBlur={onSearchBoxBlur}> <div className="search_post">
-                                {path == '/postitem' ?
-                                    (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
-                                        <Link to={`../postitem/?name=${found.filename}`} state={{ key: Math.random() }}>{found.title}</Link>) :
-                                    (found.title == "검색 결과가 없습니다" ? <span>{found.title}</span> :
-                                        <Link to={`postitem/?name=${found.filename}`} ><span>{found.title}</span></Link>)} </div></div>
+                                { path == '/postitem' ?
+                                    (highestSimilarityValues.title == "검색 결과가 없습니다" ? 
+                                        <span>{highestSimilarityValues.title}</span> :
+                                        <Link to={`../postitem/?name=${highestSimilarityValues.filename}`} state={{ key: Math.random() }}>{highestSimilarityValues.title}</Link>) :
+                                    (highestSimilarityValues.title == "검색 결과가 없습니다" ? 
+                                        <span>{highestSimilarityValues.title}</span> :
+                                        <Link to={`postitem/?name=${highestSimilarityValues.filename}`}><span>{highestSimilarityValues.title}</span></Link>)} </div></div>
                         : null
                     }
                 </div>
                 <div className="filter wrap">
-                    <div className="filter wrap" onClick={() => filterClick()}>
+                    <div className="filter wrap" onClick={filterClick}>
                         {filterFocus ? <div className="filter img click"></div> : <div className="filter img"></div>}
                         <div className="filter text">필터설정</div>
                     </div>
@@ -140,17 +143,20 @@ const Header: React.FC<Props> = ({ path }) => {
                         <div className="filterBox">
                             <div className="left">
                                 <div>적용됨</div>
-                                {seletedTag && <Link to={`/`}><span onClick={() => backup()}>{seletedTag}</span></Link>}
+                                {seletedTag && <Link to={`/`}><span onClick={reset}>{seletedTag}</span></Link>}
                             </div>
                             <div className="right">
-                                {notSeletedTags_map}
+                                <div>태그 목록</div>
+                                {notSeletedTagsMap}
                             </div>
-                        </div> : null}
+                        </div>
+                        : null
+                    }
                 </div>
             </div>
             <div className="head content">
                 <Link to="/intro"><span>소개</span></Link>
-                <a href="https://github.com/min050410/TechBlog"><span>깃허브</span></a>
+                <a href={GITHUB_URL}><span>깃허브</span></a>
                 <Link to="/login"><span>Github 로그인</span></Link>
                 <div className="mod">
                     <div className="circle"></div>
@@ -160,4 +166,4 @@ const Header: React.FC<Props> = ({ path }) => {
     )
 }
 
-export default Header;
+export default HeaderComponent;

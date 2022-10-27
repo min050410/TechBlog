@@ -12,17 +12,17 @@ const utterancesSettings = {
 
 
 const PostComment = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  //script에 Settings의 key와 value값 넣기
-  useEffect(() => {
-      if (ref.current !== null) {
-        const utterances = document.createElement('script');
-        Object.entries(utterancesSettings).forEach(([key, value]) => {
-          utterances.setAttribute(key, value);
-        });
-        ref.current.appendChild(utterances);
-      }
-  }, []);
+    const ref = useRef<HTMLDivElement>(null);
+    //script에 Settings의 key와 value값 넣기
+    useEffect(() => {
+        if (ref.current !== null) {
+            const utterances = document.createElement('script');
+            Object.entries(utterancesSettings).forEach(([key, value]) => {
+                utterances.setAttribute(key, value);
+            });
+            ref.current.appendChild(utterances);
+        }
+    }, []);
     return <div ref={ref}></div>;
 };
 
