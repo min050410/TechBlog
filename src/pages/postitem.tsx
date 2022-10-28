@@ -4,19 +4,19 @@ import { MDXProvider } from "@mdx-js/react"
 import { Helmet } from 'react-helmet'
 
 //components
-import CodeBlock from "../utils/codeblock"
-import Header from '../components/header'
-import PostComment from '../components/comment'
-import SEO from '../components/SEO'
+import CodeBlock from "../components/layout/codeblock"
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
+import PostComment from '../components/layout/comment'
+import SEOComponent from '../components/common/seoComponent/SEOComponet'
 
 //data
-import recent from '../docs/data/recent'
+import recentPostsData from '../components/layout/recentComponent/recentPostsData'
 
 //styles
 import "../styles/postitem.sass"
 import '../styles/index.sass';
 
-type Props = {
+type PostimportProps = {
     location: {
         search: string | null,
         pathname: string, state: {
@@ -25,7 +25,7 @@ type Props = {
     }
 }
 
-const Postimport: React.FC<Props> = ({ location }) => {
+const Postimport: React.FC<PostimportProps> = ({ location }) => {
     if (location.search === undefined) {
         return (null)
     }
@@ -45,9 +45,9 @@ const Postimport: React.FC<Props> = ({ location }) => {
 
         //filename으로 title을 찾아주는 함수
         const findTitle = (filename: string) => {
-            for (let i = 0; i < recent.length; i++) {
-                if (recent[i].filename == filename) {
-                    pageTitle = recent[i].title;
+            for (let i = 0; i < recentPostsData.length; i++) {
+                if (recentPostsData[i].filename == filename) {
+                    pageTitle = recentPostsData[i].title;
                 }
             }
         }
@@ -88,16 +88,15 @@ const Postimport: React.FC<Props> = ({ location }) => {
             key = location.state.key
         }
 
-
         return (
             <main>
-                <SEO title={pageTitle} />
+                <SEOComponent title={pageTitle} />
                 <Helmet>
                     <title>{pageTitle}</title>
                     <meta name="google-site-verification" content="Vfqlx3gjgzF7VwfWKG3BDziWEL76_QpnF4LvF0bgj8I" />
                     <meta name="description" content={`Dev Log | ${filename} - 고등학교 1학년 재학생이 만든 코딩과 관련된 갖가지 정보들과 에러 해결 방법 등을 모아놓은 블로그입니다.`}></meta>
                 </Helmet>
-                <Header path={location.pathname} />
+                <HeaderComponent path={location.pathname} />
                 <div className="middle">
                     <div className="left">
                         <MDXProvider components={components} >

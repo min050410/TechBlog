@@ -1,22 +1,27 @@
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "commonjs",
-      "jsx": "react",
-      "lib": [
-        "dom",
-        "esnext"
-      ],
-      "strict": true,
-      "isolatedModules": true,
-      "esModuleInterop": true,
-      "allowJs": true,
-      "outDir": "c:/gatsby/youngmin/src/utils/codeblock.js",
-    },
-    "include": ["./src/**/*"],
-    "exclude": ["node_modules",
-               "public",
-               ".cache",
-               "js",
-               "c:/gatsby/youngmin/src/utils/*"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "strict": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "outDir": "src/components/layout/codeblock.js",
+  },
+  "include": [
+    "./src/**/*",
+    "data"
+  ],
+  "exclude": [
+    "node_modules",
+    "public",
+    ".cache",
+    "js",
+    "c:/gatsby/youngmin/src/utils/*"
+  ],
 }

@@ -3,38 +3,37 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet'
 
 //components
-import SEO from "../components/SEO"
-import Header from '../components/header'
-import PostComment from '../components/comment'
-import Popular_components from '../components/popular'
-import Recent_components from '../components/recent'
+import SEOComponent from "../components/common/seoComponent/SEOComponet"
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
+import PostComment from '../components/layout/comment'
+import PopularComponent from '../components/layout/popularComponent/PopularComponent'
+import RecentComponent from '../components/layout/recentComponent/RecentComponent'
 
 type Props = {
   location: {
-      search: string | null,
-      pathname: string
+    search: string | null,
+    pathname: string
   }
 }
 
 const IndexPage: React.FC<Props> = ({ location }) => {
-  
-  //<html lang="kr">
+
   useEffect(() => {
     document.documentElement.lang = 'kr';
   }, []);
 
   return (
     <main>
-      <SEO title="Dev Log | Main"/>
+      <SEOComponent title="Dev Log | Main" />
       <body>
-        <Header path={location.pathname}/>
+        <HeaderComponent path={location.pathname} />
         <div className="fade_in">
-          <Popular_components/>
-          <Recent_components location={location}/>
+          <PopularComponent />
+          <RecentComponent location={location} />
         </div>
       </body>
       <div className="hide">
-        <PostComment/>
+        <PostComment />
       </div>
     </main>
   )
