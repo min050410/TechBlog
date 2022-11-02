@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { navigate } from 'gatsby';
+import { GITHUB_OAUTH_REDIRECT_URL } from '../constant/constant';
 
 //github login
 const login = () => {
     useEffect(() => {
-        navigate('https://api.utteranc.es/authorize?redirect_uri=https%3A%2F%2Fdevlog.kro.kr%2F');
+        navigate(GITHUB_OAUTH_REDIRECT_URL);
     }, [])
     return null;
 }
