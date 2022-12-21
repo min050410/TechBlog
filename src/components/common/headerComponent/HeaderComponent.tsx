@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link, PageProps } from "gatsby";
-import { useState, useEffect } from "react";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import recentPostsData, { recentPostDataType, recentPostsDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
@@ -8,25 +7,29 @@ import { initialFilterKeyState } from "./filterKey";
 // style
 import '../../../styles/header.sass';
 
-const HeaderComponent: React.FC<PageProps> = ({ 
-    path 
-}: PageProps) => {
+type HeaderComponentType = {
+    path: string
+}
 
-    const [scrollPosition, setScrollPosition] = useState<number>(0);
+const HeaderComponent = ({ 
+    path 
+}: HeaderComponentType) => {
+
+    const [scrollPosition, setScrollPosition] = React.useState<number>(0);
 
     // focus event
-    const [filterFocus, setfilterFocus] = useState<boolean>(false);
+    const [filterFocus, setfilterFocus] = React.useState<boolean>(false);
 
     // search
-    const [searchValue, setSearchValue] = useState<string>("");
-    const [searchedPosts, setSearchedPosts] = useState<recentPostsDataType>([]);
+    const [searchValue, setSearchValue] = React.useState<string>("");
+    const [searchedPosts, setSearchedPosts] = React.useState<recentPostsDataType>([]);
 
     // filter tag
-    const [seletedTag, setSeletedTag] = useState<string>("");
-    const [notSeletedTags, setNotSeletedTags] = useState<string[]>(initialFilterKeyState);
+    const [seletedTag, setSeletedTag] = React.useState<string>("");
+    const [notSeletedTags, setNotSeletedTags] = React.useState<string[]>(initialFilterKeyState);
 
     // update scroll
-    useEffect(() => {
+    React.useEffect(() => {
         const updateScroll = () => {
             setScrollPosition(window.scrollY || document.documentElement.scrollTop);
         }
@@ -34,7 +37,7 @@ const HeaderComponent: React.FC<PageProps> = ({
     }, []);
 
     // search functions
-    useEffect(() => {
+    React.useEffect(() => {
         const filteredPosts = recentPostsData.filter((data: recentPostDataType) =>
             data.title.toUpperCase().includes(searchValue.toUpperCase()) && searchValue.length
         )
@@ -99,7 +102,7 @@ const HeaderComponent: React.FC<PageProps> = ({
                                     {
                                         searchedPosts.length ?
                                             searchedPosts.map((searchPost: recentPostDataType) =>
-                                                <Link to={`postitem/?name=${searchPost.filename}`} key={searchPost.id}>
+                                                <Link to={`/postitem/?name=${searchPost.filename}`} key={searchPost.id}>
                                                     <span>{searchPost.title}</span>
                                                 </Link>
                                             ) :

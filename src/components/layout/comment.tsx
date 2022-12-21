@@ -11,7 +11,11 @@ const utterancesSettings = {
 };
 
 
-const PostComment = () => {
+type PostCommentType = {
+    search: string | null
+}
+
+const PostComment = ({ search }: PostCommentType) => {
     const ref = useRef<HTMLDivElement>(null);
     //script에 Settings의 key와 value값 넣기
     useEffect(() => {
@@ -22,7 +26,7 @@ const PostComment = () => {
             });
             ref.current.appendChild(utterances);
         }
-    }, []);
+    }, [search]);
     return <div ref={ref}></div>;
 };
 

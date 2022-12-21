@@ -7,9 +7,6 @@ import popularPostsData from './popularPostsData';
 import '../../../styles/card.sass';
 
 const PopularComponent: React.FC = () => {
-    const [isHover, setHover] = useState<boolean>(false);
-    const [ID, setID] = useState<number>(-1);
-
     const popular_list = popularPostsData.map((post, i) =>
     (
         <div className="card" key={i}>
@@ -18,14 +15,6 @@ const PopularComponent: React.FC = () => {
                     <img
                         src={require(`../../../../static/images/${post.img}.png`).default}
                         alt={post.img}
-                        onMouseOver={function () {
-                            setHover(true)
-                            setID(post.id)
-                        }}
-                        onMouseOut={function () {
-                            setHover(false)
-                            setID(-1)
-                        }}
                     />
                 </Link>
             </div>

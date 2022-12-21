@@ -40,10 +40,8 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
         if (filename == null) {
             return (<NotFoundPage />)
         }
-
-        const [, forceUpdate] = useReducer(x => x + 1, 0);
+        
         let pageTitle: string = '';
-
         //filename으로 title을 찾아주는 함수
         const findTitle = (filename: string) => {
             for (let i = 0; i < recentPostsData.length; i++) {
@@ -53,26 +51,6 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
             }
         }
         findTitle(filename);
-
-        // search시 rerendering
-        const componentDidMount = () => {
-            const reloadCount: string | null = sessionStorage.getItem('reloadCount');
-            //최초 1번만
-            try {
-                if (reloadCount !== null) {
-                    if (Number(reloadCount) < 1) {
-                        sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-                        //rerendering
-                        forceUpdate()
-                    } else {
-                        sessionStorage.removeItem('reloadCount');
-                    }
-                }
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        componentDidMount();
 
         //postitem dynamic import
         const Postitem = require(`../docs/${filename}.mdx`).default;
@@ -93,7 +71,7 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment key={location.state ? location.state.key : Math.random()} />
+                <PostComment search={location.pathname} key={location.state ? location.state.key : Math.random()} />
             </main>
         )
     }
