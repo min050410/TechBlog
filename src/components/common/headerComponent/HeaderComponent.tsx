@@ -1,86 +1,58 @@
 import * as React from "react";
+import { Link, PageProps } from "gatsby";
 import { useState, useEffect } from "react";
-import { Link } from 'gatsby';
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
-import recentPostsData from '../../layout/recentComponent/recentPostsData';
+import recentPostsData, { recentPostDataType, recentPostsDataType } from '../../layout/recentComponent/recentPostsData';
+import { initialFilterKeyState } from "./filterKey";
 
 // style
 import '../../../styles/header.sass';
 
-type HeaderComponentProps = {
-    path: string,
-}
-
-type highestSimilarityValuesType = {
-    title: string,
-    filename: string
-}
-
-const HeaderComponent: React.FC<HeaderComponentProps> = ({ path }) => {
-
-    const filter_key: string[] = ['js', 'ts', 'python', 'c', 'react', 'cpp', 'java', 'sql'];
+const HeaderComponent: React.FC<PageProps> = ({ 
+    path 
+}: PageProps) => {
 
     const [scrollPosition, setScrollPosition] = useState<number>(0);
 
-    //Focus Event
-    const [searchFocus, setsearchFocus] = useState<number>(0);
-    const [filterFocus, setfilterFocus] = useState<number>(0);
+    // focus event
+    const [filterFocus, setfilterFocus] = useState<boolean>(false);
 
-    //search
-    const [changeText, setChangeText] = useState<string>("");
-    const [highestSimilarityValues, setHighestSimilarityValues] = useState<highestSimilarityValuesType>({ title: "", filename: "" });
+    // search
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [searchedPosts, setSearchedPosts] = useState<recentPostsDataType>([]);
 
-    //filter_tag
-    const [seletedTag, setSeletedTag] = useState<string>('');
-    const [notSeletedTags, setNotSeletedTags] = useState<string[]>([...filter_key]);
+    // filter tag
+    const [seletedTag, setSeletedTag] = useState<string>("");
+    const [notSeletedTags, setNotSeletedTags] = useState<string[]>(initialFilterKeyState);
 
-    //Scroll Event
-    const updateScroll = () => {
-        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-    }
-
+    // update scroll
     useEffect(() => {
+        const updateScroll = () => {
+            setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+        }
         window.addEventListener('scroll', updateScroll);
     }, []);
 
-    // search function
-    const findTitle = (searchText: string) => {
-        for (let i = 0; i < recentPostsData.length; i++) {
-            // Lowercase로 변환해 검색 정확도 향상
-            if (recentPostsData[i]['title'].toLowerCase().indexOf(searchText) > -1 || recentPostsData[i]['filename'].toLowerCase().indexOf(searchText) > -1
-                || recentPostsData[i]['title'].indexOf(searchText) > -1 || recentPostsData[i]['filename'].indexOf(searchText) > -1) {
-                setHighestSimilarityValues({ title: recentPostsData[i]['title'], filename: recentPostsData[i]['filename'] });
-            }
-            if (highestSimilarityValues.title == "") {
-                setHighestSimilarityValues({ title: '검색 결과가 없습니다', filename: "" })
-            }
-        }
-    }
-
-    //Search Text 상태 관리 
-    const onChange = (e: any) => {
-        setChangeText(e.target.value);
-        findTitle(e.target.value);
+    // search functions
+    useEffect(() => {
+        const filteredPosts = recentPostsData.filter((data: recentPostDataType) =>
+            data.title.toUpperCase().includes(searchValue.toUpperCase()) && searchValue.length
+        )
+        setSearchedPosts(filteredPosts);
+    }, [searchValue])
+ 
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value);
     };
 
-    //Search Box Focus Event
-    const onSearchBoxFocus = () => {
-        setsearchFocus(1);
-    }
-
-    //Search Box Blur Event
-    const onSearchBoxBlur = () => {
-        setsearchFocus(0);
-    }
-
-    //filter Focus Toggle
+    // filter Focus Toggle
     const filterClick = () => {
-        setfilterFocus(isFocus => isFocus ? 0 : 1);
+        setfilterFocus(isFocus => !isFocus);
     }
 
-    //notSeletedTags Tag Click Event
+    // notSeletedTags Tag Click Event
     const tagClick = (tag: string) => {
-        let taglist: string[] = [...filter_key];
+        let taglist: string[] = [...initialFilterKeyState];
         var index: number = taglist.indexOf(tag);
         if (index !== -1) {
             taglist.splice(index, 1);
@@ -89,17 +61,17 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({ path }) => {
         setSeletedTag(tag);
     }
 
-    //notSeletedTags map
+    // not seleted tags 
     const notSeletedTagsMap = notSeletedTags.map((tag: string) => (
         <Link to={`/?f=${tag}`}>
             <span onClick={() => tagClick(tag)}>{tag}</span>
         </Link>
     ))
 
-    //filter tags backup
+    // filter tags backup
     const reset = () => {
         setSeletedTag('');
-        setNotSeletedTags([...filter_key]);
+        setNotSeletedTags([...initialFilterKeyState]);
     }
 
     return (
@@ -111,27 +83,30 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({ path }) => {
                         <span>{LOGO_TEXT}</span>
                     </div>
                 </Link>
-                <div className="search warp" onClick={onSearchBoxFocus}>
+                <div className="search warp">
                     <input type="text"
                         className="search-input"
                         name="search"
                         autoComplete="off"
                         placeholder="검색할 내용을 입력하세요"
                         onChange={onChange}
-                        value={changeText}>
+                        value={searchValue}>
                     </input>
-                    {searchFocus ?
-                        changeText === "" ?
-                            null :
-                            <div className="searchBox" onBlur={onSearchBoxBlur}> <div className="search_post">
-                                { path == '/postitem' ?
-                                    (highestSimilarityValues.title == "검색 결과가 없습니다" ? 
-                                        <span>{highestSimilarityValues.title}</span> :
-                                        <Link to={`../postitem/?name=${highestSimilarityValues.filename}`} state={{ key: Math.random() }}>{highestSimilarityValues.title}</Link>) :
-                                    (highestSimilarityValues.title == "검색 결과가 없습니다" ? 
-                                        <span>{highestSimilarityValues.title}</span> :
-                                        <Link to={`postitem/?name=${highestSimilarityValues.filename}`}><span>{highestSimilarityValues.title}</span></Link>)} </div></div>
-                        : null
+                    {
+                        searchValue ?
+                            <div className="searchBox">
+                                <div className="search_post">
+                                    {
+                                        searchedPosts.length ?
+                                            searchedPosts.map((searchPost: recentPostDataType) =>
+                                                <Link to={`postitem/?name=${searchPost.filename}`} key={searchPost.id}>
+                                                    <span>{searchPost.title}</span>
+                                                </Link>
+                                            ) :
+                                            <span>검색 결과가 없습니다.</span>
+                                    }
+                                </div>
+                            </div> : null
                     }
                 </div>
                 <div className="filter wrap">
@@ -155,12 +130,18 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({ path }) => {
                 </div>
             </div>
             <div className="head content">
-                <Link to="/intro"><span>소개</span></Link>
-                <a href={GITHUB_URL}><span>깃허브</span></a>
-                <Link to="/login"><span>Github 로그인</span></Link>
-                <div className="mod">
+                <Link to="/intro">
+                    <span>소개</span>
+                </Link>
+                <a href={GITHUB_URL}>
+                    <span>깃허브</span>
+                </a>
+                <Link to="/login">
+                    <span>Github 로그인</span>
+                </Link>
+                {/* <div className="mod">
                     <div className="circle"></div>
-                </div>
+                </div> */}
             </div>
         </header>
     )

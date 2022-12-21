@@ -6,7 +6,7 @@
  * tag : blog tag(max 3)
  * filter : filter tag */
 
-type recentPostsDataType = {
+export type recentPostDataType = {
     id: number,
     title: string,
     filename: string,
@@ -17,7 +17,9 @@ type recentPostsDataType = {
     tag2: string,
     tag3: string,
     filter: string,
-}[];
+}
+
+export type recentPostsDataType = recentPostDataType[];
 
 const recentPostsData: recentPostsDataType = [
     {

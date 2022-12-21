@@ -25,13 +25,13 @@ const IndexPage: React.FC<Props> = ({ location }) => {
   return (
     <main>
       <SEOComponent title="Dev Log | Main" />
-      <body>
+      <div>
         <HeaderComponent path={location.pathname} />
         <div className="fade_in">
           <PopularComponent />
           <RecentComponent location={location} />
         </div>
-      </body>
+      </div>
       <div className="hide">
         <PostComment />
       </div>
