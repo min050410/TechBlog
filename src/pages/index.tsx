@@ -33,7 +33,7 @@ const IndexPage: React.FC<Props> = ({ location }) => {
         </div>
       </div>
       <div className="hide">
-        <PostComment />
+        <PostComment search={location.pathname}/>
       </div>
     </main>
   )
