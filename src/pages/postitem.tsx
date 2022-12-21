@@ -8,6 +8,7 @@ import CodeBlock from "../components/layout/codeblock"
 import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
 import PostComment from '../components/layout/comment'
 import SEOComponent from '../components/common/seoComponent/SEOComponet'
+import NotFoundPage from "./404";
 
 //data
 import recentPostsData from '../components/layout/recentComponent/recentPostsData'
@@ -27,17 +28,17 @@ type PostimportProps = {
 
 const Postimport: React.FC<PostimportProps> = ({ location }) => {
     if (location.search === undefined) {
-        return (null)
+        return (null);
     }
     else if (location.search == null) {
-        return (null)
+        return (null);
     }
     else {
         const params = new URLSearchParams(location.search);
         const filename: string | null = params.get("name");
 
         if (filename == null) {
-            return (null)
+            return (<NotFoundPage />)
         }
 
         const [, forceUpdate] = useReducer(x => x + 1, 0);
@@ -54,7 +55,7 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
         findTitle(filename);
 
         // search시 rerendering
-        function componentDidMount() {
+        const componentDidMount = () => {
             const reloadCount: string | null = sessionStorage.getItem('reloadCount');
             //최초 1번만
             try {
@@ -71,22 +72,10 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
                 console.error(e);
             }
         }
-        componentDidMount()
+        componentDidMount();
 
         //postitem dynamic import
-        const Postitem = require(`../docs/${filename}.mdx`).default
-
-        const components = {
-            code: CodeBlock,
-        };
-
-        let key: number;
-        if (location.state == null) {
-            key = Math.random();
-        }
-        else {
-            key = location.state.key
-        }
+        const Postitem = require(`../docs/${filename}.mdx`).default;
 
         return (
             <main>
@@ -99,12 +88,12 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
                 <HeaderComponent path={location.pathname} />
                 <div className="middle">
                     <div className="left">
-                        <MDXProvider components={components} >
+                        <MDXProvider components={{ code: CodeBlock }} >
                             <Postitem />
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment key={key} />
+                <PostComment key={location.state ? location.state.key : Math.random()} />
             </main>
         )
     }

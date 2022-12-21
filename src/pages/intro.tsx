@@ -6,8 +6,16 @@ import HeaderComponent from '../components/common/headerComponent/HeaderComponen
 
 //style
 import "../styles/intro.sass"
+import { HIT_BADGE_URL, HIT_URL } from "../constant/constant";
 
-const Intro: React.FC<{ location: { search: string | null, pathname: string } }> = ({ location }) => {
+type IntroPageType = {
+    location: {
+        search: string | null, 
+        pathname: string
+    }
+}
+
+const Intro: React.FC<IntroPageType> = ({ location }) => {
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
@@ -26,7 +34,7 @@ const Intro: React.FC<{ location: { search: string | null, pathname: string } }>
                     <div className="intro_test">
                         <h3 id="gray">여러 데이터를 다뤄보고 싶은 <u>Backend 개발자</u> 입니다.</h3>
                         <h3 id="gray">단순히 <u>아는 것</u>보다,</h3>
-                        <h3 id="gray"><u>이해</u>하고 넘어가는 것을 좋아합니다. </h3>
+                        <h3 id="gray"><u>이해</u>하고 넘어가는 것을 좋아합니다.</h3>
                     </div>
                 </div>
                 <div className="section_union">
@@ -202,8 +210,8 @@ const Intro: React.FC<{ location: { search: string | null, pathname: string } }>
                 </div>
                 <footer>
                     <div className="footer_wrap">
-                        <a href="https://hits.seeyoufarm.com">
-                            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdevlog%2Fintro&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" />
+                        <a href={HIT_URL}>
+                            <img src={HIT_BADGE_URL}/>
                         </a>
                         <div className="date">last Update. 220110 </div>
                     </div>

@@ -3,11 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap')
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css)
 
-@import "variables" 
-*    
+@import "variables"
+*
     color: $white
 
-@font-face 
+@font-face
     src: url("../../static/font/NanumSquareR.ttf") format("truetype")
     font-family: 'Noto Sans', sans-serif
 
@@ -43,7 +43,7 @@
     width: 100%
     padding: 10px 20px
 
-.head.box 
+.head.box
     display: flex
     align-items: center
     .logo
@@ -58,7 +58,7 @@
         margin-left: 0.3em
         letter-spacing: 2px
 
-.head.content 
+.head.content
     display: flex
     align-items: center
     gap: 30px
@@ -79,16 +79,16 @@
         background-image: url(https://user-images.githubusercontent.com/45661217/146483843-3e796322-47aa-4fba-833d-7401512a805c.png)
         width: 81px
         height: 41px
-        margin-left: 10px;
-        .circle      
-            position: absolute  
+        margin-left: 10px
+        .circle
+            position: absolute
             background-image: url(https://user-images.githubusercontent.com/45661217/146485076-5d9e6a3a-dc25-433c-bc28-f077c483ad6d.png)
             width: 34px
             height: 34px
             transform: translateY(-50%)
             top: 50%
             left: 0.2em
-    
+
 .head.index
     display: flex
     align-items: center
@@ -99,17 +99,17 @@
     font-size: 15px
     top: 50%
     transform: translate(0%, -50%)
-    left: 40px;
+    left: 40px
     width: 250px
     height: 20px
     border-image: none
     border-style: none
     background-color: $gray4
 
-.search-input:focus 
+.search-input:focus
     outline: none
 
-.search-input::placeholder 
+.search-input::placeholder
     color: $gray2
     font-size: 15px
     transform: translate(0%, 10%)
@@ -134,9 +134,9 @@
     font-family: 'Spoqa Han Sans Neo'
     font-weight: 300
     font-style: normal
-    font-size: 15px 
+    font-size: 15px
 
-.searchBox 
+.searchBox
     position: absolute
     top: 33px
     width: 285px
@@ -144,21 +144,20 @@
     border: 1.5px solid $gray4
     opacity: 80%
     border-radius: 20px
-    height: 28px
     z-index: 2
-    .search_post:hover
-        background-color: rgb(75, 75, 77)
     .search_post
         border-radius: 20px
         display: flex
+        flex-direction: column
         justify-content: space-between
-        transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
-        will-change: background-color
         a
-            @include roundFont    
-            margin-left: 10px
-            padding: 3px 10px 0px 10px    
-           
+            @include roundFont
+            height: 1.7em
+            padding: 3px 10px 0px 10px
+            transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+            will-change: background-color
+        a:hover
+            background-color: rgb(75, 75, 77)
         a > span
             @include roundFont
 
@@ -167,12 +166,12 @@
     margin-left: 10px
     padding: 3px 10px 0px 10px
     font-family: 'Spoqa Han Sans Neo'
-    
+
 .filter.wrap
     display: flex
     gap: 10px
     align-items: center
-    .filter.img 
+    .filter.img
         background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
         width: 20px
         height: 15px
@@ -211,7 +210,7 @@
             width: 100%
             font-family: 'Spoqa Han Sans Neo'
             font-style: normal
-            font-size: 13px 
+            font-size: 13px
             margin-left: 10%
         .right > div
             margin-top: 0.5em
@@ -219,9 +218,9 @@
             width: 100%
             font-family: 'Spoqa Han Sans Neo'
             font-style: normal
-            font-size: 13px 
+            font-size: 13px
             margin-left: 8%
-        a > span, a > span 
+        a > span, a > span
             height: 1.5em
             padding: 0.1em 0.5em
             margin: 5px
@@ -246,8 +245,8 @@
 
     .head.index
         flex-wrap: wrap
-        
-    .head.box 
+
+    .head.box
         .logo
             width: 30px
             height: 24px
@@ -258,17 +257,17 @@
 
     .search.warp
         display: none
-        
+
     // .search.warp
     //     width: 200px
     //     height: 10px
     //     input
     //         width: 175px
 
-    .filter.text 
+    .filter.text
         font-size: 12px
 
-    .head.content 
+    .head.content
         margin-top: 0px
         gap: 0px
         .darkmode_text
@@ -276,17 +275,16 @@
             margin-top: 4.3px
         .mod
             display: none
-    
-    div.header 
+
+    div.header
         font: 500 15px "Spoqa Han Sans Neo", "sans-serif"
         margin: 0px 0px 0px 20px
 
     .filter.wrap
         display: none
-    
+
     .head.content
         display: none
-
 
 @include tablet
     .head.content
@@ -295,8 +293,3 @@
 @include smallTablet
     .head.content
         display: none
-    
-
-
-    
-            
