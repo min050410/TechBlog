@@ -8,7 +8,7 @@ module.exports = {
     'gatsby-plugin-mdx',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-image',
+    'gatsby-plugin-use-query-params',
     {
       resolve: "gatsby-source-filesystem",
       options: {

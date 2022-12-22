@@ -6,13 +6,14 @@ import { initialFilterKeyState } from "./filterKey";
 
 // style
 import '../../../styles/header.sass';
+import FilterBoxComponent from "./filterBox";
 
 type HeaderComponentType = {
     path: string
 }
 
-const HeaderComponent = ({ 
-    path 
+const HeaderComponent = ({
+    path
 }: HeaderComponentType) => {
 
     const [scrollPosition, setScrollPosition] = React.useState<number>(0);
@@ -43,18 +44,13 @@ const HeaderComponent = ({
         )
         setSearchedPosts(filteredPosts);
     }, [searchValue])
- 
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
     };
 
-    // filter Focus Toggle
-    const filterClick = () => {
-        setfilterFocus(isFocus => !isFocus);
-    }
-
     // notSeletedTags Tag Click Event
-    const tagClick = (tag: string) => {
+    const tagClick = React.useCallback((tag: string) => {
         let taglist: string[] = [...initialFilterKeyState];
         var index: number = taglist.indexOf(tag);
         if (index !== -1) {
@@ -62,14 +58,7 @@ const HeaderComponent = ({
         }
         setNotSeletedTags([...taglist]);
         setSeletedTag(tag);
-    }
-
-    // not seleted tags 
-    const notSeletedTagsMap = notSeletedTags.map((tag: string) => (
-        <Link to={`/?f=${tag}`}>
-            <span onClick={() => tagClick(tag)}>{tag}</span>
-        </Link>
-    ))
+    }, [path]);
 
     // filter tags backup
     const reset = () => {
@@ -113,21 +102,19 @@ const HeaderComponent = ({
                     }
                 </div>
                 <div className="filter wrap">
-                    <div className="filter wrap" onClick={filterClick}>
-                        {filterFocus ? <div className="filter img click"></div> : <div className="filter img"></div>}
+                    <div className="filter wrap" onClick={() => { setfilterFocus(isFocus => !isFocus) }}>
+                        {filterFocus ?
+                            <div className="filter img click"></div>
+                            : <div className="filter img"></div>
+                        }
                         <div className="filter text">필터설정</div>
                     </div>
                     {filterFocus ?
-                        <div className="filterBox">
-                            <div className="left">
-                                <div>적용됨</div>
-                                {seletedTag && <Link to={`/`}><span onClick={reset}>{seletedTag}</span></Link>}
-                            </div>
-                            <div className="right">
-                                <div>태그 목록</div>
-                                {notSeletedTagsMap}
-                            </div>
-                        </div>
+                        <FilterBoxComponent
+                            seletedTag={seletedTag}
+                            notSeletedTags={notSeletedTags}
+                            reset={reset}
+                            tagClick={tagClick} />
                         : null
                     }
                 </div>
