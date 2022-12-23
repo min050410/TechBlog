@@ -8,45 +8,52 @@ type popularPostsDataType = {
     id: number,
     title: string,
     filename: string,
-    img: string
+    imgLineOne: string,
+    imgLineTwo: string
 }[];
 
 const popularPostsData: popularPostsDataType = [
     {
         id: 1,
-        title: 'Flask 튜토리얼',
-        filename: 'Flask',
-        img: 'flask',
+        title: '개인 블로그를 개발한 이유',
+        filename: 'Blog',
+        imgLineOne: '',
+        imgLineTwo: 'My Blog'
     },
     {
         id: 2,
         title: 'CORS와 해결방법',
         filename: 'Cors',
-        img: 'CORS',
+        imgLineOne: '',
+        imgLineTwo: 'CORS'
     },
     {
-        id: 3,
-        title: 'Window 터미널 꾸미기',
-        filename: 'Ohmyposh',
-        img: 'ohmyposh',
+        id: 15,
+        title: '다익스트라 알고리즘 정리',
+        filename: 'Dijkstra',
+        imgLineOne: '',
+        imgLineTwo: 'Dijkstra',
     },
     {
-        id: 4,
-        title: '비선형구조 정리',
-        filename: 'NonLinear',
-        img: 'datastucture',
+        id: 16,
+        title: '플로이드 워셜 알고리즘 정리',
+        filename: 'Floyed-warshell',
+        imgLineOne: 'Floyed',
+        imgLineTwo: 'Warshell',
     },
     {
-        id: 5,
-        title: 'RN camera 적용법',
-        filename: 'Camera',
-        img: 'camera',
+        id: 17,
+        title: 'KMP 알고리즘 정리',
+        filename: 'KMP',
+        imgLineOne: '',
+        imgLineTwo: 'KMP',
     },
     {
-        id: 6,
-        title: '왜 typescript인가?',
-        filename: 'Typescript',
-        img: 'typescript',
+        id: 13,
+        title: '클린 아키텍처에 대해 알아보자',
+        filename: 'The-clean-architecture',
+        imgLineOne: 'Clean',
+        imgLineTwo: 'Architecture',
     }
 ];
 

@@ -1,21 +1,42 @@
 import * as React from "react";
 import { Link } from 'gatsby';
-import { useState } from 'react';
 import popularPostsData from './popularPostsData';
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 //styles
 import '../../../styles/card.sass';
 
 const PopularComponent: React.FC = () => {
+
+    const settings = {
+        dots: false,
+        arrow: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 6000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerPadding: '0px'
+    };
+
     const popular_list = popularPostsData.map((post, i) =>
     (
         <div className="card" key={i}>
             <div className="imgbox">
                 <Link to={`postitem/?name=${post.filename}`} >
                     <img
-                        src={require(`../../../../static/images/${post.img}.png`).default}
-                        alt={post.img}
+                        src={require(`../../../../static/gradients/${post.id}.png`).default}
+                        alt={post.imgLineTwo}
                     />
+                    <div className="recent-img-text-one">
+                        <p>{post.imgLineOne}</p>
+                    </div>
+                    <div className="recent-img-text-two">
+                        <p>{post.imgLineTwo}</p>
+                    </div>
                 </Link>
             </div>
             <h3>{post.title}</h3>
@@ -25,9 +46,18 @@ const PopularComponent: React.FC = () => {
     return (
         <section>
             <div className="header">인기있는 블로그</div>
-            <div className="container">
-                {popular_list}
-            </div>
+            <Slider {...settings}>
+                <div className="slider-item">
+                    <div className="container">
+                        {popular_list}
+                    </div>
+                </div>
+                <div>
+                    <div className="container">
+                        {popular_list}
+                    </div>
+                </div>
+            </Slider>
         </section>
     )
 }

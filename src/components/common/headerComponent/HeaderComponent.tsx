@@ -6,7 +6,7 @@ import { initialFilterKeyState } from "./filterKey";
 
 // style
 import '../../../styles/header.sass';
-import FilterBoxComponent from "./filterBox";
+import FilterBoxComponent from "./FilterBoxComponent";
 
 type HeaderComponentType = {
     path: string
