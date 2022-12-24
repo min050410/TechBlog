@@ -29,14 +29,14 @@ const popularPostsData: popularPostsDataType = [
     },
     {
         id: 15,
-        title: '다익스트라 알고리즘 정리',
+        title: '다익스트라 알고리즘',
         filename: 'Dijkstra',
         imgLineOne: '',
         imgLineTwo: 'Dijkstra',
     },
     {
         id: 16,
-        title: '플로이드 워셜 알고리즘 정리',
+        title: '플로이드 워셜 알고리즘',
         filename: 'Floyed-warshell',
         imgLineOne: 'Floyed',
         imgLineTwo: 'Warshell',

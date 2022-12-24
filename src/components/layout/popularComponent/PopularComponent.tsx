@@ -11,15 +11,16 @@ import '../../../styles/card.sass';
 const PopularComponent: React.FC = () => {
 
     const settings = {
-        dots: false,
-        arrow: false,
+        dots: true,
+        arrows: false,
         infinite: true,
-        speed: 500,
+        speed: 1000,
         autoplay: true,
-        autoplaySpeed: 6000,
+        autoplaySpeed: 5000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        centerPadding: '0px'
+        centerPadding: '0px',
+        // prevArrow: <SamplePrevArrow />
     };
 
     const popular_list = popularPostsData.map((post, i) =>

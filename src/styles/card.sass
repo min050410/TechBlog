@@ -6,7 +6,7 @@
     font: 500 22px "Spoqa Han Sans Neo", "sans-serif"
     margin: 40px 0px 0px 40px
 
-.slider-item 
+.slider-item
     width: 80%
 
 .container
@@ -20,7 +20,11 @@
 .card
     display: flex
     flex-direction: column
-    width: 150px
+    width: 160px
+    padding: .5rem
+    border-radius: 15px
+    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+    will-change: background-color
     .imgbox
         position: relative
         transition: 1s
@@ -38,11 +42,11 @@
             top: 40%
             z-index: 1
             position: absolute
-    .imgbox:hover
-        margin-top: 3px
-        opacity: 0.2
 
-.recent-img-text-one > p, .recent-img-text-two > p   
+.card:hover 
+    background-color: rgb(75, 75, 77)
+
+.recent-img-text-one > p, .recent-img-text-two > p
     font-family: 'Noto Sans'
     color: white
     font-size: 20px
@@ -52,9 +56,8 @@
 .card h3
     font-family: 'NanumBarunGothic'
     font-weight: 500
-    line-height: 30px
     font-size: 17px
-    margin-top: 5px
+    margin-top: 10px
 
 @include mobile
     .container
