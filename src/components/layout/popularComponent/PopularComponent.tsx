@@ -53,7 +53,7 @@ const PopularComponent: React.FC = () => {
                         {popular_list}
                     </div>
                 </div>
-                <div>
+                <div className="slider-item">
                     <div className="container">
                         {popular_list}
                     </div>
