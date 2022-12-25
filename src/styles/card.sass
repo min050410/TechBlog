@@ -1,11 +1,14 @@
 // card style
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css)    
-@import "variables" 
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css)
+@import "variables"
 
 .header
     font: 500 22px "Spoqa Han Sans Neo", "sans-serif"
     margin: 40px 0px 0px 40px
-    
+
+.slider-item
+    width: 80%
+
 .container
     display: flex
     flex-wrap: no-wrap
@@ -17,24 +20,44 @@
 .card
     display: flex
     flex-direction: column
-    width: 150px
+    width: 160px
+    padding: .5rem
+    border-radius: 15px
+    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+    will-change: background-color
     .imgbox
         position: relative
+        transition: 1s
         img
-            width: 150px
-            left: 0px
-            transition: 0.5s
+            width: 160px
+            height: 100px
+            border-radius: 15px
+        .recent-img-text-one
+            left: 7%
+            top: 15%
+            z-index: 1
             position: absolute
-        img:hover
-            margin-top: 5px
-            opacity: 0.3      
+        .recent-img-text-two
+            left: 7%
+            top: 40%
+            z-index: 1
+            position: absolute
+
+.card:hover 
+    background-color: rgb(75, 75, 77)
+
+.recent-img-text-one > p, .recent-img-text-two > p
+    font-family: 'Noto Sans'
+    color: white
+    font-size: 20px
+    font-weight: 700
+    text-align: left
 
 .card h3
-    font-family: 'Spoqa Han Sans Neo', Noto sans
-    font-weight: 300
-    line-height: 30px
-    font-size: 15px
-    margin-top: 110px
+    font-family: 'NanumBarunGothic'
+    font-weight: 500
+    font-size: 17px
+    margin-top: 10px
 
 @include mobile
     .container
@@ -50,4 +73,3 @@
 @include smallTablet
     .card:nth-child(n+4)
         display: none
-    
