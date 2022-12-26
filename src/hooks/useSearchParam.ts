@@ -10,7 +10,7 @@ export const useSearchParam = (param: string) => {
     const [value, setValue] = React.useState<string | null | undefined>(getValue);
     React.useEffect(() => {
         setValue(getValue());
-    }, [location?.search ?? null]);
+    }, [typeof location !== 'undefined' ? location.search : null]);
 
     return value;
 };
