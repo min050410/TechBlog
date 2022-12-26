@@ -4,24 +4,12 @@ import popularPostsData from './popularPostsData';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { slickSettings } from "./slickSetting";
 
 //styles
 import '../../../styles/card.sass';
 
 const PopularComponent: React.FC = () => {
-
-    const settings = {
-        dots: true,
-        arrows: false,
-        infinite: true,
-        speed: 1000,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerPadding: '0px',
-        // prevArrow: <SamplePrevArrow />
-    };
 
     const popular_list = popularPostsData.map((post, i) =>
     (
@@ -47,13 +35,13 @@ const PopularComponent: React.FC = () => {
     return (
         <section>
             <div className="header">인기있는 블로그</div>
-            <Slider {...settings}>
+            <Slider {...slickSettings}>
                 <div className="slider-item">
                     <div className="container">
                         {popular_list}
                     </div>
                 </div>
-                <div>
+                <div className="slider-item">
                     <div className="container">
                         {popular_list}
                     </div>

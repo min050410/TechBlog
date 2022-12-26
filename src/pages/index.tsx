@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet'
+import { useEffect } from 'react';
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet"
@@ -29,7 +28,7 @@ const IndexPage: React.FC<Props> = ({ location }) => {
         <HeaderComponent path={location.pathname} />
         <div className="fade_in">
           <PopularComponent />
-          <RecentComponent location={location} />
+          <RecentComponent />
         </div>
       </div>
       <div className="hide">

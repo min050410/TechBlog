@@ -58,13 +58,13 @@ const HeaderComponent = ({
         }
         setNotSeletedTags([...taglist]);
         setSeletedTag(tag);
-    }, [path]);
+    }, []);
 
     // filter tags backup
-    const reset = () => {
+    const reset = React.useCallback(() => {
         setSeletedTag('');
         setNotSeletedTags([...initialFilterKeyState]);
-    }
+    }, []);
 
     return (
         <header className={path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
