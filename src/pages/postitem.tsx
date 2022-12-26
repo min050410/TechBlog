@@ -70,7 +70,7 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
                         </MDXProvider>
                     </div>
                 </div>
-                <PostComment search={location.pathname} key={location.state ? location.state.key : Math.random()} />
+                <PostComment key={location.state ? location.state.key : Math.random()} />
             </main>
         )
     }

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useSearchParam } from '../../hooks';
 
 const utterancesSettings = {
     src: 'https://utteranc.es/client.js',
@@ -10,14 +11,11 @@ const utterancesSettings = {
     async: 'false',
 };
 
+const PostComment = () => {
 
-type PostCommentType = {
-    search: string | null
-}
-
-const PostComment = ({ search }: PostCommentType) => {
     const ref = useRef<HTMLDivElement>(null);
-    //script에 Settings의 key와 value값 넣기
+    const postItem = useSearchParam("name");
+    
     useEffect(() => {
         if (ref.current !== null) {
             const utterances = document.createElement('script');
@@ -26,7 +24,7 @@ const PostComment = ({ search }: PostCommentType) => {
             });
             ref.current.appendChild(utterances);
         }
-    }, [search]);
+    }, [postItem]);
     return <div ref={ref}></div>;
 };
 
