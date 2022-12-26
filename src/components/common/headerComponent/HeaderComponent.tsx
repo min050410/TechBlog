@@ -1,75 +1,67 @@
 import * as React from "react";
-import { Link, PageProps } from "gatsby";
+import { Link, navigate } from "gatsby";
+import FilterBoxComponent from "./FilterBoxComponent";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
-import recentPostsData, { recentPostDataType, recentPostsDataType } from '../../layout/recentComponent/recentPostsData';
+import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
+import { useSearch, useScroll } from "../../../hooks";
 
 // style
 import '../../../styles/header.sass';
-import FilterBoxComponent from "./FilterBoxComponent";
 
 type HeaderComponentType = {
     path: string
+}
+
+type TagStateType = {
+    selected: string,
+    notSelected: string[]
 }
 
 const HeaderComponent = ({
     path
 }: HeaderComponentType) => {
 
-    const [scrollPosition, setScrollPosition] = React.useState<number>(0);
-
-    // focus event
-    const [filterFocus, setfilterFocus] = React.useState<boolean>(false);
+    const scrollPosition = useScroll();
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
-    const [searchedPosts, setSearchedPosts] = React.useState<recentPostsDataType>([]);
-
-    // filter tag
-    const [seletedTag, setSeletedTag] = React.useState<string>("");
-    const [notSeletedTags, setNotSeletedTags] = React.useState<string[]>(initialFilterKeyState);
-
-    // update scroll
-    React.useEffect(() => {
-        const updateScroll = () => {
-            setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-        }
-        window.addEventListener('scroll', updateScroll);
-    }, []);
-
-    // search functions
-    React.useEffect(() => {
-        const filteredPosts = recentPostsData.filter((data: recentPostDataType) =>
-            data.title.toUpperCase().includes(searchValue.toUpperCase()) && searchValue.length
-        )
-        setSearchedPosts(filteredPosts);
-    }, [searchValue])
+    const searchedPosts = useSearch(searchValue);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
     };
 
-    // notSeletedTags Tag Click Event
-    const tagClick = React.useCallback((tag: string) => {
-        let taglist: string[] = [...initialFilterKeyState];
-        var index: number = taglist.indexOf(tag);
-        if (index !== -1) {
-            taglist.splice(index, 1);
-        }
-        setNotSeletedTags([...taglist]);
-        setSeletedTag(tag);
+    // focus event
+    const [filterFocus, setfilterFocus] = React.useState<boolean>(false);
+
+    // filter tag
+    const [tag, setTag] = React.useState<TagStateType>({
+        selected: "",
+        notSelected: initialFilterKeyState
+    });
+
+    // Tag Click Event
+    const tagClick = React.useCallback((clickedTag: string) => {
+        setTag({
+            selected: clickedTag,
+            notSelected: [...initialFilterKeyState.filter((tag: string) => tag !== clickedTag)]
+        });
+        navigate(`/?f=${clickedTag}`);
     }, []);
 
-    // filter tags backup
     const reset = React.useCallback(() => {
-        setSeletedTag('');
-        setNotSeletedTags([...initialFilterKeyState]);
+        setTag({
+            selected: "",
+            notSelected: [...initialFilterKeyState]
+        });
+        navigate('/');
     }, []);
 
     return (
         <header className={path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
-                <Link to="../">
+                <Link to="/">
                     <div className="head box">
                         <img className="logo" src={LOGO_IMG_URL} alt="logo"></img>
                         <span>{LOGO_TEXT}</span>
@@ -94,15 +86,14 @@ const HeaderComponent = ({
                                                 <Link to={`/postitem/?name=${searchPost.filename}`} key={searchPost.id}>
                                                     <span>{searchPost.title}</span>
                                                 </Link>
-                                            ) :
-                                            <span>검색 결과가 없습니다.</span>
+                                            ) : <span>검색 결과가 없습니다.</span>
                                     }
                                 </div>
                             </div> : null
                     }
                 </div>
                 <div className="filter wrap">
-                    <div className="filter wrap" onClick={() => { setfilterFocus(isFocus => !isFocus) }}>
+                    <div className="filter wrap" onClick={() => { setfilterFocus(prev => !prev) }}>
                         {filterFocus ?
                             <div className="filter img click"></div>
                             : <div className="filter img"></div>
@@ -111,8 +102,8 @@ const HeaderComponent = ({
                     </div>
                     {filterFocus ?
                         <FilterBoxComponent
-                            seletedTag={seletedTag}
-                            notSeletedTags={notSeletedTags}
+                            seletedTag={tag.selected}
+                            notSeletedTags={tag.notSelected}
                             reset={reset}
                             tagClick={tagClick} />
                         : null

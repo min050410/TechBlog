@@ -11,7 +11,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "allowJs": true,
-    "outDir": "src/components/layout/codeblock.js",
+    "outDir": "src/components/layout/codeblock.tsx",
   },
   "include": [
     "./src/**/*",

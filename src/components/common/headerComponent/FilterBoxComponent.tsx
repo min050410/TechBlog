@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "gatsby";
 
 // style
 import '../../../styles/header.sass';
@@ -17,26 +16,26 @@ const FilterBoxComponent = ({
     notSeletedTags,
     tagClick
 }: HeaderComponentType) => {
-    
+
     return (
         <div className="filterBox">
             <div className="left">
-                <div>적용</div>
+                <div className="filterBox-title">적용</div>
                 {seletedTag &&
-                    <Link to={`/`}>
+                    <div className="tagBox">
                         <span onClick={reset}>
                             {seletedTag}
                         </span>
-                    </Link>
+                    </div>
                 }
             </div>
             <div className="right">
-                <div>태그 목록</div>
-                {notSeletedTags.map((tag: string) => (
-                    <Link to={`/?f=${tag}`}>
+                <div className="filterBox-title">태그 목록</div>
+                <div className="tagBox">
+                    {notSeletedTags.map((tag: string) => (
                         <span onClick={() => tagClick(tag)}>{tag}</span>
-                    </Link>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     )

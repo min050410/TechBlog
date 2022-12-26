@@ -104,7 +104,7 @@ vector<int> kmp(string s, string p) {
 			if (j == m-1) {
 				ans.push_back(i-m+1);
 				j = pi[j];
-			}else {
+			} else {
 				j++;
 			}
 		}
@@ -202,7 +202,7 @@ vector<int> kmp(string s, string p) {
 			if (j==m-1) {
 				ans.push_back(i-m+1);
 				j = pi[j];
-			}else {
+			} else {
 				j++;
 			}
 		}

@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import recentPostsData from './recentPostsData'
 
 // hooks
-import { useSearchParam } from "../../../hooks/useSearchParam";
+import { useSearchParam } from "../../../hooks";
 
 //styles
 import '../../../styles/recent.sass'
@@ -19,7 +19,6 @@ const RecentComponent = () => {
                 <div className="margin_post">
                     <div className="post">
                         <div className="left">
-                            {/* <Link to="postitem/" state={{ myProp: post.filename }}> */}
                             <div className="imgbox">
                                 <img
                                     src={require(`../../../../static/gradients/${post.id}.png`).default}

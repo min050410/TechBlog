@@ -6,5 +6,6 @@ export const initialFilterKeyState: string[] = [
     'react',
     'cpp',
     'java',
-    'sql'
+    'sql',
+    'gatsby'
 ];
