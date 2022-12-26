@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/oceanicNext';
 
 const Pre = styled.pre`
     text-align: left;
     margin: 1em 0;
-    padding: 0.8em 0.5em 0.5em 0.5em;
+    padding: 1em 2.5em 0.5em 0.5em;
     display: inline-block;  
 `;
 
@@ -24,17 +24,22 @@ const LineNo = styled.span`
 
 const LineContent = styled.span`
     display: table-cell;
+    padding: .15em;
 `;
 
-//code highlight
-const CodeBlock = ({ children, className }) => {
-    if (className) {
-        const language = className.replace(/language-/, '')
+type CodeBlockType = {
+    children: string,
+    className: string | undefined
+};
 
+//code highlight
+const CodeBlock = ({ children, className }: CodeBlockType) => {
+    if (className) {
+        const language: Language = className.replace(/language-/, '') as Language;
         return (
             <Highlight {...defaultProps} theme={theme} code={children} language={language}>
                 {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                    <Pre className={className} style={style} width="auto">
+                    <Pre className={className} style={style}>
                         {tokens.map((line, i) => (
                             <Line key={i} {...getLineProps({ line, key: i })}>
                                 {tokens[i + 1] ? <LineNo>{i + 1}</LineNo> : null}
@@ -48,8 +53,8 @@ const CodeBlock = ({ children, className }) => {
                     </Pre>
                 )}
             </Highlight>
-        )
-    }
+            )
+        }
     return null
 }
 

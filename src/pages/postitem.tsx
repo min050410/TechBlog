@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useReducer } from "react";
 import { MDXProvider } from "@mdx-js/react"
 import { Helmet } from 'react-helmet'
 
@@ -66,7 +65,7 @@ const Postimport: React.FC<PostimportProps> = ({ location }) => {
                 <HeaderComponent path={location.pathname} />
                 <div className="middle">
                     <div className="left">
-                        <MDXProvider components={{ code: CodeBlock }} >
+                        <MDXProvider components={{ code: CodeBlock }}>
                             <Postitem />
                         </MDXProvider>
                     </div>

@@ -3,6 +3,7 @@ import { Link, PageProps } from "gatsby";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import recentPostsData, { recentPostDataType, recentPostsDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
+import { useSearch, useScroll } from "../../../hooks";
 
 // style
 import '../../../styles/header.sass';
@@ -16,39 +17,25 @@ const HeaderComponent = ({
     path
 }: HeaderComponentType) => {
 
-    const [scrollPosition, setScrollPosition] = React.useState<number>(0);
+    const scrollPosition = useScroll();
 
     // focus event
     const [filterFocus, setfilterFocus] = React.useState<boolean>(false);
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
-    const [searchedPosts, setSearchedPosts] = React.useState<recentPostsDataType>([]);
 
     // filter tag
     const [seletedTag, setSeletedTag] = React.useState<string>("");
     const [notSeletedTags, setNotSeletedTags] = React.useState<string[]>(initialFilterKeyState);
-
-    // update scroll
-    React.useEffect(() => {
-        const updateScroll = () => {
-            setScrollPosition(window.scrollY || document.documentElement.scrollTop);
-        }
-        window.addEventListener('scroll', updateScroll);
-    }, []);
-
-    // search functions
-    React.useEffect(() => {
-        const filteredPosts = recentPostsData.filter((data: recentPostDataType) =>
-            data.title.toUpperCase().includes(searchValue.toUpperCase()) && searchValue.length
-        )
-        setSearchedPosts(filteredPosts);
-    }, [searchValue])
-
+    
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
     };
-
+    
+    // search functions
+    const searchedPosts = useSearch(searchValue);
+    
     // notSeletedTags Tag Click Event
     const tagClick = React.useCallback((tag: string) => {
         let taglist: string[] = [...initialFilterKeyState];
