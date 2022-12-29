@@ -1,0 +1,106 @@
+# React에서 setInterval의 한계점
+
+### 개요
+
+setInterval은 React의 수명주기에 맞지 않는 코드입니다.
+
+props나 state가 바뀌면 리액트가 리랜더링을 하게 됩니다.  
+하지만 setInterval은 랜더와 관계없이 계속 살아남기 때문에 생명주기에 맞지 않습니다.
+
+react는 리랜더링을 하면서 이전의 render된 내용들을 다 잊고 새로 그리게 되는데, setInterval은 그렇지 않습니다.  
+따라서 이 문제점을 해결할려면 따로 커스텀 훅이 필요합니다.
+
+### React의 생명주기 (LifeCycle)
+
+react 생명주기는 마운트 -> 업데이트 -> 언마운트 순으로 진행됩니다.
+
+<img width="100%" src="https://cdn.filestackcontent.com/ApNH7030SAG1wAycdj3H"></img>
+
+
+### Mount 
+
+컴포넌트가 처음 실행될 때 그것을 Mount라고 표현합니다.  
+컴포넌트가 시작되면 우선 context, defaultProps와 state를 저장합니다.  
+그리고 render로 컴포넌트를 DOM에 부착합니다.
+
+1. state, context, defaultProps 저장
+2. componentWillMount
+3. render
+4. componentDidMount
+
+### Update
+
+Props 업데이트와 State 업데이트로 나뉩니다.  
+
+#### Props Update : props가 업데이트될 때의 과정입니다.
+
+1. componentWillReceiveProps
+2. shouldComponentUpdate
+3. componentWillUpdate
+4. render
+5. componentDidUpdate
+
+shouldcomponentUpdate에서는 아직 render전이기 때문에 조건에 따라 render를 취소할 수 있습니다.  
+주로 성능 최적화가 여기서 일어납니다.
+
+#### State Update : setState 호출을 통해 state가 업데이트될 때의 과정입니다.
+
+1. shouldComponentUpdate
+2. componentWillUpdate
+3. render
+4. componentDidUpdate
+
+### Unmount
+
+컴포넌트가 제거되는 것은 Unmount라고 표현합니다.  
+Unmount에서는 mount때와 다르게 componentDidUnmount는 없습니다.   
+이미 제거된 컴포넌트에서 이벤트를 발생시킬 수 없기 때문입니다.
+
+1. componentWillUnmount
+
+### useInterval Custom Hook
+
+```typescript
+import { useEffect, useRef } from "react";
+
+interface IUseInterval {
+    (callback: () => void, interval: number): void;
+}
+  
+const useInterval: IUseInterval = (callback, interval) => {
+    const savedCallback = useRef<(() => void) | null>(null);    
+    
+    useEffect(() => {
+        savedCallback.current = callback;
+    });
+  
+    useEffect(() => {
+        function tick() { 
+            if (savedCallback.current) {
+                savedCallback.current();
+        }
+    }
+    let id = setInterval(tick, interval);
+    return () => clearInterval(id);
+    }, [interval]);
+};
+
+export default useInterval;
+
+```
+
+8번 줄 : callBack함수를 저장할 savedCallback을 정의합니다.  
+10번 줄 useEffect : callback이 바뀔때마다 업데이트합니다.  
+11번 줄 : savedCallback.current에 Callback함수를 저장합니다.  
+15번 tick 함수 : tick함수가 한번 실행 될 때 callback함수를 실행합니다.  
+16번 if 문 : 만약 현재 callback 함수가 있으면 실행합니다.  
+20번 줄 : interval에 맞춰 tick함수를 실행합니다.  
+21번 줄 : 컴포넌트가 언마운트될 때 clearInterval을 해줍니다.
+
+### Hook 요약
+
+setInterval을 통해 tick 함수를 실행하고 컴포넌트가 언마운트 되기 전에  
+반복을 중단하는 함수인 clearInterval을 실행하였습니다.  
+
+따라서 이 훅은 리액트의 생명 주기에 딱 알맞는 훅이라고 할 수 있습니다.  
+React에서 이 훅을 사용해 생명주기에 맞춰 애니메이션 등을 적용할 수 있습니다.
