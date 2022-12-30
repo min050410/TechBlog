@@ -252,7 +252,7 @@ const recentPostsData: recentPostsDataType = [
     },
     {
         id: 20,
-        title: '2022년 회고와 앞으로의 목표 (1)',
+        title: '2022년 회고와 앞으로의 목표',
         filename: 'Review2022',
         date: '2022-12-29',
         imgLineOne: '2022',
@@ -261,19 +261,7 @@ const recentPostsData: recentPostsDataType = [
         tag2: '',
         tag3: '',
         filter: ''
-    },
-    {
-        id: 21,
-        title: '2022년 회고와 앞으로의 목표 (2)',
-        filename: 'Review2022',
-        date: '2022-12-29',
-        imgLineOne: '2022',
-        imgLineTwo: 'Review',
-        tag: '',
-        tag2: '',
-        tag3: '',
-        filter: ''
-    },
+    }
 ];
 
 export default recentPostsData;
