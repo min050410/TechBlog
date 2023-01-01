@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
 
 //components
-import SEOComponent from "../components/common/seoComponent/SEOComponet"
-import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
-import PostComment from '../components/layout/comment'
-import PopularComponent from '../components/layout/popularComponent/PopularComponent'
-import RecentComponent from '../components/layout/recentComponent/RecentComponent'
+import SEOComponent from "../components/common/seoComponent/SEOComponet";
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent';
+import PostComment from '../components/layout/comment';
+import PopularComponent from '../components/layout/popularComponent/PopularComponent';
+import RecentComponent from '../components/layout/recentComponent/RecentComponent';
 
 const IndexPage = () => {
 

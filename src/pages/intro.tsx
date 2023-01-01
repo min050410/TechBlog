@@ -2,11 +2,11 @@ import * as React from "react";
 import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
 
 //components
-import SEOComponent from "../components/common/seoComponent/SEOComponet"
-import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
+import SEOComponent from "../components/common/seoComponent/SEOComponet";
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent';
 
 //style
-import "../styles/intro.sass"
+import "../styles/intro.sass";
 import { HIT_BADGE_URL, HIT_URL } from "../constant/constant";
 
 const Intro = () => {

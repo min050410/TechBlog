@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Link } from 'gatsby';
-import recentPostsData from './recentPostsData'
+import recentPostsData from './recentPostsData';
 
 // hooks
 import { useSearchParam } from "../../../hooks";
 
 //styles
-import '../../../styles/recent.sass'
+import '../../../styles/recent.sass';
 
 const RecentComponent = () => {
     const filter = useSearchParam("f");
