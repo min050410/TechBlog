@@ -1,4 +1,5 @@
 import * as React from "react";
+import loadable, { LoadableClassComponent } from '@loadable/component'
 import { MDXProvider } from "@mdx-js/react"
 import { Helmet } from 'react-helmet'
 import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
@@ -20,13 +21,15 @@ const PostItemPage = () => {
     const filename = useSearchParam('name');
     const pageTitle = useTitle(filename)
 
-    const [PostItem, setPostItem] = React.useState<React.LazyExoticComponent<React.ComponentType<any>>>(React.lazy(() =>
+    const [PostItem, setPostItem] = React.useState<LoadableClassComponent<any>>(loadable(() =>
         import(`../docs/${"Cors"}.mdx`)
     ));
 
     React.useEffect(() => {
-        const PostItem = React.lazy(() =>
-            import(`../docs/${filename}.mdx`)
+        const PostItem = loadable(() =>
+            import(`../docs/${filename}.mdx`), {
+                fallback: <div>로딩중..</div>
+            }
         );
         setPostItem(PostItem);
     }, [filename])
@@ -42,11 +45,9 @@ const PostItemPage = () => {
             <HeaderComponent headerType={HeaderType.NOT_FIXED} />
             <div className="middle">
                 <div className="left">
-                    <React.Suspense fallback={<div>loading...</div>}>
-                        <MDXProvider components={{ code: CodeBlock }}>
-                            <PostItem />
-                        </MDXProvider>
-                    </React.Suspense>
+                    <MDXProvider components={{ code: CodeBlock }}>
+                        <PostItem />
+                    </MDXProvider>
                 </div>
             </div>
             <PostComment key={filename}/>
