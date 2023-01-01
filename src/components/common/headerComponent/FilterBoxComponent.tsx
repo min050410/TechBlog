@@ -12,8 +12,8 @@ type HeaderComponentType = {
 
 const FilterBoxComponent = ({
     seletedTag,
-    reset,
     notSeletedTags,
+    reset,
     tagClick
 }: HeaderComponentType) => {
 
