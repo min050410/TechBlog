@@ -1,16 +1,17 @@
 import * as React from "react";
 import { Link, navigate } from "gatsby";
-import FilterBoxComponent from "./FilterBoxComponent";
-import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
+import { HeaderType } from "./headerTypeEnum";
 import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
+import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import { useSearch, useScroll } from "../../../hooks";
+import FilterBoxComponent from "./FilterBoxComponent";
 
 // style
 import '../../../styles/header.sass';
 
 type HeaderComponentType = {
-    path: string
+    headerType: HeaderType.FIXED | HeaderType.NOT_FIXED
 }
 
 type TagStateType = {
@@ -19,7 +20,7 @@ type TagStateType = {
 }
 
 const HeaderComponent = ({
-    path
+    headerType
 }: HeaderComponentType) => {
 
     const scrollPosition = useScroll();
@@ -59,7 +60,7 @@ const HeaderComponent = ({
     }, []);
 
     return (
-        <header className={path == '/postitem' ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
+        <header className={headerType ===  HeaderType.NOT_FIXED ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
                 <Link to="/">
                     <div className="head box">

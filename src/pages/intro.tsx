@@ -1,25 +1,19 @@
 import * as React from "react";
+import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
 
 //components
-import SEOComponent from "../components/common/seoComponent/SEOComponet"
-import HeaderComponent from '../components/common/headerComponent/HeaderComponent'
+import SEOComponent from "../components/common/seoComponent/SEOComponet";
+import HeaderComponent from '../components/common/headerComponent/HeaderComponent';
 
 //style
-import "../styles/intro.sass"
+import "../styles/intro.sass";
 import { HIT_BADGE_URL, HIT_URL } from "../constant/constant";
 
-type IntroPageType = {
-    location: {
-        search: string | null, 
-        pathname: string
-    }
-}
-
-const Intro: React.FC<IntroPageType> = ({ location }) => {
+const Intro = () => {
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
-            <HeaderComponent path={location.pathname} />
+            <HeaderComponent headerType={HeaderType.NOT_FIXED} />
             <div className="moveto">
                 <div><a href="#hi">📑 intro</a></div>
                 <div><a href="#skill">🏹 Skill + Tool</a></div>

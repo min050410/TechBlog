@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import Highlight, { defaultProps, Language } from 'prism-react-renderer'
+import React from 'react';
+import styled from 'styled-components';
+import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import theme from 'prism-react-renderer/themes/oceanicNext';
 
 const Pre = styled.pre`

@@ -4,7 +4,8 @@ import { Link } from "gatsby"
 // styles
 const pageStyles = {
   color: "#232129",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  padding: "96px",
+  fontFamily: "-apple-s'ystem, Roboto, sans-serif, serif",
 }
 const headingStyles = {
   marginTop: 0,
