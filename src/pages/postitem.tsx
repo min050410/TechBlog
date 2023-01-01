@@ -18,8 +18,16 @@ const PostItemPage = () => {
     const filename = useSearchParam('name');
     const pageTitle = useTitle(filename);
 
-    //postitem dynamic import
-    const Postitem = require(`../docs/${filename}.mdx`).default;
+    const [PostItem, setPostItem] = React.useState<React.LazyExoticComponent<React.ComponentType<any>>>(React.lazy(() =>
+        import(`../docs/${"Cors"}.mdx`)
+    ))
+
+    React.useEffect(() => {
+        const PostItem = React.lazy(() =>
+            import(`../docs/${filename}.mdx`)
+        );
+        setPostItem(PostItem);
+    }, [filename]);
 
     return (
         <main>
@@ -32,9 +40,11 @@ const PostItemPage = () => {
             <HeaderComponent path={location.pathname} />
             <div className="middle">
                 <div className="left">
-                    <MDXProvider components={{ code: CodeBlock }}>
-                        <Postitem />
-                    </MDXProvider>
+                    <React.Suspense fallback={<div>loading...</div>}>
+                        <MDXProvider components={{ code: CodeBlock }}>
+                            <PostItem />
+                        </MDXProvider>
+                    </React.Suspense>
                 </div>
             </div>
             <PostComment key={filename}/>
