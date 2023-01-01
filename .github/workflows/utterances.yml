@@ -1,0 +1,14 @@
+on:
+  issues:
+    types: [opened]
+jobs:
+  titlePrefixCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event.issue.user.login == 'utterances-bot'
+        name: Auto Close Utterances Issue
+        uses: peter-evans/close-issue@v2
+        with:
+          comment: |
+            Utterances issue should be closed.
+            Auto-closing this issue.
