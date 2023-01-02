@@ -1,3 +1,4 @@
+name: Auto Close Utterances Issue
 on:
   issues:
     types: [opened]
@@ -8,7 +9,3 @@ jobs:
       - if: github.event.issue.user.login == 'utterances-bot'
         name: Auto Close Utterances Issue
         uses: peter-evans/close-issue@v2
-        with:
-          comment: |
-            Utterances issue should be closed.
-            Auto-closing this issue.
