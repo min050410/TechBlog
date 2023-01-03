@@ -15,6 +15,7 @@ const DarkModeSwichComponent = () => {
     React.useEffect(() => {
         document.documentElement.setAttribute('theme', colorMode);
         window.localStorage.setItem('color-mode', colorMode);
+        document.documentElement.removeAttribute('style');
     }, [colorMode])
 
     return (

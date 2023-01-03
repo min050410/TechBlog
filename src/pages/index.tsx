@@ -11,10 +11,6 @@ import RecentComponent from '../components/layout/recentComponent/RecentComponen
 
 const IndexPage = () => {
 
-  useEffect(() => {
-    document.documentElement.lang = 'kr';
-  }, []);
-
   return (
     <main>
       <SEOComponent title="Dev Log | Main" />
