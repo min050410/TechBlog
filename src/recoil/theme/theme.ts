@@ -1,18 +1,18 @@
 import { atom } from 'recoil';
 
 const getInitialColorMode = () => {
-    const persistedColorPreference = window.localStorage.getItem('color-mode');
 
+    const isClient = () => typeof window !== "undefined"
+
+    const persistedColorPreference = isClient() && window.localStorage.getItem('color-mode');
     if (persistedColorPreference) {
         return persistedColorPreference;
     }
-
     const systemPreference = window.matchMedia('(prefers-color-scheme: dark)');
     if (systemPreference.matches) {
         return 'dark';
     }
     return 'light';
-    
 }
 
 const themeColorState = atom({
