@@ -34,14 +34,14 @@ body
     width: 100%
     margin: 170px auto 80px
     a
-        color: $a
+        color: var(--color-a)
         font-size: 16px
     a:hover
-        text-decoration: underline $a
+        text-decoration: underline var(--color-a)
 
 strong
     display: inline-block
-    background-color: $gray4
+    background-color: var(--color-background-tag)
     border-radius: 15px
     font-family: Noto sans
     font-weight: 300
@@ -50,6 +50,7 @@ strong
     height: 20px
     margin-left: 10px
     padding: 0px 8px 4px 8px
+    color: var(--color-tag-color)
 
 h1,h2,h3,h4,h5 
   font-family: 'NanumBarunGothic'
@@ -88,17 +89,17 @@ p,li
   font-family: 'NanumBarunGothic'
   font-size: 16px
   font-weight: 500
-  color: $gray1
+  color: var(--color-p)
 
 blockquote 
   display: inline-block
   margin: 18px 0px 0px 0px
   padding: 4px 24px
-  border-left: 5px solid $gray7
+  border-left: 5px solid var(--color-blockquote)
 
 blockquote p 
   margin: 4px 0px
-  color: $gray3
+  color: var(--color-blockquote-p)
 
 /* 스크롤바 설정*/
 pre::-webkit-scrollbar
@@ -135,7 +136,7 @@ ul
     line-height: 1.5rem
 del
   font-family: 'NanumBarunGothic'
-  color: $gray1
+  color: var(--color-del)
   text-decoration: line-through
   font-size: 16px
 code
@@ -143,8 +144,9 @@ code
   padding: 0.2em 0.5em
   margin: 5px
   font-size: 0.8em
-  background: $gray6
+  background: var(--color-code)
   border-radius: 5px
+  color: var(--color-code-p)
 
 @include mobile
   p, li 
@@ -173,7 +175,6 @@ code
   blockquote 
     padding-left: 10px
     margin: 5px 10px 5px 0px
-    border-left: 3.5px solid $gray5
   ol,
   ul 
     padding-left: 0.8em

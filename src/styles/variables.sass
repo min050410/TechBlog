@@ -1,4 +1,4 @@
-// darkmode 
+// common
 $default: #1C1C1e
 $white: #ffffff
 $gray1: #C9D1D9
@@ -8,16 +8,24 @@ $gray4: #636366
 $gray5: #4d535c
 $gray6: #353942
 $gray7: #30363d
-$a: #96f2d7
-$dark-hover: #4B4B4D
-$dark-box-shadow: none
 
 // whitemode
 $light-text: #212121
 $light-hover: #f3f3f3
 $light-placeholder: #747474
 $light-border: rgba(0, 0, 0, 0.2)
+$light-a: #0065fe
+$light-tag: #f5f5f5
+$light-tag-color: #616161
+$light-p: #212121
+$light-code: #F8F8F8
+$light-code-p: #444444
 $light-box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24)
+
+// darkmode
+$dark-a: #96f2d7
+$dark-hover: #4B4B4D
+$dark-box-shadow: none
 
 // Breakpoints
 $breakpoint-mobile: 0px
@@ -30,19 +38,37 @@ $breakpoint-desktop: 1200px
   --color-default: #{$default}
   --color-hover: #{$dark-hover}
   --color-tag: #{$gray4}
+  --color-background-tag: #{$gray4}
   --color-placeholder: #{$gray2}
   --color-border: #{$gray4}
+  --color-a: #{$dark-a}
+  --color-tag-color: #{$white}
+  --color-blockquote: #{$gray7}
+  --color-blockquote-p: #{$gray3}
+  --color-p: #{$gray1}
+  --color-code: #{$gray6}
+  --color-code-p: #{$white}
+  --color-del: #{$gray1}
   --box-shadow: #{$dark-box-shadow}
-  
 
 [theme="light"]
   --color-font-default: #{$light-text}
   --color-default: #{$white}
   --color-hover: #{$light-hover}
   --color-tag: #{$white}
+  --color-background-tag: #{$light-tag}
   --color-placeholder: #{$light-placeholder}
-  --color-border: rgba(0, 0, 0, 0.2)
+  --color-border: #{$light-border}
+  --color-a: #{$light-a}
+  --color-p: #{$light-p}
+  --color-tag-color: #{$light-tag-color}
+  --color-blockquote: #{$light-placeholder}
+  --color-blockquote-p: #{$light-placeholder}
+  --color-code: #{$light-code}
+  --color-code-p: #{$light-code-p}
+  --color-del: #{$light-p}
   --box-shadow: #{$light-box-shadow}
+
 
 @mixin mobile 
   @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-smallTablet - 1px) 
