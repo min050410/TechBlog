@@ -13,18 +13,23 @@ const DarkModeSwichComponent = () => {
     }
 
     React.useEffect(() => {
-        if (typeof colorMode !== 'undefined') {
-            document.documentElement.setAttribute('theme', colorMode);
-            window.localStorage.setItem('color-mode', colorMode);
-            document.documentElement.removeAttribute('style');
-        }
+        document.documentElement.setAttribute('theme', colorMode);
+        window.localStorage.setItem('color-mode', colorMode);
+        document.documentElement.removeAttribute('style');
     }, [colorMode])
 
-    return (
-        <div 
+    // colorMode가 바뀌었을 때 rendering
+    const SwitchEl = React.useMemo(() => 
+        <div
             className={colorMode === 'dark' ? 'mod-dark' : 'mod-white'}
             onClick={darkModeHandling}>
             <div className="circle"></div>
+        </div>
+    , [colorMode])
+
+    return (
+        <div>
+            { SwitchEl }
         </div>
     )
 }
