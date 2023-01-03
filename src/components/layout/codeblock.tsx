@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { themeColorState } from '../../recoil/theme/theme';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/oceanicNext';
+import darkTheme from 'prism-react-renderer/themes/oceanicNext';
+import lightTheme from 'prism-react-renderer/themes/github'
 
 const Pre = styled.pre`
     text-align: left;
@@ -34,10 +37,14 @@ type CodeBlockType = {
 
 //code highlight
 const CodeBlock = ({ children, className }: CodeBlockType) => {
+
+    const theme = useRecoilValue(themeColorState);
+    const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
     if (className) {
         const language: Language = className.replace(/language-/, '') as Language;
         return (
-            <Highlight {...defaultProps} theme={theme} code={children} language={language}>
+            <Highlight {...defaultProps} theme={themeMode} code={children} language={language}>
                 {({ className, style, tokens, getLineProps, getTokenProps }) => (
                     <Pre className={className} style={style}>
                         {tokens.map((line, i) => (

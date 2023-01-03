@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { useSearchParam } from '../../hooks';
 import { themeColorState } from '../../recoil/theme/theme';
 
