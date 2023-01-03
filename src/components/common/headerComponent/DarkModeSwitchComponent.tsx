@@ -13,13 +13,16 @@ const DarkModeSwichComponent = () => {
     }
 
     React.useEffect(() => {
-        document.documentElement.setAttribute('theme', colorMode);
-        window.localStorage.setItem('color-mode', colorMode);
-        document.documentElement.removeAttribute('style');
+        if (typeof colorMode !== 'undefined') {
+            document.documentElement.setAttribute('theme', colorMode);
+            window.localStorage.setItem('color-mode', colorMode);
+            document.documentElement.removeAttribute('style');
+        }
     }, [colorMode])
 
     return (
-        <div className={colorMode === 'dark' ? 'mod-dark' : 'mod-white'}
+        <div 
+            className={colorMode === 'dark' ? 'mod-dark' : 'mod-white'}
             onClick={darkModeHandling}>
             <div className="circle"></div>
         </div>

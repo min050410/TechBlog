@@ -1,9 +1,8 @@
-import { atom } from 'recoil';
+import { atom, RecoilState } from 'recoil';
 
 const getInitialColorMode = () => {
 
     const isClient = typeof window !== "undefined"
-
     if (isClient) {
         const persistedColorPreference = window.localStorage.getItem('color-mode');
         if (persistedColorPreference) {
@@ -15,10 +14,11 @@ const getInitialColorMode = () => {
         }
         return 'light';
     }
+    return 'dark';
 
 }
 
-const themeColorState = atom({
+const themeColorState: RecoilState<string> = atom({
     key: 'initialColorMode',
     default: getInitialColorMode(),
 });
