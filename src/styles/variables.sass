@@ -9,11 +9,11 @@ $gray5: #4d535c
 $gray6: #353942
 $gray7: #30363d
 
-// whitemode
+// lightmode
 $light-text: #212121
 $light-hover: #f3f3f3
 $light-placeholder: #747474
-$light-border: rgba(0, 0, 0, 0.2)
+$light-border: #cccccc
 $light-a: #0065fe
 $light-tag: #f5f5f5
 $light-tag-color: #616161
@@ -21,11 +21,15 @@ $light-p: #212121
 $light-code: #F8F8F8
 $light-code-p: #444444
 $light-box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24)
+$light-filter: brightness(0) saturate(100%)
+$light-logo-display: none
 
 // darkmode
 $dark-a: #96f2d7
 $dark-hover: #4B4B4D
 $dark-box-shadow: none
+$dark-filter: none
+$dark-logo-display: inline
 
 // Breakpoints
 $breakpoint-mobile: 0px
@@ -50,6 +54,8 @@ $breakpoint-desktop: 1200px
   --color-code-p: #{$white}
   --color-del: #{$gray1}
   --box-shadow: #{$dark-box-shadow}
+  --filter: #{$dark-filter}
+  --logo-display: #{$dark-logo-display}
 
 [theme="light"]
   --color-font-default: #{$light-text}
@@ -68,6 +74,8 @@ $breakpoint-desktop: 1200px
   --color-code-p: #{$light-code-p}
   --color-del: #{$light-p}
   --box-shadow: #{$light-box-shadow}
+  --filter: #{$light-filter}
+  --logo-display: #{$light-logo-display}
 
 
 @mixin mobile 

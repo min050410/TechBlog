@@ -47,6 +47,7 @@
     .logo
         background-size: cover
         margin-bottom: 4px
+        display: var(--logo-display)
         width: 45px
         height: 35px
     span
@@ -81,6 +82,7 @@
     span:hover
         background-color: var(--color-hover)
     .mod-white
+        cursor: pointer
         display: flex
         align-items: center
         width: 60px
@@ -97,6 +99,9 @@
         .circle
             transform: translateX(100%)
             @extend %circle
+
+.head.content > :nth-child(1) 
+    display: none
 
 .head.index
     display: flex
@@ -179,9 +184,9 @@
 @keyframes fadeInDown
     0%
         opacity: 0
-        transform: translate3d(0, -5%, 0)
-    to 
-        opacity: 90%
+        transform: translate3d(0, -10%, 0)
+    to
+        opacity: 1
         transform: translateZ(0)
 
 .filter.wrap
@@ -192,6 +197,7 @@
         background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
         background-size: contain
         background-repeat: no-repeat
+        filter: var(--filter)
         width: 20px
         height: 15px
         background-size: cover
@@ -202,14 +208,13 @@
         font-family: 'Spoqa Han Sans Neo', Noto Sans
         font-size: 16px
     .filterBox
-        animation: fadeInDown 1s
+        animation: fadeInDown .5s
         position: absolute
         top: 50px
         width: 340px
         height: 170px
         background-color: var(--color-default)
         border: 1.5px solid var(--color-border)
-        opacity: 90%
         border-radius: 20px
         z-index: 2
         display: flex
@@ -239,8 +244,8 @@
             height: 1.5em
             padding: 0.1em 0.5em
             font-size: 0.55em
-            background: var(--color-tag)
-            border: 1px solid var(--color-border)
+            background: var(--color-background-tag)
+            color: var(--color-tag-color)
             border-radius: 30px
             cursor: pointer
 

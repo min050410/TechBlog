@@ -7,7 +7,12 @@ const getInitialColorMode = () => {
         return persistedColorPreference;
     }
 
-    return 'dark';
+    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)');
+    if (systemPreference.matches) {
+        return 'dark';
+    }
+    return 'light';
+    
 }
 
 const themeColorState = atom({
