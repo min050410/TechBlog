@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useRecoilState } from "recoil";
-import { initialColorMode } from "../../../recoil/theme/theme";
+import { themeColorState } from "../../../recoil/theme/theme";
 
 // style
 import '../../../styles/header.sass';
 
 const DarkModeSwichComponent = () => {
-    const [colorMode, setColorMode] = useRecoilState(initialColorMode);
+    const [colorMode, setColorMode] = useRecoilState(themeColorState);
 
     const darkModeHandling = () => {
         setColorMode(colorMode === 'dark' ? 'light' : 'dark');

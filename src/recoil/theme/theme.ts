@@ -10,9 +10,9 @@ const getInitialColorMode = () => {
     return 'dark';
 }
 
-const initialColorMode = atom({
+const themeColorState = atom({
     key: 'initialColorMode',
     default: getInitialColorMode(),
 });
 
-export { initialColorMode };
+export { themeColorState };
