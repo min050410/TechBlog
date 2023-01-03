@@ -18,7 +18,7 @@
 .recent_content
     // padding-bottom: 10px
     margin: 0px 150px 0px 130px
-    border-bottom: 1px solid $gray4
+    border-bottom: 1px solid var(--color-border)
 
 .margin_post
     margin: 10px 0px
@@ -35,7 +35,7 @@
         display: flex
 
 .post:hover
-    background-color: rgb(75, 75, 77)
+    background-color: var(--color-hover)
 
 #text_group
     margin-left: 20px
@@ -61,6 +61,7 @@
     width: 160px
     border-radius: 15px
     height: 100px
+    box-shadow: var(--box-shadow)
 
 .img-text-one
     position: absolute
@@ -83,7 +84,8 @@
 
 .post span
     display: inline-block
-    background-color: $gray4
+    background-color: var(--color-tag)
+    border: 1px solid var(--color-border)
     border-radius: 10px
     font-family: Noto sans
     font-weight: 300

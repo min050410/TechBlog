@@ -6,6 +6,7 @@ import { initialFilterKeyState } from "./filterKey";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import { useSearch, useScroll } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
+import DarkModeSwichComponent from "./DarkModeSwitchComponent";
 
 // style
 import '../../../styles/header.sass';
@@ -121,9 +122,7 @@ const HeaderComponent = ({
                 <Link to="/login">
                     <span>Github 로그인</span>
                 </Link>
-                {/* <div className="mod">
-                    <div className="circle"></div>
-                </div> */}
+                <DarkModeSwichComponent />
             </div>
         </header>
     )

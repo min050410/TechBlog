@@ -1,12 +1,25 @@
 // entire style
 @import "variables"
 
-@font-face 
+@font-face
   src: url("../../static/font/NanumSquareR.ttf") format("truetype")
 
 body
+  overflow-x: hidden
   margin-top: 120px
-  background-color: $default
+  background-color: var(--color-default)
+
+body::-webkit-scrollbar
+  width: 6px
+  height: 5px
+
+body::-webkit-scrollbar-thumb
+  height: 30
+  background: $default
+  border-radius: 2rem
+
+body::-webkit-scrollbar-track
+  background: #808080
 
 *
   font-size: 1.125rem
@@ -21,24 +34,17 @@ body
   width: 0px
 
 // animation
-.fade_in 
-    animation: fadein 1.5s ease 0s 1 normal both running
+.fade_in
+  animation: fadein 1.5s ease 0s 1 normal both running
 
-@keyframes fadein 
-    from
-        transform: scale(0.97)
-        opacity: 0 
-    to
-        transform: scale(1)
-        opacity: 1
+@keyframes fadein
+  from
+    transform: scale(0.97)
+    opacity: 0
+  to
+    transform: scale(1)
+    opacity: 1
 
 @include mobile
-    body
-        margin-top: 80px
-
-
-
-
-    
-    
-
+  body
+    margin-top: 80px

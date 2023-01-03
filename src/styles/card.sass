@@ -25,26 +25,28 @@
     border-radius: 15px
     transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
     will-change: background-color
+    &:hover
+        background-color: var(--color-hover)
+    h3
+        font-family: 'NanumBarunGothic'
+        font-weight: 500
+        font-size: 17px
+        margin-top: 10px
     .imgbox
         position: relative
-        transition: 1s
         img
             width: 160px
             height: 100px
             border-radius: 15px
+            box-shadow: var(--box-shadow)
         .recent-img-text-one
             left: 7%
             top: 15%
             z-index: 1
             position: absolute
         .recent-img-text-two
-            left: 7%
+            @extend .recent-img-text-one
             top: 40%
-            z-index: 1
-            position: absolute
-
-.card:hover 
-    background-color: rgb(75, 75, 77)
 
 .recent-img-text-one > p, .recent-img-text-two > p
     font-family: 'Noto Sans'
@@ -52,12 +54,6 @@
     font-size: 20px
     font-weight: 700
     text-align: left
-
-.card h3
-    font-family: 'NanumBarunGothic'
-    font-weight: 500
-    font-size: 17px
-    margin-top: 10px
 
 @include mobile
     .container

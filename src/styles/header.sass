@@ -4,8 +4,9 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css)
 
 @import "variables"
+
 *
-    color: $white
+    color: var(--color-font-default)
 
 @font-face
     src: url("../../static/font/NanumSquareR.ttf") format("truetype")
@@ -14,43 +15,40 @@
 @mixin header
     top: 0
     z-index: 1
-    background-color: $default
+    background-color: var(--color-default)
     display: flex
     flex-wrap: wrap
+    padding: 10px 20px
+    width: 100%
     justify-content: center
     justify-content: space-between
 
 .notfixed
     @include header
-    margin: 20px 20px
-    width: calc(100% - 40px)
     position: absolute
+    margin-top: 12px
 
 .original
     @include header
     position: fixed
-    width: 100%
-    transform: translateY(10px)
+    transform: translateY(12px)
     transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s
-    padding: 10px 20px
 
 .change
     @include header
     position: fixed
     transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s
     transform: translateY(0px)
-    border-bottom: 1px solid $gray4
-    width: 100%
-    padding: 10px 20px
+    border-bottom: 1px solid var(--color-border)
 
 .head.box
     display: flex
     align-items: center
     .logo
+        background-size: cover
         margin-bottom: 4px
         width: 45px
         height: 35px
-        background-size: cover
     span
         font-family: Noto Sans
         font-weight: bold
@@ -58,12 +56,21 @@
         margin-left: 0.3em
         letter-spacing: 2px
 
+%circle
+    background-image: url(https://user-images.githubusercontent.com/45661217/146485076-5d9e6a3a-dc25-433c-bc28-f077c483ad6d.png)
+    background-size: contain
+    background-repeat: no-repeat
+    width: 30px
+    height: 30px
+
 .head.content
     display: flex
     align-items: center
     gap: 30px
     margin-right: 60px
     span
+        display: flex
+        aligin-items: center
         font-family: 'Spoqa Han Sans Neo', Noto Sans
         font-size: 16px
         padding: 7px 10px
@@ -72,22 +79,24 @@
         transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
         will-change: background-color
     span:hover
-        background-color: rgb(75, 75, 77)
-    // 하드코딩 나중에 수정
-    .mod
-        position: relative
+        background-color: var(--color-hover)
+    .mod-white
+        display: flex
+        align-items: center
+        width: 60px
+        height: 30px
         background-image: url(https://user-images.githubusercontent.com/45661217/146483843-3e796322-47aa-4fba-833d-7401512a805c.png)
-        width: 81px
-        height: 41px
-        margin-left: 10px
+        background-size: contain
+        background-repeat: no-repeat
         .circle
-            position: absolute
-            background-image: url(https://user-images.githubusercontent.com/45661217/146485076-5d9e6a3a-dc25-433c-bc28-f077c483ad6d.png)
-            width: 34px
-            height: 34px
-            transform: translateY(-50%)
-            top: 50%
-            left: 0.2em
+            @extend %circle
+            transform: translateX(-5%)
+            transition: transform 0.5s ease 0s
+    .mod-dark
+        @extend .mod-white
+        .circle
+            transform: translateX(100%)
+            @extend %circle
 
 .head.index
     display: flex
@@ -104,13 +113,13 @@
     height: 20px
     border-image: none
     border-style: none
-    background-color: $gray4
+    background-color: var(--color-tag)
 
 .search-input:focus
     outline: none
 
 .search-input::placeholder
-    color: $gray2
+    color: var(--color-placeholder)
     font-size: 15px
     transform: translate(0%, 10%)
 
@@ -120,14 +129,14 @@
     padding: 10px 16px
     width: 270px
     height: 15px
-    background-color: $gray4
+    border: 1px solid var(--color-border)
+    background-color: var(--color-tag)
     border-radius: 30px
-    border-color: $gray4 !important
     background-image: url(https://user-images.githubusercontent.com/45661217/145702560-4a375749-e726-49ff-b6e1-f1bd1279a402.png)
     background-repeat: no-repeat
     background-position: 10px center
 
-@mixin roundFont
+@mixin Tag
     display: inline-block
     border-radius: 20px
     height: 25px
@@ -138,10 +147,10 @@
 
 .searchBox
     position: absolute
-    top: 33px
+    top: 36px
     width: 285px
-    background-color: $default
-    border: 1.5px solid $gray4
+    background-color: var(--color-default)
+    border: 1.5px solid var(--color-border)
     opacity: 80%
     border-radius: 20px
     z-index: 2
@@ -151,21 +160,29 @@
         flex-direction: column
         justify-content: space-between
         a
-            @include roundFont
+            @include Tag
             height: 1.7em
             padding: 3px 10px 0px 10px
             transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
             will-change: background-color
-        a:hover
-            background-color: rgb(75, 75, 77)
-        a > span
-            @include roundFont
+            &:hover
+                background-color: var(--color-hover)
+            span
+                @include Tag
 
 .search_post > span
-    @include roundFont
+    @include Tag
     margin-left: 10px
     padding: 3px 10px 0px 10px
     font-family: 'Spoqa Han Sans Neo'
+
+@keyframes fadeInDown
+    0%
+        opacity: 0
+        transform: translate3d(0, -5%, 0)
+    to 
+        opacity: 90%
+        transform: translateZ(0)
 
 .filter.wrap
     display: flex
@@ -173,6 +190,8 @@
     align-items: center
     .filter.img
         background-image: url(https://user-images.githubusercontent.com/45661217/146483442-8f503f17-2e3c-46e8-801a-02a7810c20e7.png)
+        background-size: contain
+        background-repeat: no-repeat
         width: 20px
         height: 15px
         background-size: cover
@@ -183,12 +202,13 @@
         font-family: 'Spoqa Han Sans Neo', Noto Sans
         font-size: 16px
     .filterBox
+        animation: fadeInDown 1s
         position: absolute
         top: 50px
         width: 340px
         height: 170px
-        background-color: #1C1C1e
-        border: 1.5px solid $gray4
+        background-color: var(--color-default)
+        border: 1.5px solid var(--color-border)
         opacity: 90%
         border-radius: 20px
         z-index: 2
@@ -199,11 +219,8 @@
             flex-wrap: wrap
             align-content: flex-start
         .right
-            display: flex
-            width: 50%
-            border-left: 1.5px solid $gray4
-            flex-wrap: wrap
-            align-content: flex-start
+            @extend .left
+            border-left: 1.5px solid var(--color-border)
         .filterBox-title
             margin-top: 0.5em
             display: block
@@ -212,7 +229,7 @@
             font-style: normal
             font-size: 13px
             margin-left: 8%
-        .tagBox 
+        .tagBox
             margin-top: 0.5em
             display: flex
             flex-wrap: wrap
@@ -222,7 +239,8 @@
             height: 1.5em
             padding: 0.1em 0.5em
             font-size: 0.55em
-            background: $gray4
+            background: var(--color-tag)
+            border: 1px solid var(--color-border)
             border-radius: 30px
             cursor: pointer
 
@@ -255,12 +273,6 @@
 
     .search.warp
         display: none
-
-    // .search.warp
-    //     width: 200px
-    //     height: 10px
-    //     input
-    //         width: 175px
 
     .filter.text
         font-size: 12px

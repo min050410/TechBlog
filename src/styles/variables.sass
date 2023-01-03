@@ -1,4 +1,4 @@
-// colors
+// darkmode 
 $default: #1C1C1e
 $white: #ffffff
 $gray1: #C9D1D9
@@ -8,7 +8,16 @@ $gray4: #636366
 $gray5: #4d535c
 $gray6: #353942
 $gray7: #30363d
-$a: #58A6FF
+$a: #96f2d7
+$dark-hover: #4B4B4D
+$dark-box-shadow: none
+
+// whitemode
+$light-text: #212121
+$light-hover: #f3f3f3
+$light-placeholder: #747474
+$light-border: rgba(0, 0, 0, 0.2)
+$light-box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24)
 
 // Breakpoints
 $breakpoint-mobile: 0px
@@ -16,6 +25,24 @@ $breakpoint-smallTablet: 600px
 $breakpoint-tablet: 800px
 $breakpoint-desktop: 1200px
 
+[theme="dark"] 
+  --color-font-default: #{$white}
+  --color-default: #{$default}
+  --color-hover: #{$dark-hover}
+  --color-tag: #{$gray4}
+  --color-placeholder: #{$gray2}
+  --color-border: #{$gray4}
+  --box-shadow: #{$dark-box-shadow}
+  
+
+[theme="light"]
+  --color-font-default: #{$light-text}
+  --color-default: #{$white}
+  --color-hover: #{$light-hover}
+  --color-tag: #{$white}
+  --color-placeholder: #{$light-placeholder}
+  --color-border: rgba(0, 0, 0, 0.2)
+  --box-shadow: #{$light-box-shadow}
 
 @mixin mobile 
   @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-smallTablet - 1px) 
