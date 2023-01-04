@@ -48,7 +48,7 @@ strong
     font-style: normal
     font-size: 12px
     height: 20px
-    margin-left: 10px
+    margin-right: 10px
     padding: 0px 8px 4px 8px
     color: var(--color-tag-color)
 
@@ -130,10 +130,8 @@ ol,
 ul 
   margin: 0.5em 0px
   li 
-    width: calc(100% - 28px)
-    // margin: 1em 0px
     position: relative
-    line-height: 1.5rem
+    line-height: 1.4rem
 del
   font-family: 'NanumBarunGothic'
   color: var(--color-del)
@@ -148,29 +146,40 @@ code
   border-radius: 5px
   color: var(--color-code-p)
 
+@keyframes fadeup-mobile
+    from
+        opacity: 0 
+    to
+        opacity: 1
+
 @include mobile
   p, li 
-    font-size: 13px
+    font-size: 14px
   p
-    line-height: 20px
+    line-height: 1.5em
   p > img
     width: 100%
+  .middle
+    animation: fadeup-mobile 2s ease 0s 1 normal both running
+    align-self: center
+    width: 90%
+    margin: 10px
   .middle a 
-    font-size: 12px
+    font-size: 14px
   h1 
-    font-size: 1.3rem
+    font-size: 1.8rem
     margin: 2rem 0px 6px 0px
   h2 
-    font-size: 1.0rem
+    font-size: 1.4rem
     margin: 1.7rem 0px 4px 0px
   h3 
-    font-size: .9rem
+    font-size: 1.1rem
     margin: 1.4rem 0px 2px 0px
   h4 
-    font-size: .7rem
+    font-size: .8rem
     margin: 1.1rem 0px
   h5 
-    font-size: .6rem
+    font-size: .7rem
     margin: 0.8rem 0px 1px 0px
   blockquote 
     padding-left: 10px
@@ -180,11 +189,6 @@ code
     padding-left: 0.8em
     li 
       left: 0px
-  
-  .middle
-    align-self: center
-    width: 90%
-    margin: 10px
 
   pre *
     font-size: 12px !important
@@ -193,12 +197,27 @@ code
   strong
     font-weight: 300
     font-style: normal
-    font-size: 10px
+    font-size: 14px
     height: 15px
+    margin-right: 5px
+    padding-bottom: 9px
+    // padding: 0px 8px 4px 10px
     margin-left: 0px
 
   del
-    font-size: 12px
+    font-size: 14px
+
+@include tablet
+  .middle
+    align-self: center
+    width: 90%
+    margin: 30px
+
+@include smallTablet
+  .middle
+    align-self: center
+    width: 90%
+    margin: 30px
 
         
     

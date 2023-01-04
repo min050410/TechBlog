@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useEffect } from 'react';
-import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet";
@@ -15,7 +14,7 @@ const IndexPage = () => {
     <main>
       <SEOComponent title="Dev Log | Main" />
       <div>
-        <HeaderComponent headerType={HeaderType.FIXED} />
+        <HeaderComponent />
         <div className="fade_in">
           <PopularComponent />
           <RecentComponent />

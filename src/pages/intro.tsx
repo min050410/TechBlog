@@ -1,5 +1,4 @@
 import * as React from "react";
-import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet";
@@ -13,7 +12,7 @@ const Intro = () => {
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
-            <HeaderComponent headerType={HeaderType.NOT_FIXED} />
+            <HeaderComponent />
             <div className="moveto">
                 <div><a href="#hi">📑 intro</a></div>
                 <div><a href="#skill">🏹 Skill + Tool</a></div>

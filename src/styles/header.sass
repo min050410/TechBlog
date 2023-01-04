@@ -19,23 +19,25 @@
     display: flex
     flex-wrap: wrap
     padding: 10px 20px
-    width: 100%
     justify-content: center
     justify-content: space-between
 
 .notfixed
     @include header
+    width: 100%
     position: absolute
     margin-top: 12px
 
 .original
     @include header
+    width: 100%
     position: fixed
     transform: translateY(12px)
     transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s
 
 .change
     @include header
+    width: 100%
     position: fixed
     transition: transform 0.25s ease-out 0s, background-color 0.25s ease-out 0s
     transform: translateY(0px)
@@ -129,6 +131,8 @@
     transform: translate(0%, 10%)
 
 .search.warp
+    display: flex
+    aligin-items: center
     position: relative
     font: 400 16px Noto sans, "sans-serif"
     padding: 10px 16px
@@ -144,7 +148,7 @@
 @mixin Tag
     display: inline-block
     border-radius: 20px
-    height: 25px
+    min-height: 25px
     font-family: 'Spoqa Han Sans Neo'
     font-weight: 300
     font-style: normal
@@ -166,7 +170,7 @@
         justify-content: space-between
         a
             @include Tag
-            height: 1.7em
+            // height: 1.7em
             padding: 3px 10px 0px 10px
             transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
             will-change: background-color
@@ -250,7 +254,9 @@
             cursor: pointer
 
 @include mobile
+
     .original
+        transform: translateY(0px)
         padding: .5rem
         padding-left: 1rem
 
@@ -264,36 +270,24 @@
         margin: 0px
         flex-direction: column
 
-    .head.index
-        flex-wrap: wrap
-
     .head.box
         .logo
             width: 30px
             height: 24px
         span
-            font-size: 14px
+            font-size: 17px
             margin-left: 0.3em
             letter-spacing: 1px
 
     .search.warp
-        display: none
+        width: 55%
+        padding: 7px 9px
 
-    .filter.text
-        font-size: 12px
+    .search-input
+        width: 75%
 
-    .head.content
-        margin-top: 0px
-        gap: 0px
-        .darkmode_text
-            display: inline
-            margin-top: 4.3px
-        .mod
-            display: none
-
-    div.header
-        font: 500 15px "Spoqa Han Sans Neo", "sans-serif"
-        margin: 0px 0px 0px 20px
+    .search-input::placeholder
+        font-size: 13px
 
     .filter.wrap
         display: none
@@ -303,8 +297,15 @@
 
 @include tablet
     .head.content
-        display: none
+        gap: 0px
+        span
+            display: none
 
 @include smallTablet
     .head.content
+        gap: 0px
+        span
+            display: none
+            
+    .filter.wrap
         display: none
