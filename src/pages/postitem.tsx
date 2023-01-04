@@ -2,7 +2,6 @@ import * as React from "react";
 import loadable, { LoadableClassComponent } from '@loadable/component';
 import { MDXProvider } from "@mdx-js/react";
 import { Helmet } from 'react-helmet';
-import { HeaderType } from "../components/common/headerComponent/headerTypeEnum";
 
 //hooks
 import { useSearchParam, useTitle } from "../hooks";
@@ -39,7 +38,7 @@ const PostItemPage = () => {
                 <meta name="google-site-verification" content="Vfqlx3gjgzF7VwfWKG3BDziWEL76_QpnF4LvF0bgj8I" />
                 <meta name="description" content={`Dev Log | ${filename} - 고등학교 1학년 재학생이 만든 코딩과 관련된 갖가지 정보들과 에러 해결 방법 등을 모아놓은 블로그입니다.`}></meta>
             </Helmet>
-            <HeaderComponent headerType={HeaderType.NOT_FIXED} />
+            <HeaderComponent />
             <div className="middle">
                 <div className="left">
                     <MDXProvider components={{ code: CodeBlock }}>

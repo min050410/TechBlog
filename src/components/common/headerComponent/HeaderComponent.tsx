@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link, navigate } from "gatsby";
-import { HeaderType } from "./headerTypeEnum";
 import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
@@ -11,18 +10,12 @@ import DarkModeSwichComponent from "./DarkModeSwitchComponent";
 // style
 import '../../../styles/header.sass';
 
-type HeaderComponentType = {
-    headerType: HeaderType.FIXED | HeaderType.NOT_FIXED
-}
-
 type TagStateType = {
     selected: string,
     notSelected: string[]
 }
 
-const HeaderComponent = ({
-    headerType
-}: HeaderComponentType) => {
+const HeaderComponent = () => {
 
     const scrollPosition = useScroll();
 
@@ -61,7 +54,7 @@ const HeaderComponent = ({
     }, []);
 
     return (
-        <header className={headerType ===  HeaderType.NOT_FIXED ? "notfixed" : scrollPosition < 50 ? "original" : "change"}>
+        <header className={scrollPosition < 50 ? "original" : "change"}>
             <div className="head index">
                 <Link to="/">
                     <div className="head box">
