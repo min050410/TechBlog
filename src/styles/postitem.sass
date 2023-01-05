@@ -122,7 +122,7 @@ pre
   overflow: auto
 
 pre *
-  font-size: 14px !important
+  font-size: 14px
   font-family: 'HackNF'
   line-height: 1.125rem
 
@@ -146,11 +146,7 @@ code
   border-radius: 5px
   color: var(--color-code-p)
 
-@keyframes fadeup-mobile
-    from
-        opacity: 0 
-    to
-        opacity: 1
+
 
 @include mobile
   p, li 
@@ -160,7 +156,7 @@ code
   p > img
     width: 100%
   .middle
-    animation: fadeup-mobile 2s ease 0s 1 normal both running
+    animation: none
     align-self: center
     width: 90%
     margin: 10px
@@ -191,7 +187,7 @@ code
       left: 0px
 
   pre *
-    font-size: 12px !important
+    font-size: 12px
     line-height: 1rem
 
   strong
@@ -201,7 +197,6 @@ code
     height: 15px
     margin-right: 5px
     padding-bottom: 9px
-    // padding: 0px 8px 4px 10px
     margin-left: 0px
 
   del
