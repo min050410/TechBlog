@@ -6,7 +6,7 @@ import { themeColorState } from "../../../recoil/theme/theme";
 // style
 import '../../../styles/header.sass';
 
-const DarkModeSwichComponent = () => {
+const DarkModeSwitchComponent = () => {
     const [colorMode, setColorMode] = useRecoilState(themeColorState);
 
     const darkModeHandling = () => {
@@ -29,12 +29,12 @@ const DarkModeSwichComponent = () => {
 
     return (
         <div>
-            { SwitchEl }
+            {SwitchEl}
         </div>
     )
 }
 
-export default DarkModeSwichComponent;
+export default DarkModeSwitchComponent;
 
 
 

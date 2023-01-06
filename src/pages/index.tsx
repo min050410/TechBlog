@@ -9,7 +9,6 @@ import PopularComponent from '../components/layout/popularComponent/PopularCompo
 import RecentComponent from '../components/layout/recentComponent/RecentComponent';
 
 const IndexPage = () => {
-
   return (
     <main>
       <SEOComponent title="Dev Log | Main" />

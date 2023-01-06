@@ -5,10 +5,12 @@ import { initialFilterKeyState } from "./filterKey";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import { useSearch, useScroll } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
-import DarkModeSwichComponent from "./DarkModeSwitchComponent";
+import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 
 // style
 import '../../../styles/header.sass';
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { sessionState } from "../../../recoil/session/session";
 
 type TagStateType = {
     selected: string,
@@ -18,6 +20,11 @@ type TagStateType = {
 const HeaderComponent = () => {
 
     const scrollPosition = useScroll();
+    const token = useRecoilValue(sessionState);
+    const resetToken = useResetRecoilState(sessionState);
+    React.useEffect(() => {
+        return () => resetToken();
+    }, [])
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
@@ -112,10 +119,13 @@ const HeaderComponent = () => {
                 <a href={GITHUB_URL}>
                     <span>깃허브</span>
                 </a>
-                <Link to="/login">
-                    <span>Github 로그인</span>
-                </Link>
-                <DarkModeSwichComponent />
+                {token ?
+                    <span>로그인됨</span> :
+                    <Link to="/login">
+                        <span>Github 로그인</span>
+                    </Link>
+                }
+                <DarkModeSwitchComponent />
             </div>
         </header>
     )

@@ -27,6 +27,10 @@ body::-webkit-scrollbar-track
 *
   font-size: 1.125rem
   text-decoration-line: none
+  -webkit-text-size-adjust : none  /* 크롬, 사파리, 오페라 신버전 */
+  -ms-text-size-adjust : none  /* IE */
+  -moz-text-size-adjust : none  /* 파이어폭스 */
+  -o-text-size-adjust : none  /* 오페라 구버전 */
 
 .fade_in > div > .utterances
   height: 0px
