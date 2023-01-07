@@ -23,7 +23,7 @@ const HeaderComponent = () => {
     const token = useRecoilValue(sessionState);
     const resetToken = useResetRecoilState(sessionState);
     React.useEffect(() => {
-        return () => resetToken();
+        resetToken();
     }, [])
 
     // search
