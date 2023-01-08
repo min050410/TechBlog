@@ -3,7 +3,7 @@ import { Link, navigate } from "gatsby";
 import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
 import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
-import { useSearch, useScroll } from "../../../hooks";
+import { useSearch, useScroll, usePath } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 
@@ -20,11 +20,12 @@ type TagStateType = {
 const HeaderComponent = () => {
 
     const scrollPosition = useScroll();
+    const path = usePath();
     const token = useRecoilValue(sessionState);
     const resetToken = useResetRecoilState(sessionState);
     React.useEffect(() => {
         resetToken();
-    }, [])
+    }, [path])
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
