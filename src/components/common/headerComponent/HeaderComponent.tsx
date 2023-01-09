@@ -3,13 +3,13 @@ import { Link, navigate } from "gatsby";
 import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
 import { GITHUB_OAUTH_REDIRECT_URL, GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
-import { useSearch, useScroll } from "../../../hooks";
+import { useSearch, useScroll, useSearchParam } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 
 // style
 import '../../../styles/header.sass';
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { sessionState } from "../../../recoil/session/session";
 
 type TagStateType = {
@@ -21,13 +21,12 @@ const HeaderComponent = () => {
 
     const scrollPosition = useScroll();
     const [token, setToken] = useRecoilState(sessionState);
-    const resetToken = useResetRecoilState(sessionState);
+    const session = useSearchParam("utterances");
     React.useEffect(() => {
-        const sessionState = window.localStorage.getItem('utterances-session');
-        if (sessionState) {
-            setToken("on");
+        if (session) {
+            setToken('right after login');
         }
-    }, [])
+    }, []);
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
@@ -62,10 +61,6 @@ const HeaderComponent = () => {
         });
         navigate('/');
     }, []);
-
-    const githubOauthLogin = () => {
-        navigate(GITHUB_OAUTH_REDIRECT_URL);
-    }
 
     return (
         <header className={scrollPosition < 50 ? "original" : "change"}>
@@ -127,8 +122,10 @@ const HeaderComponent = () => {
                     <span>깃허브</span>
                 </a>
                 {token ?
-                    <span>로그인됨</span> :
-                    <span onClick={githubOauthLogin}>Github 로그인</span>
+                    <span>로그인 됨</span> :
+                    <Link to={GITHUB_OAUTH_REDIRECT_URL}>
+                        <span>github 로그인</span>
+                    </Link>
                 }
                 <DarkModeSwitchComponent />
             </div>
