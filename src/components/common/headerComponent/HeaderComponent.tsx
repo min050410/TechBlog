@@ -2,14 +2,14 @@ import * as React from "react";
 import { Link, navigate } from "gatsby";
 import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
-import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
-import { useSearch, useScroll, usePath } from "../../../hooks";
+import { GITHUB_OAUTH_REDIRECT_URL, GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
+import { useSearch, useScroll } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 
 // style
 import '../../../styles/header.sass';
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { sessionState } from "../../../recoil/session/session";
 
 type TagStateType = {
@@ -20,12 +20,14 @@ type TagStateType = {
 const HeaderComponent = () => {
 
     const scrollPosition = useScroll();
-    const path = usePath();
-    const token = useRecoilValue(sessionState);
+    const [token, setToken] = useRecoilState(sessionState);
     const resetToken = useResetRecoilState(sessionState);
     React.useEffect(() => {
-        resetToken();
-    }, [path])
+        const sessionState = window.localStorage.getItem('utterances-session');
+        if (sessionState) {
+            setToken("on");
+        }
+    }, [])
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
@@ -60,6 +62,10 @@ const HeaderComponent = () => {
         });
         navigate('/');
     }, []);
+
+    const githubOauthLogin = () => {
+        navigate(GITHUB_OAUTH_REDIRECT_URL);
+    }
 
     return (
         <header className={scrollPosition < 50 ? "original" : "change"}>
@@ -122,9 +128,7 @@ const HeaderComponent = () => {
                 </a>
                 {token ?
                     <span>로그인됨</span> :
-                    <Link to="/login">
-                        <span>Github 로그인</span>
-                    </Link>
+                    <span onClick={githubOauthLogin}>Github 로그인</span>
                 }
                 <DarkModeSwitchComponent />
             </div>
