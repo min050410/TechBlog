@@ -3,4 +3,4 @@ export const LOGO_IMG_URL = "https://user-images.githubusercontent.com/45661217/
 export const LOGO_TEXT = "DevLog" as const;
 export const HIT_URL = "https://hits.seeyoufarm.com" as const;
 export const HIT_BADGE_URL = "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdevlog%2Fintro&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" as const;
-export const GITHUB_OAUTH_REDIRECT_URL = "https://api.utteranc.es/authorize?redirect_uri=http://localhost:8000/" as const;
+export const GITHUB_OAUTH_REDIRECT_URL = "https://api.utteranc.es/authorize?redirect_uri=https%3A%2F%2Fdevlog.kro.kr%2F" as const;
