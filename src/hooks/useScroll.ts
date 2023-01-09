@@ -5,7 +5,7 @@ export const useScroll = () => {
     const [scrollPosition, setScrollPosition] = React.useState<number>(0);
 
      // update scroll
-     React.useEffect(() => {
+    React.useEffect(() => {
         const updateScroll = () => {
             setScrollPosition(window.scrollY || document.documentElement.scrollTop);
         }

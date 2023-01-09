@@ -2,14 +2,14 @@ import * as React from "react";
 import { Link, navigate } from "gatsby";
 import { recentPostDataType } from '../../layout/recentComponent/recentPostsData';
 import { initialFilterKeyState } from "./filterKey";
-import { GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
-import { useSearch, useScroll } from "../../../hooks";
+import { GITHUB_OAUTH_REDIRECT_URL, GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
+import { useSearch, useScroll, useSearchParam } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 
 // style
 import '../../../styles/header.sass';
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { sessionState } from "../../../recoil/session/session";
 
 type TagStateType = {
@@ -20,11 +20,13 @@ type TagStateType = {
 const HeaderComponent = () => {
 
     const scrollPosition = useScroll();
-    const token = useRecoilValue(sessionState);
-    const resetToken = useResetRecoilState(sessionState);
+    const [token, setToken] = useRecoilState(sessionState);
+    const session = useSearchParam("utterances");
     React.useEffect(() => {
-        return () => resetToken();
-    }, [])
+        if (session) {
+            setToken('right after login');
+        }
+    }, []);
 
     // search
     const [searchValue, setSearchValue] = React.useState<string>("");
@@ -120,9 +122,9 @@ const HeaderComponent = () => {
                     <span>깃허브</span>
                 </a>
                 {token ?
-                    <span>로그인됨</span> :
-                    <Link to="/login">
-                        <span>Github 로그인</span>
+                    <span>로그인 됨</span> :
+                    <Link to={GITHUB_OAUTH_REDIRECT_URL}>
+                        <span>github 로그인</span>
                     </Link>
                 }
                 <DarkModeSwitchComponent />

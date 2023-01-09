@@ -1,4 +1,4 @@
-import { atom, RecoilState } from 'recoil';
+import { atom, RecoilState, selector } from 'recoil';
 
 const getInitialSessionState = () => {
 
@@ -11,7 +11,7 @@ const getInitialSessionState = () => {
         return null
     }
     return null
-    
+
 }
 
 const sessionState: RecoilState<string | null> = atom({
