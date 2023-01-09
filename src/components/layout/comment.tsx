@@ -8,7 +8,13 @@ const src = 'https://utteranc.es';
 const LIGHT_THEME = 'github-light';
 const DARK_THEME = 'dark-blue';
 
-const PostComment = () => {
+type PostCommentProps = {
+    filename: string | null | undefined;
+}
+
+const PostComment = ({
+    filename
+}: PostCommentProps) => {
 
     const ref = useRef<HTMLDivElement>(null);
     const postItem = useSearchParam("name");
@@ -18,28 +24,26 @@ const PostComment = () => {
     
     useEffect(() => {
         const createUtterancesEl = () => {
-            if (ref.current !== null) {
-                const utterances = document.createElement('script');
-                const utterancesSettings = {
-                    src: 'https://utteranc.es/client.js',
-                    repo: 'min050410/TechBlog',
-                    'issue-term': 'title',
-                    label: 'utterances',
-                    theme: themeMode,
-                    crossorigin: 'anonymous',
-                    async: 'false',
-                };
-                Object.entries(utterancesSettings).forEach(([key, value]) => {
-                    utterances.setAttribute(key, value);
-                });
-                ref.current.appendChild(utterances);
-            }
+            const utterances = document.createElement('script');
+            const utterancesSettings = {
+                src: 'https://utteranc.es/client.js',
+                repo: 'min050410/TechBlog',
+                'issue-term': `Comment: ${filename}`,
+                label: 'utterances',
+                theme: themeMode,
+                crossorigin: 'anonymous',
+                async: 'false',
+            };
+            Object.entries(utterancesSettings).forEach(([key, value]) => {
+                utterances.setAttribute(key, value);
+            });
+            ref.current?.appendChild(utterances);    
         }
 
         const postThemeMessage = () => {
             const message = {
-              type: 'set-theme',
-              theme: themeMode,
+                type: 'set-theme',
+                theme: themeMode,
             };
             utterancesEl?.contentWindow?.postMessage(message, src);
         };

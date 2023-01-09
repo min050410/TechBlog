@@ -46,7 +46,7 @@ const PostItemPage = () => {
                     </MDXProvider>
                 </div>
             </div>
-            <PostComment key={filename}/>
+            <PostComment key={filename} filename={filename}/>
         </main>
     )
 }
