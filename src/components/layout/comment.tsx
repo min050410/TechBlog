@@ -9,7 +9,7 @@ const LIGHT_THEME = 'github-light';
 const DARK_THEME = 'dark-blue';
 
 type PostCommentProps = {
-    filename: string | null | undefined;
+    filename?: string | null | undefined;
 }
 
 const PostComment = ({
@@ -21,14 +21,14 @@ const PostComment = ({
 
     const theme = useRecoilValue(themeColorState);
     const themeMode = theme === 'light' ? LIGHT_THEME : DARK_THEME;
-    
+
     useEffect(() => {
         const createUtterancesEl = () => {
             const utterances = document.createElement('script');
             const utterancesSettings = {
                 src: 'https://utteranc.es/client.js',
                 repo: 'min050410/TechBlog',
-                'issue-term': `Comment: ${filename}`,
+                'issue-term': `Comment: ${filename ?? "init"}`,
                 label: 'utterances',
                 theme: themeMode,
                 crossorigin: 'anonymous',
@@ -37,7 +37,7 @@ const PostComment = ({
             Object.entries(utterancesSettings).forEach(([key, value]) => {
                 utterances.setAttribute(key, value);
             });
-            ref.current?.appendChild(utterances);    
+            ref.current?.appendChild(utterances);
         }
 
         const postThemeMessage = () => {

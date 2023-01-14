@@ -4,7 +4,7 @@
  * filename : blog filename
  * img : blog img filename */
 
-type popularPostsDataType = {
+export type popularPostsDataType = {
     id: number,
     title: string,
     filename: string,

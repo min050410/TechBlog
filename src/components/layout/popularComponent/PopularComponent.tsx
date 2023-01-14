@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from 'gatsby';
-import popularPostsData from './popularPostsData';
+import popularPostsData, { popularPostsDataType } from './popularPostsData';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -22,13 +22,34 @@ export const slickSettings = {
 //styles
 import '../../../styles/card.sass';
 
+type pageStateType = {
+    currentPage: number,
+    posts: popularPostsDataType, 
+    postsPerPage: number
+}
+
 const PopularComponent: React.FC = () => {
+
+    const [page, setPage] = React.useState<pageStateType>({
+        currentPage: 1,
+        posts: [],
+        postsPerPage: 5
+    })
+
+    React.useEffect(() => {
+        setPage((prev) => {
+            return {
+                ...prev,
+                posts: popularPostsData
+            }
+        })
+    }, [])
 
     const popular_list = popularPostsData.map((post, i) =>
     (
         <div className="card" key={i}>
             <div className="imgbox">
-                <Link to={`postitem/?name=${post.filename}`} >
+                <Link to={`postitem/?name=${post.filename}`}>
                     <img
                         src={require(`../../../../static/gradients/${post.id}.png`).default}
                         alt={post.imgLineTwo}
