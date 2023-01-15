@@ -6,7 +6,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import NextArrow from "./nextArrow";
 
-export const slickSettings = {
+//styles
+import '../../../styles/card.sass';
+
+type pageStateType = {
+    currentPage: number,
+    posts: popularPostsDataType, 
+    postsPerPage: number
+}
+
+const slickSettings = {
     dots: true,
     arrows: false,
     infinite: true,
@@ -17,23 +26,22 @@ export const slickSettings = {
     slidesToScroll: 1,
     centerPadding: '0px',
     nextArrow: <NextArrow />,
+    // customPaging: (index: number) => {
+    //     setPage((prev) => {
+    //         return {
+    //             ...prev,
+    //             currentPage: index
+    //         }
+    //     })
+    // }
 };
-
-//styles
-import '../../../styles/card.sass';
-
-type pageStateType = {
-    currentPage: number,
-    posts: popularPostsDataType, 
-    postsPerPage: number
-}
 
 const PopularComponent: React.FC = () => {
 
     const [page, setPage] = React.useState<pageStateType>({
         currentPage: 1,
         posts: [],
-        postsPerPage: 5
+        postsPerPage: 6
     })
 
     React.useEffect(() => {
@@ -43,8 +51,10 @@ const PopularComponent: React.FC = () => {
                 posts: popularPostsData
             }
         })
-    }, [])
+    }, []);
 
+
+    const pageCount = popularPostsData.length / 6;
     const popular_list = popularPostsData.map((post, i) =>
     (
         <div className="card" key={i}>
@@ -66,15 +76,18 @@ const PopularComponent: React.FC = () => {
         </div>
     ));
 
+    const popular_item_list = Array(pageCount).fill().map(() => (
+        <div className="slider-item">
+            <div className="container">
+                {popular_list}
+            </div>
+        </div>
+    ))
+
     return (
         <section>
             <div className="header">인기있는 블로그</div>
             <Slider {...slickSettings}>
-                <div className="slider-item">
-                    <div className="container">
-                        {popular_list}
-                    </div>
-                </div>
                 <div className="slider-item">
                     <div className="container">
                         {popular_list}
