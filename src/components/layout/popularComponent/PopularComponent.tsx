@@ -4,57 +4,23 @@ import popularPostsData, { popularPostsDataType } from './popularPostsData';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import NextArrow from "./nextArrow";
+
+export const slickSettings = {
+    dots: true,
+    arrows: true,
+    autoplay: true,
+    infinite: true,
+    speed: 1000,
+    autoplaySpeed: 5000,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+};
 
 //styles
 import '../../../styles/card.sass';
 
-type pageStateType = {
-    currentPage: number,
-    posts: popularPostsDataType, 
-    postsPerPage: number
-}
-
-const slickSettings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    speed: 1000,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerPadding: '0px',
-    nextArrow: <NextArrow />,
-    // customPaging: (index: number) => {
-    //     setPage((prev) => {
-    //         return {
-    //             ...prev,
-    //             currentPage: index
-    //         }
-    //     })
-    // }
-};
-
 const PopularComponent: React.FC = () => {
 
-    const [page, setPage] = React.useState<pageStateType>({
-        currentPage: 1,
-        posts: [],
-        postsPerPage: 6
-    })
-
-    React.useEffect(() => {
-        setPage((prev) => {
-            return {
-                ...prev,
-                posts: popularPostsData
-            }
-        })
-    }, []);
-
-
-    const pageCount = popularPostsData.length / 6;
     const popular_list = popularPostsData.map((post, i) =>
     (
         <div className="card" key={i}>
@@ -76,24 +42,16 @@ const PopularComponent: React.FC = () => {
         </div>
     ));
 
-    const popular_item_list = Array(pageCount).fill().map(() => (
-        <div className="slider-item">
-            <div className="container">
-                {popular_list}
-            </div>
-        </div>
-    ))
-
     return (
         <section>
             <div className="header">인기있는 블로그</div>
-            <Slider {...slickSettings}>
-                <div className="slider-item">
-                    <div className="container">
+            {/* <div className="slider-item"> */}
+                {/* <div className="container"> */}
+                    <Slider {...slickSettings}>
                         {popular_list}
-                    </div>
-                </div>
-            </Slider>
+                    </Slider>
+                {/* </div> */}
+            {/* </div> */}
         </section>
     )
 }
