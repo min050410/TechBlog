@@ -45,13 +45,13 @@ const PopularComponent: React.FC = () => {
     return (
         <section>
             <div className="header">인기있는 블로그</div>
-            {/* <div className="slider-item"> */}
+            <div className="slider-item">
                 {/* <div className="container"> */}
                     <Slider {...slickSettings}>
                         {popular_list}
                     </Slider>
                 {/* </div> */}
-            {/* </div> */}
+            </div>
         </section>
     )
 }
