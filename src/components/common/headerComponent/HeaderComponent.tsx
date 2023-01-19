@@ -6,11 +6,11 @@ import { GITHUB_OAUTH_REDIRECT_URL, GITHUB_URL, LOGO_IMG_URL, LOGO_TEXT } from "
 import { useSearch, useScroll, useSearchParam } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
+import { useRecoilState } from "recoil";
+import { sessionState } from "../../../recoil/session/session";
 
 // style
 import '../../../styles/header.sass';
-import { useRecoilState } from "recoil";
-import { sessionState } from "../../../recoil/session/session";
 
 type TagStateType = {
     selected: string,

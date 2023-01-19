@@ -1,22 +1,19 @@
 import * as React from "react";
 import { Link } from 'gatsby';
-import popularPostsData from './popularPostsData';
+import popularPostsData, { popularPostsDataType } from './popularPostsData';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import NextArrow from "./nextArrow";
 
 export const slickSettings = {
     dots: true,
-    arrows: false,
+    arrows: true,
+    autoplay: true,
     infinite: true,
     speed: 1000,
-    autoplay: true,
     autoplaySpeed: 5000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerPadding: '0px',
-    nextArrow: <NextArrow />,
+    slidesToShow: 6,
+    slidesToScroll: 6,
 };
 
 //styles
@@ -28,7 +25,7 @@ const PopularComponent: React.FC = () => {
     (
         <div className="card" key={i}>
             <div className="imgbox">
-                <Link to={`postitem/?name=${post.filename}`} >
+                <Link to={`postitem/?name=${post.filename}`}>
                     <img
                         src={require(`../../../../static/gradients/${post.id}.png`).default}
                         alt={post.imgLineTwo}
@@ -48,18 +45,13 @@ const PopularComponent: React.FC = () => {
     return (
         <section>
             <div className="header">인기있는 블로그</div>
-            <Slider {...slickSettings}>
-                <div className="slider-item">
-                    <div className="container">
+            <div className="slider-item">
+                {/* <div className="container"> */}
+                    <Slider {...slickSettings}>
                         {popular_list}
-                    </div>
-                </div>
-                <div className="slider-item">
-                    <div className="container">
-                        {popular_list}
-                    </div>
-                </div>
-            </Slider>
+                    </Slider>
+                {/* </div> */}
+            </div>
         </section>
     )
 }

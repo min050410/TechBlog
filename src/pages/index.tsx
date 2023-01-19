@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from 'react';
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet";
