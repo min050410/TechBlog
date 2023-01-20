@@ -63,7 +63,7 @@ const HeaderComponent = () => {
     }, []);
 
     return (
-        <header className={scrollPosition < 50 ? "original" : "change"}>
+        <header className={scrollPosition.y < 50 ? "original" : "change"}>
             <div className="head index">
                 <Link to="/">
                     <div className="head box">
