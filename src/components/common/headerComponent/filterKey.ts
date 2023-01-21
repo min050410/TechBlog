@@ -1,4 +1,4 @@
-export const initialFilterKeyState: string[] = [
+export const initialFilterKeyState: initialFilterKeyStateType[] = [
     'js',
     'ts',
     'python',
@@ -9,3 +9,14 @@ export const initialFilterKeyState: string[] = [
     'sql',
     'gatsby'
 ];
+
+type initialFilterKeyStateType = 
+    'js' |
+    'ts' |
+    'python' |
+    'c' |
+    'react' |
+    'cpp' |
+    'java' |
+    'sql' |
+    'gatsby';
