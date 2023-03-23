@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Link } from 'gatsby';
-import popularPostsData, { popularPostsDataType } from './popularPostsData';
+import { Link } from "gatsby";
+import popularPostsData, { popularPostsDataType } from "./popularPostsData";
 import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const slickSettings = {
     dots: true,
@@ -17,17 +17,18 @@ export const slickSettings = {
 };
 
 //styles
-import '../../../styles/card.sass';
+import "../../../styles/card.sass";
 
 const PopularComponent: React.FC = () => {
-
-    const popular_list = popularPostsData.map((post, i) =>
-    (
+    const popular_list = popularPostsData.map((post, i) => (
         <div className="card" key={i}>
             <div className="imgbox">
                 <Link to={`postitem/?name=${post.filename}`}>
                     <img
-                        src={require(`../../../../static/gradients/${post.id}.png`).default}
+                        src={
+                            require(`../../../../static/gradients/${post.id}.png`)
+                                .default
+                        }
                         alt={post.imgLineTwo}
                     />
                     <div className="recent-img-text-one">
@@ -47,17 +48,11 @@ const PopularComponent: React.FC = () => {
             <div className="header">인기있는 블로그</div>
             <div className="slider-item">
                 {/* <div className="container"> */}
-                    <Slider {...slickSettings}>
-                        {popular_list}
-                    </Slider>
+                <Slider {...slickSettings}>{popular_list}</Slider>
                 {/* </div> */}
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default PopularComponent;
-
-
-
-
