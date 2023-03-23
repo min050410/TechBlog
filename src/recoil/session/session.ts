@@ -1,19 +1,19 @@
-import { atom, RecoilState } from 'recoil';
+import { atom, RecoilState } from "recoil";
 
 const getInitialSessionState = () => {
-    const isClient = typeof window !== "undefined"
+    const isClient = typeof window !== "undefined";
     if (isClient) {
-        const sessionState = window.localStorage.getItem('utterances-session');
+        const sessionState = window.localStorage.getItem("utterances-session");
         if (sessionState) {
             return sessionState;
         }
-        return null
+        return null;
     }
-    return null
-}
+    return null;
+};
 
 const sessionState: RecoilState<string | null> = atom({
-    key: 'initialSessionState',
+    key: "initialSessionState",
     default: getInitialSessionState(),
 });
 
