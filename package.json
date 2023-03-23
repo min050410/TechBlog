@@ -37,6 +37,7 @@
         "react-slick": "^0.29.0",
         "recoil": "^0.7.7",
         "sass": "^1.59.3",
+        "slick-carousel": "^1.8.1",
         "styled-components": "^5.3.9"
     },
     "devDependencies": {
