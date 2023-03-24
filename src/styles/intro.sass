@@ -1,3 +1,5 @@
+@import "variables"
+    
 u
     font-size: 1.5rem
     border-bottom: 0.05em solid
@@ -31,12 +33,16 @@ h3#gray:nth-child(3)
 
 .intro > img
     margin: 35px 30px 20px 0px
-    width: 150px
-    height: 155px
-    border-radius: 10px
+    width: 250px
+    height: 250px
+    border-radius: 1000px
 
 .intro
     display: flex
+    gap: 10rem
+    height: 100vh
+    align-items: center
+    justify-content: space-between
 
 .intro_test
     display: flex
@@ -212,4 +218,16 @@ div > .count
 .footer_wrap > .date
     font-size: 15px
     font-family: 'Spoqa Han Sans Neo'
+
+.portfolio
+    animation: fadeup 2s ease 0s 1 normal both running 
+    // max-width:
+    width: 75%
+    margin: 0px auto 0px
+    height: 500vh
+    a
+        color: var(--color-a)
+        font-size: 16px
+    a:hover
+        text-decoration: underline var(--color-a)
 
