@@ -8,10 +8,7 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 //style
 import "../styles/intro.sass";
 
-import useSmoothScroll from "../hooks/useSmoothScroll";
-
 const Intro = () => {
-    useSmoothScroll("about");
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
@@ -26,41 +23,59 @@ const Intro = () => {
             </div>
             <div className="portfolio">
                 <Element name="about">
-                    <div className="intro">
-                        <div className="about">
-                            <h1>👋 안녕하세요 김영민입니다.</h1>
-                            <p>
-                                현재 부산소프트웨어마이스터고에 재학 중인
-                                학생입니다.
-                            </p>
-                            <p>
-                                코드를 작성할 때 고민하며 사용자와 개발팀에게
-                                최고의 가치를 전달할 수 있도록 노력합니다.
-                                <br />웹 풀스택 개발자이지만 서버쪽에 관심이
-                                있으며, 다양한 프로젝트를 개발하였습니다.
-                            </p>
+                    <div className="center">
+                        <div className="intro">
+                            <div className="about">
+                                <h1>👋 안녕하세요 김영민입니다.</h1>
+                                <p>
+                                    현재 부산소프트웨어마이스터고에 재학 중인
+                                    학생입니다.
+                                </p>
+                                <p>
+                                    코드를 작성할 때 고민하며 사용자와
+                                    개발팀에게 최고의 가치를 전달할 수 있도록
+                                    노력합니다.
+                                    <br />웹 풀스택 개발자이지만 서버쪽에 관심이
+                                    있으며, 다양한 프로젝트를 개발하였습니다.
+                                </p>
+                            </div>
+                            <img src="https://avatars.githubusercontent.com/min050410"></img>
                         </div>
-                        <img src="https://avatars.githubusercontent.com/min050410"></img>
                     </div>
                 </Element>
                 <Element name="project">
                     <div className="project">
-                        <div className="about">
-                            <h1>👋 안녕하세요 김영민입니다.</h1>
-                            <p>
-                                현재 부산소프트웨어마이스터고에 재학 중인
-                                학생입니다.
-                            </p>
-                            <p>
-                                코드를 작성할 때 고민하며 사용자와 개발팀에게
-                                최고의 가치를 전달할 수 있도록 노력합니다.
-                                <br />웹 풀스택 개발자이지만 서버쪽에 관심이
-                                있으며, 다양한 프로젝트를 개발하였습니다.
-                            </p>
+                        <div className="projects">
+                            <h1>Project</h1>
+                            <div className="project--list">
+                                <div className="project--list-card">
+                                    <div className="project--list-card--stack">
+                                        fullstack
+                                    </div>
+                                    <div className="project--list-card--name">
+                                        2048
+                                    </div>
+                                    <div className="project--list-card--bottom">
+                                        <div className="project--list-card--date">
+                                            <div className="project--list-card--month">
+                                                APR
+                                            </div>
+                                            <div className="project--list-card--year">
+                                                2022
+                                            </div>
+                                        </div>
+                                        <div className="project--list-card--logo">
+                                            -{">"}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <img src="https://avatars.githubusercontent.com/min050410"></img>
                     </div>
                 </Element>
+                {/* <Element name="project">
+
+                </Element> */}
                 {/* <div className="section_union">
                     <section className="section">
                         <span>💼 현재 직장 없음</span>

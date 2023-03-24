@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { animateScroll, scroller } from "react-scroll";
+import { scroller } from "react-scroll";
 
 const useSmoothScroll = (sectionName: string) => {
     const [scrollY, setScrollY] = useState(0);
