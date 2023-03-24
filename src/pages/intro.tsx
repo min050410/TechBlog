@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Element } from "react-scroll";
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet";
@@ -6,60 +7,60 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 
 //style
 import "../styles/intro.sass";
-import { HIT_BADGE_URL, HIT_URL } from "../constant/constant";
+
+import useSmoothScroll from "../hooks/useSmoothScroll";
 
 const Intro = () => {
+    useSmoothScroll("about");
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
             <IntroHeaderComponent />
-            <div className="moveto">
+            <div className="ref">
                 <div>
-                    <a href="#hi">📑 intro</a>
+                    <img src="/images/github.png"></img>
                 </div>
                 <div>
-                    <a href="#skill">🏹 Skill + Tool</a>
-                </div>
-                <div>
-                    <a href="#side">🎁 Side Project</a>
-                </div>
-                <div>
-                    <a href="#prize">🏆 Prize + Award</a>
+                    <img src="/images/email.png"></img>
                 </div>
             </div>
             <div className="portfolio">
-                <div className="intro">
-                    <div className="about">
-                        <h1>👋 안녕하세요 김영민입니다.</h1>
-                        <p>
-                            현재 부산소프트웨어마이스터고에 재학 중인
-                            학생입니다.
-                        </p>
-                        <p>
-                            코드를 작성할 때 고민하며 사용자와 개발팀에게 최고의
-                            가치를 전달할 수 있도록 노력합니다.
-                            <br />웹 풀스택 개발자이지만 서버쪽에 관심이 있으며,
-                            다양한 프로젝트를 개발하였습니다.
-                        </p>
+                <Element name="about">
+                    <div className="intro">
+                        <div className="about">
+                            <h1>👋 안녕하세요 김영민입니다.</h1>
+                            <p>
+                                현재 부산소프트웨어마이스터고에 재학 중인
+                                학생입니다.
+                            </p>
+                            <p>
+                                코드를 작성할 때 고민하며 사용자와 개발팀에게
+                                최고의 가치를 전달할 수 있도록 노력합니다.
+                                <br />웹 풀스택 개발자이지만 서버쪽에 관심이
+                                있으며, 다양한 프로젝트를 개발하였습니다.
+                            </p>
+                        </div>
+                        <img src="https://avatars.githubusercontent.com/min050410"></img>
                     </div>
-                    <img src="https://avatars.githubusercontent.com/min050410"></img>
-                </div>
-                <div className="intro">
-                    <div className="about">
-                        <h1>👋 안녕하세요 김영민입니다.</h1>
-                        <p>
-                            현재 부산소프트웨어마이스터고에 재학 중인
-                            학생입니다.
-                        </p>
-                        <p>
-                            코드를 작성할 때 고민하며 사용자와 개발팀에게 최고의
-                            가치를 전달할 수 있도록 노력합니다.
-                            <br />웹 풀스택 개발자이지만 서버쪽에 관심이 있으며,
-                            다양한 프로젝트를 개발하였습니다.
-                        </p>
+                </Element>
+                <Element name="project">
+                    <div className="project">
+                        <div className="about">
+                            <h1>👋 안녕하세요 김영민입니다.</h1>
+                            <p>
+                                현재 부산소프트웨어마이스터고에 재학 중인
+                                학생입니다.
+                            </p>
+                            <p>
+                                코드를 작성할 때 고민하며 사용자와 개발팀에게
+                                최고의 가치를 전달할 수 있도록 노력합니다.
+                                <br />웹 풀스택 개발자이지만 서버쪽에 관심이
+                                있으며, 다양한 프로젝트를 개발하였습니다.
+                            </p>
+                        </div>
+                        <img src="https://avatars.githubusercontent.com/min050410"></img>
                     </div>
-                    <img src="https://avatars.githubusercontent.com/min050410"></img>
-                </div>
+                </Element>
                 {/* <div className="section_union">
                     <section className="section">
                         <span>💼 현재 직장 없음</span>

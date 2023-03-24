@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { animateScroll } from "react-scroll";
+import { animateScroll, scroller } from "react-scroll";
 
-const useSmoothScroll = (scrollHeight: number) => {
+const useSmoothScroll = (sectionName: string) => {
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -17,8 +17,7 @@ const useSmoothScroll = (scrollHeight: number) => {
     }, []);
 
     const handleSmoothScroll = () => {
-        const nextScrollY = scrollY + scrollHeight;
-        animateScroll.scrollTo(nextScrollY, {
+        scroller.scrollTo(sectionName, {
             duration: 500,
             smooth: true,
         });

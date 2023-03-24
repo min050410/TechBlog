@@ -140,10 +140,12 @@ const IntroHeaderComponent = () => {
                 </div>
             </div>
             <div className="head content">
-                <span onClick={useSmoothScroll(1000)}>BLOG</span>
-                <span>ABOUT</span>
-                <span>PROJECT</span>
-                <span>CONTENT</span>
+                <Link to="/">
+                    <span>BLOG</span>
+                </Link>
+                <span onClick={useSmoothScroll("about")}>ABOUT</span>
+                <span onClick={useSmoothScroll("project")}>PROJECT</span>
+                <span onClick={useSmoothScroll("experience")}>EXPERIENCE</span>
                 <DarkModeSwitchComponent />
             </div>
         </header>
