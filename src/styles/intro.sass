@@ -64,8 +64,18 @@ h3#gray:nth-child(3)
     width: 15rem
     height: 15rem
     box-shadow: 5px 7px 4px black
+    cursor: pointer
 
 .project--list-card:hover
+    animation: slide-right 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both
+
+@keyframes slide-right 
+    from
+        transform: translateX(0)
+    to 
+        transform: translateX(15px)
+  
+
 
 
 .project--list-card--stack
