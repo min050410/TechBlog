@@ -7,13 +7,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const slickSettings = {
     dots: true,
-    arrows: true,
     autoplay: true,
     infinite: true,
     speed: 1000,
     autoplaySpeed: 5000,
     slidesToShow: 6,
     slidesToScroll: 6,
+    variableWidth: true,
 };
 
 //styles
@@ -47,9 +47,7 @@ const PopularComponent: React.FC = () => {
         <section>
             <div className="header">인기있는 블로그</div>
             <div className="slider-item">
-                {/* <div className="container"> */}
                 <Slider {...slickSettings}>{popular_list}</Slider>
-                {/* </div> */}
             </div>
         </section>
     );
