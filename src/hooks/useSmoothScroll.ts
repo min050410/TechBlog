@@ -1,27 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { scroller } from "react-scroll";
 
 const useSmoothScroll = (sectionName: string) => {
-    const [scrollY, setScrollY] = useState(0);
+    const handleScroll = useCallback(() => {}, []);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        };
-
         window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [handleScroll]);
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-    const handleSmoothScroll = () => {
+    const handleSmoothScroll = useCallback(() => {
         scroller.scrollTo(sectionName, {
             duration: 500,
             smooth: true,
         });
-    };
+    }, [sectionName]);
 
     return handleSmoothScroll;
 };

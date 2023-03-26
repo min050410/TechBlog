@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import popularPostsData, { popularPostsDataType } from "./popularPostsData";
+import popularPostsData from "./popularPostsData";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
