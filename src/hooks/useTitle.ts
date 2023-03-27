@@ -1,17 +1,15 @@
-import React from 'react';
-import recentPostsData from '../components/layout/recentComponent/recentPostsData';
+import React from "react";
+import recentPostsData from "../components/layout/recentComponent/recentPostsData";
 
 export const useTitle = (filename: any) => {
-
     const [title, setTitle] = React.useState<string>();
 
     React.useEffect(() => {
-        for (let i = 0; i < recentPostsData.length; i++) {
-            if (recentPostsData[i].filename == filename) {
-                setTitle(recentPostsData[i].title);
-            }
+        const post = recentPostsData.find((post) => post.filename === filename);
+        if (post) {
+            setTitle(post.title);
         }
-    }, [filename])
+    }, [filename]);
 
     return title;
 };
