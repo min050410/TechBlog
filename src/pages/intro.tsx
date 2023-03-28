@@ -7,6 +7,7 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 
 //style
 import "../styles/intro.sass";
+import ProjectCardComponent from "../components/layout/portfolioComponent/ProjectCardComponent";
 
 const Intro = () => {
     const projects = [
@@ -58,7 +59,7 @@ const Intro = () => {
                         <div className="projects">
                             <h1>Project</h1>
                             {projects.map((project) => (
-                                <ProjectCard
+                                <ProjectCardComponent
                                     key={project.id}
                                     stack={project.stack}
                                     name={project.name}
