@@ -57,29 +57,15 @@ const Intro = () => {
                     <div className="project">
                         <div className="projects">
                             <h1>Project</h1>
-                            <div className="project--list">
-                                <div className="project--list-card">
-                                    <div className="project--list-card--stack">
-                                        fullstack
-                                    </div>
-                                    <div className="project--list-card--name">
-                                        2048
-                                    </div>
-                                    <div className="project--list-card--bottom">
-                                        <div className="project--list-card--date">
-                                            <div className="project--list-card--month">
-                                                APR
-                                            </div>
-                                            <div className="project--list-card--year">
-                                                2022
-                                            </div>
-                                        </div>
-                                        <div className="project--list-card--logo">
-                                            -{">"}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {projects.map((project) => (
+                                <ProjectCard
+                                    key={project.id}
+                                    stack={project.stack}
+                                    name={project.name}
+                                    date={project.date}
+                                    logo={project.logo}
+                                />
+                            ))}
                         </div>
                     </div>
                 </Element>
