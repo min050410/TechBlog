@@ -9,6 +9,16 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 import "../styles/intro.sass";
 
 const Intro = () => {
+    const projects = [
+        {
+            id: 1,
+            stack: "fullstack",
+            name: "2048",
+            date: { month: "APR", year: "2022" },
+            logo: "->",
+        },
+    ];
+
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
