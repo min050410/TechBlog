@@ -7,13 +7,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 export const slickSettings = {
     dots: true,
-    autoplay: true,
+    arrows: false,
+    // autoplay: true,
     infinite: true,
     speed: 1000,
     autoplaySpeed: 5000,
     slidesToShow: 6,
     slidesToScroll: 6,
-    variableWidth: true,
+    // variableWidth: true,
 };
 
 //styles
