@@ -8,18 +8,9 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 //style
 import "../styles/intro.sass";
 import ProjectCardComponent from "../components/layout/portfolioComponent/ProjectCardComponent";
+import projectCardsData from "../components/layout/portfolioComponent/projectCardData";
 
 const Intro = () => {
-    const projects = [
-        {
-            id: 1,
-            stack: "fullstack",
-            name: "2048",
-            date: { month: "APR", year: "2022" },
-            logo: "->",
-        },
-    ];
-
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
@@ -58,13 +49,13 @@ const Intro = () => {
                     <div className="project">
                         <div className="projects">
                             <h1>Project</h1>
-                            {projects.map((project) => (
+                            {projectCardsData.map((projectCard) => (
                                 <ProjectCardComponent
-                                    key={project.id}
-                                    stack={project.stack}
-                                    name={project.name}
-                                    date={project.date}
-                                    logo={project.logo}
+                                    key={projectCard.id}
+                                    stack={projectCard.stack}
+                                    name={projectCard.name}
+                                    date={projectCard.date}
+                                    logo={projectCard.logo}
                                 />
                             ))}
                         </div>
