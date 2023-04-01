@@ -52,6 +52,7 @@ const Intro = () => {
                             {projectCardsData.map((projectCard) => (
                                 <ProjectCardComponent
                                     key={projectCard.id}
+                                    filename={projectCard.filename}
                                     stack={projectCard.stack}
                                     name={projectCard.name}
                                     date={projectCard.date}

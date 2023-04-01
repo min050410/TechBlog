@@ -6,6 +6,7 @@
 
 export type projectCardsDataType = {
     id: number;
+    filename: string;
     stack: string;
     name: string;
     date: {
@@ -18,6 +19,7 @@ export type projectCardsDataType = {
 const projectCardsData: projectCardsDataType = [
     {
         id: 1,
+        filename: "Project-2048",
         stack: "fullstack",
         name: "2048",
         date: { month: "APR", year: "2022" },
