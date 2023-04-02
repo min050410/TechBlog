@@ -148,9 +148,9 @@ const HeaderComponent = () => {
                 {token ? (
                     <span>로그인 됨</span>
                 ) : (
-                    <Link to={GITHUB_OAUTH_REDIRECT_URL}>
+                    <a href={GITHUB_OAUTH_REDIRECT_URL}>
                         <span>github 로그인</span>
-                    </Link>
+                    </a>
                 )}
                 <DarkModeSwitchComponent />
             </div>

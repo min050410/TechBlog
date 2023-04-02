@@ -18,16 +18,16 @@ const Intro = () => {
             <SEOComponent title="Dev log | 소개" />
             <IntroHeaderComponent />
             <div className="ref">
-                <Link to={GITHUB_PROFILE_URL}>
+                <a href={GITHUB_PROFILE_URL}>
                     <div>
                         <img src="/images/github.png"></img>
                     </div>
-                </Link>
-                <Link to={EMAIL_URL}>
+                </a>
+                <a href={EMAIL_URL}>
                     <div>
                         <img src="/images/email.png"></img>
                     </div>
-                </Link>
+                </a>
             </div>
             <div className="portfolio">
                 <Element name="about">

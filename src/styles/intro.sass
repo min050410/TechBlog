@@ -92,7 +92,6 @@ h3#gray:nth-child(3)
     cursor: pointer
 
 .project--list-card:hover
-    // opacity: 0.6
     animation: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both
 
 @keyframes slide-right 
@@ -106,14 +105,6 @@ h3#gray:nth-child(3)
         opacity: 1
     to
         opacity: 0.65
-
-@keyframes wave 
-    from
-        transform: scale(1)
-        opacity: 1
-    to 
-        transform: scale(2.5)
-        opacity: 0
 
 .project--list-card--stack
     position: absolute
@@ -292,11 +283,9 @@ h3#gray:nth-child(3)
     position: fixed
     display: flex
     gap: 1rem
-    background-color: var(--color-default)
     right: 30px
     bottom: 10px
     z-index: 1
-
 
 // .moveto div a
 //     font-size: 0.8em
