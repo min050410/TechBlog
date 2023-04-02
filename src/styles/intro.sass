@@ -81,27 +81,39 @@ h3#gray:nth-child(3)
     background-color: var(--color-project6)
 
 .project--list-card
+    color: $white
     width: 50%
     grid-column-end: span 2
     position: relative
     display: flex
     justify-content: center
     flex-direction: column
-    box-shadow: 5px 7px 4px black
+    box-shadow: var(--project-box-shadow)
     cursor: pointer
-    
 
 .project--list-card:hover
-    animation: slide-right 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both
-
-.project--list-card > a:hover
-    text-decoration: none
+    // opacity: 0.6
+    animation: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both
 
 @keyframes slide-right 
     from
         transform: translateX(0)
     to 
-        transform: translateX(105px)
+        transform: translateX(10px)
+
+@keyframes opacity
+    from
+        opacity: 1
+    to
+        opacity: 0.65
+
+@keyframes wave 
+    from
+        transform: scale(1)
+        opacity: 1
+    to 
+        transform: scale(2.5)
+        opacity: 0
 
 .project--list-card--stack
     position: absolute
@@ -135,7 +147,6 @@ h3#gray:nth-child(3)
     flex-direction: column
     margin: .5rem
     bottom: 0
-
 
 
 // .intro_test

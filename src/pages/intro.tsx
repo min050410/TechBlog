@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Element } from "react-scroll";
+import { Link } from "gatsby";
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet";
@@ -9,6 +10,7 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 import "../styles/intro.sass";
 import ProjectCardComponent from "../components/layout/portfolioComponent/ProjectCardComponent";
 import projectCardsData from "../components/layout/portfolioComponent/projectCardData";
+import { EMAIL_URL, GITHUB_PROFILE_URL } from "../constant/constant";
 
 const Intro = () => {
     return (
@@ -16,12 +18,16 @@ const Intro = () => {
             <SEOComponent title="Dev log | 소개" />
             <IntroHeaderComponent />
             <div className="ref">
-                <div>
-                    <img src="/images/github.png"></img>
-                </div>
-                <div>
-                    <img src="/images/email.png"></img>
-                </div>
+                <Link to={GITHUB_PROFILE_URL}>
+                    <div>
+                        <img src="/images/github.png"></img>
+                    </div>
+                </Link>
+                <Link to={EMAIL_URL}>
+                    <div>
+                        <img src="/images/email.png"></img>
+                    </div>
+                </Link>
             </div>
             <div className="portfolio">
                 <Element name="about">

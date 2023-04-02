@@ -22,23 +22,25 @@ const ProjectCardComponent = ({
     logo,
 }: ProjectCardComponentType) => {
     return (
-        <div className="project--list-card" key={key}>
-            <Link to={`/postitem/?name=${filename}`}>
-                <div className="project--list-card--stack">{stack}</div>
-                <div className="project--list-card--name">{name}</div>
-                <div className="project--list-card--bottom">
-                    <div className="project--list-card--date">
-                        <div className="project--list-card--month">
-                            {date.month}
-                        </div>
-                        <div className="project--list-card--year">
-                            {date.year}
-                        </div>
+        <Link
+            to={`/postitem/?name=${filename}`}
+            className="project--list-card"
+            key={key}
+        >
+            {/* <div className="project--list-card" key={key}> */}
+            <div className="project--list-card--stack">{stack}</div>
+            <div className="project--list-card--name">{name}</div>
+            <div className="project--list-card--bottom">
+                <div className="project--list-card--date">
+                    <div className="project--list-card--month">
+                        {date.month}
                     </div>
-                    <div className="project--list-card--logo">{logo}</div>
+                    <div className="project--list-card--year">{date.year}</div>
                 </div>
-            </Link>
-        </div>
+                <div className="project--list-card--logo">{logo}</div>
+            </div>
+            {/* </div> */}
+        </Link>
     );
 };
 
