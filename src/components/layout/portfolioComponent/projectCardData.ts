@@ -1,8 +1,10 @@
 /**
- * id : blog index
- * title : title of blog
- * filename : blog filename
- * img : blog img filename */
+ * id : project index
+ * filename : project filename
+ * stack : project stack ex) frontend
+ * name: project name
+ * date project date
+ */
 
 export type projectCardsDataType = {
     id: number;

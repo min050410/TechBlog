@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Element } from "react-scroll";
-import { Link } from "gatsby";
 
 //components
 import SEOComponent from "../components/common/seoComponent/SEOComponet";
