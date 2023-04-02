@@ -11,6 +11,9 @@ import ProjectCardComponent from "../components/layout/portfolioComponent/Projec
 import projectCardsData from "../components/layout/portfolioComponent/projectCardData";
 import { EMAIL_URL, GITHUB_PROFILE_URL } from "../constant/constant";
 
+// hook
+import useScrollFadeIn from "../hooks/useScrollFadeIn";
+
 const Intro = () => {
     return (
         <main>
@@ -33,12 +36,14 @@ const Intro = () => {
                     <div className="layout-center">
                         <div className="about">
                             <div className="about--content">
-                                <h1>👋 안녕하세요 김영민입니다.</h1>
-                                <p>
+                                <h1 {...useScrollFadeIn("right", 1, 0)}>
+                                    👋 안녕하세요 김영민입니다.
+                                </h1>
+                                <p {...useScrollFadeIn("right", 1, 0)}>
                                     현재 부산소프트웨어마이스터고에 재학 중인
                                     학생입니다.
                                 </p>
-                                <p>
+                                <p {...useScrollFadeIn("right", 1, 0)}>
                                     코드를 작성할 때 고민하며 사용자와
                                     개발팀에게 최고의 가치를 전달할 수 있도록
                                     노력합니다.
@@ -71,7 +76,10 @@ const Intro = () => {
                 <Element name="experience">
                     <div className="experience">
                         <div className="experience--content">
-                            <div className="experience--works">
+                            <div
+                                className="experience--works"
+                                {...useScrollFadeIn("right", 1, 0)}
+                            >
                                 <h1>Experience</h1>
                                 <p>
                                     <big>부산소프트웨어마이스터고</big> (2021.03
@@ -103,7 +111,10 @@ const Intro = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="experience--certificates">
+                            <div
+                                className="experience--certificates"
+                                {...useScrollFadeIn("right", 1, 0)}
+                            >
                                 <h2>Certificates</h2>
                                 <ul>
                                     <li>SQLD (SQL개발자)</li>
@@ -114,7 +125,10 @@ const Intro = () => {
                                     <li>토익 745점</li>
                                 </ul>
                             </div>
-                            <div className="experience--prizes">
+                            <div
+                                className="experience--prizes"
+                                {...useScrollFadeIn("right", 1, 0)}
+                            >
                                 <h2>Prizes</h2>
                                 <p>
                                     <big>2021 하계전공캠프 해커톤</big>{" "}
@@ -128,13 +142,16 @@ const Intro = () => {
                                     우수상 - 부산소프트웨어마이스터고
                                 </p>
                             </div>
-                            <div className="experience--skills">
+                            <div
+                                className="experience--skills"
+                                {...useScrollFadeIn("right", 1, 0)}
+                            >
                                 <h2>Skills</h2>
                                 <div className="skills--content">
                                     <div className="skill--list">
                                         <div className="skill--list-card">
                                             <div className="skill--list-card--header">
-                                                <div className="skill-tag-yellow">
+                                                <div className="skill-tag-red">
                                                     Web Backend
                                                 </div>
                                                 <div className="skill-count">
@@ -156,7 +173,7 @@ const Intro = () => {
                                         </div>
                                         <div className="skill--list-card">
                                             <div className="skill--list-card--header">
-                                                <div className="skill-tag-green">
+                                                <div className="skill-tag-yellow">
                                                     Web Frontend
                                                 </div>
                                                 <div className="skill-count">
@@ -185,7 +202,7 @@ const Intro = () => {
                                         </div>
                                         <div className="skill--list-card">
                                             <div className="skill--list-card--header">
-                                                <div className="skill-tag-blue">
+                                                <div className="skill-tag-green">
                                                     Team Collaboration Tool
                                                 </div>
                                                 <div className="skill-count">
