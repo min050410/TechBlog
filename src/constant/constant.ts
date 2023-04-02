@@ -1,5 +1,7 @@
 export const GITHUB_URL = "https://github.com/min050410/TechBlog" as const;
-export const GITHUB_PROFILE_URL = "https://github.com/min050410";
+export const GITHUB_PROFILE_URL = "https://github.com/min050410" as const;
+export const GITHUB_PROFILE_IMG_URL =
+    "https://avatars.githubusercontent.com/min050410" as const;
 export const EMAIL_URL = "mailto:min050410@gmail.com" as const;
 export const LOGO_IMG_URL =
     "https://user-images.githubusercontent.com/45661217/145702017-641a444f-1f06-473d-b7e1-f3ae27012186.png" as const;

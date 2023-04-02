@@ -80,7 +80,7 @@ const Intro = () => {
                                 className="experience--works"
                                 {...useScrollFadeIn("right", 1, 0)}
                             >
-                                <h1>Experience</h1>
+                                <h2>Experience</h2>
                                 <p>
                                     <big>부산소프트웨어마이스터고</big> (2021.03
                                     ~ 2023.02)
@@ -125,18 +125,17 @@ const Intro = () => {
                                     <li>토익 745점</li>
                                 </ul>
                             </div>
-                            <div
-                                className="experience--prizes"
-                                {...useScrollFadeIn("right", 1, 0)}
-                            >
-                                <h2>Prizes</h2>
-                                <p>
+                            <div className="experience--prizes">
+                                <h2 {...useScrollFadeIn("right", 1, 0)}>
+                                    Prizes
+                                </h2>
+                                <p {...useScrollFadeIn("right", 1, 0)}>
                                     <big>2021 하계전공캠프 해커톤</big>{" "}
                                     (2021.02)
                                     <br />
                                     최우수상 - 부산소프트웨어마이스터고
                                 </p>
-                                <p>
+                                <p {...useScrollFadeIn("right", 1, 0)}>
                                     <big>2022 1학기 해커톤</big> (2022.07)
                                     <br />
                                     우수상 - 부산소프트웨어마이스터고
@@ -228,14 +227,6 @@ const Intro = () => {
                         </div>
                     </div>
                 </Element>
-                {/* <footer>
-                    <div className="footer_wrap">
-                        <a href={HIT_URL}>
-                            <img src={HIT_BADGE_URL} />
-                        </a>
-                        <div className="date">last Update. 220110 </div>
-                    </div>
-                </footer> */}
             </div>
         </main>
     );
