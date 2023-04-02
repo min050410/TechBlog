@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link } from "gatsby";
 
 type ProjectCardComponentType = {
-    key: number;
     filename: string;
     stack: string;
     name: string;
@@ -14,7 +13,6 @@ type ProjectCardComponentType = {
 };
 
 const ProjectCardComponent = ({
-    key,
     filename,
     stack,
     name,
@@ -22,11 +20,7 @@ const ProjectCardComponent = ({
     logo,
 }: ProjectCardComponentType) => {
     return (
-        <Link
-            to={`/postitem/?name=${filename}`}
-            className="project--list-card"
-            key={key}
-        >
+        <Link to={`/postitem/?name=${filename}`} className="project--list-card">
             {/* <div className="project--list-card" key={key}> */}
             <div className="project--list-card--stack">{stack}</div>
             <div className="project--list-card--name">{name}</div>
