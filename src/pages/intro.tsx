@@ -7,72 +7,22 @@ import IntroHeaderComponent from "../components/common/headerComponent/IntroHead
 
 //style
 import "../styles/intro.sass";
-import ProjectCardComponent from "../components/layout/portfolioComponent/ProjectCardComponent";
-import projectCardsData from "../components/layout/portfolioComponent/projectCardData";
-import { EMAIL_URL, GITHUB_PROFILE_URL } from "../constant/constant";
 
 // hook
 import useScrollFadeIn from "../hooks/useScrollFadeIn";
+import PortfolioAboutComponent from "../components/layout/portfolioComponent/portfolioAboutComponent/PortfolioAboutComponent";
+import PortfolioProjectComponent from "../components/layout/portfolioComponent/portfolioProjectComponent/PortfolioProjectComponent";
+import PortfolioRefComponent from "../components/layout/portfolioComponent/portfolioRefComponent/PortfolioRefComponent";
 
 const Intro = () => {
     return (
         <main>
             <SEOComponent title="Dev log | 소개" />
             <IntroHeaderComponent />
-            <div className="ref">
-                <a href={GITHUB_PROFILE_URL}>
-                    <div>
-                        <img src="/images/github.png"></img>
-                    </div>
-                </a>
-                <a href={EMAIL_URL}>
-                    <div>
-                        <img src="/images/email.png"></img>
-                    </div>
-                </a>
-            </div>
+            <PortfolioRefComponent />
             <div className="portfolio">
-                <Element name="about">
-                    <div className="layout-center">
-                        <div className="about">
-                            <div className="about--content">
-                                <h1 {...useScrollFadeIn("right", 1, 0)}>
-                                    👋 안녕하세요 김영민입니다.
-                                </h1>
-                                <p {...useScrollFadeIn("right", 1, 0)}>
-                                    현재 부산소프트웨어마이스터고에 재학 중인
-                                    학생입니다.
-                                </p>
-                                <p {...useScrollFadeIn("right", 1, 0)}>
-                                    코드를 작성할 때 고민하며 사용자와
-                                    개발팀에게 최고의 가치를 전달할 수 있도록
-                                    노력합니다.
-                                    <br />웹 풀스택 개발자이지만 서버쪽에 관심이
-                                    있으며, 다양한 프로젝트를 개발하였습니다.
-                                </p>
-                            </div>
-                            <img src="https://avatars.githubusercontent.com/min050410"></img>
-                        </div>
-                    </div>
-                </Element>
-                <Element name="project">
-                    <div className="project">
-                        <div className="project--content">
-                            <h1>Project</h1>
-                            <div className="project--list">
-                                {projectCardsData.map((projectCard) => (
-                                    <ProjectCardComponent
-                                        key={projectCard.id}
-                                        filename={projectCard.filename}
-                                        stack={projectCard.stack}
-                                        name={projectCard.name}
-                                        date={projectCard.date}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </Element>
+                <PortfolioAboutComponent />
+                <PortfolioProjectComponent />
                 <Element name="experience">
                     <div className="experience">
                         <div className="experience--content">
