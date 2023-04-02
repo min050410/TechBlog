@@ -89,9 +89,13 @@ h3#gray:nth-child(3)
     flex-direction: column
     box-shadow: 5px 7px 4px black
     cursor: pointer
+    
 
 .project--list-card:hover
     animation: slide-right 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both
+
+.project--list-card > a:hover
+    text-decoration: none
 
 @keyframes slide-right 
     from
@@ -311,11 +315,11 @@ h3#gray:nth-child(3)
 .portfolio
     animation: fadeup 2s ease 0s 1 normal both running 
     height: 500vh
-    a
-        color: var(--color-a)
-        font-size: 16px
-    a:hover
-        text-decoration: underline var(--color-a)
+    // a
+    //     color: var(--color-a)
+    //     font-size: 16px
+    // a:hover
+    //     text-decoration: underline var(--color-a)
 
 .center 
     width: 80%
