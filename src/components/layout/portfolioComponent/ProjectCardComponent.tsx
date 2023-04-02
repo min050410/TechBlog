@@ -9,7 +9,6 @@ type ProjectCardComponentType = {
         month: string;
         year: string;
     };
-    logo: string;
 };
 
 const ProjectCardComponent = ({
@@ -17,11 +16,9 @@ const ProjectCardComponent = ({
     stack,
     name,
     date,
-    logo,
 }: ProjectCardComponentType) => {
     return (
         <Link to={`/postitem/?name=${filename}`} className="project--list-card">
-            {/* <div className="project--list-card" key={key}> */}
             <div className="project--list-card--stack">{stack}</div>
             <div className="project--list-card--name">{name}</div>
             <div className="project--list-card--bottom">
@@ -31,9 +28,10 @@ const ProjectCardComponent = ({
                     </div>
                     <div className="project--list-card--year">{date.year}</div>
                 </div>
-                <div className="project--list-card--logo">{logo}</div>
+                <div className="project--list-card--logo">
+                    <img src="/images/link.png"></img>
+                </div>
             </div>
-            {/* </div> */}
         </Link>
     );
 };

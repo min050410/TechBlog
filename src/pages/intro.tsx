@@ -63,7 +63,6 @@ const Intro = () => {
                                         stack={projectCard.stack}
                                         name={projectCard.name}
                                         date={projectCard.date}
-                                        logo={projectCard.logo}
                                     />
                                 ))}
                             </div>

@@ -13,7 +13,6 @@ export type projectCardsDataType = {
         month: string;
         year: string;
     };
-    logo: string;
 }[];
 
 const projectCardsData: projectCardsDataType = [
@@ -23,7 +22,6 @@ const projectCardsData: projectCardsDataType = [
         stack: "fullstack",
         name: "2048",
         date: { month: "APR", year: "2022" },
-        logo: "->",
     },
     {
         id: 2,
@@ -31,7 +29,6 @@ const projectCardsData: projectCardsDataType = [
         stack: "front, server",
         name: "TechBlog1",
         date: { month: "APR", year: "2022" },
-        logo: "->",
     },
     {
         id: 3,
@@ -39,7 +36,6 @@ const projectCardsData: projectCardsDataType = [
         stack: "front, server",
         name: "TechBlog2",
         date: { month: "APR", year: "2022" },
-        logo: "->",
     },
     {
         id: 4,
@@ -47,7 +43,6 @@ const projectCardsData: projectCardsDataType = [
         stack: "front, server",
         name: "TechBlog3",
         date: { month: "APR", year: "2022" },
-        logo: "->",
     },
     {
         id: 5,
@@ -55,7 +50,6 @@ const projectCardsData: projectCardsDataType = [
         stack: "front, server",
         name: "TechBlog4",
         date: { month: "APR", year: "2022" },
-        logo: "->",
     },
 ];
 
