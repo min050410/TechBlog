@@ -71,104 +71,139 @@ const Intro = () => {
                 <Element name="experience">
                     <div className="experience">
                         <div className="experience--content">
-                            <h1>Experience</h1>
                             <div className="experience--works">
-                                <h2>Education</h2>
+                                <h1>Experience</h1>
                                 <p>
-                                    <strong>소프트웨어마이스터고</strong>{" "}
-                                    (2021.03 ~ 2023.02)
+                                    <big>부산소프트웨어마이스터고</big> (2021.03
+                                    ~ 2023.02)
                                 </p>
                                 <ul>
                                     <li>
-                                        소프트웨어 개발과 전공 졸업 예정입니다.
+                                        소프트웨어개발과 전공 졸업 예정입니다.
                                     </li>
-                                    <li>마이스터 역량인증제 점수 272.4/1위</li>
+                                    <li>
+                                        마이스터 역량인증제 점수{" "}
+                                        <big>272.4/1위</big>
+                                    </li>
+                                </ul>
+                                <p>
+                                    <big>
+                                        <a>INSERT 동아리</a>
+                                    </big>{" "}
+                                    (2023.03 ~ 현재)
+                                </p>
+                                <p>
+                                    부산소마고와 관련된 웹사이트를 유지보수 하는
+                                    동아리 입니다.
+                                </p>
+                                <ul>
+                                    <li>
+                                        해당 동아리에서 <big>백엔드</big>를
+                                        담당하고 있습니다.
+                                    </li>
                                 </ul>
                             </div>
                             <div className="experience--certificates">
                                 <h2>Certificates</h2>
-                                <p>
-                                    2021 하계전공캠프 해커톤 (2021.02)
-                                    <br />
-                                    최우수상 - 부산소프트웨어마이스터고
-                                </p>
-                                <hr />
-                                <p>
-                                    2022 1학기 해커톤 (2022.07)
-                                    <br />
-                                    우수상 - 부산소프트웨어마이스터고
-                                </p>
+                                <ul>
+                                    <li>SQLD (SQL개발자)</li>
+                                    <li>정보처리산업기사</li>
+                                    <li>TOPCIT(ICT 역량지수평가) 수준 3</li>
+                                    <li>AZ-900: Microsoft Azure (842점)</li>
+                                    <li>컴퓨터활용능력 2급</li>
+                                    <li>토익 745점</li>
+                                </ul>
                             </div>
                             <div className="experience--prizes">
                                 <h2>Prizes</h2>
                                 <p>
-                                    2021 하계전공캠프 해커톤 (2021.02)
+                                    <big>2021 하계전공캠프 해커톤</big>{" "}
+                                    (2021.02)
                                     <br />
                                     최우수상 - 부산소프트웨어마이스터고
                                 </p>
                                 <p>
-                                    2022 1학기 해커톤 (2022.07)
+                                    <big>2022 1학기 해커톤</big> (2022.07)
                                     <br />
                                     우수상 - 부산소프트웨어마이스터고
                                 </p>
                             </div>
                             <div className="experience--skills">
-                                <div className="over">
-                                    <div className="skill">
-                                        <div className="card">
-                                            <div className="card_up">
-                                                <div className="tagr">
-                                                    Backend
+                                <h2>Skills</h2>
+                                <div className="skills--content">
+                                    <div className="skill--list">
+                                        <div className="skill--list-card">
+                                            <div className="skill--list-card--header">
+                                                <div className="skill-tag-yellow">
+                                                    Web Backend
                                                 </div>
-                                                <div className="count">11</div>
-                                            </div>
-                                            <div className="values">C, C++</div>
-                                            <div className="values">JS</div>
-                                            <div className="values">python</div>
-                                            <div className="values">HTML5</div>
-                                            <div className="values">CSS3</div>
-                                            <div className="values">TS</div>
-                                            <div className="values">jquery</div>
-                                            <div className="values">Sass</div>
-                                            <div className="values">Java</div>
-                                            <div className="values">Lua</div>
-                                            <div className="values">SQL</div>
-                                        </div>
-                                        <div className="card">
-                                            <div className="card_up">
-                                                <div className="tagy">
-                                                    Frontend
+                                                <div className="skill-count">
+                                                    11
                                                 </div>
-                                                <div className="count">7</div>
                                             </div>
-                                            <div className="values">React</div>
-                                            <div className="values">Flask</div>
-                                            <div className="values">
-                                                gatsby.js
-                                            </div>
-                                            <div className="values">
-                                                sqlchemy
-                                            </div>
-                                            <div className="values">
-                                                Node.js
-                                            </div>
-                                            <div className="values">
-                                                Express.js
-                                            </div>
-                                            <div className="values">
-                                                Android studio
-                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        Kotlin, Java, Gradle
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        Spring Mvc, Spring Boot
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div className="card">
-                                            <div className="card_up">
-                                                <div className="tagg">tool</div>
-                                                <div className="count">3</div>
+                                        <div className="skill--list-card">
+                                            <div className="skill--list-card--header">
+                                                <div className="skill-tag-green">
+                                                    Web Frontend
+                                                </div>
+                                                <div className="skill-count">
+                                                    7
+                                                </div>
                                             </div>
-                                            <div className="values">Linux</div>
-                                            <div className="values">Ajax</div>
-                                            <div className="values">
-                                                Autodesk
+                                            <ul>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        React, TypeScript,
+                                                        Next.js
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        React-Query, Recoil,
+                                                        Redux
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        GitHub Actions
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div className="skill--list-card">
+                                            <div className="skill--list-card--header">
+                                                <div className="skill-tag-blue">
+                                                    Team Collaboration Tool
+                                                </div>
+                                                <div className="skill-count">
+                                                    3
+                                                </div>
                                             </div>
+                                            <ul>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        jira software
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="skill--list-card--value">
+                                                        slack
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -176,134 +211,6 @@ const Intro = () => {
                         </div>
                     </div>
                 </Element>
-                {/* <Element name="project">
-
-                </Element> */}
-                {/* <div className="section_union">
-                    <section className="section">
-                        <span>💼 현재 직장 없음</span>
-                        <span>🍀 position | Backend programer</span>
-                        <span>📆 Date | 2023 ~</span>
-                    </section>
-                    <section className="section">
-                        <span>🏫 BSSM 재학중</span>
-                        <span>💻 major | SW development</span>
-                    </section>
-                </div>
-                <h4 className="under" id="skill">
-                    🏹 Skill + Tool
-                </h4>
-                <div className="over">
-                    <div className="skill">
-                        <div className="card">
-                            <div className="card_up">
-                                <div className="tagr">Languages</div>
-                                <div className="count">11</div>
-                            </div>
-                            <div className="values">C, C++</div>
-                            <div className="values">JS</div>
-                            <div className="values">python</div>
-                            <div className="values">HTML5</div>
-                            <div className="values">CSS3</div>
-                            <div className="values">TS</div>
-                            <div className="values">jquery</div>
-                            <div className="values">Sass</div>
-                            <div className="values">Java</div>
-                            <div className="values">Lua</div>
-                            <div className="values">SQL</div>
-                        </div>
-                        <div className="card">
-                            <div className="card_up">
-                                <div className="tagy">Frameworks</div>
-                                <div className="count">7</div>
-                            </div>
-                            <div className="values">React</div>
-                            <div className="values">Flask</div>
-                            <div className="values">gatsby.js</div>
-                            <div className="values">sqlchemy</div>
-                            <div className="values">Node.js</div>
-                            <div className="values">Express.js</div>
-                            <div className="values">Android studio</div>
-                        </div>
-                        <div className="card">
-                            <div className="card_up">
-                                <div className="tago">Certificate</div>
-                                <div className="count">2</div>
-                            </div>
-                            <div className="values">Microsoft Excel</div>
-                            <div className="values">Microsoft Azure</div>
-                        </div>
-                        <div className="card">
-                            <div className="card_up">
-                                <div className="tagg">etc</div>
-                                <div className="count">3</div>
-                            </div>
-                            <div className="values">Linux</div>
-                            <div className="values">Ajax</div>
-                            <div className="values">Autodesk</div>
-                        </div>
-                    </div>
-                </div> */}
-                {/* <h4 className="under" id="side">🎁 Side Project ( + Product Release )</h4>
-                <div className="side">
-                    <div className="card">
-
-                    </div>
-                    <div className="card">
-
-                    </div>
-                    <div className="card">
-
-                    </div>
-                    <div className="card">
-
-                    </div>
-                </div>  */}
-                {/* <h4 className="under" id="prize">
-                    🏆 Prize + Award
-                </h4>
-                <div className="prize">
-                    <div className="card">
-                        <div className="card_title">
-                            🥈 학생을 도와주는 혼공앱
-                        </div>
-                        <div className="time">2021.11</div>
-                        <div className="desc">
-                            KAIST 제 6회 전국 고등 소프트웨어 경진대회
-                        </div>
-                        <div className="tagg">은상</div>
-                    </div>
-                    <div className="card">
-                        <div className="card_title">⌨️ Human for AI</div>
-                        <div className="time">2021.11</div>
-                        <div className="desc">2021 SW마이스터고 연합해커톤</div>
-                        <div className="tagy">인기상</div>
-                    </div>
-                    <div className="card">
-                        <div className="card_title">🐾 What is Neuralink</div>
-                        <div className="time">2021.11</div>
-                        <div className="desc">영어 말하기 대회</div>
-                        <div className="tagb">결승 진출</div>
-                    </div>
-                    <div className="card">
-                        <div className="card_title">💬 국어 우리말 대회</div>
-                        <div className="time">2021.10</div>
-                        <div className="desc">국어 우리말 대회</div>
-                        <div className="tago">최우수상</div>
-                    </div>
-                    <div className="card">
-                        <div className="card_title">🌠 Dream</div>
-                        <div className="time">2021.7</div>
-                        <div className="desc">교내 해커톤 대회</div>
-                        <div className="tago">최우수상</div>
-                    </div>
-                    <div className="card">
-                        <div className="card_title">✏️ 내신 성적 우수</div>
-                        <div className="time">2021.7</div>
-                        <div className="desc">교과 우수상 수상</div>
-                        <div className="tagr">교과 우수상</div>
-                    </div>
-                </div> */}
                 {/* <footer>
                     <div className="footer_wrap">
                         <a href={HIT_URL}>

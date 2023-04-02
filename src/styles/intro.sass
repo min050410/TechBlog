@@ -54,7 +54,13 @@ h3#gray:nth-child(3)
     display: flex
     flex-direction: column
     margin-left: 5rem
-    width: 60%
+    width: 80%
+    a
+        color: var(--color-a)
+        font-size: 16px
+        cursor: pointer
+    a:hover
+        text-decoration: underline var(--color-a)
 
 .experience--content
     margin-top: 5rem
@@ -149,7 +155,6 @@ h3#gray:nth-child(3)
     margin: .5rem
     bottom: 0
 
-
 // .intro_test
 //     display: flex
 //     flex-direction: column
@@ -185,84 +190,72 @@ h3#gray:nth-child(3)
 //     padding-bottom: 10px
 //     border-bottom: 0.05em solid rgba(255, 255, 255, 0.07)
 
-// .over
-//     white-space: nowrap
-//     overflow-x: auto
-//     width: 100%
+.skills--content
+    white-space: nowrap
+    overflow-x: auto
+    width: 100%
 
-// .tagr
-//     font-size: 14px
-//     border-radius: 5px
-//     padding: 1px 4px
-//     background-color: #69363f
-//     color: #feaca5
+@mixin skill-tag
+    font-size: 15px
+    border-radius: 5px
+    padding: 1px 5px 1px 5px
 
-// .tagy
-//     font-size: 14px
-//     border-radius: 5px
-//     padding: 1px 4px
-//     background-color: #66543b
-//     color: #fad5a1
+.skill-tag-red
+    @include skill-tag
+    background-color: #69363f
+    color: #feaca5
 
-// .tago
-//     font-size: 14px
-//     border-radius: 5px
-//     padding: 1px 4px
-//     background-color: #664036
-//     color: #fdb695
+.skill-tag-yellow 
+    @include skill-tag
+    background-color: #66543b
+    color: #fad5a1
 
-// .tagg
-//     font-size: 14px
-//     border-radius: 5px
-//     padding: 1px 4px
-//     background-color: #344f40
-//     color: #b5d2ac
+.skill-tag-orange
+    @include skill-tag
+    background-color: #664036
+    color: #fdb695
 
-// .tagb
-//     font-size: 14px
-//     border-radius: 5px
-//     padding: 1px 4px
-//     background-color: #284d67
-//     color: #a3cbea
+.skill-tag-green
+    @include skill-tag
+    background-color: #344f40
+    color: #b5d2ac
 
-// .card > .card_up
-//     display: flex
-//     gap: 20px
-//     margin-bottom: 20px
+.skill-tag-blue
+    @include skill-tag
+    background-color: #284d67
+    color: #a3cbea
 
-// div > .count
-//     font-size: 16px
-//     color: #828383
+.skill--list
+    margin-top: 1rem
+    display: flex
+    -webkit-overflow-scrolling: touch
+    scroll-snap-type: x mandatory
 
-// .values
-//     font-family: 'Spoqa Han Sans Neo'
-//     font-size: 14px
-//     line-height: 1.5
-//     min-height: 21px
-//     font-weight: 500
-//     background-color: #2b2d33
-//     border-radius: 10px
-//     padding: 5px 0px 5px 40px
-//     margin-top: 5px
-//     transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+.skill--list-card
+    flex: 0 0 30%
+    max-width: 300px
+    height: 65vh
+    padding: 0.5rem
+    .skill--list-card--header
+        display: flex
+        gap: 20px
+        margin-bottom: 20px
+        .skill-count
+            font-size: 16px
+            color: #828383
 
-// .values:hover
-//     background-color: rgb(75, 75, 77)
-
-
-// .skill
-//     display: flex
-//     justify-content: space-between
-//     min-width: 100%
-//     -webkit-overflow-scrolling: touch
-//     scroll-snap-type: x mandatory
-//     gap: 20px
-
-// .skill > .card
-//     flex: 0 0 40%
-//     width: 100px
-//     height: 65vh
-//     overflow: auto hidden
+.skill--list-card--value
+    display: inline-block
+    font-family: 'Spoqa Han Sans Neo'
+    font-size: 14px
+    line-height: 1.5
+    height: 21px
+    font-weight: 500
+    background-color: #2b2d33
+    width: auto
+    border-radius: 10px
+    padding: 5px 10px 5px 10px
+    margin-top: 10px
 
 // .side
 //     display: flex
@@ -325,11 +318,6 @@ h3#gray:nth-child(3)
 .portfolio
     animation: fadeup 2s ease 0s 1 normal both running 
     height: 500vh
-    // a
-    //     color: var(--color-a)
-    //     font-size: 16px
-    // a:hover
-    //     text-decoration: underline var(--color-a)
 
 .layout-center 
     width: 80%
