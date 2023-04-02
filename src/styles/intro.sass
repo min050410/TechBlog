@@ -31,13 +31,13 @@ h3#gray:nth-child(1)
 h3#gray:nth-child(3)
     margin-top: 0px
 
-.intro > img
+.about > img
     margin: 35px 30px 20px 0px
     width: 270px
     height: 270px
     border-radius: 1000px
 
-.intro
+.about
     display: flex
     gap: 10rem
     height: 100vh
@@ -49,11 +49,22 @@ h3#gray:nth-child(3)
     margin-left: 5rem
     display: flex
 
-.projects
+.experience
+    height: 100vh
+    display: flex
+    flex-direction: column
+    margin-left: 5rem
+    width: 60%
+
+.experience--content
+    margin-top: 5rem
+
+.project--content
     margin-top: 5rem
     overflow-x: scroll
 
 .project--list
+    overflow-x: scroll
     display: grid
     grid-template-columns: repeat(6, 280px)
     grid-template-rows: repeat(2, 280px)
@@ -320,6 +331,6 @@ h3#gray:nth-child(3)
     // a:hover
     //     text-decoration: underline var(--color-a)
 
-.center 
+.layout-center 
     width: 80%
     margin: 0px auto 0px

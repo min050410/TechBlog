@@ -30,9 +30,9 @@ const Intro = () => {
             </div>
             <div className="portfolio">
                 <Element name="about">
-                    <div className="center">
-                        <div className="intro">
-                            <div className="about">
+                    <div className="layout-center">
+                        <div className="about">
+                            <div className="about--content">
                                 <h1>👋 안녕하세요 김영민입니다.</h1>
                                 <p>
                                     현재 부산소프트웨어마이스터고에 재학 중인
@@ -52,7 +52,7 @@ const Intro = () => {
                 </Element>
                 <Element name="project">
                     <div className="project">
-                        <div className="projects">
+                        <div className="project--content">
                             <h1>Project</h1>
                             <div className="project--list">
                                 {projectCardsData.map((projectCard) => (
@@ -64,6 +64,114 @@ const Intro = () => {
                                         date={projectCard.date}
                                     />
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+                </Element>
+                <Element name="experience">
+                    <div className="experience">
+                        <div className="experience--content">
+                            <h1>Experience</h1>
+                            <div className="experience--works">
+                                <h2>Education</h2>
+                                <p>
+                                    <strong>소프트웨어마이스터고</strong>{" "}
+                                    (2021.03 ~ 2023.02)
+                                </p>
+                                <ul>
+                                    <li>
+                                        소프트웨어 개발과 전공 졸업 예정입니다.
+                                    </li>
+                                    <li>마이스터 역량인증제 점수 272.4/1위</li>
+                                </ul>
+                            </div>
+                            <div className="experience--certificates">
+                                <h2>Certificates</h2>
+                                <p>
+                                    2021 하계전공캠프 해커톤 (2021.02)
+                                    <br />
+                                    최우수상 - 부산소프트웨어마이스터고
+                                </p>
+                                <hr />
+                                <p>
+                                    2022 1학기 해커톤 (2022.07)
+                                    <br />
+                                    우수상 - 부산소프트웨어마이스터고
+                                </p>
+                            </div>
+                            <div className="experience--prizes">
+                                <h2>Prizes</h2>
+                                <p>
+                                    2021 하계전공캠프 해커톤 (2021.02)
+                                    <br />
+                                    최우수상 - 부산소프트웨어마이스터고
+                                </p>
+                                <p>
+                                    2022 1학기 해커톤 (2022.07)
+                                    <br />
+                                    우수상 - 부산소프트웨어마이스터고
+                                </p>
+                            </div>
+                            <div className="experience--skills">
+                                <div className="over">
+                                    <div className="skill">
+                                        <div className="card">
+                                            <div className="card_up">
+                                                <div className="tagr">
+                                                    Backend
+                                                </div>
+                                                <div className="count">11</div>
+                                            </div>
+                                            <div className="values">C, C++</div>
+                                            <div className="values">JS</div>
+                                            <div className="values">python</div>
+                                            <div className="values">HTML5</div>
+                                            <div className="values">CSS3</div>
+                                            <div className="values">TS</div>
+                                            <div className="values">jquery</div>
+                                            <div className="values">Sass</div>
+                                            <div className="values">Java</div>
+                                            <div className="values">Lua</div>
+                                            <div className="values">SQL</div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card_up">
+                                                <div className="tagy">
+                                                    Frontend
+                                                </div>
+                                                <div className="count">7</div>
+                                            </div>
+                                            <div className="values">React</div>
+                                            <div className="values">Flask</div>
+                                            <div className="values">
+                                                gatsby.js
+                                            </div>
+                                            <div className="values">
+                                                sqlchemy
+                                            </div>
+                                            <div className="values">
+                                                Node.js
+                                            </div>
+                                            <div className="values">
+                                                Express.js
+                                            </div>
+                                            <div className="values">
+                                                Android studio
+                                            </div>
+                                        </div>
+                                        <div className="card">
+                                            <div className="card_up">
+                                                <div className="tagg">tool</div>
+                                                <div className="count">3</div>
+                                            </div>
+                                            <div className="values">Linux</div>
+                                            <div className="values">Ajax</div>
+                                            <div className="values">
+                                                Autodesk
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
