@@ -49,16 +49,18 @@ const Intro = () => {
                     <div className="project">
                         <div className="projects">
                             <h1>Project</h1>
-                            {projectCardsData.map((projectCard) => (
-                                <ProjectCardComponent
-                                    key={projectCard.id}
-                                    filename={projectCard.filename}
-                                    stack={projectCard.stack}
-                                    name={projectCard.name}
-                                    date={projectCard.date}
-                                    logo={projectCard.logo}
-                                />
-                            ))}
+                            <div className="project--list">
+                                {projectCardsData.map((projectCard) => (
+                                    <ProjectCardComponent
+                                        key={projectCard.id}
+                                        filename={projectCard.filename}
+                                        stack={projectCard.stack}
+                                        name={projectCard.name}
+                                        date={projectCard.date}
+                                        logo={projectCard.logo}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </Element>

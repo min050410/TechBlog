@@ -25,6 +25,38 @@ const projectCardsData: projectCardsDataType = [
         date: { month: "APR", year: "2022" },
         logo: "->",
     },
+    {
+        id: 2,
+        filename: "Project-Tech2",
+        stack: "front, server",
+        name: "TechBlog1",
+        date: { month: "APR", year: "2022" },
+        logo: "->",
+    },
+    {
+        id: 3,
+        filename: "Project-Tech3",
+        stack: "front, server",
+        name: "TechBlog2",
+        date: { month: "APR", year: "2022" },
+        logo: "->",
+    },
+    {
+        id: 4,
+        filename: "Project-Techblog",
+        stack: "front, server",
+        name: "TechBlog3",
+        date: { month: "APR", year: "2022" },
+        logo: "->",
+    },
+    {
+        id: 5,
+        filename: "Project-Techblog",
+        stack: "front, server",
+        name: "TechBlog4",
+        date: { month: "APR", year: "2022" },
+        logo: "->",
+    },
 ];
 
 export default projectCardsData;

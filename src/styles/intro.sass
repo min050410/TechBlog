@@ -46,23 +46,47 @@ h3#gray:nth-child(3)
 
 .project
     height: 100vh
-    display: flex
     margin-left: 5rem
+    display: flex
 
 .projects
     margin-top: 5rem
+    overflow-x: scroll
 
 .project--list
     display: grid
+    grid-template-columns: repeat(6, 280px)
+    grid-template-rows: repeat(2, 280px)
+    grid-auto-flow: column
+
+.project--list-card:nth-of-type(2n)
+    margin-left: 50%
+
+.project--list-card:nth-child(1)
+    background-color: #5C6699
+
+.project--list-card:nth-child(2)
+    background-color: #D5B2D5
+
+.project--list-card:nth-child(3)
+    background-color: #EF9ACC
+
+.project--list-card:nth-child(4)
+    background-color: #FE59C1
+
+.project--list-card:nth-child(5)
+    background-color: #9180F6
+
+.project--list-card:nth-child(6)
+    background-color: #81AFFD
 
 .project--list-card
-    background-color: #5C6699
+    width: 50%
+    grid-column-end: span 2
     position: relative
     display: flex
     justify-content: center
     flex-direction: column
-    width: 15rem
-    height: 15rem
     box-shadow: 5px 7px 4px black
     cursor: pointer
 
@@ -73,10 +97,7 @@ h3#gray:nth-child(3)
     from
         transform: translateX(0)
     to 
-        transform: translateX(15px)
-  
-
-
+        transform: translateX(105px)
 
 .project--list-card--stack
     position: absolute

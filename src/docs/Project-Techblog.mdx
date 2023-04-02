@@ -1,0 +1,37 @@
+# TechBlog
+
+프로젝트 기간: 2021-11 ~ 유지 보수, 업데이트 중
+
+배포 사이트: [https://devlog.kro.kr](https://devlog.kro.kr)
+
+github: [https://github.com/min050410/TechBlog](https://github.com/min050410/TechBlog)
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/40f239ec-631f-4401-82bb-4e468b50b2b4/Untitled.png)
+
+## 개요
+
+gatsby 프레임워크를 이용해 처음부터 직접 개발한 블로그 사이트입니다. 
+
+## 담당한 기능
+
+프론트엔드, 서버 
+
+- 블로그 불러오기
+- 화이트모드, 다크모드 토글
+- 필터 기능 (해시태그)
+- 검색 기능
+- 인기있는 블로그, 최근 블로그 분리
+- 깃허브 로그인 기능과 댓글 기능 구현
+
+## 성과
+
+2021년 부터 현재까지 쭉 배포된 상태이고 전체 노출수가 3.89만 입니다. (2022-03-15 Google Search Console 기준)
+
+## 느낀점, 성능 개선점
+
+- loadable로 dynamic import 를 하였다.  
+기본적으로 gatsby는 next.js와 같은 ssr 환경이기 때문에 suspense를 지양하고 loadable을 사용해야 하는데 해당 프로젝트에서는 리팩토링 할 때 loadable으로 코드를 교체하여 성능이 향상되었고 로딩 되기 전 로딩 되었습니다 문구가 뜰 수 있게 되었습니다.
+- SEO 개선  
+google sitemap을 등록해서 seo를 개선하였습니다.
+- 개인 프로젝트의 힘듦  
+팀원이 같이 하는 협업과 다르게 기획, 디자인, 개발 혼자서 다 진행하다 보니 더 힘들다는 것을 새삼 깨달았습니다.
