@@ -1,3 +1,5 @@
+@import "variables"
+    
 u
     font-size: 1.5rem
     border-bottom: 0.05em solid
@@ -29,187 +31,206 @@ h3#gray:nth-child(1)
 h3#gray:nth-child(3)
     margin-top: 0px
 
-.intro > img
+.about > img
     margin: 35px 30px 20px 0px
-    width: 150px
-    height: 155px
-    border-radius: 10px
+    width: 270px
+    height: 270px
+    border-radius: 1000px
 
-.intro
+.about
     display: flex
-
-.intro_test
-    display: flex
-    flex-direction: column
-
-.section_union
-    margin-top: 40px
-    display: flex
+    gap: 10rem
+    height: 100vh
+    align-items: center
     justify-content: space-between
 
-.section
+.project
+    height: 100vh
+    margin-left: 5rem
+    display: flex
+
+.experience
+    height: 100vh
     display: flex
     flex-direction: column
-    background-color: #2b2d33
-    width: 45%
-    padding-bottom: 20px
-    border-radius: 10px
+    margin-left: 5rem
+    width: 80%
+    a
+        color: var(--color-a)
+        font-size: 16px
+        cursor: pointer
+    a:hover
+        text-decoration: underline var(--color-a)
 
-.section > span:nth-child(1)
-    margin-top: 10px
-    margin-left: 10px
+.experience--content
+    margin-top: 5rem
 
-.section > span:not(.section > span:nth-child(1))
-    margin-top: 5px
-    margin-left: 40px
+.project--content
+    margin-top: 5rem
+    overflow-x: scroll
 
-.section > span
-    font-size: 0.8em
-    font-family: 'Spoqa Han Sans Neo'
-    font-weight: 400
+.project--list
+    overflow-x: scroll
+    display: grid
+    grid-template-columns: repeat(12, 280px)
+    grid-template-rows: repeat(2, 280px)
+    grid-auto-flow: column
 
-h4.under
-    margin-top: 100px
-    padding-bottom: 10px
-    border-bottom: 0.05em solid rgba(255, 255, 255, 0.07)
+.project--list-card:nth-of-type(2n)
+    margin-left: 50%
 
-.over
+.project--list-card:nth-child(6n+1)
+    background-color: var(--color-project1)
+
+.project--list-card:nth-child(6n+2)
+    background-color: var(--color-project2)
+
+.project--list-card:nth-child(6n+3)
+    background-color: var(--color-project3)
+
+.project--list-card:nth-child(6n+4)
+    background-color: var(--color-project4)
+
+.project--list-card:nth-child(6n+5)
+    background-color: var(--color-project5)
+
+.project--list-card:nth-child(6n+6)
+    background-color: var(--color-project6)
+
+.project--list-card
+    color: $white
+    width: 50%
+    grid-column-end: span 2
+    position: relative
+    display: flex
+    justify-content: center
+    flex-direction: column
+    box-shadow: var(--project-box-shadow)
+    cursor: pointer
+
+.project--list-card:hover
+    animation: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000)
+
+@keyframes opacity
+    from
+        opacity: 1
+    to
+        opacity: 0.65
+
+.project--list-card--stack
+    color: $white
+    position: absolute
+    right: .5rem
+    top: .5rem
+    font-weight: 100
+
+.project--list-card--name
+    color: $white
+    font-weight: 100
+    font-size: 2.5rem
+    margin-left: .5rem
+
+.project--list-card--month
+    color: $white
+    font-weight: 100
+
+.project--list-card--year
+    color: $white
+    font-weight: 100
+
+.project--list-card--logo
+    position: absolute
+    margin: .5rem
+    right: 0
+    bottom: 0
+    display: flex
+    font-weight: 100    
+
+.project--list-card--date
+    position: absolute
+    display: flex
+    flex-direction: column
+    margin: .5rem
+    bottom: 0
+
+.skills--content
     white-space: nowrap
     overflow-x: auto
     width: 100%
 
-.tagr
-    font-size: 14px
+@mixin skill-tag
+    font-size: 15px
     border-radius: 5px
-    padding: 1px 4px
-    background-color: #69363f
-    color: #feaca5
+    padding: 1px 5px 1px 5px
 
-.tagy
-    font-size: 14px
-    border-radius: 5px
-    padding: 1px 4px
-    background-color: #66543b
-    color: #fad5a1
+.skill-tag-red
+    @include skill-tag
+    background-color: var(--color-skill-tag-red)
+    color: var(--color-skill-tag-color-red)
 
-.tago
-    font-size: 14px
-    border-radius: 5px
-    padding: 1px 4px
-    background-color: #664036
-    color: #fdb695
+.skill-tag-yellow 
+    @include skill-tag
+    background-color: var(--color-skill-tag-yellow)
+    color: var(--color-skill-tag-color-yellow)
 
-.tagg
-    font-size: 14px
-    border-radius: 5px
-    padding: 1px 4px
-    background-color: #344f40
-    color: #b5d2ac
+.skill-tag-orange
+    @include skill-tag
+    background-color: var(--color-skill-tag-orange)
+    color: var(--color-skill-tag-color-orange)
 
-.tagb
-    font-size: 14px
-    border-radius: 5px
-    padding: 1px 4px
-    background-color: #284d67
-    color: #a3cbea
+.skill-tag-green
+    @include skill-tag
+    background-color: var(--color-skill-tag-green)
+    color: var(--color-skill-tag-color-green)
 
-.card > .card_up
+.skill-tag-blue
+    @include skill-tag
+    background-color: var(--color-skill-tag-blue)
+    color: var(--color-skill-tag-color-blue)
+
+.skill--list
+    margin-top: 1rem
     display: flex
-    gap: 20px
-    margin-bottom: 20px
+    -webkit-overflow-scrolling: touch
+    scroll-snap-type: x mandatory
 
-div > .count
-    font-size: 16px
-    color: #828383
+.skill--list-card
+    flex: 0 0 30%
+    max-width: 300px
+    padding: 0.5rem
+    .skill--list-card--header
+        display: flex
+        gap: 20px
+        margin-bottom: 20px
+        .skill-count
+            font-size: 16px
+            color: #828383
 
-.values
+.skill--list-card--value
+    display: inline-block
     font-family: 'Spoqa Han Sans Neo'
     font-size: 14px
     line-height: 1.5
-    min-height: 21px
+    height: 21px
     font-weight: 500
-    background-color: #2b2d33
+    background-color: var(--color-skill-value-tag)
+    width: auto
     border-radius: 10px
-    padding: 5px 0px 5px 40px
-    margin-top: 5px
-    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+    padding: 5px 10px 5px 10px
+    margin-top: 10px
 
-.values:hover
-    background-color: rgb(75, 75, 77)
-
-
-.skill
-    display: flex
-    justify-content: space-between
-    min-width: 100%
-    -webkit-overflow-scrolling: touch
-    scroll-snap-type: x mandatory
-    gap: 20px
-
-.skill > .card
-    flex: 0 0 40%
-    width: 100px
-    height: 65vh
-    overflow: auto hidden
-
-.side
-    display: flex
-    flex-direction: column
-
-.side > .card
-    width: 100%
-    height: 10vh
-    background-color: #2b2d33
-
-.prize
-    display: flex
-    flex-direction: column
-    gap: 1vh
-
-.prize > .card
-    display: grid
-    grid-template-columns: 1.0fr .6fr 2fr .5fr
-    justify-content: space-between
-    width: 100%
-    height: 4vh
-    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
-
-.prize > .card:hover
-    background-color: rgb(75, 75, 77)
-
-.moveto
+.ref
     position: fixed
-    background-color: #1C1C1e
-    opacity: 90%
-    border-left: 2px solid #8b949e
-    padding-left: 10px
-    right: 20px
-    width: 200px
-    height: 120px
+    display: flex
+    gap: 1rem
+    right: 30px
+    bottom: 10px
     z-index: 1
 
-.moveto div a
-    font-size: 0.8em
-    font-family: 'Spoqa Han Sans Neo'
-    border-radius: 5px
-    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s
+.portfolio
+    animation: fadeup 2s ease 0s 1 normal both running 
+    height: 500vh
 
-.moveto div a:hover
-    background-color: rgb(75, 75, 77)
-
-
-.footer_wrap
-    border-top: 0.05em solid rgba(255, 255, 255, 0.07)
-    margin-top: 100px
-    padding-top: 20px
-    display: flex
-    justify-content: space-between
-
-.prize .card div
-    font-size: 15px
-    font-family: 'Spoqa Han Sans Neo'
-
-.footer_wrap > .date
-    font-size: 15px
-    font-family: 'Spoqa Han Sans Neo'
-
+.layout-center 
+    width: 80%
+    margin: 0px auto 0px

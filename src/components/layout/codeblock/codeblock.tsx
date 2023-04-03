@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { themeColorState } from "../../recoil/theme/theme";
+import { themeColorState } from "../../../recoil/theme/theme";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import darkTheme from "prism-react-renderer/themes/oceanicNext";
 import lightTheme from "prism-react-renderer/themes/github";

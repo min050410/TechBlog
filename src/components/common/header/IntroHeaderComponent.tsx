@@ -1,18 +1,14 @@
 import * as React from "react";
 import { Link, navigate } from "gatsby";
-import { recentPostDataType } from "../../layout/recentComponent/recentPostsData";
+import { recentPostDataType } from "../../layout/recent/recentPostsData";
 import { initialFilterKeyState } from "./filterKey";
-import {
-    GITHUB_OAUTH_REDIRECT_URL,
-    GITHUB_URL,
-    LOGO_IMG_URL,
-    LOGO_TEXT,
-} from "../../../constant/constant";
+import { LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import { useSearch, useScroll, useSearchParam } from "../../../hooks";
 import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 import { useRecoilState } from "recoil";
 import { sessionState } from "../../../recoil/session/session";
+import useSmoothScroll from "../../../hooks/useSmoothScroll";
 
 // style
 import "../../../styles/header.sass";
@@ -22,7 +18,7 @@ type TagStateType = {
     notSelected: string[];
 };
 
-const HeaderComponent = () => {
+const IntroHeaderComponent = () => {
     const scrollPosition = useScroll();
     const [token, setToken] = useRecoilState(sessionState);
     const session = useSearchParam("utterances");
@@ -139,23 +135,16 @@ const HeaderComponent = () => {
                 </div>
             </div>
             <div className="head content">
-                <Link to="/intro">
-                    <span>소개</span>
+                <Link to="/">
+                    <span>BLOG</span>
                 </Link>
-                <a href={GITHUB_URL}>
-                    <span>깃허브</span>
-                </a>
-                {token ? (
-                    <span>로그인 됨</span>
-                ) : (
-                    <Link to={GITHUB_OAUTH_REDIRECT_URL}>
-                        <span>github 로그인</span>
-                    </Link>
-                )}
+                <span onClick={useSmoothScroll("about")}>ABOUT</span>
+                <span onClick={useSmoothScroll("project")}>PROJECT</span>
+                <span onClick={useSmoothScroll("experience")}>EXPERIENCE</span>
                 <DarkModeSwitchComponent />
             </div>
         </header>
     );
 };
 
-export default HeaderComponent;
+export default IntroHeaderComponent;
