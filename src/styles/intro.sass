@@ -67,14 +67,17 @@ h3#gray:nth-child(3)
 
 .project--content
     margin-top: 5rem
-    overflow-x: scroll
+    overflow-x: auto
 
 .project--list
-    overflow-x: scroll
+    overflow-x: auto
     display: grid
     grid-template-columns: repeat(12, 280px)
     grid-template-rows: repeat(2, 280px)
     grid-auto-flow: column
+
+.project--list::-webkit-scrollbar
+    display: none
 
 .project--list-card:nth-of-type(2n)
     margin-left: 50%
@@ -157,6 +160,18 @@ h3#gray:nth-child(3)
     white-space: nowrap
     overflow-x: auto
     width: 100%
+
+.skills--content::-webkit-scrollbar
+    width: 6px
+    height: 5px
+
+.skills--content::-webkit-scrollbar-thumb
+    height: 30
+    background: $default
+    border-radius: 2rem
+
+.skills--content::-webkit-scrollbar-track
+    background: #808080
 
 @mixin skill-tag
     font-size: 15px
