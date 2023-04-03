@@ -8,7 +8,7 @@ const PortfolioWorksComponent = () => {
         <div className="experience--works" {...useScrollFadeIn("right", 1, 0)}>
             <h2>Experience</h2>
             <p>
-                <big>부산소프트웨어마이스터고</big> (2021.03 ~ 2023.02)
+                <big>부산소프트웨어마이스터고</big> (2021.03 ~ 2024.02)
             </p>
             <ul>
                 <li>소프트웨어개발과 전공 졸업 예정입니다.</li>
