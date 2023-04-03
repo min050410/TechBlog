@@ -55,7 +55,7 @@ const projectCardsData: projectCardsDataType = [
     },
     {
         id: 6,
-        filename: "Project-TechBlog",
+        filename: "Project-Techblog",
         stack: "frontend, server",
         name: "TechBlog",
         date: { month: "NOV", year: "2021" },
