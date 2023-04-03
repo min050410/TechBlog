@@ -1,0 +1,45 @@
+# TCP
+
+프로젝트 기간 2022-03 ~ 2022-12
+
+api문서: [https://documenter.getpostman.com/view/20938463/Uz5MEtC4](https://documenter.getpostman.com/view/20938463/Uz5MEtC4)
+
+github: [https://github.com/T-shaped-People](https://github.com/T-shaped-People)
+
+서비스 홍보 영상: [https://www.youtube.com/watch?v=14KH55EAd2A](https://www.youtube.com/watch?v=14KH55EAd2A)
+
+서비스 시연 영상: [https://www.youtube.com/watch?v=DXHSx9M4h30&t=34s](https://www.youtube.com/watch?v=DXHSx9M4h30&t=34s)
+
+<img src="/project-images/Project-TCP.png" width="100%"></img>
+
+## 개요
+
+TCP(Team Cooperation Platform)은 팀원 모집, 팀 채팅, 팀 화상 통화, 일정 관리, Todolist 등 협업을 위해 필요한 기능들을 하나의 플랫폼에 모아둔 서비스입니다. 
+
+## 담당한 기능
+
+백엔드, 프론트엔드
+
+- 팀 채팅 기능
+- 팀 화상 통화 기능
+- 알림 기능
+- 팀 일정 관리 기능
+- TODO 관리 기능
+
+## 성과
+
+2022 소프트웨이브에서 해당 작품을 출품하고 전시하였습니다.
+
+## 느낀점, 성능 개선점
+
+- <big>webRTC 영상통화 구현</big>
+webRTC를 이용하여서 react + nest.js 환경에서 화상통화를 구현하였는데 참고 자료도 별로 없어서 힘들었습니다. 하지만 구현하고 나서 한명씩 통화방에 들어오는 모습을 보고 엄청 기뻤습니다. 이 구현을 통해서 어려운 기술을 개발하는 것에 대한 자신감이 생긴 계기가 되었습니다.
+
+- <big>협업 시스템의 문제점</big>
+프로젝트를 개발할 때 먼저 기능 정의서를 만들어 놓고 자유롭게 개발을 하는 식으로 진행이 되었는데 마감 기한이 다다랐어도 프론트 개발이 끝내 완성되지 않아 프론트쪽으로 투입했었습니다. 당시에 애자일 방법론을 도입하고 정해진 기간에 맞춰서 개발을 진행하였다면 더 좋은 프로덕트가 될 수 있었을 것 같습니다.
+
+- <big>Guard 리팩토링</big>
+Nest.js에는 Exception을 전체적으로 관리해주는 어노테이션인 Guard가 있습니다. Mapping 함수 위에 붙여 넣으면 해당 예외를 통과 해야지 자연스럽게 요청이 들어가는 구조입니다. 처음 개발할 때에는 직접 메서드 안에서 예외처리를 했지만 나중에 리팩토링을 하면서 Guard 어노테이션으로 분리해서 코드가 훨씬 깔끔해졌습니다.
+
+- http → https
+아마존 aws 환경에서 Let's Encrypt로 https를 적용하여서 보안 인증서를 받았습니다.

@@ -72,29 +72,29 @@ h3#gray:nth-child(3)
 .project--list
     overflow-x: scroll
     display: grid
-    grid-template-columns: repeat(6, 280px)
+    grid-template-columns: repeat(12, 280px)
     grid-template-rows: repeat(2, 280px)
     grid-auto-flow: column
 
 .project--list-card:nth-of-type(2n)
     margin-left: 50%
 
-.project--list-card:nth-child(1)
+.project--list-card:nth-child(6n+1)
     background-color: var(--color-project1)
 
-.project--list-card:nth-child(2)
+.project--list-card:nth-child(6n+2)
     background-color: var(--color-project2)
 
-.project--list-card:nth-child(3)
+.project--list-card:nth-child(6n+3)
     background-color: var(--color-project3)
 
-.project--list-card:nth-child(4)
+.project--list-card:nth-child(6n+4)
     background-color: var(--color-project4)
 
-.project--list-card:nth-child(5)
+.project--list-card:nth-child(6n+5)
     background-color: var(--color-project5)
 
-.project--list-card:nth-child(6)
+.project--list-card:nth-child(6n+6)
     background-color: var(--color-project6)
 
 .project--list-card
