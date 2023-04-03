@@ -1,7 +1,7 @@
 import * as React from "react";
 
 // hook
-import useScrollFadeIn from "../../../../../hooks/useScrollFadeIn";
+import { useScrollFadeIn } from "../../../../../hooks";
 
 const PortfolioWorksComponent = () => {
     return (

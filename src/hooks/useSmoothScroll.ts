@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { scroller } from "react-scroll";
 
-const useSmoothScroll = (sectionName: string) => {
+export const useSmoothScroll = (sectionName: string) => {
     const handleScroll = useCallback(() => {}, []);
 
     useEffect(() => {
@@ -18,5 +18,3 @@ const useSmoothScroll = (sectionName: string) => {
 
     return handleSmoothScroll;
 };
-
-export default useSmoothScroll;

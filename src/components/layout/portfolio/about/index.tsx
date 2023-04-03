@@ -3,7 +3,9 @@ import { Element } from "react-scroll";
 import { GITHUB_PROFILE_IMG_URL } from "../../../../constant/constant";
 
 // hook
-import useScrollFadeIn from "../../../../hooks/useScrollFadeIn";
+import { useScrollFadeIn } from "../../../../hooks";
+
+// data
 import portfolioAboutData from "./PortfolioAboutData";
 
 const PortfolioAboutComponent = () => {
