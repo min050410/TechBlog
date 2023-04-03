@@ -1,17 +1,17 @@
 import * as React from "react";
 
 //components
-import SEOComponent from "../components/common/seoComponent/SEOComponet";
-import IntroHeaderComponent from "../components/common/headerComponent/IntroHeaderComponent";
+import SEOComponent from "../components/common/seoComponent";
+import IntroHeaderComponent from "../components/common/header/IntroHeaderComponent";
 
 //style
 import "../styles/intro.sass";
 
 // hook
-import PortfolioAboutComponent from "../components/layout/portfolioComponent/portfolioAboutComponent/PortfolioAboutComponent";
-import PortfolioProjectComponent from "../components/layout/portfolioComponent/portfolioProjectComponent/PortfolioProjectComponent";
-import PortfolioRefComponent from "../components/layout/portfolioComponent/portfolioRefComponent/PortfolioRefComponent";
-import PortfolioExperienceComponent from "../components/layout/portfolioComponent/portfolioExperienceComponent/PortfolioExperienceComponent";
+import PortfolioAboutComponent from "../components/layout/portfolio/about";
+import PortfolioProjectComponent from "../components/layout/portfolio/project";
+import PortfolioRefComponent from "../components/layout/portfolio/ref";
+import PortfolioExperienceComponent from "../components/layout/portfolio/experience";
 
 const Intro = () => {
     return (

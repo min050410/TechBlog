@@ -2,10 +2,10 @@ import * as React from "react";
 import { Element } from "react-scroll";
 
 // components
-import PortfolioCertificateComponent from "./portfolioCertificateComponent/PortfolioCertificateComponent";
-import PortfolioPrizesComponent from "./portfolioPrizesComponent/PortfolioPrizesComponent";
-import PortfolioSkillsComponent from "./portfolioSkillsComponent/PortfolioSkillsComponent";
-import PortfolioWorksComponent from "./portfolioWorksComponent/PortfolioWorksComponent";
+import PortfolioCertificateComponent from "./certificate";
+import PortfolioPrizesComponent from "./prizes";
+import PortfolioSkillsComponent from "./skills";
+import PortfolioWorksComponent from "./works";
 
 const PortfolioExperienceComponent = () => {
     return (
