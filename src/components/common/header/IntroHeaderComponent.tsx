@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, navigate } from "gatsby";
-import { recentPostDataType } from "../../layout/recentComponent/recentPostsData";
+import { recentPostDataType } from "../../layout/recent/recentPostsData";
 import { initialFilterKeyState } from "./filterKey";
 import { LOGO_IMG_URL, LOGO_TEXT } from "../../../constant/constant";
 import { useSearch, useScroll, useSearchParam } from "../../../hooks";

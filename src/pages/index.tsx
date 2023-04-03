@@ -5,7 +5,7 @@ import SEOComponent from "../components/common/seoComponent";
 import HeaderComponent from "../components/common/header";
 import PostComment from "../components/layout/comment/comment";
 import PopularComponent from "../components/layout/popular";
-import RecentComponent from "../components/layout/recentComponent";
+import RecentComponent from "../components/layout/recent";
 
 const IndexPage = () => {
     return (

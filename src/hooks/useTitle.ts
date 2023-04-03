@@ -1,5 +1,5 @@
 import React from "react";
-import recentPostsData from "../components/layout/recentComponent/recentPostsData";
+import recentPostsData from "../components/layout/recent/recentPostsData";
 
 export const useTitle = (filename: any) => {
     const [title, setTitle] = React.useState<string>();

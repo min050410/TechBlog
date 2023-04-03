@@ -84,14 +84,14 @@ const projectCardsData: projectCardsDataType = [
     {
         id: 10,
         filename: "Project-zolzima",
-        stack: "fullstack",
+        stack: "fullstack, android",
         name: "zolzima",
         date: { month: "DEC", year: "2021" },
     },
     {
         id: 11,
         filename: "Project-notifarm",
-        stack: "c language",
+        stack: "react native",
         name: "notifarm",
         date: { month: "DEC", year: "2021" },
     },
