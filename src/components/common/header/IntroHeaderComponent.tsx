@@ -8,7 +8,7 @@ import FilterBoxComponent from "./FilterBoxComponent";
 import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
 import { useRecoilState } from "recoil";
 import { sessionState } from "../../../recoil/session/session";
-import useSmoothScroll from "../../../hooks/useSmoothScroll";
+import { useSmoothScroll } from "../../../hooks";
 
 // style
 import "../../../styles/header.sass";
@@ -20,7 +20,7 @@ type TagStateType = {
 
 const IntroHeaderComponent = () => {
     const scrollPosition = useScroll();
-    const [token, setToken] = useRecoilState(sessionState);
+    const [, setToken] = useRecoilState(sessionState);
     const session = useSearchParam("utterances");
     React.useEffect(() => {
         if (session) {

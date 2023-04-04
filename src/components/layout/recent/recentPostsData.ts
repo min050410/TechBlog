@@ -262,6 +262,18 @@ const recentPostsData: recentPostsDataType = [
         tag3: "",
         filter: "",
     },
+    {
+        id: 21,
+        title: "Gradle을 kotiln dsl로 마이그레이션",
+        filename: "Kts",
+        date: "2023-04-04",
+        imgLineOne: "kts",
+        imgLineTwo: "migration",
+        tag: "spring boot",
+        tag2: "kotiln",
+        tag3: "grandle",
+        filter: "spring",
+    },
 ];
 
 export default recentPostsData;

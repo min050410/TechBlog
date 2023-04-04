@@ -8,6 +8,7 @@ export const initialFilterKeyState: initialFilterKeyStateType[] = [
     "java",
     "sql",
     "gatsby",
+    "spring",
 ];
 
 type initialFilterKeyStateType =
@@ -19,4 +20,5 @@ type initialFilterKeyStateType =
     | "cpp"
     | "java"
     | "sql"
-    | "gatsby";
+    | "gatsby"
+    | "spring";

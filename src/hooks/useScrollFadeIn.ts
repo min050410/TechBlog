@@ -1,6 +1,6 @@
 import { useRef, useEffect, useCallback } from "react";
 
-const useScrollFadeIn = (
+export const useScrollFadeIn = (
     direction: "up" | "down" | "left" | "right" = "up",
     duration: number = 1,
     delay: number = 0
@@ -57,5 +57,3 @@ const useScrollFadeIn = (
         },
     };
 };
-
-export default useScrollFadeIn;

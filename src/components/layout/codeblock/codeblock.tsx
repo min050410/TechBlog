@@ -39,7 +39,6 @@ type CodeBlockType = {
 const CodeBlock = ({ children, className }: CodeBlockType) => {
     const theme = useRecoilValue(themeColorState);
     const themeMode = theme === "light" ? lightTheme : darkTheme;
-
     if (className) {
         const language: Language = className.replace(
             /language-/,
