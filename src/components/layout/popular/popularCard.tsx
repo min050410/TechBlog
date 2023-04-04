@@ -9,7 +9,7 @@ type PopularCardListComponentType = {
     title: string;
 };
 
-const PopularCardListComponent = ({
+const PopularCardComponent = ({
     id,
     filename,
     imgLineOne,
@@ -40,4 +40,4 @@ const PopularCardListComponent = ({
     );
 };
 
-export default PopularCardListComponent;
+export default PopularCardComponent;

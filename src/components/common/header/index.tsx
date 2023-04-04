@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, navigate } from "gatsby";
 import { recentPostDataType } from "../../layout/recent/recentPostsData";
-import { initialFilterKeyState } from "./filterKey";
+import { initialFilterKeyState } from "./filter/filterKey";
 import {
     GITHUB_OAUTH_REDIRECT_URL,
     GITHUB_URL,
@@ -9,10 +9,10 @@ import {
     LOGO_TEXT,
 } from "../../../constant/constant";
 import { useSearch, useScroll, useSearchParam } from "../../../hooks";
-import FilterBoxComponent from "./FilterBoxComponent";
-import DarkModeSwitchComponent from "./DarkModeSwitchComponent";
+import FilterBoxComponent from "./filter";
+import DarkModeSwitchComponent from "./darkMode";
 import { useRecoilState } from "recoil";
-import { sessionState } from "../../../recoil/session/session";
+import { sessionState } from "../../../recoil/session";
 
 // style
 import "../../../styles/header.sass";
