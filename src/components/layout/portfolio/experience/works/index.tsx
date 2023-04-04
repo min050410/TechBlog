@@ -13,7 +13,7 @@ const PortfolioWorksComponent = () => {
             <ul>
                 <li>소프트웨어개발과 전공 졸업 예정입니다.</li>
                 <li>
-                    마이스터 역량인증제 점수 <big>272.4/1위</big>
+                    마이스터 역량인증제 점수 <big>282.4</big>
                 </li>
             </ul>
             <p>
