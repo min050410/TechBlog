@@ -8,7 +8,7 @@
         "isolatedModules": true,
         "esModuleInterop": true,
         "allowJs": true,
-        "outDir": "src/components/layout/codeblock/codeblock.tsx"
+        "outDir": "src/components/layout/codeblock/index.tsx"
     },
     "include": ["./src/**/*", "data"],
     "exclude": [

@@ -16,7 +16,7 @@ export const slickSettings = {
 
 //styles
 import "../../../styles/card.sass";
-import PopularCardListComponent from "./PopularCardListComponent";
+import PopularCardComponent from "./popularCard";
 
 const PopularComponent: React.FC = () => {
     return (
@@ -25,7 +25,7 @@ const PopularComponent: React.FC = () => {
             <div className="slider-item">
                 <Slider {...slickSettings}>
                     {popularPostsData.map((popularPost) => (
-                        <PopularCardListComponent
+                        <PopularCardComponent
                             id={popularPost.id}
                             filename={popularPost.filename}
                             imgLineOne={popularPost.imgLineOne}

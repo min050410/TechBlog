@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
-type PopularCardListComponentType = {
+type PopularCardComponentType = {
     id: number;
     filename: string;
     imgLineOne: string;
@@ -9,13 +9,13 @@ type PopularCardListComponentType = {
     title: string;
 };
 
-const PopularCardListComponent = ({
+const PopularCardComponent = ({
     id,
     filename,
     imgLineOne,
     imgLineTwo,
     title,
-}: PopularCardListComponentType) => {
+}: PopularCardComponentType) => {
     return (
         <div className="card" key={id}>
             <div className="imgbox">
@@ -40,4 +40,4 @@ const PopularCardListComponent = ({
     );
 };
 
-export default PopularCardListComponent;
+export default PopularCardComponent;

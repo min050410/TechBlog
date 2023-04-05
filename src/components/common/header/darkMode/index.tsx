@@ -1,9 +1,6 @@
 import * as React from "react";
 import { useRecoilState } from "recoil";
-import { themeColorState } from "../../../recoil/theme/theme";
-
-// style
-import "../../../styles/header.sass";
+import { themeColorState } from "../../../../recoil/theme";
 
 const DarkModeSwitchComponent = () => {
     const [colorMode, setColorMode] = useRecoilState(themeColorState);
@@ -12,7 +9,7 @@ const DarkModeSwitchComponent = () => {
         setColorMode(colorMode === "dark" ? "light" : "dark");
     };
 
-    const [SwitchEl, setSwitchEl] = React.useState<JSX.Element>();
+    const [switchEl, setSwitchEl] = React.useState<JSX.Element>();
     React.useEffect(() => {
         document.documentElement.setAttribute("theme", colorMode);
         window.localStorage.setItem("color-mode", colorMode);
@@ -27,7 +24,7 @@ const DarkModeSwitchComponent = () => {
         );
     }, [colorMode]);
 
-    return <div>{SwitchEl}</div>;
+    return <div>{switchEl}</div>;
 };
 
 export default DarkModeSwitchComponent;

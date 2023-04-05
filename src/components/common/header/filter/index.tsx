@@ -1,33 +1,27 @@
 import * as React from "react";
 
-// style
-import '../../../styles/header.sass';
-
 type HeaderComponentType = {
-    seletedTag: string,
-    notSeletedTags: string[],
-    reset: () => void,
-    tagClick: (tag: string) => void
-}
+    seletedTag: string;
+    notSeletedTags: string[];
+    reset: () => void;
+    tagClick: (tag: string) => void;
+};
 
 const FilterBoxComponent = ({
     seletedTag,
     notSeletedTags,
     reset,
-    tagClick
+    tagClick,
 }: HeaderComponentType) => {
-
     return (
         <div className="filterBox">
             <div className="left">
                 <div className="filterBox-title">적용</div>
-                {seletedTag &&
+                {seletedTag && (
                     <div className="tagBox">
-                        <span onClick={reset}>
-                            {seletedTag}
-                        </span>
+                        <span onClick={reset}>{seletedTag}</span>
                     </div>
-                }
+                )}
             </div>
             <div className="right">
                 <div className="filterBox-title">태그 목록</div>
@@ -38,7 +32,7 @@ const FilterBoxComponent = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default FilterBoxComponent;

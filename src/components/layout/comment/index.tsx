@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { useSearchParam } from "../../../hooks";
-import { themeColorState } from "../../../recoil/theme/theme";
+import { themeColorState } from "../../../recoil/theme";
 
 const utterancesSelector = "iframe.utterances-frame";
 const src = "https://utteranc.es";

@@ -4,17 +4,17 @@ import { MDXProvider } from "@mdx-js/react";
 import { Helmet } from "react-helmet";
 
 //hooks
-import { useSearchParam, useTitle } from "../hooks";
+import { useSearchParam, useTitle } from "../../hooks";
 
 //components
-import CodeBlock from "../components/layout/codeblock/codeblock";
-import HeaderComponent from "../components/common/header";
-import PostComment from "../components/layout/comment/comment";
-import SEOComponent from "../components/common/seoComponent";
+import CodeBlock from "../../components/layout/codeblock";
+import HeaderComponent from "../../components/common/header";
+import PostComment from "../../components/layout/comment";
+import SEOComponent from "../../components/common/seo";
 
 //styles
-import "../styles/postitem.sass";
-import "../styles/index.sass";
+import "../../styles/postitem.sass";
+import "../../styles/index.sass";
 
 const PostItemPage = () => {
     const filename = useSearchParam("name");
@@ -25,7 +25,7 @@ const PostItemPage = () => {
             null
         );
     React.useEffect(() => {
-        const PostItem = loadable(() => import(`../docs/${filename}.mdx`), {
+        const PostItem = loadable(() => import(`../../docs/${filename}.mdx`), {
             fallback: <div>로딩중..</div>,
         });
         setPostItem(PostItem);
@@ -48,7 +48,12 @@ const PostItemPage = () => {
             <HeaderComponent />
             <div className="middle">
                 <div className="left">
-                    <MDXProvider components={{ code: CodeBlock }}>
+                    <MDXProvider
+                        components={{
+                            // @ts-ignore
+                            code: CodeBlock,
+                        }}
+                    >
                         {PostItem ? <PostItem /> : null}
                     </MDXProvider>
                 </div>

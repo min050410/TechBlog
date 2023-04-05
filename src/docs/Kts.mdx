@@ -1,8 +1,8 @@
-# Gradle을 kts로 마이그레이션 (build.grandle.kts)
+# Gradle을 kts로 마이그레이션 (build.gradle.kts)
 
 ### 개요
 최근 kotiln을 공부하면서 kotiln 프로젝트의 gradle 파일이 groovy 문법으로 작성 되어 있는 것을 발견하였고  
-grandle 파일도 kotiln 문법으로 통일해서 코드 가독성을 높이고 싶었습니다.  
+gradle 파일도 kotiln 문법으로 통일해서 코드 가독성을 높이고 싶었습니다.  
 그리고 kotiln 환경에서 querydsl을 사용하기 위해서 kts로 마이그레이션이 필요했습니다.
 
 해당 블로그에서는 마이그레이션 과정과 kts의 문법들을 간단하게 소개하고자 합니다.  
@@ -25,11 +25,11 @@ dsl에 관해서 더 자세히 알아보려면 다음 [블로그](https://www.je
 - kotiln 문법으로 변경
 
 ### 스크립트 파일 이름 지정
-groovy dsl의 스크립트 파일을 .gradle 파일 확장명을 사용하고 kotiln dsl의 스크립트 파일은 grandle.kts를 사용합니다.  
-따라서 프로젝트의 파일을 grandle.kts로 바꿔줍시다.
+groovy dsl의 스크립트 파일을 .gradle 파일 확장명을 사용하고 kotiln dsl의 스크립트 파일은 gradle.kts를 사용합니다.  
+따라서 프로젝트의 파일을 gradle.kts로 바꿔줍시다.
 
 ### kotiln 문법으로 수정
-기본적인 grandle.kts 문법은 다음이 있습니다.  
+기본적인 gradle.kts 문법은 다음이 있습니다.  
 
 1. 문자열을 큰 따옴표로 통합
 kotiln에서는 문자열에 큰 따옴표를 사용해야 하므로 작은따옴표를 큰 따옴표로 변환합니다.
