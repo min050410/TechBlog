@@ -2,7 +2,7 @@ import * as React from "react";
 import { Element } from "react-scroll";
 
 // hook
-import ProjectCardComponent from "./ProjectCard";
+import ProjectCardComponent from "./projectCard";
 
 // data
 import projectCardsData from "./projectCardData";
