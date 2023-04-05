@@ -138,9 +138,24 @@ const IntroHeaderComponent = () => {
                 <Link to="/">
                     <span>BLOG</span>
                 </Link>
-                <span onClick={useSmoothScroll("about")}>ABOUT</span>
-                <span onClick={useSmoothScroll("project")}>PROJECT</span>
-                <span onClick={useSmoothScroll("experience")}>EXPERIENCE</span>
+                <span
+                    className="head content navigate"
+                    onClick={useSmoothScroll("about")}
+                >
+                    ABOUT
+                </span>
+                <span
+                    className="head content navigate"
+                    onClick={useSmoothScroll("project")}
+                >
+                    PROJECT
+                </span>
+                <span
+                    className="head content navigate"
+                    onClick={useSmoothScroll("experience")}
+                >
+                    EXPERIENCE
+                </span>
                 <DarkModeSwitchComponent />
             </div>
         </header>
