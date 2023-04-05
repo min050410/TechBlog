@@ -1,50 +1,59 @@
 # 개인 블로그를 개발한 이유 - Devlog
 
-> `markdown` 으로 빠르게 편집 가능하고  
-> `TIL`에 쓴 내용을 블로그에 빠르게 적용이 가능하고  
-> 정적인 블로그 제작을 원했다.
-
+`markdown` 으로 빠르게 편집 가능한 정적인 블로그를 원했다.  
 그렇게 찾다 보니 `Gatsby` 라는 `react` 기반의 프레임워크를 찾았다.  
 `react`기반이라 경험을 살려 `typescript`로 개발을 시작하고 블로그는 1주일 후에 모습을 드러내게 되었다.  
 
-직접 개발한 블로그의 장점을 소개하겠다
+다음은 `gatsby`를 이용해 직접 제작한 개인 블로그의 기능들이다.
 
-### url query 형식으로 유동적인 블로그 관리가 가능하다
+### QueryParam 형식으로 유동적인 블로그 관리
 
 ```text
-https://devlog.kro.kr/postitem?name=ohmyposh
+https://devlog.kro.kr/postitem?name=Blog
 ```
 
 위 링크에서 볼 수 있듯이,  
-`?name=ohmyposh`를 이용해서 블로그를 추가하면 자동으로    
-`ohmyposh.md`라는 파일을 랜더링하도록 제작했다.
+`?name=Blog`를 이용해서 블로그를 추가하면 자동으로    
+`Blog.mdx`라는 파일을 랜더링하도록 `dynamic import`를 사용하였다.
 
-### 블로그의 모든 정보들을 배열에 저장해 빠른 참조가 가능하다
+### 블로그의 모든 정보들을 배열에 저장해 빠른 참조
 
 ```ts
-{
-    id: 1,
-    title: 'Big-O 표기법과 수행',
-    filename: 'Algorithm',
-    img: 'algorithm',
-    date: '2021-12-20',
-    tag: 'Big O',
-    tag2: 'sort',
-    tag3: 'DP',
-    filter: 'c'
-},
+const recentPostsData: recentPostsDataType = [
+    {
+        id: 1,
+        title: "타입스크립트를 많이 쓰는 이유",
+        filename: "Typescript",
+        date: "2021-11-17",
+        imgLineOne: "Why",
+        imgLineTwo: "typescript?",
+        tag: "react",
+        tag2: "ts",
+        tag3: "",
+        filter: "react",
+    },
+    ...
+]
 ```
 이렇게 정보들이 배열로 저장되어 있어 참조하기도 쉽고 정보를 수정하기도 용이하다.
 
-### 마크다운으로 작성하면 알아서 블로그의 테마에 맞게 알아서 변환해준다.
+### 마크다운으로 작성하면 블로그의 테마로 자동 변경
 
-`gatsby-plugin-mdx` 을 적용하고 `css`에 손을 봐서 가능해졌다.  
+`gatsby-plugin-mdx` 을 적용하고 스타일에 손을 봐서 커스텀이 가능해졌다.  
 `react-prism-renderer`를 이용해 `markdown`의 `syntax highlighting`을 적용했다.
 
-### 자체 클라우드가 무료이다
+## gatsby로 개인 블로그를 개발한 이유
 
-`gatsby`의 자체 클라우드로 `gatsby cloud` 서비스를 사용했다.  
-첫 배포는 무료였고, 사용해보니 웹사이트도 편리하고 클라우드를 사용하기 편했다.   
-혹시 관심있으면 아래 링크로 가보길 바란다.
+### 정적 사이트 로더
+Gatsby는 정적 사이트 생성, 지연된 정적 생성 및 지능형 페이지 렌더링을 결합하여  
+중요한 콘텐츠를 선택적으로 미리 로드해서 성능에 이점이 있다.    
 
-[gatsby cloud](https://www.gatsbyjs.com/products/cloud/)
+### SEO 개선
+SEO 트래픽을 개선하기 편리하다.
+예시로 gatsby에서 제공하는 [gatsby-plugin-sitemap](https://www.gatsbyjs.com/plugins/gatsby-plugin-sitemap/)이 있다.
+
+### 자체 클라우드가 무료
+
+`gatsby`의 자체 클라우드로 [gatsby cloud](https://www.gatsbyjs.com/products/cloud/) 서비스를 사용했고 3개의 사이트까지 무료이다.  
+CI/CD 설정만 하면 메인 브랜치에 커밋시에 `github action`을 이용해 바로 빌드해준다.  
+사용해보니 빌드된 사이트가 따로 저장되고 각 빌드마다 `lighthouse report`를 보여줘서 좋았다.
