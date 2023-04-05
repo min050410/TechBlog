@@ -48,7 +48,12 @@ const PostItemPage = () => {
             <HeaderComponent />
             <div className="middle">
                 <div className="left">
-                    <MDXProvider components={{ code: CodeBlock }}>
+                    <MDXProvider
+                        components={{
+                            // @ts-ignore
+                            code: CodeBlock,
+                        }}
+                    >
                         {PostItem ? <PostItem /> : null}
                     </MDXProvider>
                 </div>

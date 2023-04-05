@@ -84,7 +84,7 @@ const CodeBlock = ({ children, className }: CodeBlockType) => {
             </Highlight>
         );
     }
-    return null;
+    return <code>{children}</code>;
 };
 
 export default CodeBlock;
