@@ -1,0 +1,211 @@
+# CSRF(Cross-Site Request Forgery) 공격
+
+이번 블로그에서는 csrf에 대해 알아보고  
+간단한 csrf 문제인 [dreamhack csrf-1](https://dreamhack.io/wargame/challenges/26/) 문제를 풀이하고자 합니다.
+
+### 1. CSRF란?
+
+CSRF(Cross-Site Request Forgery)는
+웹 어플리케이션 취약점 중 하나로 인터넷 사용자(희생자)가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 만드는 공격입니다.  
+
+CSRF 공격을 성공하려면 다음 조건을 만족해야 합니다.  
+
+<big>1-1. 전제조건</big>
+- 사용자가 보안이 취약한 서버로부터 이미 인증을 받은 상태여야 합니다.
+- 쿠키 기반으로 서버 세션 정보를 획득할 수 있어야 합니다.
+- 공격자는 서버를 공격하기 위한 요청 방법에 대해 미리 파악하고 있어야 합니다.  
+예상치 못한 파라미터가 있으면 불가능합니다.
+
+CSRF 공격 기법은 다음과 같습니다.
+
+<big>1-2. CSRF 공격 기법</big>
+1. 사용자는 보안이 취약한 서버에 로그인 합니다.
+2. 로그인 이후 서버에 저장된 세선 정보를 사용할 수 있는 sessionID 또는 token을 사용자 브라우저 쿠키에 저장됩니다.
+> 여기서 쿠키에 저장하기 때문에 토큰을 쿠키에 저장하게 되면 csrf 공격에 취약한 것입니다.  
+반대로 localStorage에 저장하면 xss 공격에 취약합니다.   
+토큰 저장 방법에 대해서는 다음에 자세히 다뤄보도록 하겠습니다.
+3. 공격자는 서버에 인증된 브라우저의 사용자가 악성 스크립트 페이지를 누르도록 유도합니다.
+    - 게시판에 악성 스크립트를 게시글로 작성하여 관리자 혹은 다른 사용자들이 게시글을 클릭하도록 유도합니다. (xss 연계형)
+    - 메일 등으로 악성 스크립트를 직접 전달하거나, 악성 스크립트가 적힌 페이지 링크를 전달합니다. (간접적 전달)
+    - 피싱 사이트를 이용합니다. (불법 사이트? 등등)
+4. 사용자가 악성 스크립트가 작성된 페이지 접근시 쿠키에 저장된 sessionID는 브라우저에 의해 자동적으로 함께 서버로 요청됩니다.
+5. 서버는 쿠키에 담긴 sessionID를 통해 해당 요청이 인증된 사용자로부터 온 것으로 판단하고 처리합니다.
+6. 공격자는 인증 정보를 악용해 개인정보 등을 탈취합니다.
+
+대표적인 예시로는 기존 게시판 글을 쓰는 api가 있는데,    
+피싱 사이트에 그 api를 연결해 본인의 계정으로 피싱 사이트에 접속한 유저가 기존 게시판 글을 쓰게 하는 공격이 있습니다.  
+여기서 유저의 cookie를 이용해서 권한을 탈취할 수 합니다.
+ 
+피싱 사이트를 사용하지 않더라도 xss 공격을 성공한 사이트로 연계해서 csrf 공격을 실행할 수도 있습니다.  
+
+
+### 2. CSRF와 XSS의 차이
+
+XSS와 CSRF는 모두 웹사이트의 취약점을 공격하는 방법입니다.  
+하지만 두 공격의 차이점은 공격 대상과 목적이 다릅니다.  
+XSS는 클라이언트를 공격 대상으로 하여 쿠키와 세션 갈취, 웹사이트 변조 등을 목적으로 합니다.  
+반면 CSRF는 서버를 공격 대상으로 하여 권한 도용을 목적으로 합니다.  
+
+다음으로 csrf 방어 기법을 알아봅시다.
+
+### 3-1. Referer로 체크
+
+요청이 들어오는 domain를 체크해서 검증합니다.  
+검증된 domain이 아니라면 csrf 공격이라고 판별하고 해당 domain 접속을 차단합니다.
+
+### 3-2. Security token 사용
+
+서버에서 hash로 암호화된 CSRF 토큰을 사용하고 
+CSRF 토큰을 사용해서 요청할 때마다 서버에 저장된 토큰과 요청 보낸 토큰을 비교해서 검증합니다.
+
+### 4. CSRF-1 풀이
+
+문제를 풀기 전에 [문제 정보](https://dreamhack.io/wargame/challenges/26/)를 보고 오면 이해에 도움이 됩니다.  
+
+먼저 접속 사이트에 들어가보면 다음과 같은 정보가 있습니다.
+
+<img width="206" src="https://user-images.githubusercontent.com/45661217/230258373-64e19ee1-7c86-4e36-b63e-f8f23e76fea4.png"></img>
+
+- vuln(csrf) page: csrf의 예시를 보여주는 페이지
+- memo: csrf를 뚫으면 답이 나오는 페이지
+- notice flag: admin + 127.0.0.1만 접속 가능한 페이지
+- flag: csrf 테스트 페이지
+
+그냥 웹사이트만 보면 답이 없기 때문에 코드를 봅시다.
+
+```py
+def read_url(url, cookie={"name": "name", "value": "value"}):
+    cookie.update({"domain": "127.0.0.1"})
+    try:
+        options = webdriver.ChromeOptions()
+        for _ in [
+            "headless",
+            "window-size=1920x1080",
+            "disable-gpu",
+            "no-sandbox",
+            "disable-dev-shm-usage",
+        ]:
+            options.add_argument(_)
+        driver = webdriver.Chrome("/chromedriver", options=options)
+        driver.implicitly_wait(3)
+        driver.set_page_load_timeout(3)
+        driver.get("http://127.0.0.1:8000/")
+        driver.add_cookie(cookie)
+        driver.get(url)
+    except Exception as e:
+        driver.quit()
+        print(str(e))
+        # return str(e)
+        return False
+    driver.quit()
+    return True
+
+def check_csrf(param, cookie={"name": "name", "value": "value"}):
+    # urllib.parse.quote 는 아스키코드 형식이 아닌 글자를 URL 인코딩하는 함수입니다.
+    url = f"http://127.0.0.1:8000/vuln?param={urllib.parse.quote(param)}"
+    return read_url(url, cookie)
+```
+
+read_url 함수가 호출되면 cookie가 `'domain':'127.0.0.1'` 로 업데이트 됩니다.
+그리고 driver는 `http://127.0.0.1:8000/` 페이지에 접속하고, cookie에 저장된 값을 `http://127.0.0.1:8000/` 의 cookie로 추가합니다. 
+그리고 driver는 `http://127.0.0.1:8000/csrf?csrf={urllib.parse.quote(url)}` 에 접속합니다.
+
+```py
+memo_text = ""
+
+
+@app.route("/memo")
+def memo():
+    global memo_text
+    text = request.args.get("memo", None)
+    if text:
+        memo_text += text
+    return render_template("memo.html", memo=memo_text)
+
+
+@app.route("/admin/notice_flag")
+def admin_notice_flag():
+    global memo_text
+    if request.remote_addr != "127.0.0.1":
+        return "Access Denied"
+    if request.args.get("userid", "") != "admin":
+        return "Access Denied 2"
+    memo_text += f"[Notice] flag is {FLAG}\n"
+    return "Ok"
+
+
+app.run(host="0.0.0.0", port=8000)
+```
+
+notice flag 페이지에서는 접속 요청 사용자의 ip 주소가 `127.0.0.1`이 아니면 Access Denied 문자열을 출력하고  
+userid 파라미터 값이 admin이 아니면 Your not admin 문자열을 출력합니다.  
+ip 주소가 `127.0.0.1`이고, userid가 admin이면 memo에 flag를 작성합니다.
+
+### 4-1. 해결 방법
+
+해결 방법은 flag 페이지를 이용해 csrf 공격을 하고  
+웹 서버가 `127.0.0.1` 에서 notice_flag 페이지에 접속해 flag를 탈취하는 것입니다.
+
+```py
+@app.route("/flag", methods=["GET", "POST"])
+def flag():
+    if request.method == "GET":
+        return render_template("flag.html")
+    elif request.method == "POST":
+        param = request.form.get("param", "")
+        if not check_csrf(param):
+            return '<script>alert("wrong??");history.go(-1);</script>'
+
+        return '<script>alert("good");history.go(-1);</script>'
+```
+
+여기서 param을 잘 전달하면 check_csrf를 실행하고 127.0.0.1로 접속이 가능합니다.  
+단순 웹 페이지에 접속하는 구문만 실행하려면, img 태그의 src 속성을 사용할 수 있습니다.  
+실제 이미지는 아니지만 src 안의 주소로 이용해 이미지를 불러오려는 시도를 하기 때문에 페이지에 접속하게 됩니다.
+
+```html
+<img src=/admin/notice_flag?userid=admin>
+```
+
+위 코드를 그대로 복사해서 flag 페이지에 붙여넣고 제출을 누릅니다.  
+
+```py
+    if request.remote_addr != "127.0.0.1":
+        return "Access Denied"
+    if request.args.get("userid", "") != "admin":
+        return "Access Denied 2"
+```
+
+read_url 함수까지 통과해서 페이지에 접속하게 되면 remote_addr 주소가 `127.0.0.1`이 되므로  
+위 이중 보안이 뚫리게 되면서 memo에 flag 값이 추가됩니다.  
+그 후에 memo페이지에 가면 flag 값이 출력되어 있는 것을 볼 수 있습니다.
+
+### [번외] Spring Security에서는 왜 CSRF disable을 할까요?
+
+spring security를 공부하면 csrf를 disable시킨 코드를 많이 볼 수 있습니다.
+
+```js
+@Override
+public void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable();
+}
+```
+
+여기서 csrf를 disable 시킨 이유는 csrf 공격으로부터 안전하기 때문입니다.  
+쿠키가 없으면 csrf 공격도 없습니다.  
+header에 토큰을 넣어 전달하는 방식이라면 csrf 공격에서 안전하기 때문에 그냥 disable을 하는 것입니다.  
+만약 자신이 쿠키를 사용한다면 클라이언트와 통신한다면 csrf 설정을 켜 주는 것이 좋습니다.  
+
+### 레퍼런스
+
+[CSRF(Cross-Site Request Forgery) 공격과 방어](https://junhyunny.github.io/information/security/spring-boot/spring-security/cross-site-reqeust-forgery/)  
+[CSRF 공격이란? 그리고 CSRF 방어 방법](https://itstory.tk/entry/CSRF-%EA%B3%B5%EA%B2%A9%EC%9D%B4%EB%9E%80-%EA%B7%B8%EB%A6%AC%EA%B3%A0-CSRF-%EB%B0%A9%EC%96%B4-%EB%B0%A9%EB%B2%95)  
+[CSRF 공격과 방어 기법](https://velog.io/@gwanuuoo/CSRF-%EA%B3%B5%EA%B2%A9%EA%B3%BC-%EB%B0%A9%EC%96%B4-%EA%B8%B0%EB%B2%95)  
+[dreamhack csrf-1 문제풀이](https://mokpo.tistory.com/98)  
+[파이썬 urllib.parse.quote()](https://shwoghk14.blogspot.com/2019/10/python-urllibparsequote.html)
+
+
+
+
+
+
