@@ -274,6 +274,18 @@ const recentPostsData: recentPostsDataType = [
         tag3: "grandle",
         filter: "spring",
     },
+    {
+        id: 22,
+        title: "CSRF(Cross-Site Request Forgery) 공격",
+        filename: "Csrf-1",
+        date: "2023-04-06",
+        imgLineOne: "",
+        imgLineTwo: "CSRF",
+        tag: "csrf",
+        tag2: "security",
+        tag3: "",
+        filter: "security",
+    },
 ];
 
 export default recentPostsData;
