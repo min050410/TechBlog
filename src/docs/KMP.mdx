@@ -153,13 +153,14 @@ j가 m-1과 같아졌기 때문에 ans vector에 문자열 p의 첫번째 인덱
 
 ```cpp
 if (s[i] == p[j]) {
-			// 이 부분 실행
-			// m은 p 문자열의 크기 -> 6
-            if (j == m-1) {
-                ans.push_back(i-m+1);
-                j = pi[j];
-			}
+	// 이 부분 실행
+	// m은 p 문자열의 크기 -> 6
+	if (j == m-1) {
+		ans.push_back(i-m+1);
+		j = pi[j];
+	}
 ...
+}
 ```
 
 다음은 전체 코드입니다. 입력과 출력은 백준 [찾기](https://www.acmicpc.net/problem/1786)와 동일합니다.

@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { themeColorState } from "../../../recoil/theme";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import darkTheme from "prism-react-renderer/themes/oceanicNext";
-import lightTheme from "prism-react-renderer/themes/github";
+import lightTheme from "prism-react-renderer/themes/duotoneLight";
 
 const Pre = styled.pre`
     text-align: left;

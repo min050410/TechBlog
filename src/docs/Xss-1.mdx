@@ -1,0 +1,30 @@
+# [웹 보안] SQL injection 공격
+
+이번 블로그에서는 sql injection 공격을 살펴보고 간단한 웹 문제를 몇가지 풀어보고자 합니다.
+
+### 1. sql injection 공격이란?
+sql injection은 sql문에 들어가야할 파라미터로 이상한 문자열을 삽입해 권한 등을 탈취할 수 있는 취약점입니다.
+
+백엔드에 SQL문이 다음과 같이 작성되었다고 가정하겠습니다.
+SELECT user FROM user_table WHERE id='입력한 아이디' AND password='입력한 비밀번호';
+
+패스워드 창에 
+
+
+스프링에서는MyBatis에서 SQL injection 공격을 많이 당한다.
+
+
+### 2. xss dreamhack.io simple_sqli 문제
+
+
+### 3. [Webhacking] Old-18 문제
+
+### 4. [Webhacking] Old-45 문제 (필터링 우회)
+
+<img src="https://user-images.githubusercontent.com/45661217/233233384-5ebc4ec1-33fa-40e1-b574-e245c93c87ec.png" width="100%"></img>
+
+<big>5-1. 코드 분석</big>  
+아이디 패스워드를 값으로 받고 아이디와 패스워드를 addslashes함수를 이용해 인코딩합니다.  
+그리고 =, \<, \> 등의 문자열을 필터링합니다.  
+
+
