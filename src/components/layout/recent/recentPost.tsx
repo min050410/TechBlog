@@ -1,6 +1,18 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
+type RecentPostComponentType = {
+    id: number;
+    filename: string;
+    imgLineOne: string;
+    imgLineTwo: string;
+    title: string;
+    date: string;
+    tag: string;
+    tag2: string;
+    tag3: string;
+};
+
 const RecentPostComponent = ({
     id,
     filename,
