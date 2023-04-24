@@ -23,41 +23,41 @@ const RecentPostComponent = ({
     tag,
     tag2,
     tag3,
-}: RecentPostComponentType) => {
-    <div className="recent_content" key={i}>
-        <Link to={`postitem/?name=${post.filename}`}>
+}: RecentPostComponentType) => (
+    <div className="recent_content" key={id}>
+        <Link to={`postitem/?name=${filename}`}>
             <div className="margin_post">
                 <div className="post">
                     <div className="left">
                         <div className="imgbox">
                             <img
                                 src={
-                                    require(`../../../../static/gradients/${post.id}.png`)
+                                    require(`../../../../static/gradients/${id}.png`)
                                         .default
                                 }
-                                alt={post.imgLineTwo}
+                                alt={imgLineTwo}
                             />
                             <div className="img-text-one">
-                                <p>{post.imgLineOne}</p>
+                                <p>{imgLineOne}</p>
                             </div>
                             <div className="img-text-two">
-                                <p>{post.imgLineTwo}</p>
+                                <p>{imgLineTwo}</p>
                             </div>
                         </div>
                         <div id="text_group">
-                            <h3>{post.title}</h3>
-                            <div>{post.date}</div>
+                            <h3>{title}</h3>
+                            <div>{date}</div>
                         </div>
                     </div>
                     <div className="tag">
-                        {post.tag && <span>{post.tag}</span>}
-                        {post.tag2 && <span>{post.tag2}</span>}
-                        {post.tag3 && <span>{post.tag3}</span>}
+                        {tag && <span>{tag}</span>}
+                        {tag2 && <span>{tag2}</span>}
+                        {tag3 && <span>{tag3}</span>}
                     </div>
                 </div>
             </div>
         </Link>
-    </div>;
-};
+    </div>
+);
 
 export default RecentPostComponent;
