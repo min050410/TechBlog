@@ -140,7 +140,7 @@ const HeaderComponent = () => {
             </div>
             <div className="head content">
                 <Link to="/intro">
-                    <span>소개</span>
+                    <span>포트폴리오</span>
                 </Link>
                 <a href={GITHUB_URL}>
                     <span>깃허브</span>

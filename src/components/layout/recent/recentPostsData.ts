@@ -289,7 +289,7 @@ const recentPostsData: recentPostsDataType = [
     {
         id: 23,
         title: "SQL injection 공격",
-        filename: "SQL-Injection",
+        filename: "Sql-Injection",
         date: "2023-04-20",
         imgLineOne: "",
         imgLineTwo: "XSS",

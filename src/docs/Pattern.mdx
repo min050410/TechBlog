@@ -234,7 +234,7 @@ CLIENT와 TERGET은 호환되지 않아야 됨
 - 상속보단 조합 유연함
 - https://tecoble.techcourse.co.kr/post/2020-05-18-inheritance-vs-composition/
 
-### 3-2. ADAPTER 패턴 구현
+### 3-2. Adapter 패턴 구현
 
 ```js
 package adaptee;
@@ -269,10 +269,6 @@ public class UsbTypeB {
 ```
 
 ```js
-package adapter;
-
-import adaptee.Usb;
-
 // 새로운 인터페이스를 구현하는 또 다른 클래스
 public interface BtoCAdapter {
     public Usb getCType();
@@ -280,11 +276,6 @@ public interface BtoCAdapter {
 ```
 
 ```js
-package adapter;
-
-import adaptee.Usb;
-import adaptee.UsbTypeB;
-
 // Class Adapter
 // 다중 상속을 이용 하나는 implements, 하나는 extends
 public class BtoCClassAdapterImpl extends UsbTypeB implements BtoCAdapter{
@@ -302,11 +293,6 @@ public class BtoCClassAdapterImpl extends UsbTypeB implements BtoCAdapter{
 ```
 
 ```js
-package adapter;
-
-import adaptee.Usb;
-import adaptee.UsbTypeB;
-
 // Object Adapter
 // 객체를 조합으로 불러옴
 public class BtoCObjectAdapterImpl implements BtoCAdapter {
@@ -331,11 +317,6 @@ public class BtoCObjectAdapterImpl implements BtoCAdapter {
 ```
 
 ```js
-import adaptee.UsbTypeB;
-import adapter.BtoCAdapter;
-import adapter.BtoCClassAdapterImpl;
-import adapter.BtoCObjectAdapterImpl;
-
 public class Client {
     public static void main(String[] args) {
         
@@ -359,7 +340,7 @@ public class Client {
 
 ### 3-4. 어댑터 패턴의 장점
 
-- **내부 구현, 라이브러리 등에 추가적인 기능을 만들고 싶을 때 유용하게 활용
+- 내부 구현, 라이브러리 등에 추가적인 기능을 만들고 싶을 때 유용하게 활용
 
 ### 3-5. 어댑터 패턴의 단점 
 
@@ -389,7 +370,6 @@ public interface ChristmasTree {
     void decorate();
 }
 ```
-
 
 ```js
 //핵심 기능을 담당하는 B 클래스
