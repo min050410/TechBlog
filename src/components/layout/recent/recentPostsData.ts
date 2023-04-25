@@ -277,7 +277,7 @@ const recentPostsData: recentPostsDataType = [
     {
         id: 22,
         title: "CSRF(Cross-Site Request Forgery) 공격",
-        filename: "Csrf-1",
+        filename: "Csrf",
         date: "2023-04-06",
         imgLineOne: "",
         imgLineTwo: "CSRF",
@@ -288,8 +288,8 @@ const recentPostsData: recentPostsDataType = [
     },
     {
         id: 23,
-        title: "XSS(Cross-Site Scripting) 공격",
-        filename: "Xss-1",
+        title: "SQL injection 공격",
+        filename: "SQL-Injection",
         date: "2023-04-20",
         imgLineOne: "",
         imgLineTwo: "XSS",

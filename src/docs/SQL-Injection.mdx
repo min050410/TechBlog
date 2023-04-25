@@ -1,18 +1,23 @@
 # [웹 보안] SQL injection 공격
 
+### 개요
 이번 블로그에서는 sql injection 공격을 살펴보고 간단한 웹 문제를 몇가지 풀어보고자 합니다.
 
-### 1. sql injection 공격이란?
-sql injection은 sql문에 들어가야할 파라미터로 이상한 문자열을 삽입해 권한 등을 탈취할 수 있는 취약점입니다.
+### 1. SQL injection 공격이란?
+SQL injection은 SQL문에 들어가야할 파라미터로 문자열을 삽입해 권한 등을 탈취할 수 있는 공격입니다.
 
-백엔드에 SQL문이 다음과 같이 작성되었다고 가정하겠습니다.
-SELECT user FROM user_table WHERE id='입력한 아이디' AND password='입력한 비밀번호';
+백엔드에 데이터베이스와 통신하는 SQL문이 다음과 같이 작성되었다고 가정하겠습니다.  
+```sql
+SELECT user FROM user_table WHERE id='아이디' AND password='비밀번호';
+```
 
-패스워드 창에 
+무엇을 입력해야지 SQL문을 악용해 권한을 탈취할 수 있을까요?  
+공격자는 비밀번호에 다음과 같이 입력합니다. `' OR '1' = '1`
 
 
-스프링에서는MyBatis에서 SQL injection 공격을 많이 당한다.
 
+
+스프링에서는 MyBatis에서 SQL injection 공격을 많이 당한다.
 
 ### 2. xss dreamhack.io simple_sqli 문제
 
