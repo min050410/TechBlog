@@ -36,7 +36,7 @@ const recentPostsData: recentPostsDataType = [
     },
     {
         id: 2,
-        title: "RN camera 적용법",
+        title: "React Native - 네이티브 카메라 사용하기",
         filename: "Camera",
         date: "2021-11-26",
         imgLineOne: "React-Native",
