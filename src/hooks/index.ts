@@ -4,3 +4,4 @@ export * from "./useSearch";
 export * from "./useTitle";
 export * from "./useScrollFadeIn";
 export * from "./useSmoothScroll";
+export * from "./useNearestPost";
