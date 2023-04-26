@@ -3,10 +3,120 @@
 ## 목차
 
 - multipart란  
-- multipart가생긴이유  
-- multipart사용한 spring 예제  
-- dto와 함께 multipart를 받을 때  
+- multipart가 생긴 이유  
+- Multipart를 이용해 spring에서 file 받기 
+- spring에서 dto와 함께 파일 받기
 
-### 1. Multipart 그 시작
+### 1. Multipart 란
 
-스프링을 하면서 @Multipart 라는 어노테이션을 한번씩 봤을 겁니다. Multipart 
+스프링을 하면서 Multipart 라는 타입을 본 적이 있나요?  
+Multipart는 웹 클라이언트가 요청을 보낼 때, http 프로토콜의 바디 부분에 데이터를 여러 부분으로 나눠서 보내는 것을 말합니다. 보통 파일을 전송될 때 사용됩니다.
+
+
+### 2. Multipart가 생긴 이유
+파일을 업로드 할 때 파일과 함께 부가적인 설명도 들어가야 하는 상황을 가정해보겠습니다.  
+dto로 나타내면 다음과 같습니다.
+
+```json
+{
+    "파일": (바이너리 형식)
+    "파일-설명": "풍경 사진입니다."
+}
+```
+
+하지만 파일 설명은 Content-type이 `application/x-www-form-urlencoded`이고  
+사진 파일은 바이너리 형식인 `image/jpeg`여서 서버에서 한번에 처리할 수가 없습니다.
+
+이 문제를 body에서 데이터를 구분해서 받게해준 multipart가 해결합니다.  
+multipart에서는 구분되는 한 단위를 part라고 하고 동시에 여러 단위의 part로 나뉠 수 있기에 multipart라고 부릅니다.  
+multipart 타입은 post에서만 사용 가능합니다.
+
+### 3. Multipart를 이용해 spring에서 file 받기
+
+spring에서는 파일 데이터를 두 어노테이션으로 받을 수 있습니다. 
+
+<big>@RequestParam, @RequestPart</big>
+
+- @RequestParam  
+쿼리 파라미터, 폼 데이터, Multipart 등 많은 요청 파라미터를 처리할 수 있는 어노테이션입니다.  
+메소드 파라미터 타입이 String 또는 MultipartFile/Part가 아닌 경우 Converter 또는 PropertyEditor를 참조해 변환을 시도합니다.
+
+- @RequestPart  
+multipart/form-data에 특화되어 여러 복잡한 값을 처리할 때 사용할 수 있는 어노테이션입니다.  
+JSON, XML등을 포함하는 복잡한 내용의 Part와 함께 사용됩니다.
+메소드 파라미터 타입이 String 또는 MultipartFile/Part가 아닌 경우 요청 헤더의 Content-Type을 참조하여 해당하는 HttpMessageConveter로 변환을 시도합니다.
+
+먼저 @RequestParam을 이용해 파일을 받아보겠습니다. 언어는 kotiln입니다.
+
+```js
+@Operation(summary = "에디터 이미지 단일 업로드")
+@PostMapping(ApiPath.FILE_UPLOAD)
+fun editorImageUpload(
+    @RequestParam(value = "image") image: MultipartFile
+): String {
+    FileValidateUtils.imageValidationCheck(image)
+    return s3UploadService.upload(image)
+}
+```
+
+<img src="https://user-images.githubusercontent.com/45661217/234454179-f03df10a-610b-4f01-b1df-2e71ee154b60.png" width="100%"></img>
+
+
+다음으로 @RequestPart를 이용해 단일 파일을 받아보겠습니다.
+```js
+@Operation(summary = "이미지 단일 업로드")
+@PostMapping(ApiPath.FILE_UPLOAD)
+fun editorImageUpload(
+    @RequestPart(value = "image") image: MultipartFile
+): String {
+    FileValidateUtils.imageValidationCheck(image)
+    return s3UploadService.upload(image)
+}
+```
+
+<img src="https://user-images.githubusercontent.com/45661217/234443437-a86d709d-e77e-4d85-9574-0cb0f3c6128d.png" width="100%"></img>
+required 설정도 줄 수 있습니다. 요청할때는 해당 필드를 아예 제외하고 요청을 보내면 됩니다. 
+
+```js
+@RequestPart(value = "files", required = false) files: List<MultipartFile>?,
+```
+
+여러개의 MultipartFile을 받을 때는 이렇게 사용합니다. 요청할 때에는 같은 속성에 여러번 요청하면 됩니다.
+```js
+@RequestPart(value = "files") files: List<MultipartFile>
+```
+
+- 파일에 여러번 요청한 모습
+<img src="https://user-images.githubusercontent.com/45661217/234469646-5da5b0b1-6bd1-4e5c-9100-738ab8817863.png" width="60%"></img>
+
+
+### 4. spring에서 dto와 함께 파일 받기
+
+이미지 설명까지 같이 받으려면 @RequestPart를 쓰면 됩니다.  
+아래 예시는 작품 이미지와 함께 작품 제목, 작품 부가설명 등을 같이 받는 예시입니다.  
+
+```js
+@Operation(summary = "최종 작품 등록")
+@PostMapping(ApiPath.ARTWORK_SUBMIT)
+fun submitArtwork(
+    @AuthenticationPrincipal memberContext: MemberContext,
+    @Validated @RequestPart(value = "rq") rq: CreateArtworkRq,
+    @RequestPart(value = "thumbnail") thumbnail: MultipartFile,
+    @RequestPart(value = "files") files: List<MultipartFile>,
+) {
+    val artwork = artworkService.submitArtwork(memberContext, rq)
+    FileValidateUtils.imageValidationCheck(files)
+    fileService.uploadArtworkImage(memberContext, artwork, thumbnail, files)
+}
+```
+
+<img src="https://user-images.githubusercontent.com/45661217/234483529-167180f3-bb02-4616-8095-0fb0b8460be0.png" width="100%"></img>
+
+### 레퍼런스
+[Spring Multipart 및 파일업로드 (study4_4)](https://brilliantdevelop.tistory.com/111)  
+[Spring Web MVC - Multipart 요청 다루기](https://ykh6242.tistory.com/entry/Spring-Web-MVC-Multipart-%EC%9A%94%EC%B2%AD-%EB%8B%A4%EB%A3%A8%EA%B8%B0)  
+[[Spring Boot] @RequestParam vs @RequestPart](https://somuchthings.tistory.com/160?category=983431)
+
+
+
+
