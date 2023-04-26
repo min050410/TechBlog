@@ -1,15 +1,15 @@
 import React from "react";
 import recentPostsData from "../components/layout/recent/recentPostsData";
 
-type pageStateType = {
+type postStateType = {
     id: number;
     title: string;
     filename: string;
 } | null;
 
 export const useNearestPost = (filename: string | null | undefined) => {
-    const [nextPost, setNextPost] = React.useState<pageStateType>(null);
-    const [previousPost, setPreviousPost] = React.useState<pageStateType>(null);
+    const [nextPost, setNextPost] = React.useState<postStateType>(null);
+    const [previousPost, setPreviousPost] = React.useState<postStateType>(null);
 
     React.useEffect(() => {
         setNextPost(null);

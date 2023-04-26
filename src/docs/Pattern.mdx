@@ -1,26 +1,32 @@
 # 자바에 나오는 모든 디자인 패턴정리
 
 ## 목차
+- 개요 GOF 패턴
 - flyweight 패턴
 - singleton 패턴 
 - adapter 패턴 
 - decorator 패턴 
 - proxy 패턴
 
+## 0. 개요, GOF 패턴
+
+### 0-1. 디자인 패턴, 중요한 이유
+
+
 ## 1. flyweight 패턴
 인스턴스를 <big>가능한대로</big> 공유시켜서 쓸데없는 new 연산자를 통한 메모리 낭비를 줄이는 방식입니다.  
-<big>식당(Factory)</big>에서 <big>요리(instance)를</big> 최대한 많이 공유하도록 설계된 패턴이라고 보시면 됩니다. 
+<big>공장(Factory)</big>에서 <big>자원(instance)이</big> 낭비되는 일 없이 최대한 많이 공유하도록 설계된 패턴이라고 보시면 됩니다. 
 
 패턴을 자세히 알아보겠습니다.
 
-- <big>flyweight(플라이급)</big>
-1. 공유에 사용할 클래스들의 API를 선언합니다.
+<big>flyweight(플라이급)</big>
+- 공유에 사용할 클래스들의 API를 선언합니다. 
 
-- <big>ConcreteFlyweight(구체적인 플라이급)</big>
-2. flyweight 내용을 정의합니다.
+<big>ConcreteFlyweight(구체적인 플라이급)</big>
+- flyweight 내용을 정의합니다.
 
-- <big>flyweightFactory</big>
-3. Flyweight의 인스턴스를 생성하고 공유하는 역할을 합니다. 
+<big>flyweightFactory</big>  
+- Flyweight의 인스턴스를 생성하고 공유하는 역할을 합니다. 
 
 ### 1-1. 플라이웨이트 패턴 구현하기
 
@@ -32,7 +38,7 @@ public interface Shape {
 }
 ``` 
 
-ConcreteFlyweight
+ConcreteFlyweight 
 ```js
 public class Circle implements Shape {
     private String color;
@@ -58,8 +64,8 @@ public class ShapeFactory {
 
     public static Shape getCircle(String color) {
         Circle circle = (Circle)circleMap.get(color);
-        // 만약 해당 색갈의 circle이 없다면 new를 이용해 객체 생성
-        if(circle == null) {
+        // 만약 해당 색깔의 circle이 없다면 new를 이용해 객체 생성
+        if (circle == null) {
             circle = new Circle(color);
             circleMap.put(color,circle);
             System.out.println("==== 새로운 객체 생성 : " + color + "색 원 ====" );
@@ -88,19 +94,18 @@ circle을 색으로 얻는데 만약에 해당 색의 circle이 있으면 그 �
 ## 2. Singleton 패턴
 싱글톤 패턴은 <big>인스턴스를 하나만 생성할 수 있는 패턴</big>을 의미합니다.  
 여러차례 호출되어도 처음 생성한 객체인 1개를 리턴해주는 패턴입니다.  
-싱글톤으로 만들 수 있는 객체는 설계상 유일해야 하는 시스템 컴포넌트를 예로 들 수 있습니다.
+설계상 유일해야 하는 시스템 컴포넌트를 싱글톤으로 만들 수 있는 객체의 예로 들 수 있습니다.
 
 - singleton
 1. 유일한 인스턴스를 얻기 위해 static 메소드를 가집니다.
 
 ### 2-1. 근데 왜 static을 쓰죠?
 
-: 메모리 이점  
-변수에 static을 붙이면 자바는 메모리 할당을 한번만 하게 되어 메모리 사용에 이점이 있습니다.  
-이를 통해 나온 것이 바로 싱글톤 패턴! 
+메모리 이점  
+- 변수에 static을 붙이면 자바는 메모리 할당을 한번만 하게 되어 메모리 사용에 이점이 있습니다.  
 
-: 공유  
-static을 사용하면 같은 메모리 주소를 보기 때문에 static 변수의 값을 공유하게 됩니다.  
+공유  
+- static을 사용하면 같은 메모리 주소를 보기 때문에 static 변수의 값을 공유하게 됩니다.  
 
 ### 2-2. 싱글톤패턴 구현하기
 
@@ -193,8 +198,6 @@ public class Singleton {
 - private 생성자를 가지고 있기 때문에 상속할 수 없다.
 
 ## 3. 어댑터 패턴
-
-GoF 디자인 패턴 중 구조 패턴에 해당한다.
 
 어댑터처럼 맞지 않아도 인터페이스에 맞게 끼울수 있는 패
 

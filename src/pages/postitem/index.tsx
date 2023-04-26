@@ -15,6 +15,7 @@ import SEOComponent from "../../components/common/seo";
 //styles
 import "../../styles/postitem.sass";
 import "../../styles/index.sass";
+import NearestPostComponent from "../../components/layout/nearestPost";
 
 const PostItemPage = () => {
     const filename = useSearchParam("name");
@@ -49,26 +50,10 @@ const PostItemPage = () => {
                     </MDXProvider>
                 </div>
             </div>
-            <div>
-                <div>
-                    다음 페이지:
-                    <Link
-                        to={`/postitem/?name=${nextPost?.filename}`}
-                        key={nextPost?.id}
-                    >
-                        <span>{nextPost?.title}</span>
-                    </Link>
-                </div>
-                <div>
-                    이전 페이지:
-                    <Link
-                        to={`/postitem/?name=${previousPost?.filename}`}
-                        key={previousPost?.id}
-                    >
-                        <span>{previousPost?.title}</span>
-                    </Link>
-                </div>
-            </div>
+            <NearestPostComponent
+                nextPost={nextPost}
+                previousPost={previousPost}
+            />
             <PostComment key={filename} filename={filename} />
         </main>
     );

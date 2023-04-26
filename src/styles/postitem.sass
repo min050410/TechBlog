@@ -17,40 +17,40 @@
 
   
 @keyframes fadeup
-    from
-        margin-top: 200px
-        opacity: 0 
-    to
-        margin-top: none
-        transform: scale(1)
-        opacity: 1
+  from
+    margin-top: 200px
+    opacity: 0 
+  to
+    margin-top: none
+    transform: scale(1)
+    opacity: 1
 
 body
-    margin-left: 0
+  margin-left: 0
 
 .middle
-    animation: fadeup 2s ease 0s 1 normal both running 
-    max-width: 800px
-    width: 100%
-    margin: 170px auto 80px
-    a
-        color: var(--color-a)
-        font-size: 16px
-    a:hover
-        text-decoration: underline var(--color-a)
+  animation: fadeup 2s ease 0s 1 normal both running 
+  max-width: 800px
+  width: 100%
+  margin: 170px auto 80px
+  a
+    color: var(--color-a)
+    font-size: 16px
+  a:hover
+    text-decoration: underline var(--color-a)
 
 strong
-    display: inline-block
-    background-color: var(--color-background-tag)
-    border-radius: 15px
-    font-family: Noto sans
-    font-weight: 300
-    font-style: normal
-    font-size: 12px
-    height: 20px
-    margin-right: 10px
-    padding: 0px 8px 4px 8px
-    color: var(--color-tag-color)
+  display: inline-block
+  background-color: var(--color-background-tag)
+  border-radius: 15px
+  font-family: Noto sans
+  font-weight: 300
+  font-style: normal
+  font-size: 12px
+  height: 20px
+  margin-right: 10px
+  padding: 0px 8px 4px 8px
+  color: var(--color-tag-color)
 
 h1,h2,h3,h4,h5 
   font-family: 'NanumBarunGothic'
@@ -107,16 +107,16 @@ blockquote p
 
 /* 스크롤바 설정*/
 pre::-webkit-scrollbar
-    width: 2px
-    height: 7px
+  width: 2px
+  height: 7px
 
 /* 스크롤바 막대 설정*/
 pre::-webkit-scrollbar-thumb
-    background-color: var(--color-border)
+  background-color: var(--color-border)
 
 /* 스크롤바 뒷 배경 설정*/
 pre::-webkit-scrollbar-track
-    background-color: var(--color-default)
+  background-color: var(--color-default)
 
 pre 
   box-sizing: border-box
@@ -150,7 +150,10 @@ code
   border-radius: 5px
   color: var(--color-code-p)
 
-
+.nearest-post
+  max-width: 800px
+  width: 100%
+  margin: 170px auto 80px
 
 @include mobile
   p, li 
@@ -162,6 +165,9 @@ code
   .middle
     animation: none
     align-self: center
+    width: 90%
+    margin: 10px
+  .nearest-post
     width: 90%
     margin: 10px
   .middle a 
