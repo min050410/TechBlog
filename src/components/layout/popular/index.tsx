@@ -9,9 +9,29 @@ export const slickSettings = {
     arrows: false,
     infinite: true,
     speed: 1000,
+    autoplay: true,
     autoplaySpeed: 5000,
+    pauseOnHover: true,
     slidesToShow: 6,
     slidesToScroll: 6,
+    initialSlide: 0,
+    dotsClass: "slick-dots",
+    responsive: [
+        {
+            breakpoint: 1440,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+            },
+        },
+        {
+            breakpoint: 960,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+            },
+        },
+    ],
 };
 
 //styles

@@ -1,7 +1,7 @@
 import React from "react";
 import recentPostsData from "../components/layout/recent/recentPostsData";
 
-export const useTitle = (filename: any) => {
+export const useTitle = (filename: string | null | undefined) => {
     const [title, setTitle] = React.useState<string>();
 
     React.useEffect(() => {
