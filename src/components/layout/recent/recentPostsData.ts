@@ -312,7 +312,7 @@ const recentPostsData: recentPostsDataType = [
     },
     {
         id: 25,
-        title: "자바에 나오는 모든 디자인 패턴 정리",
+        title: "자바에 나오는 모든 디자인 패턴 정리 - 1편",
         filename: "Pattern",
         date: "2023-04-25",
         imgLineOne: "Design",

@@ -1,15 +1,18 @@
 # Spring에서 Multipart 다루기 
 
-## 목차
+### 목차
 
 - multipart란  
 - multipart가 생긴 이유  
 - Multipart를 이용해 spring에서 file 받기 
 - spring에서 dto와 함께 파일 받기
 
+### 개요
+스프링을 하면서 Multipart를 쓰기만 했지 정확한 개념은 없었습니다.  
+이번 블로그에선 Multipart가 무엇인지 알아보고 Spring에서 Multipart를 다루는 코드를 살펴보고자 합니다.  
+
 ### 1. Multipart 란
 
-스프링을 하면서 Multipart 라는 타입을 본 적이 있나요?  
 Multipart는 웹 클라이언트가 요청을 보낼 때, http 프로토콜의 바디 부분에 데이터를 여러 부분으로 나눠서 보내는 것을 말합니다. 보통 파일을 전송될 때 사용됩니다.
 
 
@@ -19,8 +22,8 @@ dto로 나타내면 다음과 같습니다.
 
 ```json
 {
+    "파일-설명": "풍경 사진입니다.",
     "파일": (바이너리 형식)
-    "파일-설명": "풍경 사진입니다."
 }
 ```
 
@@ -29,7 +32,7 @@ dto로 나타내면 다음과 같습니다.
 
 이 문제를 body에서 데이터를 구분해서 받게해준 multipart가 해결합니다.  
 multipart에서는 구분되는 한 단위를 part라고 하고 동시에 여러 단위의 part로 나뉠 수 있기에 multipart라고 부릅니다.  
-multipart 타입은 post에서만 사용 가능합니다.
+multipart 타입은 POST에서만 사용 가능합니다.
 
 ### 3. Multipart를 이용해 spring에서 file 받기
 

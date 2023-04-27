@@ -1,17 +1,101 @@
-# 자바에 나오는 모든 디자인 패턴정리
+# 자바에 나오는 모든 디자인 패턴 정리 - 1편
 
 ## 목차
-- 개요 GOF 패턴
-- flyweight 패턴
-- singleton 패턴 
-- adapter 패턴 
-- decorator 패턴 
-- proxy 패턴
+- 개요 
+- Flyweight 패턴
+- Singleton 패턴 
+- Adapter 패턴 
+- Decorator 패턴 
+- Proxy 패턴
 
-## 0. 개요, GOF 패턴
+## 0. 개요
 
-### 0-1. 디자인 패턴, 중요한 이유
+왜 디자인 패턴을 알아야 할까요?  
 
+디자인 패턴은 지난 개발자들의 산출물입니다. OOP를 사용하면서 대부분의 문제 상황들을 이미 지난 개발자가 겪었습니다. 
+그러한 문제의 해결 방식들을 보아 <big>자주 사용되는 공통된 패턴을 정리한 것이 바로 Design Pattern</big>입니다.
+ 
+GOF(Gang of Four)로 불리는 4명의 개발자는 1994년에 Design Pattern이라는 책으로 
+프로젝트에서 자주 사용하는 구조를 정형화 한 디자인 패턴을 정리하였습니다.
+
+<big>- 1. 협업</big>
+
+디자인 패턴은 프로그래머 사이에서 공유되는 패턴입니다.
+
+A: 여기에는 퍼사드 패턴이 들어가면 좋을 것 같아요~!!  
+B: ???  
+A: 어... 퍼사드 패턴은요.... 
+
+B가 디자인 패턴을 알았다면 A는 장황하게 설명할 필요 없이 단어 하나만으로 표현할 수 있었을 것입니다.  
+[프로그래머의 뇌](http://www.yes24.com/Product/Goods/105911017) 책에서는 디자인 패턴을 사용하는 이유를 바로 사람들이 디자인 패턴을 하나의 덩어리로 인식해서라고 합니다.  
+협업을 할 때 디자인 패턴을 알려준다면 긴 코드를 이해하는데 걸리는 시간이 많이 줄어듭니다.  
+개발자들 사이에 공통의 언어를 만들어준다고 볼 수 있습니다.  
+-> 이 점에서 보아 dsl과 비슷하다고 볼 수 있겠네요.
+
+<big>- 2. 문제 상황에 맞게 빠르게 구현</big>  
+
+다른 개발자들이 접했던 문제 상황을 해결한 공통된 패턴이 디자인 패턴이어서 
+효율적으로 문제 상황에 대처할 수 있습니다. 잘 활용만 한다면 개발할 때의 시행착오를 줄이고 적은 노력을 들이고도 빠르게 문제를 해결할 수 있습니다.
+
+<big>- 3. Reusable, Flexible</big>
+
+[GOF Design Pattern 책](https://springframework.guru/gang-of-four-design-patterns/)의 부제에도 명시되어 있습니다. 디자인 패턴은 대부분 재사용성과 확장성을 고려해서 만들어집니다.  
+
+> Q. 알고리즘과 디자인 패턴은 비슷한가요??  
+
+A. 사실 알고리즘은 명확한 절차를 알려주는것에 반해 디자인 패턴은 구조를 설명하기 때문에 느낌이 다릅니다.  
+<big>하지만 해결책을 알려준다는 점</big>에서 비슷하다고 볼 수 있습니다. 
+
+### 0-1. GOF 책에서 설명하는 패턴의 분류
+
+GoF 책에서는 디자인 패턴을 생성, 구조, 행위로 분류합니다.
+
+<big>생성 패턴</big>  
+- <big>객체가 생성되는 방식</big>을 중시합니다
+- 객체 생성에 관련된 상세 설계 로직이 숨겨져 있습니다
+- 코드는 생성하고자 하는 객체와는 독립적입니다.
+
+<big>구조 패턴</big>
+- <big>클래스와 객체를 더 큰 결과물로 합칠 수 있는 구조</big>로 설계됩니다.
+- 구조가 간결화되며 클래스와 객체 간의 상호관계 파악이 가능합니다.
+- 클래스의 상속과 조합을 중시하는 패턴입니다.
+
+<big>행위 패턴</big>
+- <big>객체 간 상호작용과 책임</big>을 중요시합니다.
+- 각 객체는 상호작용을 하지만 결합은 느슨하게 이뤄져야 합니다.
+
+각 패턴에 대한 디자인 패턴들은 다음과 같습니다.
+
+<big>생성 패턴</big>  
+- 추상 팩토리 (Abstract Factory)
+- 빌더 (Builder)
+- 팩토리 메서드 (Factory Method)
+- 프로토타입 (Prototype)
+- 싱글톤 (Singleton)
+
+<big>구조 패턴</big>
+- 어댑터 (Adapter)
+- 브리지 (Bridge)
+- 컴포지트 (Composite)
+- 데코레이터 (Decorator)
+- 퍼사드 (Facade)
+- 플라이웨이트 (Flyweight)
+- 프록시 (Proxy)
+
+<big>행위 패턴</big>
+- 책임 연쇄 (Chain of Responsibility)
+- 커맨드 (Command)
+- 인터프리터 (Interpreter)
+- 반복자 (Iterator)
+- 중재자 (mediator)
+- 메멘토 (Memento)
+- 옵저버 (Observer)
+- 스테이트 (State)
+- 전략 (Strategy)
+- 템플릿 메서드 (Template Method)
+- 방문자 (Visitor)
+
+서론이 길었습니다. 그럼 디자인 패턴 정리 시작해보겠습니다.
 
 ## 1. flyweight 패턴
 인스턴스를 <big>가능한대로</big> 공유시켜서 쓸데없는 new 연산자를 통한 메모리 낭비를 줄이는 방식입니다.  
@@ -30,7 +114,7 @@
 
 ### 1-1. 플라이웨이트 패턴 구현하기
 
-Flyweight
+### Flyweight
 
 ```js
 public interface Shape {
@@ -38,7 +122,7 @@ public interface Shape {
 }
 ``` 
 
-ConcreteFlyweight 
+### ConcreteFlyweight 
 ```js
 public class Circle implements Shape {
     private String color;
@@ -57,7 +141,7 @@ public class Circle implements Shape {
 }
 ```
 
-flyweightFactory
+### flyweightFactory
 ```js
 public class ShapeFactory {
     private static final HashMap<String, Circle> circleMap = new HashMap<>();
@@ -94,22 +178,20 @@ circle을 색으로 얻는데 만약에 해당 색의 circle이 있으면 그 �
 ## 2. Singleton 패턴
 싱글톤 패턴은 <big>인스턴스를 하나만 생성할 수 있는 패턴</big>을 의미합니다.  
 여러차례 호출되어도 처음 생성한 객체인 1개를 리턴해주는 패턴입니다.  
-설계상 유일해야 하는 시스템 컴포넌트를 싱글톤으로 만들 수 있는 객체의 예로 들 수 있습니다.
-
-- singleton
-1. 유일한 인스턴스를 얻기 위해 static 메소드를 가집니다.
+대표적인 예시로는 데이터베이스의 커넥션풀이나 시스템 컴포넌트가 있습니다.  
+유일한 인스턴스를 얻기 위해 static 메소드를 가집니다.
 
 ### 2-1. 근데 왜 static을 쓰죠?
 
-메모리 이점  
-- 변수에 static을 붙이면 자바는 메모리 할당을 한번만 하게 되어 메모리 사용에 이점이 있습니다.  
+<big>메모리 이점</big>
+- 변수에 static 을 붙이면 자바는 메모리 할당을 한번만 하게 되어 메모리 사용에 이점이 있습니다.  
 
-공유  
+<big>공유</big>
 - static을 사용하면 같은 메모리 주소를 보기 때문에 static 변수의 값을 공유하게 됩니다.  
 
 ### 2-2. 싱글톤패턴 구현하기
 
-public static으로 인스턴스 생성 방식
+<big>public static으로 인스턴스 생성 방식</big>
 ```js
 public class Elvis {
 		public static final Elvis INSTANCE = new Elvis();
@@ -121,7 +203,9 @@ public class Elvis {
 }
 ```
 
-정적 팩토리 메서드를 활용하는 방식
+장점: 코드의 간결함, 싱글톤임을 보장
+
+<big>정적 팩토리 메서드를 활용하는 방식</big>
 ```js
 public class Elvis {
 		private static final Elvis INSTANCE = new Elvis();
@@ -136,112 +220,73 @@ public class Elvis {
 		}
 }
 ```
-싱글톤이 아니라 다른 방식으로 변환하고 싶을 때 
 
-### 부록1. 이펙티브 자바 ITEM3. 싱글톤 생성 방식도 최적화
-Lazy Initialization
-객체 사용시점에 생성하는 방식이다. 그러나 getInstance에 두 개 이상의 스레드가 동시 접근 하였을 때 2개 이상의 객체가 2개 생길 수 있다는 문제점이 있어, synchronized 블록으로 lock을 거는 방식이다.
+장점: 싱글톤이 아니라 다른 방식으로 변환하기 쉬움, 제네릭 사용 가능
 
-```js
-public class SyncSingleton {
-	private static SyncSingleton instance;
+### 2-3. 싱글톤 사용 이유
+- 메모리 측면에서 1번만 생성된다는 것은 엄청난 메모리 이점이 있습니다.  
+인스턴스를 이용하는 사용자 트래픽이 늘어날수록 더 효과는 극대화 될 것입니다.
 
-	private SyncSingleton() {
-		System.out.println("Constructor");
-	}
-
-	public static  SyncSingleton getInstance() {
-		if(instance==null) {
-			synchronized (SyncSingleton.class) {
-				if(instance==null) {
-					instance = new SyncSingleton();
-				}
-			}
-		}
-
-		return instance;
-	}
-
-	public void print() {
-		System.out.println("SyncSingleton instance Hash : " + instance.hashCode());
-	}
-}
-```
-
-Lazy Holder
-Lazy Initialization에서 thread safe하려면 코드가 꼴보기 싫어진다. 원리상 큰 차이는 없지만 thread safe하게 가져가는 트릭으로 Lazy Holder가 있다.
-
-```js
-public class Singleton {
-
-	private Singleton() {
-		System.out.println("Constructor");
-	}
-
-	private static class LazyHolder {
-		private static final Singleton INSTANCE = new Singleton();
-	}
-
-	public static Singleton getInstance() {
-		return LazyHolder.INSTANCE;
-	}
-
-	public void print() {
-		System.out.println("Singleton instance Hash : " + LazyHolder.INSTANCE.hashCode());
-	}
-}
-```
-
-### 2-3. 싱글톤의 장점
+- 데이터 접근이 쉽습니다. 싱글톤은 전역 인스턴스이기 때문에 다른 클래스에서 쉽게 사용이 가능합니다.  
+하지만 동시에 접근하게 되면 동시성 문제가 발생해 이를 유의해서 설계해야 합니다.
 
 ### 2-4. 싱글톤의 단점
-- private 생성자를 가지고 있기 때문에 상속할 수 없다.
+- private 생성자를 가지고 있기 때문에 상속할 수 없습니다.  
+- 동시성 문제가 발생할 수 있습니다. 인스턴스가 2개 생성됩니다.  
+-> 이를 위해 synchronized로 [동시성 문제 해결을 구현](https://ynzu-dev.tistory.com/entry/JAVA-%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4Singleton-Pattern-%EB%A9%80%ED%8B%B0-%EC%8A%A4%EB%A0%88%EB%93%9C-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90)해야 합니다.
+- 싱글톤 자체를 구현하는 코드가 많이 필요합니다.  
+-> 앞서 설명한 동시성 문제를 해결하다보면 코드가 길어집니다.
+- [SOLID](https://devlog.kro.kr/postitem/?name=The-clean-architecture) 원칙 중 개방-폐쇄 원칙에 위배됩니다.  
+-> 다른 클래스들 간에 결합도가 높아지기 때문입니다. 이는 테스트를 할 때에도 불리하게 작용합니다.  
+
+위 단점들 때문에 반드시 싱글톤이 필요한 상황이 아니면 싱글톤은 지양하는 것이 좋습니다. 
 
 ## 3. 어댑터 패턴
 
-어댑터처럼 맞지 않아도 인터페이스에 맞게 끼울수 있는 패
+인터페이스에 맞게 끼울수 있는 클래스를 구현하는 것을 어댑터 패턴이라고 부릅니다.  
+<big>클라이언트가 가지고 있는 인터페이스를 클라이언트가 원하는 인터페이스로 변환</big>하는 패턴입니다.   
+원래는 원하는 인터페이스와 호환이 되지 않았지만 어댑터 패턴을 구현함으로써 원하는 인터페이스를 쓸 수 있게 만들어줍니다.
 
-기존에 만들어 놓은 것을 재사용하고 싶은데 그것을 수정할 수 없을 때
+기존에 만들어 놓은 클래스을 재사용하고 싶을 때
+클래스의 인터페이스를 사용자가 원하는 다른 인터페이스로 변환하기 위한 어댑터를 구현하는 것입니다.
 
-클래스의 인터페이스를 사용자가 원하는 다른 인터페이스로 변환하기 위한
+### 3-1. 어댑터 패턴의 구성 요소
 
-어댑터를 구현하는거임 ㅇㅇ
+<big>Target</big>  
+- 클라이언트가 사용하길 원하는 인터페이스입니다.  
 
-애댑터 패턴의 구성 요소
+<big>Adaptee</big>  
+- 클라이언트가 가지고 있는 인터페이스입니다.
 
-- TARGET 클라가 사용하길 원하는 인터페이스
-- ADAPTEE 클라이언트가 가지고 있는 인터페이스
-- ADAPTER 어댑터패턴의 핵심 TARGET 인터페이스를 구현하는 클래스
-- CLIENT 클라 주체
+<big>Adapter</big>  
+- 어댑터 패턴의 핵심이자 Target 인터페이스를 구현하는 클래스입니다.
 
-전제조건
+<big>Client</big>  
+- 클라이언트 주체입니다.
 
-CLIENT와 TERGET은 호환되지 않아야 됨
+### 3-2. 전제조건
 
-### 3-1. ADAPTER 패턴의 구현 방법
+Client와 Target은 호환되지 않아야 됩니다. 애초에 호환되었다면 adapter를 구현할 필요가 없습니다.
 
-두가지 방식으로 구현할 수 있다. 
+### 3-3. 어댑터 패턴의 구현 방법
 
-### Class Adapter 
+두가지 방식으로 구현할 수 있습니다.
 
-- 다중 상속을 이용 
+<big>Class Adapter</big>
+- <big>다중 상속</big>을 이용합니다.
+- 상속을 사용하기 때문에 유연하지 못합니다.
 
-- 기존 인터페이스인 ADAPTEE 상속 사용 - 구현이 빠르다
-- 상속을 사용하기 때문에 유연하지 못하다@!@@@@@@@!!!!!!
+<big>Object Adapter</big>
+- <big>조합</big>을 사용합니다.
+- Apaptee 구현체를 넘겨받아 호환되게 하려는 메소드를 사용합니다.
+- 상속보다 유연합니다. 
 
-### Object Adapter
-
-- 조합 사용 
-
-- 인터페이스 사용 : Apaptee 구현체를 넘겨받아 호환되게 하려는 메소드 사용
-- 상속보단 조합 유연함
-- https://tecoble.techcourse.co.kr/post/2020-05-18-inheritance-vs-composition/
+상속과 조합의 차이는 다음 블로그를 참고해주세요.    
+[상속보다는 조합(Composition)을 사용하자.](https://tecoble.techcourse.co.kr/post/2020-05-18-inheritance-vs-composition/)
 
 ### 3-2. Adapter 패턴 구현
 
 ```js
-package adaptee;
-
 public class Usb {
     private String type;
 
@@ -259,9 +304,8 @@ public class Usb {
 }
 ```
 
+### Adaptee
 ```js
-package adaptee;
-
 // adaptee - 이미 있는 인터페이스
 // class로 한 이유는 다중 상속을 이용하기 위함
 public class UsbTypeB {
@@ -271,17 +315,19 @@ public class UsbTypeB {
 }
 ```
 
+### Target
 ```js
-// 새로운 인터페이스를 구현하는 또 다른 클래스
 public interface BtoCAdapter {
     public Usb getCType();
 }
 ```
 
+### Adapter
 ```js
 // Class Adapter
 // 다중 상속을 이용 하나는 implements, 하나는 extends
 public class BtoCClassAdapterImpl extends UsbTypeB implements BtoCAdapter{
+
     @Override
     public Usb getCType() {
         // 구현
@@ -319,16 +365,16 @@ public class BtoCObjectAdapterImpl implements BtoCAdapter {
 }
 ```
 
+### Client
 ```js
 public class Client {
     public static void main(String[] args) {
         
-        //Class Adapter
+        // Class Adapter
         BtoCAdapter classAdapter = new BtoCClassAdapterImpl();
         System.out.println("Current USB Type : "+classAdapter.getCType().getType());
 
-        //Object Adapter
-        
+        // Object Adapter
         // 기존 클래스의 객체를 생성합니다.
         UsbTypeB usbTypeB = new UsbTypeB();
         System.out.println("Current USB Type : "+usbTypeB.getBType().getType());
@@ -343,106 +389,252 @@ public class Client {
 
 ### 3-4. 어댑터 패턴의 장점
 
-- 내부 구현, 라이브러리 등에 추가적인 기능을 만들고 싶을 때 유용하게 활용
+- 내부 구현, 라이브러리 등에 추가적인 기능을 만들고 싶을 때 유용하게 활용할 수 있습니다.
 
 ### 3-5. 어댑터 패턴의 단점 
 
-- 필요한 구성요소들로 인해 클래스 자체가 많아지므로 복잡도가 증가할 수 있다. 
+- 필요한 구성요소들로 인해 클래스 자체가 많아지므로 복잡도가 증가할 수 있습니다.  
 
 ## 4. 데코레이터 패턴
 
-어떤 오브젝트에 대해 데코레이션 하듯이 기능을 추가하는 패턴이다.
+어떤 객체에 대해 데코레이션 하듯이 기능을 추가하는 패턴입니다.  
+기본 기능을 가지고 있는 클래스를 설계해두고 그 클래스의 기능을 쉽게 확장할 수 있도록 설계하는 방식입니다.  
+
+데코레이터 패턴에서는 <big>SRP(단일 책임 원칙)</big>을 보장할 수 있습니다.  
+ 데코레이터 패턴을 사용하면 각 확장 기능들의 구현이 별도의 클래스로 분리되기 때문에, 각 확장 기능 및 원래 기능을 서로 영향 없이 변경할 수 있도록 만들어 줍니다. 
 
 ### 4-1. 데코레이터 패턴의 구성 요소
 
-A: 핵심 인터페이스가 있고 B, C 구현체를 가짐
+<big>Component</big>
+- 동적으로 추가된 기능을 가질 수 있는 객체에 대한 API를 선언합니다. 
 
-B: 핵심 기능을 담당.
+<big>ConcreteComponent</big>
+- Component의 내용을 정의합니다.
 
-C: B를 주입받아 B에게 핵심 기능을 위임하고 C가 부가 기능을 담당함.
+<big>Decorator</big>
+- 추가 기능을 담당합니다. ConcreteDecorator는 이 클래스를 상속받아 사용합니다.
 
-C는 자기 자신에 대한 책임만 담당할 수 있다
-
-즉, srp(단일 책임 원칙)을 보장할 수 있다. C는 B의 메서드를 호출하여 A, B 두개의 책임을 하나하나 묶을 수 있다.
+<big>ConcreteDecorator</big>
+- 추가된 기능들의 주체입니다.
+- Decorator를 통해 ConcreteComponent에 기능을 추가합니다.
 
 ### 4-2. 데코레이터 패턴의 구현
 
+### Component
 ```js
-public interface ChristmasTree {
-    //인터페이스이기 때문에 public abstract 생략
-    void decorate();
+public interface Component {
+    String add();
 }
 ```
 
-```js
-//핵심 기능을 담당하는 B 클래스
-public class ChristmasTreeImpl implements ChristmasTree {
-    @Override
-    public void decorate() {
-        System.out.println("꾸미자 ");
-    }
-}
-```
-
-
+### ConcreteComponent
 
 ```js
-// 부가 기능을 담는 C 클래스
-public class TreeDecorator implements ChristmasTree {
-    //핵심 기능을 담는 오브젝트를 주입받는다.
-    private ChristmasTree tree;
-
-    public TreeDecorator(ChristmasTree tree) {
-        this.tree = tree;
-    }
+public class BaseComponent implements Component {
 
     @Override
-    public void decorate() {
-        tree.decorate();
+    public String add() {
+        return "나무";
     }
 }
 ```
 
-### 4-3. 데코레이터 패턴의 장점
+### Decorator
 
-- 모듈의 책임(기능)을 분리하여 깔끔한 코드가 된다.
+```js
+abstract public class Decorator implements Component {
+    private Component treeComponent;
+    
+    public Decorator(Component treeComponent) {
+        this.treeComponent = treeComponent;
+    }
+    
+    public String add() {
+        return treeComponent.add();
+    }
+}
+```
+
+### ConcreteDecorator
+
+```js
+// 별을 추가해주는 클래스
+public class StarDecorator extends Decorator {
+    public StarDecorator(Component treeComponent) {
+        super(treeComponent);
+    }
+    
+    @Override
+    public String add() {
+        return super.add() + " + 별";
+    }
+}
+```
+
+```js
+//조명을 추가해주는 클래스
+public class LightDecorator extends Decorator {
+    public LightDecorator(Component treeComponent) {
+        super(treeComponent);
+    }
+    
+    @Override
+    public String add() {
+        return super.add() + " + 조명";
+    }
+}
+```
+
+### main
+```js
+public class Main {
+
+    public static void main(String[] args) {
+        Component tree = new BaseComponent();
+        System.out.println("나무 : " + tree.add());
+        
+        Component starTree = new StarDecorator(new BaseComponent());
+        System.out.println("별 나무 : " + starTree.add());
+        
+        Component christmasTree = new LightDecorator(new StarDecorator(new BaseComponent()));
+        System.out.println("크리스마스 나무 : " + christmasTree.add());
+    }
+}
+```
+
+나무에서 StarDecorator를 추가해 별 나무가 되고  
+평범한 나무에서 LightDecorator를 추가해 크리스마스 나무가 됩니다.
+
+### 4-3. 데코레이터 패턴 사용 이유
+
+- 모듈의 책임(기능)을 분리하여 깔끔한 코드가 됩니다.  
+
+- 기존 코드를 수정하지 않고도 기능을 확장할 수 있습니다.   
+-> 단일 책임 원칙의 장점이죠!
+
+- 새로운 기능을 클래스 하나만 추가해서 추가할 수 있습니다.  
+-> Decorator를 상속받은 ConcreteDecorator 클래스를 하나 더 만들면 됩니다.  
 
 ### 4-4. 데코레이터 패턴의 단점 
 
-- 부가기능과 핵심기능을 결합하기 위해 어디선가 관계를 지정해줘야 한다.
-
+- 의미없는 객체들이 너무 많이 추가될 수 있습니다.  
+- 데코레이터를 너무 많이 사용하면 코드가 필요 이상으로 복잡해질 수 있습니다.
 
 ## 5. 프록시 패턴
 
-그냥 프록시 서버랑 똑같은 개념임 ㅇㅇ
+프록시 패턴을 알아보기 전에 프록시 서버의 개념을 떠올려 봅시다.
 
-중간에 대리자 객체를 두는거임 ㅇㅇ 대리자한테 일 시키고 ㅇㅇ
+<img src="https://t1.daumcdn.net/cfile/tistory/242DA235576CCC4A25"></img>
 
-원래 참조하는 객체가 메모리에 존재하지 않아도 기본적임ㄴ 정보를 참조하거나 설정할 수 있고 객체 생성을 미룰수 있다는 장점이있음 ㅋㅋ
+그림처럼 클라이언트의 요청을 대신 받아 내부 서버로 전달해주는 것을 프록시 서버입니다.  
+
+프록시 패턴도 마찬가지 입니다.  
+프록시란 대리라는 의미로 누군가를 대신해서 그 역할을 수행하는 존재입니다.  
+어떤 객체를 사용하고자 할 때 그 객체를 직접적으로 참조하지 않고 대리자를 통해 객체에 접근하는 방식이 프록시 패턴입니다.
+
+한마디로 중간에 대리자 객체를 두고 그 대리자한테 일을 시키는 것입니다.  
+원래 참조하는 객체가 메모리에 존재하지 않아도 기본적인 정보를 참조하거나 설정할 수 있고 객체 생성을 미룰수 있다는 장점이 있습니다.
 
 ### 5-1. 프록시 패턴의 종류
 
-- 가상 프록시
-- 원격 프록시
-- 보호 프록시
+<big>가상 프록시</big>  
+필요로 하는 시점까지 객체 생성 연기, 객체가 이미 생성된 것처럼 동작하고 싶을 때
 
-### 5-2. 프록시 패턴의 장점
+<big>원격 프록시</big>  
+원격 객체에 대한 접근이 로컬 환경에 존재하고 호출하면 <big>그 호출이 네트워크를 통해 전달</big>되어 원격 객체의 메소드를 호출해야 할 때
 
-- 사이즈가 큰 객체가 로딩되기 전에도 프록시 패턴을 이용해서 참조를 할수 있다.
-- 실 객의 PUBLIC, PRIVATE 메소드들을 숨기고 인터페이스를 통해 노출 시킬 수 있다.
-- 로컬에 있지 않고 떨어져있는 객체를 이용할 수 있다.
+<big>보호 프록시</big>  
+접근을 제어하고 싶은 경우 또는 객체마다 접근권한을 달리하고 싶은 경우
 
-### 5-3. 프록시 패턴의 단점
+### 5-2. 프록시 패턴의 구성요소
 
-- 객체 생성시 한 객체를 더 거치므로 많이 생성하면 성능이 저하될 수 있겠죠?
-- 프록시 내부에서 객체 생성을 위해 스레드를 생성, 동기가 구현되면 성능이 저하된다.
-- 로직이 난해져
+<big>Subject</big>
+- RealSubject와 Proxy를 통해 구현됩니다.
+
+<big>RealSubject</big>
+- 작업을 대부분 처리하는 객체입니다. 
+
+<big>Proxy</big>
+- 대변 역할을 합니다. 이 클래스에서 RealSubject의 생성 과정에 관여하고 RealSubject의 메소드를 사용합니다.
+
+### 5-3. 프록시 패턴의 구현 
+
+### Subject 
+
+```js
+public interface Subject {
+    void request();
+}
+```
+
+### RealSubject
+
+```js
+public class RealSubject implements Subject {
+ 
+    @Override
+    public void request() {
+        System.out.println("HelloCoCoWorld!");
+    }
+
+}
+```
+
+### Proxy
+
+```js
+public class Proxy implements Subject {
+ 
+    private Subject subject;
+ 
+    @Override
+    public void request() {
+        if (this.subject == null) {
+            this.subject = new RealSubject();
+        }
+ 
+        subject.request();
+    }
+
+}
+```
+
+RealSubject를 new로 생성하는 부분이 request 메서드 안에 있어서
+Proxy의 request를 호출해야지 객체가 생성됩니다.  
+객체 생성을 미룰 수 있는 이유가 이 부분 때문입니다.
+
+### Main
+
+```js
+public class Main {
+    public static void main(String[] args) {
+        // RealSubject 클래스의 메소드를 호출하는것이 아닌 Proxy 클래스의 메소드를 호출합니다.
+        Subject subject = new Proxy();
+        subject.request(); // 내부적으로 RealSubject의 메소드를 호출합니다.
+    }
+}
+```
+
+### 5-4. 프록시 패턴을 사용하는 이유
+
+- <big>사이즈가 큰 객체</big>가 로딩되기 전에도 프록시 패턴을 이용해서 참조를 할 수 있습니다.
+- 실제 객체의 public, private 메소드를 숨기고 인터페이스를 통해 노출시킬 수 있습니다.    
+- 로컬에 있지 않고 떨어져있는 객체를 이용할 수 있습니다.  
+-> 원격 프록시의 경우입니다.
+
+### 5-5. 프록시 패턴의 단점
+
+- 객체 생성시 한 객체를 더 거치므로 많이 생성하면 성능이 저하됩니다.  
+- 프록시 내부에서 객체 생성을 위해 쓰레드 동기화가 구현되면 성능이 저하됩니다. 
 
 ### 레퍼런스
 
-[우리는 이미 '어댑터 패턴'을 알고 있다](https://velog.io/@haero_kim/%EC%9A%B0%EB%A6%AC%EB%8A%94-%EC%9D%B4%EB%AF%B8-%EC%96%B4%EB%8C%91%ED%84%B0-%ED%8C%A8%ED%84%B4%EC%9D%84-%EC%95%8C%EA%B3%A0-%EC%9E%88%EB%8B%A4)  
-[Design Pattern GoF 구조 패턴 - 어댑터 패턴(Adapter Pattern)](https://4z7l.github.io/2021/01/29/design_pattern_adapter.html)  
-[Java 데코레이터 패턴](https://velog.io/@cksdnr066/Java-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4)  
+[디자인 패턴(Design Pattern)의 개념과 종류](https://www.devkuma.com/docs/design-pattern/intro-basic/)  
+[Flyweight Pattern / 플라이웨이트 패턴](https://lee1535.tistory.com/106)  
+[싱글톤(Singleton) 패턴이란?](https://tecoble.techcourse.co.kr/post/2020-11-07-singleton/)  
+[우리는 이미 '어댑터 패턴'을 알고 있다](https://velog.io/@haero_kim/%EC%9A%B0%EB%A6%AC%EB%8A%94-%EC%9D%B4%EB%AF%B8-%EC%96%B4%EB%8C%91%ED%84%B0-%ED%8C%A8%ED%84%B4%EC%9D%84-%EC%95%8C%EA%B3%A0-%EC%9E%88%EB%8B%A4)   
+[Design Pattern GoF 구조 패턴 - 어댑터 패턴(Adapter Pattern)](https://4z7l.github.io/2021/01/29/design_pattern_adapter.html)    
+[[Design Pattern] 데코레이터 패턴(Decorator pattern)에 대하여](https://coding-factory.tistory.com/713)  
 [디자인패턴 - 프록시패턴(Proxy Pattern)](https://velog.io/@newtownboy/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%ED%94%84%EB%A1%9D%EC%8B%9C%ED%8C%A8%ED%84%B4Proxy-Pattern#%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4%EC%9D%98-%EC%A2%85%EB%A5%98)
 
 
