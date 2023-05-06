@@ -49,11 +49,11 @@ const PostItemPage = () => {
                         {PostItem && <PostItem />}
                     </MDXProvider>
                 </div>
-                <NearestPostComponent
-                    nextPost={nextPost}
-                    previousPost={previousPost}
-                />
             </div>
+            <NearestPostComponent
+                nextPost={nextPost}
+                previousPost={previousPost}
+            />
             <PostComment key={filename} filename={filename} />
         </main>
     );
