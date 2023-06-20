@@ -322,6 +322,30 @@ const recentPostsData: recentPostsDataType = [
         tag3: "",
         filter: "java",
     },
+    // {
+    //     id: 26,
+    //     title: "Novel Cloud 프로젝트 진행 회고",
+    //     filename: "NovelCloud",
+    //     date: "2023-06-09",
+    //     imgLineOne: "Novel",
+    //     imgLineTwo: "Cloud",
+    //     tag: "spring",
+    //     tag2: "java",
+    //     tag3: "",
+    //     filter: "java",
+    // },
+    {
+        id: 26,
+        title: "영속성 컨텍스트 - 엔티티 생명주기",
+        filename: "PersistenceContext",
+        date: "2023-06-19",
+        imgLineOne: "Persistence",
+        imgLineTwo: "Context",
+        tag: "spring",
+        tag2: "jpa",
+        tag3: "hibernate",
+        filter: "java",
+    },
 ];
 
 export default recentPostsData;
