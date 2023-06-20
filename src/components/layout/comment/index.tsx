@@ -24,7 +24,7 @@ const PostComment = ({ filename }: PostCommentProps) => {
             const utterances = document.createElement("script");
             const utterancesSettings = {
                 src: "https://utteranc.es/client.js",
-                repo: "min050410/DevLog",
+                repo: "min050410/TechBlog",
                 "issue-term": `Comment: ${filename ?? "init"}`,
                 label: "utterances",
                 theme: themeMode,
