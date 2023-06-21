@@ -346,6 +346,18 @@ const recentPostsData: recentPostsDataType = [
         tag3: "hibernate",
         filter: "java",
     },
+    {
+        id: 27,
+        title: "@ModelAttribute 사용법",
+        filename: "ModelAttribute",
+        date: "2023-06-20",
+        imgLineOne: "Model",
+        imgLineTwo: "Attribute",
+        tag: "spring",
+        tag2: "annotation",
+        tag3: "",
+        filter: "java",
+    },
 ];
 
 export default recentPostsData;

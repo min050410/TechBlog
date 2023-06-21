@@ -1,0 +1,108 @@
+# @ModelAttribute 사용법
+
+@ModelAttribute는 클라이언트에서 요청한 HTTP 파라미터들을 특정 Java 객체에 맵핑해주는 어노테이션입니다.  
+`/api?name=req&description=200` 와 같은 Query String 형태 또는 요청 본문에 삽입되는 Form 형태의 데이터를 처리합니다.
+
+@ModelAttribute를 사용하게 되면 내부적으로 dto객체로 생성자 또는 setter를 타고 바인딩됩니다.  
+dto 객체에 생성자 또는 setter는 필수입니다. <big>만약 없다면 매핑에 실패하게 됩니다.</big>
+
+```js
+// @ModelAttribute 사용 시 무조건 필요한 Setter
+@Setter
+// .. 생략
+public class SearchBoardFilterRequestDto {
+
+    private String search;
+
+    @ValidEnum(enumClass = BoardSortType.class)
+    private BoardSortType sortType;
+
+}
+```
+
+@ModelAttribute를 사용한 예시 코드를 봅시다.
+```js	
+@GetMapping("/")
+public String myFormatter(@ModelAttribute Car car) {
+    System.out.println("ex : " + car);
+    return car.getId().toString();
+}
+```
+> 위 코드에서 @ModelAttribute를 생략해도 같은 동작을 합니다.
+
+일반적으로 다음과 같이 엔드포인트를 작성합니다.  
+엔드포인트가 GET 메소드인데도 불구하고 Car를 받을 수 있습니다.  
+@RequestBody를 쓰지 않고도 말이죠.
+
+들어오는 값들은 Car 객체의 타입에 맞게 바인딩되기 때문입니다.  
+
+그러면 @RequestParam을 쓰는 것과 무슨 차이가 있을까요?  
+바로 @RequestParam은 필드와 1:1로 매핑하는데 사용되지만 <big>@ModelAttribute는 java 객체에 바로 맵핑해줍니다.</big>  
+
+먼저 @RequestParam의 예제를 봅시다.
+
+```js
+@Operation(summary = "식재료 검색")
+@GetMapping(ApiPath.SEARCH_INGREDIENT)
+public ResponseEntity<ListResponse<IngredientDataResponseDto>> searchIngredient(
+    @RequestParam String query
+) {
+    return ResponseEntity.ok(ingredientDataService.searchIngredient(query));
+}
+```
+
+```url
+http://api?query=salt
+```
+위 예시 url로 요청하면 query에는 값인 salt가 1:1로 들어갑니다.  
+하지만 @ModelAttribute는 @RequestBody와 같이 java 객체로 맵핑해줍니다. 
+
+@RequestParam의 열이 늘어나게 된다면 변경점이 많아지고 매개변수의 순서가 바뀔경우 에러가 발생합니다.  
+그리고 필드에 객체를 바인딩 하고 싶을 경우에는 @ModelAttribute가 필요합니다. 다음 예제를 봅시다. 
+
+```js
+// dto 객체
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+public class SearchBoardRequestDto {
+
+    @NotNull
+    private PaginationRequestDto pagination;
+
+    @NotNull
+    private SearchBoardFilterRequestDto filter;
+
+}
+```
+위 코드처럼 DTO객체 안에 한번 더 객체가 들어가야 하는 경우에는 @ModelAttribute를 써서 해결할 수 있습니다.
+
+### @RequestBody와 차이점은??
+> Annotation indicating a method parameter should be bound to the body of the web request.
+
+@RequestBody 어노테이션의 역할은 클라이언트가 보내는 http 요청 본문을 java 객체로 변환하는 것입니다.  
+HTTP 요청 본문 데이터는 Spring에서 제공하는 HttpMessageConverter를 통해 타입에 맞는 객체로 변환됩니다.(역직렬화).
+
+또한 @RequestBody는 내부적으로 ObjectMapper를 통해 JSON값을 java 객체로 역직렬화하는데 직렬화 가능한 클래스들은 무조건 기본 생성자가 필요합니다. 
+그리고 ObjectMapper는 맵핑할 때 추가로 클래스에 @Getter, @Setter중 둘중 하나를 필요로 합니다.
+
+그럼 이제 차이점을 알아보겠습니다.  
+- @RequestBody를 사용하면 요청 본문의 데이터가 Java 객체로 맵핑되는 반면  
+@ModelAttribute를 사용하면 http 파라미터 데이터가 Java 객체에 맵핑됩니다.
+
+- @RequestBody에서 dto 객체에는 public 기본 생성자(AllArgsConstructor), Getter Setter(둘 중 택 1)이 필요하고  
+@ModelAttribute에서 dto 객체에는 public 기본 생성자(AllArgsConstructor) 또는 setter를 필요로 합니다.
+
+### 실제 예제로 보기
+
+<img src="https://github.com/min050410/min050410/assets/45661217/036348bf-078d-47cf-98e6-8e4a956047d6" width="100%"></img>
+ 
+@ModelAttribute를 실제 엔드포인트에 적용한 모습입니다.   
+
+기존에는 POST요청의 @RequestBody로 호출하였지만 검색 API니 GET 메소드가 맞다고 생각되어 GET 메소드로 수정하였고 @ModelAttribute를 사용하였습니다.   
+GET메소드로 수정하게 되어 필터 검색을 한다는 목적에 맞는 메소드가 되었습니다.
+
+추가로 스웨거 springdoc을 사용하고 있다면 QueryParam으로 요청을 제공할 때  
+이를 @ParameterObject라는 어노테이션으로 스프링에 명시 해주어야 스웨거에서 동작을 합니다.  
+스웨거를 쓰지 않으시는 분은 @ParameterObject를 빼주어도 무방합니다.
