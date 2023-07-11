@@ -34,7 +34,7 @@ const PopularCardComponent = ({
                 </div>
             </Link>
         </div>
-        <h3>{title}</h3>
+        <div className="card--title">{title}</div>
     </div>
 );
 

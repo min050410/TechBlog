@@ -23,12 +23,6 @@
     will-change: background-color
     &:hover
         background-color: var(--color-hover)
-    h3
-        font-family: 'NanumBarunGothic'
-        width: 160px
-        font-weight: 500
-        font-size: 17px
-        margin-top: 10px
     .imgbox
         width: 160px
         position: relative
@@ -45,6 +39,13 @@
         .recent-img-text-two
             @extend .recent-img-text-one
             top: 40%
+
+.card--title
+    margin-top: 8px
+    font-family: 'NanumBarunGothic'
+    font-weight: 500
+    font-size: 17px
+    line-height: 24px
 
 .recent-img-text-one > p, .recent-img-text-two > p
     font-family: 'Noto Sans'

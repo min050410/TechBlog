@@ -39,19 +39,11 @@
 
 #text_group
     margin-left: 20px
-    div
+    .recent--date
         font-family: Noto sans
         font-style: normal
         font-size: 16px
         color: $gray2
-
-.post h3
-    margin: 0px
-    font-family: 'NanumBarunGothic'
-    letter-spacing: 0.01rem
-    font-weight: 500
-    font-size: 17px
-    line-height: 30px
 
 .left > .imgbox
     position: relative
@@ -113,6 +105,15 @@
     margin-left: 10px
     padding: 2px 8px 0px 8px
 
+.recent--title
+    margin: 0px
+    font-family: 'NanumBarunGothic'
+    letter-spacing: 0.01rem
+    font-weight: 500
+    font-size: 17px
+    line-height: 30px
+    color: var
+
 @include tablet
     .recent_content
         margin: 20px 20px 0px 20px
@@ -130,11 +131,10 @@
     .post
         flex-direction: column
 
-    #text_group
-        div
-            font-size: 14px
+    .recent--date
+        font-size: 14px
 
-    .post h3
+    .recent--title
         font-size: 16px
         line-height: 20px
 
@@ -176,11 +176,10 @@
                     width: 144px
                     height: 90px
 
-    #text_group
-        div
-            font-size: 12px
+    .recent--date
+        font-size: 12px
 
-    .post h3
+    .recent--title
         font-size: 16px
         line-height: 20px
 
