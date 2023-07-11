@@ -1,0 +1,635 @@
+# EC2 서버에서 On-Premise Window 서버로 <br/> 마이그레이션을 진행한 과정
+
+### 목차
+<big>1. 개요</big>  
+    - <a href="#1-1">1-1. 개요</a>  
+    - <a href="#1-2">1-2. 문제 상황</a>  
+    - <a href="#1-3">1-3. 마이그레이션 과제 정리</a>  
+
+<big>2. DB 환경 설정</big>  
+    - <a href="#2-1">2-1. Docker 설치</a>  
+    - <a href="#2-2">2-2. Mysql 도커 띄우기</a>  
+    - <a href="#2-3">2-3. DB 마이그레이션</a>  
+
+<big>3. Nginx 설치</big>  
+    - <a href="#3-1">3-1. Nginx 설치후 Next.js 프로젝트 간단하게 띄우기</a>  
+
+<big>4. 서버 설정</big>  
+    - <a href="#4-1">4-1. 포트포워딩</a>  
+    - <a href="#4-2">4-2. 프론트 백엔드 도커 띄우기</a>  
+    - <a href="#4-3">4-3. SSL 인증서 발급 받기</a>  
+    - <a href="#4-4">4-4. nginx 최종 설정</a>  
+    - <a href="#4-5">4-5. 방화벽 설정</a>  
+
+<big>5. 마무리</big>  
+
+<h3 id="1-1">1-1. 개요</h3>
+EC2 서버에 문제가 생겨 서버를 홈 서버로 마이그레이션 해야 하는 급한 업무를 맡게 되었습니다.  
+개발자 친구랑 둘이서 온종일 서버 마이그레이션을 진행하였고 배포에 성공하였습니다.
+
+이번 블로그에서는 클라우드 서버에서 On-Premise Window 서버로 마이그레이션 했던 과정을 정리해보고자 합니다. 
+
+우선 문제 상황부터 살펴본 뒤 마이그레이션 과정을 살펴보겠습니다. 
+
+<h3 id="1-2">1-2. 문제 상황 😡</h3>
+기존에는 모든 인프라가 AWS에 의존된 상태였습니다.
+
+- 기존 아키텍처
+<img width="100%" src="https://user-images.githubusercontent.com/41176426/227720762-0bfdf0ed-6c66-45fd-862a-8b5b57c01006.png"></img>
+
+하지만 AWS 서버가 변변찮게 터지는 문제가 발생하였습니다.  
+원인은 바로 t2.micro의 성능 이슈 때문이었습니다.  
+
+그리고 비용 문제도 발생하였습니다. 점프 서버와 웹 서버를 따로 두어 EC2 비용이 2배로 늘어났고 RDS 비용도 만만치 않았습니다. 
+내 계정은 아니지만 한 달에 20씩 나왔다고 합니다.. ㄷㄷ
+
+<h3 id="1-3">1-3. 마이그레이션 과제 정리</h3>
+그래서 서비스 비용을 절약하고 서버를 안정화하기 위해 서버를 재구축 해야 했습니다.  
+
+먼저 마이그레이션 과제부터 설계해보겠습니다.
+
+- EC2에서 Window 집 컴퓨터로 마이그레이션
+- RDS에서 Window local DB로 마이그레이션
+- nginx proxy_pass 설정
+- 홈 서버 iptime 포트포워딩
+- next.js application, spring boot application을 도커 컨테이너로 관리
+- S3, Route53, Lambda, ElementalMediaConvert, CloudFront는 그대로 사용.
+
+과제를 요약하자면 클라우드에서 온프레미스로 옮기는 것이 목표이고  
+애플리케이션은 도커에 띄워서 nginx로 관리하여야 합니다.  
+또한, 홈 서버기 때문에 내부 IP를 포트포워딩하여서 외부에서 접속할 수 있게 설정하여야 합니다.
+
+그럼 시작해보겠습니다.
+
+<h3 id="2-1">2-1. Docker 설치</h3>
+먼저 window 컴퓨터에 Docker를 설치했습니다. Docker는 다음 웹사이트에서 설치할 수 있습니다.
+[https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)  
+
+다운로드 받고 실행해봅시다.
+
+<img width="100%" src="https://github.com/qkrjh0904/bssmh-portfolio/assets/45661217/2b6a2b52-f72e-45fb-9a9f-3fbc667a4aa3"></img>
+
+정상적으로 실행이 된다면 위와 같은 화면이 뜹니다.
+
+### 도커 실행시 만난 에러 'Cannot enable Hyper-V service' 😡
+
+저번에도 만난 에러라 익숙하였습니다.     
+도커는 Hyper-V를 사용하므로 Hyper-V를 설정해야 합니다.
+따라서 Hyper-V 관련 기능이 꺼져 있어 에러가 뜨는 것입니다.  
+참고로 일반 가상머신과 Hyper-V 사용은 겹칠 수 없기 때문에 혹시 컴퓨터에서 vmware같은 가상머신을 사용한다면 도커와 가상머신 중 하나를 포기해야 합니다.
+
+> Hyper-V란? x64 시스템을 위한 하이퍼바이저 기반의 가상화 시스템이다.
+
+해결 방법은 다음과 같습니다. 
+
+1. windows 기능 켜기에 들어갑니다.
+
+<img width="100%" src="https://github.com/min050410/min050410/assets/45661217/2e26907f-9186-4f1b-b33a-de3d379d09fe"></img>
+
+2. hyper-v와 관련된 옵션을 전부 다 켜고 재부팅합니다.
+
+<img width="50%" src="https://github.com/min050410/min050410/assets/45661217/f3e970b9-f9fc-4466-9bcf-37588079bb5e"></img>
+
+만약 Hyper-V 플랫폼이 위 그림처럼 열려 있지 않고 잠겨 있다면 <big>Bios를 직접 건드려야 합니다.</big>  
+Bios는 기본적으로 컴퓨터가 켜질때 F2를 연타해서 들어갈 수 있습니다. * 메인보드마다 다를 수 있음
+
+Bios에 들어간 후 advanced mode로 진입해줍니다. * 보통 단축키 F7 입니다.  
+그 후 설정에 들어가 고급 창에서 CPU Virtualization이라는 설명이 있는 SVM Mode를 찾고 disable에서 enable로 바꿔줍시다.  
+다 됐으면 나간 뒤 컴퓨터를 부팅하면 Hyper-V 플랫폼을 사용할 수 있습니다.
+
+<h3 id="2-2">2-2. Mysql 도커 띄우기</h3>
+
+도커 설치 후 mysql을 도커 컨테이너로 띄웠습니다. 띄우는 과정은 다음과 같습니다.
+
+1. cmd에 다음 명령어를 입력합니다.
+```shell
+docker pull mysql
+```
+
+mysql 이미지 확인
+
+<img src="https://github.com/Novel-Cloud/server/assets/45661217/3787c298-86d6-43bd-abcc-c345cf638535" width="100%"></img>
+
+2. 다음으로 mysql 이미지로 컨테이너를 띄우는 명령어를 입력합니다.
+- `docker run` : 도커 컨테이너 실행
+- `-d` : 백그라운드 실행
+- `-p <접근할포트>:3306` : 내컴퓨터(호스트)와 컨테이너 내부 포트 3306을 연결한다.
+- `mysql:latest` : 현재 도커에 있는 이미지(mysql)에서 가장 최신 이미지를 가져온다.
+```shell
+docker run -d --name docker-mysql -e MYSQL_ROOT_PASSWORD=패스워드 설정 -p 4306:3306 mysql:latest
+```
+
+<img width="100%" alt="image" src="https://github.com/Novel-Cloud/server/assets/45661217/bc1a1d7b-cf2d-4b71-bdfc-3f3cda5ccf9c"></img>
+3. 화살표 버튼을 눌러 실행합니다.
+
+mysql 컨테이너 띄우기 완료!
+
+<h3 id="2-3">2-3. Dbeaver 설치</h3>
+
+다음은 Dbeaver를 설치하고 올린 mysql과 연결합니다.  
+서버 DB 마이그레이션과 데이터베이스 확인에 사용됩니다.
+
+[https://dbeaver.io/download/](https://dbeaver.io/download/)
+
+<img width="100%" alt="image" src="https://github.com/min050410/min050410/assets/45661217/6508c63a-52f6-4657-96d8-a19e3005355e"></img>
+
+다운로드 후에 데이터베이스와 연결을 해줍니다.  
+연결시 비밀번호는 자신이 설정한 비밀번호, 포트는 설정한 4306으로 하였습니다.
+
+### 2-4. DB 마이그레이션
+
+우선 기존 프로젝트의 ddl문을 통해 테이블을 생성하였습니다.  
+spring intellij환경에서 ddl문을 가져오는 방법은 쉽습니다.
+
+<img width="50%" alt="image" src="https://github.com/Novel-Cloud/server/assets/45661217/0c83d332-f4bd-4485-a342-77614c771a15"></img>
+
+테이블 우클릭 > SQL 스크립트 > DDL을 클립보드에 생성  
+
+차례대로 진행하면 클립보드에 DDL문을 저장할 수 있습니다.  
+저는 DDL문을 ddl.sql파일로 저장해서 넘겨주었습니다.
+
+그 다음 기존의 RDS에서 테이블 내용을 xlsx파일으로 추출한뒤  
+DBeaver를 통해 로컬 DB로 import하였습니다.
+
+참고 자료  
+[[DBeaver를 이용한 데이터 import]](https://dbeaver.com/2022/06/23/import-data-with-dbeaver/)
+
+<h3 id="3-1">3-1. Nginx 설치후 Next.js 프로젝트 간단하게 띄우기</h3>
+
+Nginx를 사용한 이유는 다양하지만 가장 큰 이유는 성능 향상입니다.  
+대표적으로 event-driven의 비동기 구조로 동시 접속자 수 증가에 대응하기 쉬운 장점이 있습니다.
+
+Window Nginx 프록시 서버를 설치해줍니다.  
+[http://nginx.org/en/download.html](http://nginx.org/en/download.html)
+
+<img src="https://github.com/Novel-Cloud/server/assets/45661217/af461aea-80ef-47b7-a34a-551ad7721fd4" width="100%"></img>
+
+압축을 풀고 들어가면 Nginx.exe라는 실행 파일이 있을겁니다.  
+Nginx.exe를 클릭합니다.  
+명령어 `start nginx`와 같은 역할을 합니다.
+
+<big>window nginx 명령어 모음</big>
+- start nginx     시작
+- nginx -s stop   빠른 종료
+- nginx -s quit   일반 종료
+- nginx -s reload 리로드
+
+그리고 localhost에 들어왔을 때 다음과 같은 창이 뜨면 성공입니다.  
+<img width="50%" alt="image" src="https://github.com/Novel-Cloud/server/assets/45661217/c4d8cdac-cd6d-413c-a698-cf6feedf8d13"></img>
+만약 뜨지 않는다면 80번 포트가 이미 먹혔는지 확인해보세요.
+
+자 이제 Nginx에 개발한 웹 서버를 띄워봅시다.  
+Window에서는 Nginx 루트 디렉토리에서 conf/nginx.conf를 편집하면 됩니다.  
+
+저는 vscode 환경에서 편집하였습니다. window 서버의 유일한 장점일까요? ㅋㅋ
+
+<img src="https://github.com/Novel-Cloud/server/assets/45661217/6dfadfe8-27b9-43ba-a6a7-c6fcf78a3be1" width="80%"></img>
+
+```conf
+worker_processes 1;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream
+
+    sendfile        on;
+
+    keepalive_timeout   65;
+
+    server {
+        listen 80 default_server;
+        server_name localhost;
+
+        location / {
+            proxy_pass http://localhost:3000/
+        }
+    }
+}
+``` 
+
+- `proxy_pass http://localhost:3000/`으로 연결해주었기 때문에 3000번 포트에 웹을 실행합니다.  
+- Next.js 프로젝트를 돌리기 위해 깃허브에서 프로젝트를 clone받고 npm i, 환경변수 설정을 하였고  
+`npm run dev`를 이용해 기본 포트인 3000번 포트에서 실행하였습니다.
+
+설정이 끝나면 저장 후 `nginx -s reload`를 쳐주면 nginx가 리로드됩니다.  
+리로드 될 때 문법 오류 등을 알려주니 맞춰서 수정하면 됩니다.   
+
+`localhost:3000`에 접속하였을 때 Next.js 앱이 뜨고 `localhost`에 접속하였을 때도 Next.js 앱이 뜬다면 성공입니다.    
+`localhost:3000`으로 접속하였을 때는 서버로 바로 커넥션이 연결되었고 `localhost`에 접속할 때는 nginx 프록시 서버에 커넥션이 연결되어 Next.js앱이 뜬 것입니다.
+
+### proxy_pass 연결이 안되고 기본 html 파일이 뜨는 에러 😡
+nginx가 여러개 실행되고 있던게 원인이었습니다. `start nginx`도 여러번 명령하면 프로그램이 중복이 되었습니다.  
+작업 관리자에서 nginx와 관련된 작업들을 모두 끄거나 간단하게는 재부팅을 시켜 해결하였습니다.
+
+<h3 id="4-1">4-1. 포트포워딩 (1)</h3>
+
+다음으로 포트포워딩을 진행하였습니다.  
+포트포워딩이란 내부 포트를 외부에서 사용할 수 있게끔 forwarding하는 과정을 말합니다.  
+포트포워딩을 해주어야 외부에서도 내부 망에 있는 서버에 접속할 수 있습니다.  
+포트포워딩이 마무리 되면 공유기 외부 ip를 통해 전세계 어디에서나 집에 있는 서버로 접속할 수 있습니다.  
+사실 고정 ip를 사는 방법도 있습니다. 고정 ip를 사는 편이 더 안전하긴 하지만 이번 프로젝트에는 돈 절약이 목표이므로 포트포워딩으로 진행해보겠습니다.
+
+1. iptime 관리자 모드에 접속해줍니다. <a href="http://192.168.0.1">http://192.168.0.1</a>
+
+2. 기본 이름과 비밀번호는 admin입니다. 보안 코드를 입력해 로그인 합니다.
+
+<img width="100%" src="https://github.com/Novel-Cloud/server/assets/45661217/054983b8-3114-40dc-bc3f-11e6fa16e3ac"></img>
+
+3. 포트포워딩 전 먼저 위에 사진에서 빨간줄 쳐져있는 외부 ip를 확인해야 할 필요가 있습니다.  
+외부 ip주소가 192.xxx.xxx.xxx이라면 외부 ip가 다른 공유기의 내부 ip일 가능성이 높습니다.  
+만약 192.xxx.xxx.xxx일 경우에는 밑 글을 봐주세요. 
+
+### 내 외부 ip주소가 공유기의 내부 ip주소였던 건에 관하여
+외부 ip가 정상적으로 뜨시는 분들은 이 글은 넘어가주세요.
+
+외부 ip가 내부 ip라니 이런 경우는 처음이어서 당황스러웠습니다.  
+어떻게 공유기의 게이트웨이가 내부 로컬 ip주소 대역으로 나올까요?
+
+문제를 해결하기 위해 네트워크를 구조를 살펴보았습니다.  
+SK브로드밴드 모뎀에서 내부 ip주소를 iptime에 제공하고 있는 것을 발견하였습니다.  
+
+SK브로드밴드 모뎀의 내부 ip가 iptime의 외부 ip였던 것이었습니다!!
+
+### 1차 시도, 실패
+
+처음엔 SK브로드밴드에서 포트포워딩이나 DMZ를 진행하면 문제가 해결될 줄 알았습니다.  
+두 번 포워딩 되어 외부에서 접속이 가능할 줄 알았으나 결과는 실패였습니다. 
+
+<img src="https://github.com/Novel-Cloud/server/assets/45661217/76d34f5e-84aa-4467-b308-cd8903559cc0" width="100%"></img>
+
+### 2차 시도, 성공
+서버를 갈아엎을까 생각하다가 [한 블로그](https://badayak.com/3973#google_vignette)를 보고 해결하였습니다. 감사합니다.  
+
+문제 해결 방법은 SK브로드밴드 모뎀을 브릿지 방식으로 변경하는 것입니다.  
+브릿지 방식으로 변경하게 되면 iptime에도 외부 ip가 제공됩니다.
+
+브릿지 방식으로 바꾸는 방법은 다음과 같습니다.
+
+1. 먼저 SK브로드밴드 관리자 페이지에 접속합니다. 192.168.55.1로 접속합니다.
+
+2. 아이디는 기본 아이디인 admin으로, 비밀번호는 유선 MAC 주소의 진하게 표시된 뒤 여섯자리 + _ + admin으로 로그인합니다.   
+
+유선 MAC 주소는 구석에 박혀있는 공유기를 꺼내서 뒤로 돌리면 나옵니다.  
+ex ) 1E2d3z_admin
+
+3. 로그인 후 상단의 네트워크 > 네트워크 설정 메뉴에서 운용 모드를 Bridge로 변경하고 저장합니다. 
+
+브릿지 모드로 변경하게 되면 자동으로 네트워크가 자동으로 재부팅 됩니다.  
+주위에 롤 승급전을 하고 있는 친구가 있을 수 있으니 조심합시다.  
+재부팅이 끝나면 iptime 관리자 페이지에 들어가 외부 IP주소를 확인합니다.  
+192가 아닌 다른 값, SK 브로드밴드 공유기의 외부 ip로 변경되어 있을 것입니다.
+
+<h3>4-1. 포트포워딩 (2)</h3>
+외부 ip가 정상적으로 바뀌었으면 마저 포트포워딩을 진행해봅시다.
+<img src="https://github.com/Novel-Cloud/server/assets/45661217/67c49346-c168-4801-ba80-6e8434f2ec7f" width="100%"></img>
+
+1. 메뉴탐색기에서 고급 설정 > NAT/라우터 관리 > 포트포워드 설정에 들어갑니다.  
+
+새 규칙 추가를 누른뒤 포트포워딩을 해줍니다.  
+내부 ip는 ipconfig를 통해 확인할 수 있습니다.  
+필자의 경우에는 외부포트와 내부포트를 80으로 구성하였습니다.  
+위 사진과 더불어 추가로 443도 규칙을 만들어 주었습니다.  
+
+외부 ip 주소로 Nginx에 올렸던 웹사이트에 접속이 되면 성공입니다.
+
+<h3 id="4-2">4-2. 프론트, 백엔드 도커 띄우기</h3>
+
+다음은 프론트와 백엔드를 DockerFile을 이용해 이미지를 생성하고 컨테이너를 띄웠습니다.  
+
+### 프론트엔드 도커 서버 띄우기 - Next.js 환경
+
+간단한 프론트부터 진행하겠습니다.  
+먼저 `npm run dev`명령어를 쳐서 돌아가고 있는 서버를 `ctrl + c`를 눌러 종료하고 진행합니다.    
+1. 프로젝트의 루트 디렉토리에 DockerFile을 생성하고 다음과 같이 작성합니다.
+```py
+FROM node:18-alpine
+
+# 디렉토리 지정
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
+
+# 의존성 설치를 위해 package.json, yarn.lock 복사
+COPY package.json ./
+COPY yarn.lock ./
+
+# 의존성 설치
+RUN yarn
+
+# 필요한 모든 파일을 복사
+COPY . .
+
+# next.js 앱 빌드
+RUN yarn build
+
+# 컨테이너 포트 3000 설정
+EXPOSE 3000
+
+# 애플리케이션 실행
+CMD [ "yarn", "start" ]
+
+# 다음 명령어 실행
+# docker build -t bssmh-portfolio-app .
+```
+
+2. 마찬가지로 .dockerignore 파일도 루트 디렉토리에 생성한 후 작성해줍니다.
+```shell
+node_modules
+
+.next
+```
+
+3. 환경변수 등 최종 확인 후에 다음 명령어를 쳐서 도커 이미지를 생성합니다.   
+```shell
+docker build -t bssmh-portfolio-app .
+```
+
+4. 도커 이미지를 실행시킵니다. 컨테이너명은 원하는 것으로 하고 포트는 3000으로 설정해줍니다.
+<img src="https://github.com/Novel-Cloud/server/assets/45661217/4be42ea4-8fc5-4ecf-ae04-66bc28ffd2ff" width="100%"></img>
+
+5. 컨테이너를 화살표 버튼을 눌러 실행합니다. 최종적으로는 위와 같은 사진이 될 것입니다.  
+
+컨테이너를 띄웠다면 localhost:3000에 잘 들어가지는지 테스트해봅시다.
+
+### 백엔드 도커 서버 띄우기 - Spring Boot, Mysql 환경
+
+다음은 백엔드입니다. 백엔드도 프론트와 같이 DockerFile을 이용하여 이미지를 생성합니다.  
+
+그러나 프론트와 비슷하게 진행하였지만 백엔드는 접속이 되지 않았습니다.   
+
+<img src="https://github.com/min050410/min050410/assets/45661217/c4145160-29f8-4334-b99c-a1f04456c5bd" width="100%"></img>
+
+이 부분은 docker-compose를 작성하여 해결하였습니다.  
+보통 Spring Boot와 Mysql을 컨테이너로 같이 올릴 때 docker-compose를 사용합니다.    
+Docker가 컨테이너 자체를 다루는 친구라면 docker-compose는 여러 컨테이너를 하나로 관리해주는 친구입니다.  
+yml파일로 작성하며, docker-compose 명령어를 활용하여 여러 개의 컨테이너를 한 번에 관리할 수 있습니다.
+
+참고 자료  
+[[Docker] docker compose 사용법](https://engineer-mole.tistory.com/221)  
+[Docker Compose에서 Spring과 MySQL이 연결되지 않는 문제 - Communications link failure](https://velog.io/@wo_ogie/Docker-Spring-Boot-MySQL-Spring%EA%B3%BC-MySQL%EC%9D%B4-%EC%97%B0%EA%B2%B0%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EB%AC%B8%EC%A0%9C-Communications-link-failure)
+
+1. 루트 디렉토리에 DockerFile을 생성합니다. 
+```py
+FROM openjdk:11
+COPY server.jar .
+ENV TZ=Asia/Seoul
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=live", "./server.jar"]
+```
+
+2. 마찬가지로 루트 디렉토리에 docker-compose.yml을 작성합니다.
+
+```py
+version: "3"
+services:
+  bssm_portfolio:
+    container_name: bssm_portfolio
+    image: bssm_portfolio
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    volumes:
+      [./application-live.yml:/application-live.yml]
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=PASSWORD
+      - MYSQL_DATABASE=DATABASE
+      - MYSQL_USER=USER
+      - MYSQL_PASSWORD=PASSWORD
+```
+
+3. `docker-compose up -d`으로 docker-compose 파일을 실행합니다.
+
+이제 2-2에서 생성했던 mysql 컨테이너는 지워도 무방합니다.  
+정상적이라면, Docker Desktop에서 보았을 때 컨테이너 하나에 Spring과 Mysql 두개의 컨테이너가 묶여있는 형태가 되어있을 것입니다.  
+화살표 버튼을 눌러 컨테이너를 실행하고 localhost:8080에 접속해 테스트합니다.
+
+<h3 id="4-3">4-3. SSL 인증서 발급 받기</h3>
+https를 사용하려면 SSL 인증서를 발급 받고 설정해야 합니다.  
+기존 AWS 환경에서는 AWS Certificate Manager(ACM)을 이용하여 인증을 진행하였습니다.  
+
+하지만 Window 서버로 마이그레이션 하면서 새로운 인증서가 필요하였습니다.  
+ACM 내보내기를 통해 기존의 인증서를 가져와 날먹하고 싶었는데 AWS에서 인증서 내보내기를 지원하지 않았습니다.  
+
+그래서 Let’s encrypt로 인증서를 생성하고 도메인을 연결하였습니다.  
+도메인 업체는 AWS Route53을 사용하였습니다. 
+
+그럼 SSL을 인증서를 발급해보겠습니다.  
+
+1. Certbot 설치하기  
+[https://certbot.eff.org/instructions?ws=nginx&os=windows](https://certbot.eff.org/instructions?ws=nginx&os=windows)
+
+위 웹사이트에 들어가 Certbot을 설치해줍니다. Certbot은 무료이면서 자동으로 SSL인증서를 발행할 수 있는 툴입니다.  
+
+<img src="https://github.com/min050410/min050410/assets/45661217/5ab18158-3fbb-40d2-8c91-c4791aca064d" width="100%"></img>
+
+<big>My Http Website is running</big>에 Nginx와 Windows를 설정하고 다운로드해줍니다.
+
+2. 인증서 발급 명령어 입력
+
+인증서 발급 방식은 다양한 방식이 있습니다. 아래 블로그를 참고해주세요.  
+[Let's Encrypt(certbot) SSL 인증서 발급 방식](https://sangchul.kr/entry/%EB%A6%AC%EB%88%85%EC%8A%A4-Lets-Encryptcertbot-SSL-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EB%B0%9C%EA%B8%89-%EB%B0%A9%EC%8B%9D)
+
+이 프로젝트에서는 Route53과 연결하기 위해 DNS 인증 방식으로 진행해보겠습니다.
+
+### DNS 인증 방식
+
+Let's Encrypt에서 요구하는 특정 값을 DNS의 TXT 레코드에 입력해서 인증을 하는 방식입니다.  
+이 방법은 와일드카드 서브 도메인 인증을 지원하기에 확장성이 좋습니다.  
+
+아래 코드를 cmd에 입력합니다.
+```shell
+certbot certonly --manual -d 자신의 도메인 --preferred-challenges dns  
+```
+
+계속 진행해보면 레코드가 나옵니다.
+
+```shell
+Please deploy a DNS TXT record under the name:
+
+_acme-challenge.자신의 도메인
+
+with the following value:
+
+AAAAAAAAAA
+
+Before continuing, verify the TXT record has been deployed. Depending on the DNS
+provider, this may take some time, from a few seconds to multiple minutes. You can
+check if it has finished deploying with aid of online tools, such as the Google ...
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+```
+
+여기서 엔터를 누르지 말고 AAAAAAAAAA 부분을 클립보드에 복사합니다.
+
+3. Amazon 레코드 생성
+
+AWS의 Route53에 접근 후 호스팅 영역의 호스팅을 선택합니다. 
+ 
+레코드 생성을 누른뒤 밑 사진과 같이 채워줍니다.  
+
+<img src="https://github.com/min050410/min050410/assets/45661217/47c812c8-cf8a-4029-9156-ae092dc62d83" width="100%"></img>
+
+- 레코드 이름에는 _acme-challenge.자신의 도메인을 적습니다. (하이픈에 주의합니다)
+- 값 부분에는 클립보드에 복사한 값을 붙여넣습니다.  
+
+레코드 생성 후 반환된 응답이 정상이 뜰 경우 다시 설치 콘솔로 와서 엔터를 누르면 pem 인증키가 생성됩니다.  
+인증 키 저장경로는 나중에 필요하니 외워둡시다.
+
+### Certbot 발급시 만난 에러 😡
+window에서 certbot을 사용하니 레코드 생성을 하였는데도 발급이 안되고 에러가 떴습니다.  
+리눅스로 certbot을 다운받고 돌리니까 놀랍게도 해결되었습니다.  
+
+<h3 id="4-4">4-4. nginx 최종 설정</h3>
+nginx.conf를 수정하기 전 options-ssl-nginx.conf 파일을 생성하고 작성해야 합니다.    
+options-ssl-nginx.conf는 SSL 관련 설정들이 작성된 파일입니다.  
+
+DNS 인증 방식을 이용하였으므로 따로 생성을 해주고 작성해주어야 합니다.  
+파일 명을 options-ssl-nginx.conf으로 하고 아래 값을 작성해 줍시다.  
+경로는 기억할 수 있는 곳에 마음대로 설정해주세요.  
+
+```py
+# This file contains important security parameters. If you modify this file
+# manually, Certbot will be unable to automatically provide future security
+# updates. Instead, Certbot will print and log an error message with a path to
+# the up-to-date file that you will need to refer to when manually updating
+# this file. Contents are based on https://ssl-config.mozilla.org
+
+ssl_session_cache shared:le_nginx_SSL:10m;
+ssl_session_timeout 1440m;
+ssl_session_tickets off;
+
+ssl_protocols TLSv1.2 TLSv1.3;
+ssl_prefer_server_ciphers off;
+
+ssl_ciphers "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384";
+```
+options-ssl-nginx.conf 공식 코드는 [certbot github](https://github.com/certbot/certbot/blob/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf)에서 가져왔습니다.
+
+마지막으로 nginx.conf를 수정해줍니다.
+
+```js
+worker_processes  1;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+
+    server {
+        listen 443 ssl http2;
+        server_name portfolio.bssm.io;
+
+        location / {
+            proxy_pass http://localhost:3000;
+        }
+
+        location /api {
+            try_files $uri @backend;
+        }
+
+        location @backend {
+            proxy_pass http://localhost:8080;
+        }
+
+        ssl_certificate fullchain.pem 경로;
+        ssl_certificate_key privkey.pem 경로;
+        include options-ssl-nginx.conf 경로;
+        ssl_dhparam ssl-dhparams.pem 경로;
+    }
+
+    server {
+        listen 80;
+        server_name portfolio.bssm.io;
+        
+        if ($host = portfolio.bssm.io) {
+            return 301 https://$host$request_uri;
+        }
+
+        return 404;
+    }
+
+}
+```
+
+- server_name 부분에 자신의 도메인을 적어줍니다.
+- front 프로젝트는 루트 경로로, 백엔드 프로젝트는 /api으로 맵핑시켰습니다.
+- ssl-dhparams.pem(디피 헬만 파라미터)키는 따로 보안을 강화하는 키입니다.   
+아래 명령어를 쳐서 발급받고 경로를 입력하였습니다. openssl이 없는경우 다운받아야합니다.
+
+```shell
+openssl dhparam -out dhparam.pem 4096
+```
+
+- if ($host = portfolio.bssm.io) 부분은 http로 접속하였을 때 https로 전송해주는 코드입니다.
+- 호스트가 다르다면 return 404; 를 통해 찾을 수 없음을 리턴해줍니다.
+
+설정이 끝났다면 nginx를 리로드 시켜줍니다.
+
+```shell
+nginx -s reload 
+```
+
+<img src="https://github.com/min050410/min050410/assets/45661217/beb35f7f-8005-4b79-9248-98170df8226d" width="100%"></img>
+와우 짝짝짝 웹 배포가 완료되었습니다. 👏
+
+### 휴먼 에러 1 - 다른 프로그램이 443 포트를 먹고 있었음 
+Nginx 설정 후 https에 접속이 안되는 문제가 발생하였습니다.  
+원인을 알아보니 softether vpn 서버 프로그램이 443번 포트를 잡아먹고 있었습니다.  
+softether vpn을 삭제하여 해결하였습니다.
+
+### 휴먼 에러 2 - 테이블 이름이 다름 
+이번엔 접속은 잘 되지만 사이트에서 사진이 보이지 않는 버그가 발생하였습니다.  
+이유는 기존 배포 서버와 개발 서버의 테이블 명이 달랐기 때문이었습니다.  
+해당 부분은 테이블 명을 직접 수정하여 해결하였습니다.  
+ddl.sql에 테이블 명을 잘 넣도록 합시다.
+
+<h3 id="4-5">4-5. 방화벽 설정</h3>
+
+방화벽 설정이 남았습니다. 사실 여기는 별거 없습니다.   
+웹서비스(80, 443)포트만 예외시켜주면 됩니다. 
+
+1. 제어판 - windows 방화벽 - 고급 설정에 들어갑니다.
+2. 왼쪽 목차에서 인바운드 규칙을 클릭하고 새 규칙을 선택합니다.
+3. 만들려는 규칙 종류에서 '포트'를 선택하고 다음을 선택합니다.
+4. 'TCP'를 선택하고 특정 로컬 포트에 80, 443을 넣습니다.
+5. '연결 허용'을 선택해 외부에서의 연결을 허용합니다.
+6. 인바운드 규칙 이름을 설정하고 마침을 눌러 인바운드 규칙을 저장합니다.
+
+이제 외부에서 접속해볼까요?
+<img src="https://github.com/min050410/min050410/assets/45661217/beb35f7f-8005-4b79-9248-98170df8226d" width="100%"></img>
+외부 와이파이로 연결해도 도메인이 잘 연결되는 모습을 볼 수 있습니다.  
+이렇게 서버 마이그레이션이 완료되었습니다. 🥳
+
+### 5. 마치며
+지금까지 nginx와 docker를 이용하여 window 서버를 직접 구축하였습니다.    
+이때까지 썼던 블로그 중에서 가장 긴 블로그가 되었네요.  
+처음 쌩 window 서버를 구축해본 만큼 많은 시행착오를 겪었다고 생각합니다. 
+
+하지만 서버 구축 과정이 재미있었습니다.  
+서버 구축 과정마다 성공할 때 쾌감이 컸습니다. 그리고 버그를 찾는 과정들도 재밌게 느껴졌었습니다.  
+다음에 기회가 된다면 다른 아키텍처의 서버를 구축해보고 싶다고 생각했습니다.
+
+마지막으로 서버 구축이 끝나고 t2.micro 성능에서 16gb 램 성능으로 향상되어 뿌듯하였습니다.  
+이제 사용자가 더 늘어나기를 기도해야겠습니다.  
+
+긴 글 읽어주셔서 감사합니다!
