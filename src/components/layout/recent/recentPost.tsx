@@ -45,8 +45,8 @@ const RecentPostComponent = ({
                             </div>
                         </div>
                         <div id="text_group">
-                            <h3>{title}</h3>
-                            <div>{date}</div>
+                            <div className="recent--title">{title}</div>
+                            <div className="recent--date">{date}</div>
                         </div>
                     </div>
                     <div className="tag">
