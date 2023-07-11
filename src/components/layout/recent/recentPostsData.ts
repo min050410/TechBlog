@@ -358,6 +358,18 @@ const recentPostsData: recentPostsDataType = [
         tag3: "",
         filter: "java",
     },
+    {
+        id: 28,
+        title: "EC2 서버에서 온프레미스 Window 서버로 마이그레이션을 진행한 과정",
+        filename: "Migration-ec2-to-window",
+        date: "2023-07-08",
+        imgLineOne: "",
+        imgLineTwo: "Migration",
+        tag: "migration",
+        tag2: "nginx",
+        tag3: "spring",
+        filter: "server",
+    },
 ];
 
 export default recentPostsData;
